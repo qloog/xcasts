@@ -1,0 +1,22 @@
+{
+  "name": "laravel5-backend",
+  "version": "0.0.0",
+  "authors": [
+    "qloog <quanlongwang@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "AdminLTE": "admin-lte#^2.3.6",
+    "font-awesome": "^4.6.3",
+    "Ionicons": "ionicons#^2.0.1",
+    "bootstrap-fileinput": "^4.3.5",
+    "semantic": "^2.2.6"
+  }
+}

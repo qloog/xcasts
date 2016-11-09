@@ -1,6 +1,38 @@
 @extends('frontend.layouts.master')
 
 @section('content')
+    @if (count($errors) > 0)
+        <div class="ui error message container">
+            <i class="close icon"></i>
+            <ul class="list">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    <form class="ui form ten columns segment container" method="POST" action="{{ url('/register') }}">
+        {{ csrf_field() }}
+
+        <h1>注册</h1>
+        <div class="field two column">
+            <input type="text" name="username" value="{{ old('username') }}" placeholder="用户名" required autofocus>
+        </div>
+        <div class="field">
+            <input type="text" name="email" value="{{ old('email') }}" placeholder="邮箱" required>
+        </div>
+        <div class="field">
+            <input type="password" name="password" value="{{ old('password') }}" placeholder="密码" required>
+        </div>
+        <div class="field">
+            <input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" placeholder="确认密码" required>
+        </div>
+        <button class="ui primary submit button" type="submit">注册</button>
+    </form>
+@endsection
+
+@section('content2')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

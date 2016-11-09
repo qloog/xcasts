@@ -1,7 +1,31 @@
 @extends('frontend.layouts.master')
 
-<!-- Main Content -->
 @section('content')
+    @if (session('status'))
+        <div class="ui success message transition container">
+            <i class="close icon"></i>
+            <div class="header">{{ session('status') }} </div>
+            {{--<p>That offer has expired </p>--}}
+        </div>
+    @endif
+
+    <form class="ui large form container" method="POST" action="{{ url('/password/email') }}">
+        <div class="ui stacked segment">
+            <h3 class="ui blue block header">发送重置密码链接</h3>
+            {{ csrf_field() }}
+
+            <div class="field">
+                <label>邮箱</label>
+                <input type="text" name="email" placeholder="邮箱地址" value="{{ $email or old('email') }}" required autofocus>
+            </div>
+            <button class="ui button" type="submit">发送</button>
+        </div>
+    </form>
+    <div class="striped"></div>
+@endsection
+
+<!-- Main Content -->
+@section('content111')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

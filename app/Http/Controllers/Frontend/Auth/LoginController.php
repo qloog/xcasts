@@ -41,11 +41,4 @@ class LoginController extends Controller
     {
         return view('frontend.auth.login');
     }
-
-    public function logout()
-    {
-        Auth::logout();
-
-        return redirect('/login');
-    }
 }

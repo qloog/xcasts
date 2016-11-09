@@ -3,7 +3,7 @@
         <div class="header item">Our Company </div>
         <a class="item">
             <div class="ui icon search input">
-                <input class="prompt" type="text" placeholder="Common passwords...">
+                <input class="prompt" type="text" placeholder="Laravel">
                 <i class="search icon"></i>
             </div>
         </a>

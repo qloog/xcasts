@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\MyResetPassword;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -11,7 +12,9 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\User
@@ -40,7 +43,7 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
 
-    use Authenticatable, CanResetPassword, EntrustUserTrait;
+    use Authenticatable, CanResetPassword, Notifiable, EntrustUserTrait;
 
     /**
      * The database table used by the model.
@@ -80,5 +83,17 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         } else {
             $this->attributes['password'] = $value;
         }
+    }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        Log::info('Showing user profile for user: ' . $token);
+        $this->notify(new MyResetPassword($token));
     }
 }

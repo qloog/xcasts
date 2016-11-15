@@ -168,7 +168,7 @@
 				<div class="ui link card">
 					<div class="content">
 						<div class="center aligned header">
-							<i class="huge code icon"></i>
+							<i class="huge tv icon"></i>
 							<p>前端</p>
 						</div>
 						<div class="description">

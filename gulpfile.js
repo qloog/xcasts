@@ -44,4 +44,7 @@ elixir(function(mix) {
         // semantic ui
         .copy('resources/assets/bower/semantic','public/semantic')
 
+        // video.js
+        .copy('resources/assets/bower/video.js/dist','public/videojs')
+
 });

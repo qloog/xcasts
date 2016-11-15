@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,13 +11,26 @@ use App\Http\Controllers\Controller;
 class CourseController extends Controller
 {
     /**
+     * @var CourseRepository
+     */
+    protected $courses;
+
+
+    public function __construct(CourseRepository $courses)
+    {
+        $this->courses = $courses;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('frontend.course.index');
+        $courses = $this->courses->orderBy('id', 'DESC')->paginate(10);
+
+        return view('frontend.course.index', compact('courses'));
     }
 
     /**
@@ -26,7 +40,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -48,7 +62,9 @@ class CourseController extends Controller
      */
     public function show($id)
     {
+        $course = $this->courses->findByField('slug', $id)->first();
 
+        return view('frontend.course.detail', compact('course'));
     }
 
     /**

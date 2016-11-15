@@ -70,6 +70,9 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('album/{id}/photos', ['as' => 'album.photos', 'uses' => 'AlbumController@photos']);
         Route::post('album/upload', ['as' => 'album.upload', 'uses' => 'AlbumController@storePhoto']);
 
+        //course
+        Route::resource('course', 'CourseController');
+
         //forum
         //Route::resource('topic/category', 'TopicCategoryController', ['as' => 'topic']);
         Route::resource('topics', 'TopicController');
@@ -90,8 +93,5 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::post('upload/folder', 'UploadController@createFolder');
         Route::delete('upload/folder', 'UploadController@deleteFolder');
         Route::post('upload/image', ['as' => 'upload.image', 'uses' => 'UploadController@uploadImage']);
-
-        //material
-        Route::resource('materials/single', 'MaterialsController');
     });
 });

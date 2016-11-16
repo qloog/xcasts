@@ -148,6 +148,18 @@
                     </li>
                 </ul>
             </li>
+            <li @if(Request::is('admin/video*')) class="treeview active" @else class="treeview" @endif>
+                <a href="#">
+                    <i class="fa fa-file-video-o"></i>
+                    <span>视频管理</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::is('admin/video')) class="active" @endif>
+                        <a href="{{ url('admin/video') }}"><i class="fa fa-circle-o"></i>视频列表</a>
+                    </li>
+                </ul>
+            </li>
             <li @if(Request::is('admin/order*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>

@@ -72,6 +72,8 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //course
         Route::resource('course', 'CourseController');
+        //video
+        Route::resource('video', 'VideoController');
 
         //forum
         //Route::resource('topic/category', 'TopicCategoryController', ['as' => 'topic']);

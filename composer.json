@@ -25,7 +25,8 @@
         "prettus/l5-repository": "^2.6",
         "filp/whoops": "^2.1",
         "zizaco/entrust": "5.2.x-dev",
-        "yajra/laravel-datatables-oracle": "~6.0"
+        "yajra/laravel-datatables-oracle": "~6.0",
+        "qiniu/php-sdk": "^7.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.5",

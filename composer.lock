@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "527b73e6c601734adde8e2e7d5551f30",
-    "content-hash": "e28688f0eee9f0ef73c482ed2ece23a6",
+    "hash": "1dd91d0127d0fa307e9a07e610f32caa",
+    "content-hash": "7584eba569fd777a00dcb0c810ba4a38",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2718,6 +2718,57 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "qiniu/php-sdk",
+            "version": "v7.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/qiniu/php-sdk.git",
+                "reference": "49ad1d9655f3d13ccd49c4a6b7ccd9d3caf9eca0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/qiniu/php-sdk/49ad1d9655f3d13ccd49c4a6b7ccd9d3caf9eca0.zip",
+                "reference": "49ad1d9655f3d13ccd49c4a6b7ccd9d3caf9eca0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "~2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Qiniu\\": "src/Qiniu"
+                },
+                "files": [
+                    "src/Qiniu/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Qiniu",
+                    "email": "sdk@qiniu.com",
+                    "homepage": "http://www.qiniu.com"
+                }
+            ],
+            "description": "Qiniu Resource (Cloud) Storage SDK for PHP",
+            "homepage": "http://developer.qiniu.com/",
+            "keywords": [
+                "cloud",
+                "qiniu",
+                "sdk",
+                "storage"
+            ],
+            "time": "2016-11-13 11:15:04"
         },
         {
             "name": "ramsey/uuid",

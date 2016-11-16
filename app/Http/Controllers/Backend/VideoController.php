@@ -26,7 +26,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = $this->videos->paginate(10);
+        $videos = $this->videos->orderBy('id', 'desc')->paginate(10);
 
         return view('backend.video.index', compact('videos'));
     }
@@ -74,7 +74,9 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = $this->videos->find($id);
+
+        return view('backend.video.edit', compact('video'));
     }
 
     /**
@@ -86,7 +88,10 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($this->videos->update($request->all(), $id)) {
+            return redirect()->route('admin.video.index');
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**

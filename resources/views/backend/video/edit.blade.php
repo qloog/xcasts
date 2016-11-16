@@ -25,7 +25,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::model($course, ['route' => ['admin.video.update', $course->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::model($video, ['route' => ['admin.video.update', $video->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
                     {!! Form::hidden('_method', 'PUT') !!}
 
                     <div class="box-body">

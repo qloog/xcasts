@@ -54,7 +54,9 @@
                         <tr>
                             <th>ID</th>
                             <th>视频名称</th>
+                            <th>所属课程</th>
                             <th>地址</th>
+                            <th>CDN地址</th>
                             <th>封面</th>
                             <th>长度</th>
                             <th>是否免费</th>
@@ -69,15 +71,18 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->url }}</td>
+                                <td>{{ $item->course_id }}</td>
+                                <td><a href="{{ $item->url }}">本地地址</a></td>
+                                <td><a href="{{ $item->cdn_url }}">cdn地址</a></td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
                                 <td>{{ $item->length }}</td>
+                                <td>{!! $item->is_free == 1 ? '免费视频' : '<i class="fa fa-money"></i> 收费' !!} </td>
                                 <td>{{ $item->user_id }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="{{ route('admin.course.edit', [$item->id]) }}">
+                                        <a class="green" href="{{ route('admin.video.edit', [$item->id]) }}">
                                             <i class="fa fa-edit text-green"></i>编辑
                                         </a>
                                     </div>

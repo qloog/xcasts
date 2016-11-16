@@ -47,7 +47,7 @@
 
     <script type="text/javascript">
         $(function () {
-            var page_img = '{!! isset($album->cover_image) ? $album->cover_image : '' !!}';
+            var page_img = '{!! isset($course->cover_image) ? $course->cover_image : '' !!}';
 
             $('#file').fileinput({
                 language: 'zh',
@@ -56,7 +56,7 @@
                 initialCaption: "请选择一张封面图",
                 allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
                 maxFilePreviewSize: 10240,
-                @if(isset($album->cover_image))
+                @if(isset($course->cover_image))
                 initialPreview: [
                     "<img src=" + page_img + " class='file-preview-image' width='200px'/>",
                 ],

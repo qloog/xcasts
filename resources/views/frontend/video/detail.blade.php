@@ -5,25 +5,29 @@
 @endsection
 
 @section('content')
-    <div class="ui page basic segment">
-        <div class="ui container grid">
-            <div class="row">
+    <div class="ui grid">
+        <div class="row" style="background-color: #393E46;">
+            <div class="one wide column"></div>
+            <div class="fourteen wide column">
                 <video id="course-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
-                       poster="/uploads/北京/Sea.jpg" data-setup='{}'>
-                    <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
+                       poster="{{ $video->cdn_cover_image }}" data-setup='{}'>
+                    <source src="{{ $video->cdn_mp4_url }}" type='video/mp4'>
                     <p class="vjs-no-js">
                         To view this video please enable JavaScript, and consider upgrading to a web browser that
                         <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                     </p>
                 </video>
+                <div class="ui bottom attached"  style="background-color: #393E46;">
+                    <div class="ui header">{{ $video->name }}</div>
+                    <div class="meta">发布于: {{ $video->created_at }}</div>
+                    <div class="description">{{ $video->description }}</div>
+                </div>
             </div>
-            <div class="ui bottom attached">
-                <div class="ui header">Laravel启动流程</div>
-                <div class="meta">发布于: 2016-11-11</div>
-                <div class="description">主要介绍Laravel启用过程的生命周期</div>
-            </div>
+            <div class="one wide column"></div>
         </div>
     </div>
+
+    <div class="ui divider"></div>
 
     <div class="ui container">
         <div class="ui comments">

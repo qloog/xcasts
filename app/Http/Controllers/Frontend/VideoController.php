@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Repositories\VideoRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -9,6 +10,13 @@ use App\Http\Controllers\Controller;
 
 class VideoController extends Controller
 {
+    protected $videos;
+
+    public function __construct(VideoRepository $videos)
+    {
+        $this->videos = $videos;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,14 +51,15 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $courseId
-     * @param $episodeId
+     * @param $id
      * @return \Illuminate\Http\Response
      * @internal param int $id
      */
-    public function show($courseId, $episodeId)
+    public function show($id)
     {
-        return view('frontend.video.detail');
+        $video = $this->videos->find($id);
+
+        return view('frontend.video.detail', compact('video'));
     }
 
     /**

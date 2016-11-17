@@ -14,39 +14,34 @@
     </div>
 
     <!-- episode list-->
-    <div class="ui page grid" >
-        <div class="two column row" style="background-color: #f5f5f1;margin-top: 20px;">
-            <div class="column">
+    <div class="ui grid" >
+        <div class="row" style="background-color: #f5f5f1;">
+            <div class="four wide column"></div>
+            <div class="eight wide column">
                 <table class="ui single line selectable  table">
                     <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>No Action</td>
-                        <td class="ui right aligned">None</td>
-                        <td class="ui center aligned">None</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie</td>
-                        <td>None</td>
-                        <td class="ui right aligned">Approved</td>
-                        <td class="ui center aligned">Requires call</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie</td>
-                        <td>None</td>
-                        <td class="ui right aligned">Approved</td>
-                        <td class="ui center aligned">Requires call</td>
-                    </tr>
-                    <tr>
-                        <td>Jamie</td>
-                        <td>None</td>
-                        <td class="ui right aligned">Approved</td>
-                        <td class="ui center aligned">Requires call</td>
-                    </tr>
+                    @if (count($course->videos) > 0)
+                        @foreach($course->videos as $key => $video)
+                        <tr style="display: table-row">
+                            <td class="ui center aligned">{{ $key+1 }}</td>
+                            <td>
+                                <i class="video play outline large icon"></i>
+                                <a href="{{ route('course.video.detail', $video->id) }}">{{ $video->name }}</a>
+                            </td>
+                            <td class="ui right aligned">
+                                @if($video->is_free == 1)
+                                    <a class="ui green label">免费视频</a>
+                                @endif
+                            </td>
+                            <td class="ui right aligned">{{ $video->length }}</td>
+                            <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->created_at)) }}</td>
+                        </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
-            <div class="column"></div>
+            <div class="four wide column"></div>
         </div>
     </div>
 

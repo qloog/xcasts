@@ -14,6 +14,7 @@ class Video extends Model implements Transformable
         'id',
         'course_id',
         'name',
+        'description',
         'cover_image',
         'url',
         'cdn_url',
@@ -23,5 +24,10 @@ class Video extends Model implements Transformable
         'created_at',
         'updated_at'
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class);
+    }
 
 }

@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
 
     Route::resource('course', 'CourseController');
-    Route::get('course/{courseId}/episodes/{episodeId}', 'VideoController@show');
+    Route::get('course/video/{videoId}', ['as' => 'course.video.detail', 'uses' => 'VideoController@show']);
 });
 
 /**

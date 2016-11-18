@@ -14,8 +14,8 @@
     </div>
 
     <!-- episode list-->
-    <div class="ui grid" >
-        <div class="row" style="background-color: #f5f5f1;">
+    <div class="ui grid"  style="background-color: #f5f5f1;">
+        <div class="row">
             <div class="four wide column"></div>
             <div class="eight wide column">
                 <table class="ui single line selectable  table">
@@ -43,6 +43,7 @@
             </div>
             <div class="four wide column"></div>
         </div>
+        <div class="row"></div>
     </div>
 
 @endsection

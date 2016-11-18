@@ -29,58 +29,49 @@
 
     <div class="ui divider"></div>
 
-    <div class="ui container">
-        <div class="ui comments">
-            <h3 class="ui dividing header">评论</h3>
-            <div class="comment">
-                <a class="avatar">
-                    <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
-                </a>
-                <div class="content">
-                    <div class="author">
-                        <form class="ui reply form">
-                            <div class="field">
-                                <textarea></textarea>
+    <div class="ui grid">
+        <div class="row" style="background-color: #F5F5F1">
+            <div class="two wide column"></div>
+            <div class="twelve wide column">
+                <div class="ui comments">
+                    <h3 class="ui dividing header">发表评论</h3>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
+                        </a>
+                        <div class="content">
+                            <div class="author"></div>
+                            <form class="ui reply form">
+                                <div class="field">
+                                    <textarea placeholder="支持Markdown语法"></textarea>
+                                </div>
+                                <div class="ui primary submit labeled icon button"><i class="icon edit"></i>发表回复</div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
+                        </a>
+                        <div class="content">
+                            <a class="author">Joe Henderson</a>
+                            <div class="metadata">
+                                <div class="date">1 day ago</div>
                             </div>
-                            <div class="ui primary submit labeled icon button"><i class="icon edit"></i> Add Comment </div>
-                        </form>
+                            <div class="text">
+                                <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there. </p>
+                                <p>Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
+                            </div>
+                            <div class="actions">
+                                <a class="right floated reply">回复</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="comment">
-                <a class="avatar">
-                    <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
-                </a>
-                <div class="content">
-                    <a class="author">Joe Henderson</a>
-                    <div class="metadata">
-                        <div class="date">1 day ago</div>
-                    </div>
-                    <div class="text">
-                        <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there. </p>
-                        <p>Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
-                    </div>
-                    <div class="actions">
-                        <a class="right floated reply">Reply</a>
-                    </div>
-                </div>
-            </div>
-            <div class="comment">
-                <a class="avatar">
-                    <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
-                </a>
-                <div class="content">
-                    <a class="author">Christian Rocha</a>
-                    <div class="metadata">
-                        <div class="date">2 days ago</div>
-                    </div>
-                    <div class="text">I re-tweeted this. </div>
-                    <div class="actions">
-                        <a class="reply">Reply</a>
-                    </div>
-                </div>
-            </div>
+            <div class="two wide column"></div>
         </div>
+
     </div>
 @endsection
 

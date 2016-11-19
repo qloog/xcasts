@@ -47,7 +47,7 @@
 
 	<div class="ui center aligned header basic segment">
 		<h1>构建知识框架</h1>
-		<h4 class="ui grey header">宁皓网的课程为您提供了一套不断更新的 Web 设计与开发的知识框架。使用这个知识框架，你可以实践自己的想法，做出你想要的网站或应用。</h4>
+		<h4 class="ui grey header">为您提供了一套不断更新的 Web 设计与开发的知识框架。使用这个知识框架，你可以实践自己的想法，做出你想要的网站或应用。</h4>
 	</div>
 
 	<div class="ui container">

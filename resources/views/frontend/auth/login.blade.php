@@ -1,43 +1,52 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-    <div class="ui two column middle aligned very relaxed stackable grid container teal segment">
-        <div class="column">
-            @if (count($errors) > 0)
-                <div class="ui error message container">
-                    <i class="close icon"></i>
-                    <ul class="list">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-
-            <form class="ui form" method="POST" action="{{ url('/login') }}">
-                <p><h1>登录</h1></p>
-                {{ csrf_field() }}
-                <div class="field">
-                    <label>邮箱</label>
-                    <input placeholder="邮箱地址" name="email" type="text" value="{{ old('email') }}">
-                </div>
-                <div class="field">
-                    <label>密码</label>
-                    <input type="password" name="password" placeholder="密码" >
-                </div>
-                <div class="inline field">
-                    <div class="ui checkbox">
-                        <input type="checkbox" name="remember">
-                        <label>Remember Me</label>
+    <div class="ui stackable grid container">
+        <div class="row"></div>
+        <div class="row">
+            <div class="five wide column"></div>
+            <div class="six wide column">
+                @if (count($errors) > 0)
+                    <div class="ui error message container">
+                        <i class="close icon"></i>
+                        <ul class="list">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
-                </div>
-                <button class="ui primary submit button" type="submit">登录</button>
-                <span><a href="{{ url('/password/reset') }}">忘记密码?</a></span>
-            </form>
+                @endif
+
+                <form class="ui form segment" method="POST" action="{{ url('/login') }}">
+                    {{ csrf_field() }}
+                    <div class="field">
+                        <label>邮箱</label>
+                        <input placeholder="邮箱地址" name="email" type="text" value="{{ old('email') }}">
+                    </div>
+                    <div class="field">
+                        <label>密码</label>
+                        <input type="password" name="password" placeholder="密码" >
+                    </div>
+                    <div class="inline field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="remember">
+                            <label>记住密码</label>
+                        </div>
+                    </div>
+                    <button class="teal fluid ui button big" type="submit">立 即 登 录</button>
+                    <div class="field">
+                        <a class="ui block link list" href="{{ url('/password/reset') }}">忘记密码?</a>
+                    </div>
+                </form>
+            </div>
+            <div class="five wide column"></div>
         </div>
-        {{--<div class="ui vertical divider">Or </div>--}}
-        <div class="center aligned column">
-            <div class="ui big green labeled icon button"><i class="signup icon"></i> Sign Up </div>
+        <div class="centered row">
+            <h4 class="ui disabled header">没有帐号?</h4>
         </div>
+        <div class="centered row">
+            <a class="ui green button" href="{{ url('/register') }}">马上注册</a>
+        </div>
+        <div class="row"></div>
     </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="ui center aligned header basic raised segment">
-        <div class="ui buttons">
+        <div class="teal ui buttons">
             <button class="ui active large button">后端</button>
             <button class="ui large button">服务</button>
             <button class="ui large button">前端</button>

@@ -74,6 +74,25 @@
             font-weight: 400;
         }
 
+        .footer .back-to-top {
+            background-color: #00B5AD;
+            box-shadow: inset 0 1px 0 0 hsla(0,0%,100%,.3),0 1px 2px rgba(0,0,0,.3);
+            text-shadow: 0 1px 1px rgba(0,0,0,.2);
+            display: block;
+            font-size: 16px;
+            height: auto;
+            line-height: 24px;
+            margin: 15px;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            right: 40px;
+            bottom: 60px;
+            width: 36px;
+            border-radius: 2px;
+            z-index: 10;
+        }
+
         .secondary.pointing.menu .toc.item {
             display: none;
         }
@@ -118,6 +137,15 @@
 
 <script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
 <script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){ //scroll to top
+        $('.back-to-top').click(function(){
+            $('html, body').animate({scrollTop : 0}, 700);
+            return false;
+        });
+    });
+
+</script>
 @yield('scripts')
 </body>
 </html>

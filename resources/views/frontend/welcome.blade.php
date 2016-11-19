@@ -57,56 +57,49 @@
 	</div>
 
 	<div class="ui container">
-		<div class="ui four column stackable grid">
-			<div class="column">
-				<div class="ui link card">
-					<div class="content">
-						<div class="center aligned header">
-							<i class="huge orange terminal icon"></i>
-							<p>后端</p>
-						</div>
-						<div class="description">
-							<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
-						</div>
+		<div class="ui four stackable cards">
+			<div class="card">
+				<div class="content">
+					<div class="center aligned header">
+						<i class="huge orange terminal icon"></i>
+						<p>后端</p>
+					</div>
+					<div class="description">
+						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
 					</div>
 				</div>
 			</div>
-			<div class="column">
-				<div class="ui link card">
-					<div class="content">
-						<div class="center aligned header">
-							<i class="huge green server icon"></i>
-							<p>服务</p>
-						</div>
-						<div class="description">
-							<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
-						</div>
+			<div class="card">
+				<div class="content">
+					<div class="center aligned header">
+						<i class="huge green server icon"></i>
+						<p>服务</p>
+					</div>
+					<div class="description">
+						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
 					</div>
 				</div>
 			</div>
-			<div class="column">
-				<div class="ui link card">
-					<div class="content">
-						<div class="center aligned header">
-							<i class="huge tv icon"></i>
-							<p>前端</p>
-						</div>
-						<div class="description">
-							<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
-						</div>
+
+			<div class="card">
+				<div class="content">
+					<div class="center aligned header">
+						<i class="huge tv icon"></i>
+						<p>前端</p>
+					</div>
+					<div class="description">
+						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
 					</div>
 				</div>
 			</div>
-			<div class="column">
-				<div class="ui link card">
-					<div class="content">
-						<div class="center aligned header">
-							<i class="huge brown setting icon"></i>
-							<p>工具</p>
-						</div>
-						<div class="description">
-							<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
-						</div>
+			<div class="card">
+				<div class="content">
+					<div class="center aligned header">
+						<i class="huge brown setting icon"></i>
+						<p>工具</p>
+					</div>
+					<div class="description">
+						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
 					</div>
 				</div>
 			</div>

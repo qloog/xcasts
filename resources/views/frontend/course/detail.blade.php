@@ -4,12 +4,13 @@
 
     <!-- banner -->
     <div class="ui grid" style="height:260px; background: #393E46;">
-        <div class="ui container two columns grid">
-            <div class="column" style="color: #ffffff;margin-top: 40px;">
+        <div class="row">
+            <div class="three wide column"></div>
+            <div class="ten wide column" style="color: #ffffff;margin-top: 40px;">
                 <h3>{{ $course->name }}</h3>
                 <div class="label">{{ $course->description }}</div>
             </div>
-            <div class="column"></div>
+            <div class="three wide column"></div>
         </div>
     </div>
 

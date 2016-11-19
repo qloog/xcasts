@@ -22,7 +22,7 @@
         <div class="ui right simple dropdown item">
             @if (Auth::guest())
                 <a class="ui button" href="{{ url('/login') }}">登录</a>
-                <a class="ui primary button" href="{{ url('/register') }}">注册</a>
+                <a class="ui teal button" href="{{ url('/register') }}">注册</a>
             @else
                 <i class="user icon"></i>{{ Auth::user()->username }}
                 <i class="dropdown icon"></i>

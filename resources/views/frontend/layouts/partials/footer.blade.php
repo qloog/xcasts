@@ -44,5 +44,7 @@
             Developed By <a class="item" href="http://lnmp100.com">Qloog</a>,Powered By <a class="item" href="https://laravel.com">Laravel</a>
             <div class="disabled item" href="#">© PHPCasts 2016. All rights reserved.</div>
         </div>
+
+        <a class="back-to-top" href="javascript:;"></a>
     </div>
 </div>

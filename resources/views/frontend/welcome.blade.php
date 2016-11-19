@@ -59,7 +59,7 @@
 						<p>后端</p>
 					</div>
 					<div class="description">
-						<p>开发网站护短</p>
+						<p>开发网站用到的后端,比如PHP框架, 数据库等</p>
 					</div>
 				</div>
 			</div>

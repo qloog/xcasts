@@ -12,16 +12,17 @@
 @section('get-start')
 	<div class="ui text container">
 		<h1 class="ui inverted header">
-			Imagine-a-Company
+			成为一名工匠级的WEB开发工程师
 		</h1>
-		<h2>Do whatever you want when you want to.</h2>
-		<div class="ui huge primary button">Get Started <i class="right arrow icon"></i></div>
+		<h2>Just Do it.</h2>
+		<div class="ui huge teal button"><a class="ui disable" href="{{ url('/register') }}"> 马上加入 </a><i class="right arrow icon"></i></div>
 	</div>
 @endsection
 
 @section('content')
-	<div class="ui center aligned header basic raised segment">
-		<h1 class="ui center aligned">Examples of UI that inherit border styles</h1>
+	<div class="ui center aligned basic raised segment">
+		<h1>持续更新</h1>
+		<h4 class="ui grey header">学习是一个持续的过程</h4>
 	</div>
 
 	<div class="ui container">
@@ -45,15 +46,8 @@
 	</div>
 
 	<div class="ui center aligned header basic segment">
-		<h1 class="ui aligned">Examples of UI that inherit border styles</h1>
-	</div>
-
-	<div class="ui center aligned basic segment">
-		<h4>Examples of UI that inherit border styles</h4>
-	</div>
-
-	<div class="ui center aligned basic segment">
-		<h3>Examples of UI that inherit border styles</h3>
+		<h1>构建知识框架</h1>
+		<h4 class="ui grey header">宁皓网的课程为您提供了一套不断更新的 Web 设计与开发的知识框架。使用这个知识框架，你可以实践自己的想法，做出你想要的网站或应用。</h4>
 	</div>
 
 	<div class="ui container">
@@ -65,7 +59,7 @@
 						<p>后端</p>
 					</div>
 					<div class="description">
-						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
+						<p>开发网站护短</p>
 					</div>
 				</div>
 			</div>
@@ -76,7 +70,7 @@
 						<p>服务</p>
 					</div>
 					<div class="description">
-						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
+						<p>在开发网站的时候,用到的一些基础服务, 如LNMP环境, Redis服务, 消息服务等</p>
 					</div>
 				</div>
 			</div>
@@ -88,7 +82,7 @@
 						<p>前端</p>
 					</div>
 					<div class="description">
-						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
+						<p>网站前端相关的一些框架, 比如UI框架, JS框架</p>
 					</div>
 				</div>
 			</div>

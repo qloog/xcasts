@@ -1,6 +1,6 @@
 <div class="ui container">
     <div class="ui large secondary inverted pointing menu">
-        <div class="header item">Our Company </div>
+        <div class="header item">PHPCasts</div>
         <a class="item">
             <div class="ui icon search input">
                 <input class="prompt" type="text" placeholder="Laravel">

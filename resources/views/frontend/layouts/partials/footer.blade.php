@@ -41,8 +41,9 @@
             <div class="disabled item" href="#">运行于 UCloud 的 UHost 云主机上.</div>
         </div>
         <div class="ui inverted horizontal list">
-            Developed By <a class="item" href="http://lnmp100.com">Qloog</a>,Powered By <a class="item" href="https://laravel.com">Laravel</a>
-            <div class="disabled item" href="#">© PHPCasts 2016. All rights reserved.</div>
+            <a class="disabled item">Developed By</a><a class="item" href="http://lnmp100.com">Qloog</a>,<a class="disabled item">Powered By</a><a class="item" href="https://laravel.com">Laravel</a>
+            <div class="item"><a href="{{ url('/service') }}">服务条款</a></div>
+            <div class="disabled item">© PHPCasts 2016. All rights reserved.</div>
         </div>
 
         <a class="back-to-top" href="javascript:;"></a>

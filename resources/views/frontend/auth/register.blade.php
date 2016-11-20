@@ -3,6 +3,7 @@
 @section('content')
     <div class="ui stackable grid container">
         <div class="row"></div>
+        <div class="row"></div>
         <div class="row">
             <div class="five wide column"></div>
             <div class="six wide column">

@@ -52,7 +52,7 @@
 
 	<div class="ui container">
 		<div class="ui four stackable cards">
-			<div class="card">
+			<a class="card"  href="{{ url('course/backend') }}">
 				<div class="content">
 					<div class="center aligned header">
 						<i class="huge orange terminal icon"></i>
@@ -62,8 +62,8 @@
 						<p>开发网站用到的后端,比如PHP框架, 数据库等</p>
 					</div>
 				</div>
-			</div>
-			<div class="card">
+			</a>
+			<a class="card"  href="{{ url('course/service') }}">
 				<div class="content">
 					<div class="center aligned header">
 						<i class="huge green server icon"></i>
@@ -73,9 +73,9 @@
 						<p>在开发网站的时候,用到的一些基础服务, 如LNMP环境, Redis服务, 消息服务等</p>
 					</div>
 				</div>
-			</div>
+			</a>
 
-			<div class="card">
+			<a class="card" href="{{ url('course/frontend') }}">
 				<div class="content">
 					<div class="center aligned header">
 						<i class="huge tv icon"></i>
@@ -85,8 +85,8 @@
 						<p>网站前端相关的一些框架, 比如UI框架, JS框架</p>
 					</div>
 				</div>
-			</div>
-			<div class="card">
+			</a>
+			<a class="card"  href="{{ url('course/tools') }}">
 				<div class="content">
 					<div class="center aligned header">
 						<i class="huge brown setting icon"></i>
@@ -96,7 +96,7 @@
 						<p>在设计与开发网站的时候，您需要用到一系列的工具，比如编辑器，版本控制，自动化执行任务等等。</p>
 					</div>
 				</div>
-			</div>
+			</a>
 		</div>
 	</div>
 

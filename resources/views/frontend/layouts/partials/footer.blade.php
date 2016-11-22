@@ -1,6 +1,6 @@
 <div class="ui inverted vertical footer segment">
     <div class="ui container">
-        <div class="ui stackable inverted grid">
+        <div class="ui computer only stackable inverted grid">
             <div class="five wide column">
                 <h4 class="ui inverted header">PHPCasts</h4>
                 <p></p>

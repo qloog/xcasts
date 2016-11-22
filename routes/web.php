@@ -25,8 +25,12 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
 
+    // course
     Route::resource('course', 'CourseController');
     Route::get('course/video/{videoId}', ['as' => 'course.video.detail', 'uses' => 'VideoController@show']);
+
+    // topic
+    Route::resource('topic', 'TopicController');
 });
 
 /**

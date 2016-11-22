@@ -13,11 +13,8 @@
         <a class="item" href="{{ route('course.index') }}">
             <i class="student icon"></i> 课程
         </a>
-        <a class="item" href="javascript:;">
-            <i class="talk icon"></i> 问答
-        </a>
-        <a class="item" href="javascript:;">
-            <i class="write icon"></i> 文章
+        <a class="item" href="{{ route('topic.index') }}">
+            <i class="talk icon"></i> 社区
         </a>
         <div class="ui right simple dropdown item">
             @if (Auth::guest())

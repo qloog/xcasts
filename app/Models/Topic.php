@@ -12,6 +12,6 @@ class Topic extends Model implements Transformable
 
     protected $table = 'forum_topics';
 
-    protected $fillable = [];
+    protected $fillable = ['title','body','origin_body'];
 
 }

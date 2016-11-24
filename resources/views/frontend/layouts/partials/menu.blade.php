@@ -24,10 +24,9 @@
                 <i class="user icon"></i>{{ Auth::user()->username }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item"><i class="edit icon"></i> Edit Profile</a>
-                    <a class="item"><i class="globe icon"></i> Choose Language</a>
-                    <a class="item"><i class="settings icon"></i> Account Settings</a>
-                    <a class="item" href="{{ url('/logout') }}"><i class="settings icon"></i>退出登录</a>
+                    <a class="item"><i class="user icon"></i> 个人中心</a>
+                    <a class="item"><i class="settings icon"></i> 编辑资料</a>
+                    <a class="item" href="{{ url('/logout') }}"><i class="sign out icon"></i>退出登录</a>
                 </div>
             @endif
         </div>

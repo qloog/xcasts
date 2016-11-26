@@ -62,7 +62,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = $this->courses->findByField('slug', $id)->first();
+        $course = $this->courses->findByField('id', $id)->first();
 
         return view('frontend.course.detail', compact('course'));
     }

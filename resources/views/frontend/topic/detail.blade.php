@@ -34,7 +34,7 @@
                             <p></p>
                             <div >
                                 @for($i=0;$i<30;$i++)
-                                <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/matt.jpg" style="width: 40px;height: 40px;"/>
+                                <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/matt.jpg" style="width: 40px;height: 40px;"/>
                                 <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/elliot.jpg" style="width: 40px;height: 40px;"/>
                                 <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/helen.jpg" style="width: 40px;height: 40px;"/>
                                 <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" style="width: 40px;height: 40px;"/>
@@ -54,7 +54,7 @@
                                         <img src="http://semantic-ui.com/images/avatar/small/matt.jpg">
                                     </a>
                                     <div class="content">
-                                        <a class="author">Joe Henderson</a>
+                                        <a class="author teal">Joe Henderson</a>
                                         <div class="metadata">
                                             <div class="date">
                                                 1 day ago

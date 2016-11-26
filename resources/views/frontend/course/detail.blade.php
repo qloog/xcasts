@@ -27,11 +27,11 @@
                             <td class="ui center aligned">{{ $key+1 }}</td>
                             <td>
                                 <i class="video play outline large icon"></i>
-                                <a href="{{ route('course.video.detail', $video->id) }}">{{ $video->name }}</a>
+                                <a href="{{ route('course.video.show', $video->id) }}">{{ $video->name }}</a>
                             </td>
                             <td class="ui right aligned">
                                 @if($video->is_free == 1)
-                                    <a class="ui green label">免费视频</a>
+                                    <a class="ui green label">Free</a>
                                 @endif
                             </td>
                             <td class="ui right aligned">{{ $video->length }}</td>

@@ -17,7 +17,6 @@
         <div class="row">
             <div class="one wide column"></div>
             <div class="fourteen wide column">
-                <div class="ui basic segment">
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
                            poster="{{ $video->cdn_cover_image }}" data-setup='{}'>
                         {{--<source src="{{ $video->cdn_mp4_url }}" type='video/mp4'>--}}
@@ -63,19 +62,18 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="one wide column"></div>
         </div>
     </div>
 
-
-    <div class="ui grid">
-        <div class="row" style="background-color: #F5F5F1">
+    <div class="ui grid"  style="background-color: #E9EAED">
+        <div class="row">
             <div class="one wide column"></div>
             <div class="fourteen wide column">
-                <div class="ui comments">
+                <div class="ui comments segment">
                     <h3 class="ui dividing header">发表评论</h3>
+                    @for($i=0;$i<8;$i++)
                     <div class="comment">
                         <a class="avatar">
                             <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
@@ -90,16 +88,17 @@
                                 <p>Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
                             </div>
                             <div class="actions">
-                                <a class="right floated reply">回复</a>
+                                <a class="right floated reply"><i class="reply icon"></i>回复</a>
                             </div>
-                            <form class="ui reply form">
-                                <div class="field">
-                                    <textarea placeholder="支持Markdown语法"></textarea>
-                                </div>
-                                <div class="ui primary submit labeled icon button"><i class="icon edit"></i>发表回复</div>
-                            </form>
                         </div>
                     </div>
+                    @endfor
+                    <form class="ui reply form">
+                        <div class="field">
+                            <textarea name="reply_content" placeholder="支持Markdown语法"></textarea>
+                        </div>
+                        <div class="ui primary submit labeled icon button"><i class="icon edit"></i>发表回复</div>
+                    </form>
                 </div>
             </div>
             <div class="one wide column"></div>

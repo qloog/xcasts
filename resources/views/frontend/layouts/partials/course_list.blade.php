@@ -1,5 +1,6 @@
 <div class="ui three stackable cards">
 
+    @if((isset($courses) && $courses))
     @foreach($courses as $course)
         <div class="ui raised link card">
             <a class="image" href="{{ route('course.show', $course->id) }}">
@@ -14,4 +15,5 @@
             </div>
         </div>
     @endforeach
+    @endif
 </div>

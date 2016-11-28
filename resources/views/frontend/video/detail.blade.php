@@ -8,6 +8,8 @@
         .video-js .vjs-current-time { display: block; }
         .video-js .vjs-time-divider { display: block; }
         .video-js .vjs-duration { display: block; }
+
+        .ui.comments { max-width: 72.5%!important}
     </style>
 @endsection
 
@@ -20,16 +22,11 @@
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
                            poster="{{ $video->cdn_cover_image }}" data-setup='{}'>
                         {{--<source src="{{ $video->cdn_mp4_url }}" type='video/mp4'>--}}
-                        <source src="//player.vimeo.com/external/149192583.hd.mp4?s=ced26a33f0ddd6538d7a7dbc767fe7a81f15668a&amp;profile_id=119"
+                        <source src="http://live.mengzhu.tv/mz/test100.flv"
                                 type="video/mp4"
                                 data-quality="HD"
                                 label="HD"
                                 data-default="true">
-
-                        <source src="//player.vimeo.com/external/149192583.sd.mp4?s=b0a79c3165b9834290b709915b1f3e387a7ae285&amp;profile_id=112"
-                                type="video/mp4"
-                                data-quality="SD"
-                                label="SD">
                         <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a web browser that
                             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
@@ -73,26 +70,25 @@
             <div class="fourteen wide column">
                 <div class="ui comments segment">
                     <h3 class="ui dividing header">发表评论</h3>
-                    @for($i=0;$i<8;$i++)
+                    @foreach($comments as $comment)
                     <div class="comment">
                         <a class="avatar">
                             <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
                         </a>
                         <div class="content">
-                            <a class="author">Joe Henderson</a>
+                            <a class="author">{{ $comment->user->email }}</a>
                             <div class="metadata">
-                                <div class="date">1 day ago</div>
+                                <div class="date">{{ $comment->created_at->diffForHumans() }}</div>
                             </div>
                             <div class="text">
-                                <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there. </p>
-                                <p>Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
+                                <p>{{ $comment->content }}</p>
                             </div>
                             <div class="actions">
                                 <a class="right floated reply"><i class="reply icon"></i>回复</a>
                             </div>
                         </div>
                     </div>
-                    @endfor
+                    @endforeach
                     <form class="ui reply form">
                         <div class="field">
                             <textarea name="reply_content" placeholder="支持Markdown语法"></textarea>

@@ -3,23 +3,17 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CommentRepository;
-use App\Contracts\Repositories\VideoRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class VideoController extends Controller
+class CommentController extends Controller
 {
-    protected $videos;
-    protected $comments;
 
-    public function __construct(VideoRepository $videos, CommentRepository $comments)
+    public function __construct(CommentRepository $repsository)
     {
-        $this->videos = $videos;
-        $this->comments = $comments;
     }
-
     /**
      * Display a listing of the resource.
      *
@@ -48,22 +42,18 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
-     * @internal param int $id
      */
     public function show($id)
     {
-        $video = $this->videos->find($id);
-        $comments = $this->comments->findWhere(['type' => 'video', 'relation_id' => $id])->all();
-
-        return view('frontend.video.detail', compact('video','comments'));
+        //
     }
 
     /**

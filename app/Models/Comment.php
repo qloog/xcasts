@@ -11,7 +11,7 @@ class Comment extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = ['type', 'relation_id', 'ip','content','user_id', 'up_count', 'device_type', 'updated_at', 'created_at'];
+    protected $fillable = ['type', 'relation_id', 'ip', 'origin_content', 'content','user_id', 'up_count', 'device_type', 'updated_at', 'created_at'];
 
     public function user()
     {

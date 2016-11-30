@@ -31,6 +31,8 @@ Route::group(['namespace' => 'Frontend'], function ()
 
     // topic
     Route::resource('topic', 'TopicController');
+    // comment
+    Route::post('comment', 'CommentController@store')->name('comment.store');
 });
 
 /**

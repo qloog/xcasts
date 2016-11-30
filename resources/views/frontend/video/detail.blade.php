@@ -2,6 +2,7 @@
 
 @section('styles')
     <link href="{{ asset('videojs/video-js.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">
         /* Hidden by default, selectively shown.
             At this point this is how a skin designer would show them. */
@@ -80,20 +81,24 @@
                             <div class="metadata">
                                 <div class="date">{{ $comment->created_at->diffForHumans() }}</div>
                             </div>
-                            <div class="text">
-                                <p>{{ $comment->content }}</p>
+                            <div class="text markdown-body">
+                                <p>{!! $comment->content !!}</p>
                             </div>
                             <div class="actions">
-                                <a class="right floated reply"><i class="reply icon"></i>回复</a>
+                                <a class="reply"><i class="thumbs outline up icon"></i>赞</a>
+                                <a class="reply"><i class="reply icon"></i>回复</a>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                    <form class="ui reply form">
+                    <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
+                        {!! csrf_field() !!}
+                        <input type="hidden" name="relation_id" value="{{ $video->id }}" >
+                        <input type="hidden" name="type" value="video" >
                         <div class="field">
-                            <textarea name="reply_content" placeholder="支持Markdown语法"></textarea>
+                            <textarea name="content" placeholder="支持Markdown语法"></textarea>
                         </div>
-                        <div class="ui primary submit labeled icon button"><i class="icon edit"></i>发表回复</div>
+                        <button class="ui primary submit labeled icon button" type="submit"><i class="icon edit"></i>发表回复</button>
                     </form>
                 </div>
             </div>

@@ -11,8 +11,11 @@ use App\Http\Controllers\Controller;
 class CommentController extends Controller
 {
 
-    public function __construct(CommentRepository $repsository)
+    protected $repository;
+
+    public function __construct(CommentRepository $repository)
     {
+        $this->repository = $repository;
     }
     /**
      * Display a listing of the resource.
@@ -42,7 +45,15 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        if ($this->repository->create($request->all())) {
+            return redirect()->route('course.video.show', $request->get('relation_id'));
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
+    }
 
+    public function like(Request $request)
+    {
+        
     }
 
     /**

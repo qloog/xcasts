@@ -3,25 +3,16 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\ReplyRepository;
-use App\Contracts\Repositories\TopicRepository;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Redirect;
 
-class TopicController extends Controller
+class ReplyController extends Controller
 {
-    /**
-     * @var TopicRepository
-     */
-    protected $topics;
-    protected $replies;
+    protected $repository;
 
-    public function __construct(TopicRepository $topics, ReplyRepository $replies)
+    public function __construct(ReplyRepository $repository)
     {
-        $this->topics = $topics;
-        $this->replies = $replies;
+        $this->repository = $repository;
     }
 
     /**
@@ -31,8 +22,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = $this->topics->orderBy('created_at', 'desc')->paginate(10);
-        return view('frontend.topic.index', compact('topics'));
+        //
     }
 
     /**
@@ -42,7 +32,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('frontend.topic.create');
+        //
     }
 
     /**
@@ -53,8 +43,8 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->topics->create($request->all())) {
-            return redirect()->route('topic.index');
+        if ($this->repository->create($request->all())) {
+            return redirect()->route('topic.show', $request->get('topic_id'));
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
@@ -67,11 +57,7 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = $this->topics->find($id);
-
-        $replies = $this->replies->all();
-
-        return view('frontend.topic.detail', compact('topic', 'replies'));
+        //
     }
 
     /**

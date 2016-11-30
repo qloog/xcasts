@@ -159,7 +159,6 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-        GrahamCampbell\Markdown\MarkdownServiceProvider::class
     ],
     /*
     |--------------------------------------------------------------------------
@@ -220,8 +219,6 @@ return [
         'Flash' => Laracasts\Flash\Flash::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
-        'Markdown' => 'GrahamCampbell\Markdown\Facades\Markdown'
-
     ],
 
 ];

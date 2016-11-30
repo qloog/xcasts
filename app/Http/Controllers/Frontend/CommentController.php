@@ -17,6 +17,7 @@ class CommentController extends Controller
     {
         $this->repository = $repository;
     }
+
     /**
      * Display a listing of the resource.
      *

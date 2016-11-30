@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="field">
                                     <label></label>
-                                    <textarea name="origin_body" rows="20" placeholder="请使用Markdown格式书写:)"></textarea>
+                                    <textarea name="body" rows="20" placeholder="请使用Markdown格式书写:)"></textarea>
                                 </div>
                                 <button class="ui button teal" type="submit">发布</button>
                             </form>

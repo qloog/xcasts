@@ -2,26 +2,18 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\ReplyRepository;
-use App\Contracts\Repositories\TopicRepository;
+use App\Contracts\Repositories\UserRepository;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Redirect;
 
-class TopicController extends Controller
+class UserController extends Controller
 {
-    /**
-     * @var TopicRepository
-     */
-    protected $topics;
-    protected $replies;
 
-    public function __construct(TopicRepository $topics, ReplyRepository $replies)
+    protected $userRepository;
+
+    public function __construct(UserRepository $userRepository)
     {
-        $this->topics = $topics;
-        $this->replies = $replies;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -31,8 +23,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = $this->topics->orderBy('created_at', 'desc')->paginate(10);
-        return view('frontend.topic.index', compact('topics'));
+        //
     }
 
     /**
@@ -42,7 +33,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('frontend.topic.create');
+        //
     }
 
     /**
@@ -53,10 +44,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->topics->create($request->all())) {
-            return redirect()->route('topic.index');
-        }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
+        //
     }
 
     /**
@@ -67,11 +55,8 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = $this->topics->find($id);
-
-        $replies = $this->replies->all();
-
-        return view('frontend.topic.detail', compact('topic', 'replies'));
+        $user = $this->userRepository->find($id);
+        dd($user);
     }
 
     /**

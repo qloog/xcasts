@@ -1,5 +1,12 @@
 @extends('frontend.layouts.master')
 
+@section('styles')
+    <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .ui.comments { max-width: 100%!important}
+    </style>
+@stop
+
 @section('content')
     <div class="ui grid">
         <div class="row"></div>
@@ -8,11 +15,19 @@
                 <div class="ui grid">
                     <div class="twelve wide column">
                         <!-- detail -->
-                        <div class="ui large middle aligned divided relaxed list padded segment">
-                            <h2>Second Header</h2>
-                            <div class="ui divider"></div>
-
-                            {!! $topic->body !!}
+                        <div class="ui secondary segment">
+                            <h2>{{ $topic->title }}</h2>
+                            <p><a href="#"> 分类</a>
+                                ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->username }}</a>
+                                ⋅ 于 {{ $topic->created_at->diffForHumans() }}
+                                ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->username }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
+                                ⋅ {{ $topic->view_count }} 阅读
+                            </p>
+                        </div>
+                        <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
+                            <div class="markdown-body">
+                                {!! $topic->body !!}
+                            </div>
                         </div>
 
                         <!-- votes -->
@@ -33,7 +48,7 @@
 
                             <p></p>
                             <div >
-                                @for($i=0;$i<30;$i++)
+                                @for($i=0;$i<10;$i++)
                                 <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/matt.jpg" style="width: 40px;height: 40px;"/>
                                 <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/elliot.jpg" style="width: 40px;height: 40px;"/>
                                 <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/helen.jpg" style="width: 40px;height: 40px;"/>
@@ -45,24 +60,23 @@
 
                         <!-- comments -->
                         <div class="ui large middle aligned divided relaxed list padded segment">
-                            <h3 class="ui dividing header">回复数量: 10</h3>
+                            <h3 class="ui dividing header">回复数量: {{ $topic->reply_count }}</h3>
 
-                            <div class="ui minimal comments">
-                                @for($i=0; $i<20; $i++)
+                            <div class="ui comments">
+                                @foreach($replies as $reply)
                                 <div class="comment">
                                     <a class="avatar">
                                         <img src="http://semantic-ui.com/images/avatar/small/matt.jpg">
                                     </a>
                                     <div class="content">
-                                        <a class="author teal">Joe Henderson</a>
+                                        <a class="author teal" href="{{ route('user.show', $reply->user->id) }}">{{ $reply->user->username }}</a>
                                         <div class="metadata">
                                             <div class="date">
-                                                1 day ago
+                                                {{ $reply->created_at->diffForHumans() }}
                                             </div>
                                         </div>
-                                        <div class="text">
-                                            <p>The hours, minutes and seconds stand as visible reminders that your effort put them all there. </p>
-                                            <p>Preserve until your next run, when the watch lets you see how Impermanent your efforts are.</p>
+                                        <div class="text markdown-body">
+                                            {!! $reply->body !!}
                                         </div>
                                         <div class="actions">
                                             <a class="reply"><i class="thumbs outline up icon"></i></a>
@@ -70,18 +84,20 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endfor
+                                @endforeach
                             </div>
                         </div>
 
                         <div class="ui large middle aligned divided relaxed list">
-                            <form class="ui reply form">
+                            <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
                                 <div class="field">
-                                    <textarea placeholder="请使用Markdown语法编写 :)"></textarea>
+                                    <textarea name="body" placeholder="请使用Markdown语法编写 :)"></textarea>
                                 </div>
-                                <div class="ui teal submit labeled icon button">
+                                <button class="ui teal submit labeled icon button" type="submit">
                                     <i class="icon edit"></i> 回复
-                                </div>
+                                </button>
                             </form>
                         </div>
                     </div>

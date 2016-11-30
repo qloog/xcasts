@@ -16,6 +16,7 @@ class ForumTopicsTables extends Migration
         Schema::create('forum_topics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->comment('标题');
+            $table->text('origin_body')->comment('帖子内容');
             $table->text('body')->comment('帖子内容');
             $table->integer('view_count')->unsigned()->default(0)->comment('浏览数');
             $table->integer('reply_count')->unsigned()->default(0)->comment('回复数');
@@ -45,6 +46,7 @@ class ForumTopicsTables extends Migration
         Schema::create('forum_replies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('topic_id')->unsigned()->default(0)->index()->comment('帖子id');
+            $table->text('origin_body')->commnet('回复的内容');
             $table->text('body')->commnet('回复的内容');
             $table->integer('vote_count')->unsigned()->default(0)->comment('投票数');
             $table->enum('is_blocked', ['yes', 'no'])->default('no')->comment('是否block帖子');

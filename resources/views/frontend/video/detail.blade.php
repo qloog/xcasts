@@ -77,7 +77,7 @@
                             <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
                         </a>
                         <div class="content">
-                            <a class="author">{{ $comment->user->email }}</a>
+                            <a class="author">{{ $comment->user->username }}</a>
                             <div class="metadata">
                                 <div class="date">{{ $comment->created_at->diffForHumans() }}</div>
                             </div>

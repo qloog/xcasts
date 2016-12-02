@@ -56,7 +56,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = $this->userRepository->find($id);
-        dd($user);
+
+        return view('frontend.user.detail', compact('user'));
     }
 
     /**

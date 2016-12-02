@@ -23,8 +23,8 @@
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
                            poster="{{ $video->cdn_cover_image }}" data-setup='{}'>
                         {{--<source src="{{ $video->cdn_mp4_url }}" type='video/mp4'>--}}
-                        <source src="http://live.mengzhu.tv/mz/test100.flv"
-                                type="video/mp4"
+                        <source src="http://live.mengzhu.tv/mz/12.flv"
+                                type="video/flv"
                                 data-quality="HD"
                                 label="HD"
                                 data-default="true">
@@ -56,7 +56,7 @@
 
                             </div>
                             <div class="extra content">
-                                <button class="ui right floated teal button">下一节</button>
+                                <button class="ui right floated teal button">下一节<i class="arrow right icon"></i></button>
                             </div>
                         </div>
                     </div>

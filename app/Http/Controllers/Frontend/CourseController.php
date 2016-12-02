@@ -24,13 +24,15 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $type = $request->get('type');
         $courses = $this->courses->orderBy('id', 'DESC')->paginate(10);
 
-        return view('frontend.course.index', compact('courses'));
+        return view('frontend.course.index', compact('courses', 'type'));
     }
 
     /**

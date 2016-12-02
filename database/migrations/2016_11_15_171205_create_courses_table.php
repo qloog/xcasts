@@ -16,6 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('课程名称');
+            $table->enum('type', ['backend','frontend','service','tool'])->comment('课程分类');
             $table->text('description')->comment('课程描述');
             $table->string('slug')->unique()->comment('slug');
             $table->string('cover_image')->default('')->comment('课程封面图');

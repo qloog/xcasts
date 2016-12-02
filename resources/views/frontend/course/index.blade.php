@@ -4,10 +4,10 @@
 
     <div class="ui center aligned header basic raised segment">
         <div class="teal ui buttons">
-            <button class="ui active large button">后端</button>
-            <button class="ui large button">服务</button>
-            <button class="ui large button">前端</button>
-            <button class="ui large button">工具</button>
+            <a class="ui @if($type=='backend') active @endif large button" href="{{ route('course.index', ['type' => 'backend']) }}">后端</a>
+            <a class="ui @if($type=='service') active @endif large button" href="{{ route('course.index', ['type' => 'service']) }}">服务</a>
+            <a class="ui @if($type=='frontend') active @endif large button" href="{{ route('course.index', ['type' => 'frontend']) }}">前端</a>
+            <a class="ui @if($type=='tool') active @endif large button" href="{{ route('course.index', ['type' => 'tool']) }}">工具</a>
         </div>
     </div>
 

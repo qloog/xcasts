@@ -24,8 +24,8 @@
                 <i class="user icon"></i>{{ Auth::user()->username }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    <a class="item"><i class="user icon"></i> 个人中心</a>
-                    <a class="item"><i class="settings icon"></i> 编辑资料</a>
+                    <a class="item" href="{{ route('user.show', Auth::user()->id) }}"><i class="user icon"></i> 个人中心</a>
+                    <a class="item" href="{{ route('user.edit', Auth::user()->id) }}"><i class="settings icon"></i> 编辑资料</a>
                     <a class="item" href="{{ url('/logout') }}"><i class="sign out icon"></i>退出登录</a>
                 </div>
             @endif

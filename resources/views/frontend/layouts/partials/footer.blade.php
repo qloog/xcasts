@@ -9,7 +9,8 @@
                 <h4 class="ui inverted small header">产品与服务</h4>
                 <div class="ui inverted list">
                     <a href="#" class="item">VIP会员</a>
-                    <a href="#" class="item">技术路线</a>
+                    <a href="#" class="item">学习路线</a>
+                    <a href="#" class="item">一对一</a>
                 </div>
             </div>
             <div class="three wide column">

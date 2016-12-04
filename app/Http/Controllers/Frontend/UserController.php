@@ -68,7 +68,22 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = $this->userRepository->find($id);
+
+        return view('frontend.user.edit', compact('user'));
+    }
+
+    public function editAvatar($id)
+    {
+        $user = $this->userRepository->find($id);
+
+        return view('frontend.user.avatar', compact('user'));
+    }
+
+    public function storeAvatar()
+    {
+        // $user = $this->userRepository->find($id);
+
     }
 
     /**

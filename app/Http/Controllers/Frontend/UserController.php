@@ -73,7 +73,7 @@ class UserController extends Controller
         return view('frontend.user.edit', compact('user'));
     }
 
-    public function editAvatar($id)
+    public function avatar($id)
     {
         $user = $this->userRepository->find($id);
 

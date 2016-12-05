@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="ui divider"></div>
-                            <a class="ui fluid teal button"><i class="edit icon"></i> 编辑个人资料 </a>
+                            <a class="ui fluid teal button" href="{{ route('user.edit', Auth()->id()) }}"><i class="edit icon"></i> 编辑个人资料 </a>
                         </div>
 
                         <div class="ui centered segment">

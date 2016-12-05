@@ -96,4 +96,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         Log::info('Showing user profile for user: ' . $token);
         $this->notify(new MyResetPassword($token));
     }
+
+    public function profile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
 }

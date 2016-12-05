@@ -61,9 +61,7 @@ class VideoController extends Controller
     public function show($id)
     {
         $video = $this->videos->find($id);
-        //$comments = $this->comments->findWhere(['type' => 'video', 'relation_id' => $id])->all();
-
-        $comments = $this->comments->all();
+        $comments = $this->comments->findWhere(['type' => 'video', 'relation_id' => $id])->all();
 
         return view('frontend.video.detail', compact('video','comments'));
     }

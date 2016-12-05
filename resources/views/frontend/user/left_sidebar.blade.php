@@ -1,6 +1,6 @@
 <div class="ui centered segment">
-    <div class="ui divided very relaxed large list">
-        <a class="item" href="{{ route('user.show', Auth::id()) }}"><i class="black user icon"></i>  个人信息</a>
+    <div class="ui divided very relaxed large middle aligned selection list">
+        <a class="item" href="{{ route('user.edit', Auth::id()) }}"><i class="black user icon"></i>  个人信息</a>
         <a class="item" href="{{ route('user.avatar', Auth::id()) }}"><i class="black image icon"></i>  修改头像</a>
         <a class="item" href="{{ route('user.notification', Auth::id()) }}"><i class="black alarm icon"></i>  消息通知</a>
         <a class="item" href="{{ route('user.account', Auth::id()) }}"><i class="black add user icon"></i>  帐号绑定</a>

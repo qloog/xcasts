@@ -27,8 +27,8 @@ Route::group(['namespace' => 'Frontend'], function ()
 
     // user
     Route::resource('user', 'UserController');
-    Route::get('user/{id}/avatar', 'UserController@editAvatar')->name('user.avatar');
-    Route::post('user/{id}/avatar', 'UserController@saveAvatar')->name('user.avatar.save');
+    Route::get('user/{id}/avatar', 'UserController@editAvatar')->name('user.avatar.edit');
+    Route::put('user/{id}/avatar', 'UserController@updateAvatar')->name('user.avatar.update');
     Route::get('user/{id}/notification', 'UserController@notification')->name('user.notification');
     Route::get('user/{id}/account', 'UserController@editAvatar')->name('user.account');
 

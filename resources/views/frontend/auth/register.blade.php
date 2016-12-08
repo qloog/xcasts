@@ -23,7 +23,7 @@
 
                     <div class="field two column">
                         <label>用户名</label>
-                        <input type="text" name="username" value="{{ old('username') }}" placeholder="字母或与数字组合" autofocus>
+                        <input type="text" name="name" value="{{ old('name') }}" placeholder="字母或与数字组合" autofocus>
                     </div>
                     <div class="field">
                         <label>邮箱</label>

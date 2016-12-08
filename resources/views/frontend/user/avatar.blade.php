@@ -21,10 +21,13 @@
                         <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
                             <h2 class="ui header">修改头像</h2>
                             <div class="ui divider"></div>
-                            <form class="ui form">
+                            <form class="ui form" method="post" action="{{ route('user.avatar.update', Auth()->id()) }}" enctype="multipart/form-data" accept-charset="utf-8">
+                                <input type="hidden" name="_method" value="PUT">
+                                {!! csrf_field() !!}
                                 <div class="field">
                                     <label>请选择图片</label>
-                                    <input type="text" name="avatar" />
+                                    <img src="{{ $user->avatar }}" />
+                                    <input type="file" name="avatar" />
                                 </div>
                                 <button class="ui teal center aligned button" type="submit">上传头像</button>
                             </form>

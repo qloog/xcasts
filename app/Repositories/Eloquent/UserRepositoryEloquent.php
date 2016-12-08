@@ -46,7 +46,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
 
         $user = new User;
-        $user->username = $input['username'];
+        $user->name = $input['name'];
         $user->email = $input['email'];
         //$user->password = $input['password'];
         $user->status = isset($input['status']) ? 1 : 0;
@@ -65,13 +65,19 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      *
      * @param array $input
      * @param       $id
+     * @param bool  $withRole
      * @return bool
      * @throws GeneralException
      * @internal param $roles
      */
-    public function update(array $input, $id)
+    public function update(array $input, $id, $withRole = true)
     {
         $user = User::find($id);
+
+        if (!$withRole) {
+            return $user->update($input);
+        }
+
         $this->checkUserByEmail($input, $user);
         $roles['assignees_roles'] = $input['assignees_roles'];
         if ($user->update($input)) {
@@ -85,6 +91,11 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             return true;
         }
         throw new GeneralException('There was a problem updating this user. Please try again.');
+    }
+
+    public function updateAvatar($input, $id)
+    {
+
     }
 
     /**

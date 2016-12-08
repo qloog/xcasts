@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\UserRepository;
+use App\Services\UploadsManager;
+use Ender\UEditor\Uploader\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,10 +12,12 @@ class UserController extends Controller
 {
 
     protected $userRepository;
+    protected $uploadManager;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository, UploadsManager $uploadsManager)
     {
         $this->userRepository = $userRepository;
+        $this->uploadManager = $uploadsManager;
     }
 
     /**
@@ -73,16 +77,28 @@ class UserController extends Controller
         return view('frontend.user.edit', compact('user'));
     }
 
-    public function avatar($id)
+    public function editAvatar($id)
     {
         $user = $this->userRepository->find($id);
 
         return view('frontend.user.avatar', compact('user'));
     }
 
-    public function storeAvatar()
+    public function updateAvatar(Request $request, $id)
     {
-        // $user = $this->userRepository->find($id);
+        if (!$request->hasFile('avatar')) {
+            return Redirect::back()->withInput()->withErrors('未添加上传图片！');
+
+        }
+        $imageInfo = $this->uploadManager->uploadImage($request->file('avatar'));
+        if (empty($imageInfo)) {
+            return Redirect::back()->withInput()->withErrors('上传出错！');
+        }
+
+        if ($this->userRepository->update(['avatar' => $imageInfo['image_path']], $id, false)) {
+            return redirect()->route('user.avatar.edit', $id);
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
 
     }
 
@@ -95,7 +111,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($this->userRepository->update($request->except(['name','email']), $id, false)) {
+            return redirect()->route('user.edit', $id);
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**

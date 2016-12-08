@@ -21,7 +21,7 @@
                 <a class="ui button" href="{{ url('/login') }}">登录</a>
                 <a class="ui teal button" href="{{ url('/register') }}">注册</a>
             @else
-                <i class="user icon"></i>{{ Auth::user()->username }}
+                <img class="ui avatar image" src="{{ Auth::user()->avatar }}">{{ Auth::user()->name }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item" href="{{ route('user.show', Auth::user()->id) }}"><i class="user icon"></i> 个人中心</a>

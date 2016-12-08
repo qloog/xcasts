@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
 
         // init super admin
         User::create([
-            'username'   => 'admin',
+            'name'   => 'admin',
             'email' => 'admin@test.com',
             'password' => bcrypt(12345678),
             'status' => 1
@@ -29,7 +29,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i<30; $i++) {
 
             $role = User::create([
-                'username'   => $faker->name,
+                'name'   => $faker->name,
                 'email' => $faker->email,
                 'password' => bcrypt(12345678),
                 'status' => 1

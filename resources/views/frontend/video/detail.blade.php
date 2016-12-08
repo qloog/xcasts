@@ -23,7 +23,7 @@
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
                            poster="{{ $video->cdn_cover_image }}" data-setup='{}'>
                         {{--<source src="{{ $video->cdn_mp4_url }}" type='video/mp4'>--}}
-                        <source src="http://live.mengzhu.tv/mz/19.flv"
+                        <source src=""
                                 type="video/flv"
                                 data-quality="HD"
                                 label="HD"

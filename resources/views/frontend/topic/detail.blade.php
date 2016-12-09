@@ -18,9 +18,9 @@
                         <div class="ui secondary segment">
                             <h2>{{ $topic->title }}</h2>
                             <p><a href="#"> 分类</a>
-                                ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->username }}</a>
+                                ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a>
                                 ⋅ 于 {{ $topic->created_at->diffForHumans() }}
-                                ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->username }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
+                                ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->name }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
                                 ⋅ {{ $topic->view_count }} 阅读
                             </p>
                         </div>

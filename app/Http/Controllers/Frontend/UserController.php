@@ -127,4 +127,30 @@ class UserController extends Controller
     {
         //
     }
+
+    public function topics($id)
+    {
+        $user = $this->userRepository->find($id);
+        $topics = $this->userRepository->getMyTopics($id);
+
+        return view('frontend.user.topics', compact('user','topics'));
+    }
+
+    public function replies($id)
+    {
+        $user = $this->userRepository->find($id);
+        $replies = $this->userRepository->getMyReplies($id);
+
+        return view('frontend.user.replies', compact('user','replies'));
+    }
+
+    public function votes()
+    {
+        
+    }
+
+    public function following()
+    {
+        
+    }
 }

@@ -28,4 +28,13 @@ class Topic extends Model implements Transformable
         return $this->belongsTo(User::class, 'last_reply_user_id');
     }
 
+    public function scopeWhose($query, $userId)
+    {
+        return $query->where('user_id', '=', $userId);
+    }
+
+    public function scopeRecent($query)
+    {
+        return $query->orderBy('created_at', 'desc');
+    }
 }

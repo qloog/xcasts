@@ -12,11 +12,26 @@ class Reply extends Model implements Transformable
 
     protected $table = 'forum_replies';
 
-    protected $fillable = ['id','topic_id','origin_body','body','vote_count','is_blocked','source','user_id','created_at','updated_at'];
+    protected $fillable = ['topic_id','origin_body','body','vote_count','is_blocked','source','user_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
+    }
+
+    public function scopeWhose($query, $userId)
+    {
+        return $query->where('user_id', '=', $userId)->with('topic');
+    }
+
+    public function scopeRecent($query)
+    {
+        return $query->orderBy('created_at', 'desc');
     }
 
 }

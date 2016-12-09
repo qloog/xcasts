@@ -69,7 +69,7 @@
                                         <img src="http://semantic-ui.com/images/avatar/small/matt.jpg">
                                     </a>
                                     <div class="content">
-                                        <a class="author teal" href="{{ route('user.show', $reply->user->id) }}">{{ $reply->user->username }}</a>
+                                        <a class="author" href="{{ route('user.show', $reply->user->id) }}">{{ $reply->user->name }}</a>
                                         <div class="metadata">
                                             <div class="date">
                                                 {{ $reply->created_at->diffForHumans() }}

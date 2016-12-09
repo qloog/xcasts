@@ -3,6 +3,8 @@
 namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
+use App\Models\Reply;
+use App\Models\Topic;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -149,5 +151,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $user->status = 0;
 
         return $user->save();
+    }
+
+    public function getMyTopics($userId)
+    {
+        return Topic::whose($userId)->recent()->paginate(15);
+    }
+
+    public function getMyReplies($userId)
+    {
+        return Reply::whose($userId)->recent()->paginate(15);
     }
 }

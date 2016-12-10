@@ -17,4 +17,9 @@ class Course extends Model implements Transformable
         return $this->hasMany(Video::class);
     }
 
+    public function scopeType($query, $type)
+    {
+        return $query->where('type', '=', $type);
+    }
+
 }

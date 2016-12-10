@@ -10,5 +10,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface CourseRepository extends RepositoryInterface
 {
-    //
+    public function getCourseListByType($type, $limit);
 }

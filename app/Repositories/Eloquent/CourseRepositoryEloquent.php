@@ -24,13 +24,16 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
         return Course::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function getCourseListByType($type, $limit = 10)
+    {
+        return $this->model->type($type)->paginate($limit);
     }
 }

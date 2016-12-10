@@ -30,7 +30,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $type = $request->get('type');
-        $courses = $this->courses->orderBy('id', 'DESC')->paginate(10);
+        $courses = $this->courses->getCourseListByType($type, 15);
 
         return view('frontend.course.index', compact('courses', 'type'));
     }

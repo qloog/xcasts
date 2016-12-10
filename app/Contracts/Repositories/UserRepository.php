@@ -10,9 +10,13 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface UserRepository extends RepositoryInterface
 {
-    public function getMyReplies($userId);
+    public function getRepliesByUserId($userId, $limit);
 
-    public function getMyTopics($userId);
+    public function getTopicsByUserId($userId, $limit);
+
+    public function getFollowingByUserId($userId, $limit);
+
+    public function getVotesByUserId($userId, $limit);
 
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use Auth;
 use Parsedown;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;

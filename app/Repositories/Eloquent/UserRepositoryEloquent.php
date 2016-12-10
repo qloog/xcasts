@@ -153,13 +153,23 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return $user->save();
     }
 
-    public function getMyTopics($userId)
+    public function getTopicsByUserId($userId, $limit = 15)
     {
-        return Topic::whose($userId)->recent()->paginate(15);
+        return Topic::whose($userId)->recent()->paginate($limit);
     }
 
-    public function getMyReplies($userId)
+    public function getRepliesByUserId($userId, $limit = 15)
     {
-        return Reply::whose($userId)->recent()->paginate(15);
+        return Reply::whose($userId)->recent()->paginate($limit);
+    }
+
+    public function getVotesByUserId($userId, $limit = 15)
+    {
+        return Reply::whose($userId)->recent()->paginate($limit);
+    }
+
+    public function getFollowingByUserId($userId, $limit = 15)
+    {
+        return Reply::whose($userId)->recent()->paginate($limit);
     }
 }

@@ -7,7 +7,7 @@
             <div class="thirteen wide column centered">
                 <div class="ui grid">
                     <div class="four wide column">
-                    @include('frontend.user.left_sidebar')
+                        @include('frontend.user.setting_nav')
                     </div>
                     <div class="twelve wide column">
                         <!-- detail -->

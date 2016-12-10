@@ -30,7 +30,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('user/{id}/avatar', 'UserController@editAvatar')->name('user.avatar.edit');
     Route::put('user/{id}/avatar', 'UserController@updateAvatar')->name('user.avatar.update');
     Route::get('user/{id}/notification', 'UserController@notification')->name('user.notification');
-    Route::get('user/{id}/account', 'UserController@editAvatar')->name('user.account');
+    Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
     Route::get('user/{id}/topics', 'UserController@topics')->name('user.topics');
     Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');
     Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');

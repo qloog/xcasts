@@ -7,7 +7,9 @@
             <div class="thirteen wide column centered">
                 <div class="ui grid">
                     <div class="four wide column">
-                        @include('frontend.user.left_sidebar')
+                        @include('frontend.user.base_info')
+
+                        @include('frontend.user.info_nav')
                     </div>
                     <div class="twelve wide column">
                         <div class="ui large middle aligned divided list padded segment">
@@ -35,6 +37,7 @@
                                     </div>
                                 @endforeach
                             </div>
+                            {!! $topics->render() !!}
                         </div>
                     </div>
                 </div>

@@ -61,7 +61,11 @@ class UserController extends Controller
     {
         $user = $this->userRepository->find($id);
 
-        return view('frontend.user.detail', compact('user'));
+        $topics = $this->userRepository->getTopicsByUserId($user->id, 20);
+
+        $replies = $this->userRepository->getRepliesByUserId($user->id, 20);
+
+        return view('frontend.user.detail', compact('user', 'topics', 'replies'));
     }
 
     /**
@@ -131,7 +135,7 @@ class UserController extends Controller
     public function topics($id)
     {
         $user = $this->userRepository->find($id);
-        $topics = $this->userRepository->getMyTopics($id);
+        $topics = $this->userRepository->getTopicsByUserId($id);
 
         return view('frontend.user.topics', compact('user','topics'));
     }
@@ -139,18 +143,24 @@ class UserController extends Controller
     public function replies($id)
     {
         $user = $this->userRepository->find($id);
-        $replies = $this->userRepository->getMyReplies($id);
+        $replies = $this->userRepository->getRepliesByUserId($id);
 
         return view('frontend.user.replies', compact('user','replies'));
     }
 
-    public function votes()
+    public function votes($id)
     {
-        
+        $user = $this->userRepository->find($id);
+        $votes = $this->userRepository->getVotesByUserId($id);
+
+        return view('frontend.user.replies', compact('user','votes'));
     }
 
-    public function following()
+    public function following($id)
     {
-        
+        $user = $this->userRepository->find($id);
+        $following = $this->userRepository->getFollowingByUserId($id);
+
+        return view('frontend.user.replies', compact('user','following'));
     }
 }

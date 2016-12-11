@@ -1,5 +1,5 @@
 <div class="ui container">
-    <div class="ui large secondary inverted pointing menu">
+    <div class="ui large secondary inverted menu">
         <div class="header item">PHPCasts</div>
         <a class="item">
             <div class="ui icon search input">

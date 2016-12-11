@@ -124,7 +124,7 @@
     @yield('styles')
 </head>
 <body>
-    <div class="ui inverted vertical masthead center aligned segment">
+    <div class="ui inverted vertical masthead center aligned segment" style="padding: 0em;">
         @include('frontend.layouts.partials.menu')
 
         @yield('get-start')

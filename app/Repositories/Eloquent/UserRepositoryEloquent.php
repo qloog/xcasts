@@ -168,8 +168,13 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return Reply::whose($userId)->recent()->paginate($limit);
     }
 
-    public function getFollowingByUserId($userId, $limit = 15)
+    public function getFollowingsByUserId($userId, $limit = 15)
     {
-        return Reply::whose($userId)->recent()->paginate($limit);
+        return $this->find($userId)->followings()->orderBy('id', 'desc')->paginate($limit);
+    }
+
+    public function getFollowersByUserId($userId, $limit)
+    {
+        return $this->find($userId)->followers()->orderBy('id', 'desc')->paginate($limit);
     }
 }

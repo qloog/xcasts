@@ -16,7 +16,7 @@
                             <div class="ui breadcrumb">
                                 <a class="section" href="{{ route('user.show', $user->id) }}">个人中心</a>
                                 <div class="divider"> / </div>
-                                <div class="active section">发布的话题({{ $user->topic_count }})</div>
+                                <div class="active section">赞过的话题</div>
                             </div>
                         </div>
 
@@ -24,20 +24,21 @@
                         <div class="ui large middle aligned divided relaxed list padded segment">
 
                             <div class="ui comments">
-                                @foreach($topics as $topic)
+                                @foreach($votes as $vote)
                                     <div class="comment">
                                         <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $topic->id) }}" target="_blank">{{ $topic->title }}</a>
+                                            <a class="teal color" href="{{ route('topic.show', $vote->topic_id) }}" target="_blank">{{ $vote->topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
-                                                    {{ $topic->created_at->diffForHumans() }}
+                                                    {{ $vote->topic['vote_count'] }} 点赞 ⋅ {{ $vote->topic['reply_count'] }} 回复 ⋅
                                                 </div>
+                                                {{ $vote->created_at->diffForHumans() }}
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                            {!! $topics->render() !!}
+                            {!! $votes->render() !!}
                         </div>
                     </div>
                 </div>
@@ -46,14 +47,4 @@
         <div class="row"></div>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.ui.dropdown').dropdown();
-
-            $('.button').popup();
-        });
-    </script>
 @endsection

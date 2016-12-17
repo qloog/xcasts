@@ -151,7 +151,7 @@ class UserController extends Controller
     public function votes($id)
     {
         $user = $this->userRepository->find($id);
-        $votes = $this->userRepository->getVotesByUserId($id, 10);
+        $votes = $this->userRepository->getVotesByUserId($id, 6);
 
         return view('frontend.user.votes', compact('user','votes'));
     }

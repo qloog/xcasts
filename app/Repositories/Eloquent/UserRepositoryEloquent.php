@@ -5,6 +5,7 @@ namespace App\Repositories\Eloquent;
 use App\Exceptions\GeneralException;
 use App\Models\Reply;
 use App\Models\Topic;
+use App\Models\Vote;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -165,7 +166,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function getVotesByUserId($userId, $limit = 15)
     {
-        return Reply::whose($userId)->recent()->paginate($limit);
+        return Vote::whose($userId)->recent()->paginate($limit);
     }
 
     public function getFollowingsByUserId($userId, $limit = 15)

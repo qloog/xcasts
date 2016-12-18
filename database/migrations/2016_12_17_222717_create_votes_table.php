@@ -15,8 +15,10 @@ class CreateVotesTable extends Migration
     {
         Schema::create('votes', function (Blueprint $table){
             $table->increments('id');
-            $table->unsignedInteger('topic_id')->index()->comment('投票主题id');
-            $table->unsignedInteger('user_id')->index()->comment('投票者id');
+            $table->integer('user_id')->unsigned()->default(0)->comment('投票者id');
+            $table->integer('votable_id')->unsigned()->default(9)->comment('被投票的关联id');
+            $table->string('votable_type')->index();
+            $table->string('is')->index();
             $table->timestamps();
         });
     }

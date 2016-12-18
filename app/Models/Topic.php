@@ -37,4 +37,9 @@ class Topic extends Model implements Transformable
     {
         return $query->orderBy('created_at', 'desc');
     }
+
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votable');
+    }
 }

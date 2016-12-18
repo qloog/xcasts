@@ -105,4 +105,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         $this->notify(new MyResetPassword($token));
     }
 
+    public function votedTopics()
+    {
+        return $this->morphedByMany(Topic::class, 'votable', 'votes')->withPivot('created_at');
+    }
+
 }

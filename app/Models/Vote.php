@@ -22,13 +22,18 @@ class Vote extends Model implements Transformable
         return $this->belongsTo(Topic::class);
     }
 
-    public function scopeWhose($query, $userId)
+    public function votable()
     {
-        return $query->where('user_id', '=', $userId)->with('topic');
+        return $this->morphTo();
     }
 
-    public function scopeRecent($query)
+    public function scopeByWhom($query, $user_id)
     {
-        return $query->orderBy('created_at', 'desc');
+        return $query->where('user_id', '=', $user_id);
+    }
+
+    public function scopeWithType($query, $type)
+    {
+        return $query->where('is', '=', $type);
     }
 }

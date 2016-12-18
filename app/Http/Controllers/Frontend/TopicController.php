@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\ReplyRepository;
 use App\Contracts\Repositories\TopicRepository;
+use App\Contracts\Repositories\VoteRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -17,11 +18,19 @@ class TopicController extends Controller
      */
     protected $topics;
     protected $replies;
+    protected $votes;
 
-    public function __construct(TopicRepository $topics, ReplyRepository $replies)
+    /**
+     * TopicController constructor.
+     * @param TopicRepository $topics
+     * @param ReplyRepository $replies
+     * @param VoteRepository  $votes
+     */
+    public function __construct(TopicRepository $topics, ReplyRepository $replies, VoteRepository $votes)
     {
         $this->topics = $topics;
         $this->replies = $replies;
+        $this->votes = $votes;
     }
 
     /**
@@ -95,6 +104,28 @@ class TopicController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function voteUp($id)
+    {
+        $topic = $this->topics->find($id);
+        $this->votes->topicUpVote($topic);
+
+        return response([
+            'vote-up' => true,
+            'vote_count' => $topic->vote_count
+        ]);
+    }
+
+    public function voteDown($id)
+    {
+        $topic = $this->topics->find($id);
+        $this->votes->topicDownVote($topic);
+
+        return response([
+            'vote-down' => true,
+            'vote_count' => $topic->vote_count
+        ]);
     }
 
     /**

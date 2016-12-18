@@ -166,7 +166,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function getVotesByUserId($userId, $limit = 15)
     {
-        return Vote::whose($userId)->recent()->paginate($limit);
+        return $this->find($userId)->votedTopics()->orderBy('pivot_created_at','desc')->paginate($limit);
     }
 
     public function getFollowingsByUserId($userId, $limit = 15)

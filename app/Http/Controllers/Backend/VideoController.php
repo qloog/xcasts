@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Contracts\Repositories\VideoRepository;
+use App\Services\QiNiuService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -49,6 +50,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
+        (new QiNiuService())->upload($request->file('url')->getClientOriginalName(), $request->file('url')->getPathname());
         if ($this->videos->create($request->all())) {
             return redirect()->route('admin.video.index');
         }

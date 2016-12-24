@@ -45,6 +45,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::resource('reply', 'ReplyController');
     // comment
     Route::post('comment', 'CommentController@store')->name('comment.store');
+
 });
 
 /**

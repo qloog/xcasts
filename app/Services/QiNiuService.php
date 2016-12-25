@@ -24,11 +24,11 @@ class QiNiuService
     public function upload($fileName, $filePath)
     {
         list($ret, $err) = $this->uploadMgr->putFile($this->token, $fileName, $filePath);
-        echo "\n====> putFile result: \n";
+
         if ($err !== null) {
             var_dump($err);
         } else {
-            var_dump($ret);
+            return $ret;
         }
     }
 

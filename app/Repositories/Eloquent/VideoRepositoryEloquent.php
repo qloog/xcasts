@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Services\QiNiuService;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\VideoRepository;

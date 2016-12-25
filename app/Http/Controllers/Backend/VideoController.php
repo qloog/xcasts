@@ -50,7 +50,6 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        (new QiNiuService())->upload($request->file('url')->getClientOriginalName(), $request->file('url')->getPathname());
         if ($this->videos->create($request->all())) {
             return redirect()->route('admin.video.index');
         }

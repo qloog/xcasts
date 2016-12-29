@@ -21,7 +21,7 @@
             margin-left: 0.5em;
         }
         .masthead h1.ui.header {
-            margin-top: 3em;
+            margin-top: 1.5em;
             margin-bottom: 0em;
             font-size: 4em;
             font-weight: normal;

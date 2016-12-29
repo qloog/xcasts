@@ -18,15 +18,15 @@
         </a>
         <div class="ui right simple dropdown item">
             @if (Auth::guest())
-                <a class="ui button" href="{{ route('user.login') }}">登录</a>
-                <a class="ui teal button" href="{{ route('user.register') }}">注册</a>
+                <a class="ui button" href="{{ route('login') }}">登录</a>
+                <a class="ui teal button" href="{{ url('register') }}">注册</a>
             @else
                 <img class="ui avatar image" src="{{ Auth::user()->avatar }}">{{ Auth::user()->name }}
                 <i class="dropdown icon"></i>
                 <div class="menu">
                     <a class="item" href="{{ route('user.show', Auth::user()->id) }}"><i class="user icon"></i> 个人中心</a>
                     <a class="item" href="{{ route('user.edit', Auth::user()->id) }}"><i class="settings icon"></i> 编辑资料</a>
-                    <a class="item" href="{{ url('/logout') }}"><i class="sign out icon"></i>退出登录</a>
+                    <a class="item" href="{{ route('logout') }}"><i class="sign out icon"></i>退出登录</a>
                 </div>
             @endif
         </div>

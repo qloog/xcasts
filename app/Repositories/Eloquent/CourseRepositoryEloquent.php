@@ -32,8 +32,11 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
-    public function getCourseListByType($type, $limit = 10)
+    public function getCourseListByType($type = null, $limit = 10)
     {
-        return $this->model->type($type)->paginate($limit);
+        if ($type) {
+            return $this->model->type($type)->paginate($limit);
+        }
+        return $this->model->paginate($limit);
     }
 }

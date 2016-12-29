@@ -3,7 +3,7 @@
 @section('styles')
 <style type="text/css">
 	.masthead.segment {
-		min-height: 700px;
+		min-height: 550px;
 		padding: 1em 0em;
 	}
 </style>
@@ -22,7 +22,7 @@
 @section('content')
 	<div class="ui center aligned basic raised segment">
 		<h1>持续更新</h1>
-		<h4 class="ui grey header">学习是一个持续的过程</h4>
+		<h4 class="ui grey header">学习是一个坚持的过程</h4>
 	</div>
 
 	<div class="ui container">

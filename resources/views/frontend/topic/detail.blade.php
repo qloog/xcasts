@@ -103,22 +103,29 @@
                     </div>
                     <div class="four wide column">
                         <div class="ui card">
-                            <div class="image">
-                                <img src="/images/avatar2/large/kristy.png">
+                            <div class="blurring dimmable image">
+                                <div class="ui dimmer transition hidden">
+                                    <div class="content">
+                                        <div class="center">
+                                            <div class="ui inverted button">Add Friend</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <img src="{{ $topic->user->avatar }}">
                             </div>
                             <div class="content">
-                                <a class="header">Kristy</a>
+                                <div class="header">{{ $topic->user->name }}</div>
                                 <div class="meta">
-                                    <span class="date">Joined in 2013</span>
-                                </div>
-                                <div class="description">
-                                    Kristy is an art director living in New York.
+                                    <a class="group">Pundit</a>
                                 </div>
                             </div>
                             <div class="extra content">
-                                <a>
+                                <a class="right floated created">
+                                    {{ $topic->user->created_at->diffForHumans() }}加入
+                                </a>
+                                <a class="friends">
                                     <i class="user icon"></i>
-                                    22 Friends
+                                    {{ $topic->user->follower_count }} 粉丝
                                 </a>
                             </div>
                         </div>

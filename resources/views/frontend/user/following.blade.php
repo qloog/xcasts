@@ -32,7 +32,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            {!! $followings->render() !!}
+                            {!! $followings->render('partials.semantic-pagination') !!}
                         </div>
                     </div>
                 </div>

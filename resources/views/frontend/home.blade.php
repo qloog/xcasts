@@ -12,7 +12,7 @@
 @section('get-start')
     <div class="ui text container">
         <h1 class="ui inverted header">
-            成为一名现代化的WEB开发工程师
+            成为一名现代化的Web Develop Engineer
         </h1>
         <h2>Just Do it.</h2>
         <div class="ui huge teal button"><a class="ui disable" href="{{ url('/register') }}"> 马上加入 </a><i class="right arrow icon"></i></div>

@@ -37,7 +37,7 @@
                                     </div>
                                 @endforeach
                             </div>
-                            {!! $topics->render() !!}
+                            {!! $topics->render('partials.semantic-pagination') !!}
                         </div>
                     </div>
                 </div>

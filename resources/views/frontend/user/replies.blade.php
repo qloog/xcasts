@@ -46,6 +46,7 @@
                                     </div>
                                 @endforeach
                             </div>
+                            {!! $replies->render('partials.semantic-pagination') !!}
                         </div>
                     </div>
                 </div>

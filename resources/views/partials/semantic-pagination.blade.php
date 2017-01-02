@@ -1,26 +1,26 @@
 @if ($paginator->hasPages())
-    <div class="ui buttons">
+    <div class="ui pagination menu">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <button class="ui button disabled"><span>上一页</span></button>
+            <a class="disabled item"><span>上一页</span></a>
         @else
-            <button class="ui button"><a href="{{ $paginator->previousPageUrl() }}" rel="prev">上一页</a></button>
+            <a class="item" href="{{ $paginator->previousPageUrl() }}" rel="prev">上一页</a>
         @endif
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             {{-- "Three Dots" Separator --}}
             @if (is_string($element))
-                <button class="ui button disabled"><span>{{ $element }}</span></button>
+                <a class="disabled item"><span>{{ $element }}</span></a>
             @endif
 
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <button class="ui button active"><span>{{ $page }}</span></button>
+                        <a class="active item"><span>{{ $page }}</span></a>
                     @else
-                        <button class="ui button"><a href="{{ $url }}">{{ $page }}</a></button>
+                        <a class="item" href="{{ $url }}">{{ $page }}</a>
                     @endif
                 @endforeach
             @endif
@@ -28,9 +28,9 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <button class="ui button"><a href="{{ $paginator->nextPageUrl() }}" rel="next">下一页</a></button>
+            <a class="item" href="{{ $paginator->nextPageUrl() }}" rel="next">下一页</a>
         @else
-            <button class="ui button disabled"><span>下一页</span></button>
+            <div class="disabled item"><span>下一页</span></div>
         @endif
     </div>
 @endif

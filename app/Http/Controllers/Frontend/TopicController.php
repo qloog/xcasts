@@ -78,7 +78,7 @@ class TopicController extends Controller
     {
         $topic = $this->topics->find($id);
 
-        $replies = $this->replies->all();
+        $replies = $this->replies->findWhere(['topic_id' => $id]);
 
         return view('frontend.topic.detail', compact('topic', 'replies'));
     }

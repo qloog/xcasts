@@ -12,7 +12,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">
     <style type="text/css">
         a {
-            color: #555;
+            color: #00B5AD;
         }
         .hidden.menu {
             display: none;

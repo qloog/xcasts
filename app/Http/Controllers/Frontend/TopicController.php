@@ -80,6 +80,8 @@ class TopicController extends Controller
 
         $replies = $this->replies->findWhere(['topic_id' => $id]);
 
+        $this->topics->increment($id, 'view_count');
+
         return view('frontend.topic.detail', compact('topic', 'replies'));
     }
 

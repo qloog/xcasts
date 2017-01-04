@@ -73,4 +73,14 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
             ->first();
         return count($lastTopic) && strcmp($lastTopic->title, $data['title']) === 0;
     }
+
+    /**
+     * @param $id
+     * @param $field
+     * @return mixed
+     */
+    public function increment($id, $field)
+    {
+        return Topic::where('id', $id)->increment($field);
+    }
 }

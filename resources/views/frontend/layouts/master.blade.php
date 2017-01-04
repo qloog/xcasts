@@ -11,6 +11,9 @@
     <title>Homepage - Semantic</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">
     <style type="text/css">
+        a {
+            color: #555;
+        }
         .hidden.menu {
             display: none;
         }

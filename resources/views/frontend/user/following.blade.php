@@ -21,17 +21,27 @@
                         </div>
 
                         <!-- detail -->
-                        <div class="ui large middle aligned divided relaxed list padded segment">
-
-                            <div class="ui comments">
+                        <div class="ui segment">
+                            <div class="ui middle aligned animated divided list">
                                 @foreach($followings as $following)
-                                    <div class="comment">
-                                        <div class="content">
+                                <div class="item">
+                                    <img class="ui avatar image" src="{{ $following->avatar }}">
+                                    <div class="content">
+                                        <div class="header">
                                             <a class="teal color" href="{{ route('user.show', $following->id) }}" target="_blank">{{ $following->name }}</a>
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             </div>
+                            {{--<div class="ui comments">--}}
+                                    {{--<div class="comment">--}}
+                                        {{--<div class="content">--}}
+                                            {{--<img class="ui avatar image" src="{{ $following->avatar }}">--}}
+                                            {{--<a class="teal color" href="{{ route('user.show', $following->id) }}" target="_blank">{{ $following->name }}</a>--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                            {{--</div>--}}
                             {!! $followings->render('partials.semantic-pagination') !!}
                         </div>
                     </div>

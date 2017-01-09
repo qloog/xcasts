@@ -10,6 +10,14 @@ class Goods extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = [];
+    protected $fillable = [
+        'id', 'name', 'introduction', 'price', 'promotion_price', 'promotion_start', 'promotion_end',
+        'user_id', 'created_at', 'updated_at'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }

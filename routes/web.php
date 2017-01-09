@@ -103,6 +103,7 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //page
         Route::resource('page', 'PagesController');
+        Route::resource('goods', 'GoodsController');
 
         //upload
         // After the line that reads

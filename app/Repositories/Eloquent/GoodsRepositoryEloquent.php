@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\GoodsRepository;
@@ -32,5 +33,12 @@ class GoodsRepositoryEloquent extends BaseRepository implements GoodsRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function update(array $attributes, $id)
+    {
+        $attributes['user_id'] = Auth::id();
+
+        return parent::update($attributes, $id);
     }
 }

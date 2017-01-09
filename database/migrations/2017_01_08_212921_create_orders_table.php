@@ -15,12 +15,15 @@ class CreateOrdersTable extends Migration
 	{
 		Schema::create('orders', function(Blueprint $table) {
             $table->increments('id');
-            $table->float('amount')->default(0)->comment('总金额');
+            $table->decimal('order_amount')->unsigned()->default(0.00)->comment('订单总金额');
+            $table->decimal('pay_amount')->unsigned()->default(0.00)->comment('应付总金额');
             $table->integer('quantity')->default(0)->comment('购买总数');
             $table->enum('pay_method', ['alipay'])->comment('支付方式');
-            $table->tinyInteger('is_paid')->default(0)->comment('是否支付');
-            $table->timestamp('paid_at')->default('0')->comment('支付时间');
-            $table->enum('status', ['pending','paid_success','paid_fail','cancel'])->default('pending')->comment('支付状态');
+            $table->tinyInteger('is_paid')->default(0)->comment('支付状态');
+            $table->timestamp('paid_at')->comment('支付时间');
+            $table->timestamp('completed_at')->comment('完成时间');
+            $table->enum('status', ['pending','paid','canceled','completed'])->default('pending')->comment('订单状态');
+            $table->tinyInteger('user_id')->unsigned()->default(0)->comment('买家uid');
             $table->softDeletes();
             $table->timestamps();
 		});

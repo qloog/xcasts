@@ -17,8 +17,8 @@ class CreateGoodsTable extends Migration
             $table->increments('id');
             $table->string('name')->comment('商品名称');
             $table->string('introduction')->comment('商品介绍');
-            $table->float('price')->default(0)->comment('商品价格');
-            $table->float('promotion_price')->default(0)->comment('促销价格');
+            $table->decimal('price')->unsigned()->default(0.00)->comment('商品价格');
+            $table->decimal('promotion_price')->unsigned()->default(0.00)->comment('促销价格');
             $table->timestamp('promotion_start')->comment('促销开始时间');
             $table->timestamp('promotion_end')->comment('促销结束时间');
             $table->integer('valid_days')->default(0)->comment('有效天数');

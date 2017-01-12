@@ -3,6 +3,9 @@
 namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
+use App\Models\Reply;
+use App\Models\Topic;
+use App\Models\Vote;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -46,7 +49,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
 
         $user = new User;
-        $user->username = $input['username'];
+        $user->name = $input['name'];
         $user->email = $input['email'];
         //$user->password = $input['password'];
         $user->status = isset($input['status']) ? 1 : 0;
@@ -65,13 +68,19 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      *
      * @param array $input
      * @param       $id
+     * @param bool  $withRole
      * @return bool
      * @throws GeneralException
      * @internal param $roles
      */
-    public function update(array $input, $id)
+    public function update(array $input, $id, $withRole = true)
     {
         $user = User::find($id);
+
+        if (!$withRole) {
+            return $user->update($input);
+        }
+
         $this->checkUserByEmail($input, $user);
         $roles['assignees_roles'] = $input['assignees_roles'];
         if ($user->update($input)) {
@@ -85,6 +94,11 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             return true;
         }
         throw new GeneralException('There was a problem updating this user. Please try again.');
+    }
+
+    public function updateAvatar($input, $id)
+    {
+
     }
 
     /**
@@ -138,5 +152,30 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $user->status = 0;
 
         return $user->save();
+    }
+
+    public function getTopicsByUserId($userId, $limit = 15)
+    {
+        return Topic::whose($userId)->recent()->paginate($limit);
+    }
+
+    public function getRepliesByUserId($userId, $limit = 15)
+    {
+        return Reply::whose($userId)->recent()->paginate($limit);
+    }
+
+    public function getVotesByUserId($userId, $limit = 15)
+    {
+        return $this->find($userId)->votedTopics()->orderBy('pivot_created_at','desc')->paginate($limit);
+    }
+
+    public function getFollowingsByUserId($userId, $limit = 15)
+    {
+        return $this->find($userId)->followings()->orderBy('id', 'desc')->paginate($limit);
+    }
+
+    public function getFollowersByUserId($userId, $limit)
+    {
+        return $this->find($userId)->followers()->orderBy('id', 'desc')->paginate($limit);
     }
 }

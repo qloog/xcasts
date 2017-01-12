@@ -1,18 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Repositories\ReplyRepository;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class MaterialsAudioController extends Controller
+class ReplyController extends Controller
 {
+    protected $repository;
+
+    public function __construct(ReplyRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
@@ -22,7 +28,7 @@ class MaterialsAudioController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function create()
     {
@@ -32,18 +38,22 @@ class MaterialsAudioController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        //
+        if ($this->repository->create($request->all())) {
+            return redirect()->route('topic.show', $request->get('topic_id'));
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -54,7 +64,7 @@ class MaterialsAudioController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
@@ -64,10 +74,11 @@ class MaterialsAudioController extends Controller
     /**
      * Update the specified resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,7 +87,7 @@ class MaterialsAudioController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {

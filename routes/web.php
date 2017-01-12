@@ -24,6 +24,28 @@ Route::group(['namespace' => 'Frontend'], function ()
     // business route
     Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
+
+    // user
+    Route::resource('user', 'UserController');
+    Route::get('user/{id}/avatar', 'UserController@editAvatar')->name('user.avatar.edit');
+    Route::put('user/{id}/avatar', 'UserController@updateAvatar')->name('user.avatar.update');
+    Route::get('user/{id}/notification', 'UserController@notification')->name('user.notification');
+    Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
+    Route::get('user/{id}/topics', 'UserController@topics')->name('user.topics');
+    Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');
+    Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');
+    Route::get('user/{id}/following', 'UserController@following')->name('user.following');
+
+    // course
+    Route::resource('course', 'CourseController');
+    Route::get('course/video/{videoId}', ['as' => 'course.video.show', 'uses' => 'VideoController@show']);
+
+    // topic
+    Route::resource('topic', 'TopicController');
+    Route::resource('reply', 'ReplyController');
+    // comment
+    Route::post('comment', 'CommentController@store')->name('comment.store');
+
 });
 
 /**
@@ -67,6 +89,11 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('album/{id}/photos', ['as' => 'album.photos', 'uses' => 'AlbumController@photos']);
         Route::post('album/upload', ['as' => 'album.upload', 'uses' => 'AlbumController@storePhoto']);
 
+        //course
+        Route::resource('course', 'CourseController');
+        //video
+        Route::resource('video', 'VideoController');
+
         //forum
         //Route::resource('topic/category', 'TopicCategoryController', ['as' => 'topic']);
         Route::resource('topics', 'TopicController');
@@ -76,6 +103,7 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //page
         Route::resource('page', 'PagesController');
+        Route::resource('goods', 'GoodsController');
 
         //upload
         // After the line that reads
@@ -87,8 +115,5 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::post('upload/folder', 'UploadController@createFolder');
         Route::delete('upload/folder', 'UploadController@deleteFolder');
         Route::post('upload/image', ['as' => 'upload.image', 'uses' => 'UploadController@uploadImage']);
-
-        //material
-        Route::resource('materials/single', 'MaterialsController');
     });
 });

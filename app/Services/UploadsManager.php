@@ -266,6 +266,11 @@ class UploadsManager
             //save to db
             Image::create(['image_name' => $safeNameWithoutExt, 'image_path' => $folderName .'/'. $safeName, 'user_id' => Auth::user()->id]);
         }
+
+        $imagePath = $folderName .'/'. $safeName;
+
+        (new QiNiuService())->upload($imagePath, public_path() . $imagePath);
+
         return [
             'origin_name' => $fileName,
             'extension' => $extension,

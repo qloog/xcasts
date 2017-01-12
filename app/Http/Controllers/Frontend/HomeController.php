@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Repositories\CourseRepository;
 use App\Http\Controllers\Controller;
 
 /**
@@ -21,14 +22,17 @@ class HomeController extends Controller
     | controller as you wish. It is just here to get your app started!
     |
     */
+    protected $courses;
 
     /**
      * Create a new controller instance.
-     *
+     * @param CourseRepository $courses
      */
-    public function __construct()
+    public function __construct(CourseRepository $courses)
     {
         $this->middleware('auth');
+
+        $this->courses = $courses;
     }
 
 
@@ -37,7 +41,9 @@ class HomeController extends Controller
      */
     function index()
     {
-        return view('frontend.home');
+        $courses = $this->courses->orderBy('id', 'DESC')->paginate(30);
+
+        return view('frontend.home', compact('courses'));
     }
 
 }

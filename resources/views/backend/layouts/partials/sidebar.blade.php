@@ -8,7 +8,7 @@
                 <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>{{ Auth::user()->username }}</p>
+                <p>{{ Auth::user()->name }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -145,6 +145,30 @@
                 <ul class="treeview-menu">
                     <li @if(Request::is('admin/course')) class="active" @endif>
                         <a href="{{ url('admin/course') }}"><i class="fa fa-circle-o"></i> 课程列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li @if(Request::is('admin/video*')) class="treeview active" @else class="treeview" @endif>
+                <a href="#">
+                    <i class="fa fa-file-video-o"></i>
+                    <span>视频管理</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::is('admin/video')) class="active" @endif>
+                        <a href="{{ url('admin/video') }}"><i class="fa fa-circle-o"></i>视频列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li @if(Request::is('admin/goods*')) class="treeview active" @else class="treeview" @endif>
+                <a href="#">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>商品管理</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::is('admin/goods')) class="active" @endif>
+                        <a href="{{ url('admin/goods') }}"><i class="fa fa-circle-o"></i> 商品列表</a>
                     </li>
                 </ul>
             </li>

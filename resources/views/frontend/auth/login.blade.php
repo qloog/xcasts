@@ -1,68 +1,53 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {{ csrf_field() }}
+    <div class="ui stackable grid container">
+        <div class="row"></div>
+        <div class="row"></div>
+        <div class="row">
+            <div class="five wide column"></div>
+            <div class="six wide column">
+                @if (count($errors) > 0)
+                    <div class="ui error message container">
+                        <i class="close icon"></i>
+                        <ul class="list">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                <form class="ui form segment" method="POST" action="{{ url('/login') }}">
+                    {{ csrf_field() }}
+                    <div class="field">
+                        <label>邮箱</label>
+                        <input placeholder="邮箱地址" name="email" type="text" value="{{ old('email') }}">
+                    </div>
+                    <div class="field">
+                        <label>密码</label>
+                        <input type="password" name="password" placeholder="密码" >
+                    </div>
+                    <div class="inline field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="remember">
+                            <label>记住密码</label>
                         </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember"> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <button class="teal fluid ui button big" type="submit">立 即 登 录</button>
+                    <div class="field">
+                        <a class="ui block link list" href="{{ url('/password/reset') }}">忘记密码?</a>
+                    </div>
+                </form>
             </div>
+            <div class="five wide column"></div>
         </div>
+        <div class="centered row">
+            <h4 class="ui disabled header">没有帐号?</h4>
+        </div>
+        <div class="centered row">
+            <a class="ui green button" href="{{ url('/register') }}">马上注册</a>
+        </div>
+        <div class="row"></div>
     </div>
-</div>
 @endsection

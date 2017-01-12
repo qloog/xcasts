@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\MyResetPassword;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -11,7 +12,10 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use PHPCast\LaravelFollow\FollowTrait;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use Illuminate\Notifications\Notifiable;
 
 /**
  * App\Models\User
@@ -40,7 +44,9 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract
 {
 
-    use Authenticatable, CanResetPassword, EntrustUserTrait;
+    use Authenticatable, CanResetPassword, Notifiable, EntrustUserTrait;
+
+    use FollowTrait;
 
     /**
      * The database table used by the model.
@@ -54,7 +60,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ['username', 'email', 'password'];
+    protected $fillable = [
+        'username', 'email', 'password', 'real_name', 'avatar', 'city', 'company',
+        'weibo_url','wechat_id','personal_website','introduction','topic_count',
+        'reply_count','follwer_count', 'status','last_login_time','last_login_ip',
+        'created_at','updated_at'
+    ];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -81,4 +92,22 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             $this->attributes['password'] = $value;
         }
     }
+
+    /**
+     * Send the password reset notification.
+     *
+     * @param  string  $token
+     * @return void
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        Log::info('Showing user profile for user: ' . $token);
+        $this->notify(new MyResetPassword($token));
+    }
+
+    public function votedTopics()
+    {
+        return $this->morphedByMany(Topic::class, 'votable', 'votes')->withPivot('created_at');
+    }
+
 }

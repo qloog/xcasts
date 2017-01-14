@@ -5,70 +5,75 @@
         <div class="row"></div>
         <div class="row">
             <div class="thirteen wide column centered">
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">半年付</div>
-                    </div>
-                    <div class="content">
-                        <div class="ui small feed">
-                            <div class="event">
-                                <div class="content">
-                                    <div class="summary">
-                                        366元/半年
-                                    </div>
-                                </div>
+                <div class="ui divided items">
+                    <div class="item">
+                        <div class="image">
+                            <img src="http://semantic-ui.com/images/wireframe/image.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">12 Years a Slave</a>
+                            <div class="meta">
+                                <span class="cinema">Union Square 14</span>
                             </div>
-                            <div class="event">
-                                <div class="content">
-                                    <div class="summary">
-                                        半年适合我
-                                    </div>
+                            <div class="description">
+                                <p></p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui label">IMAX</div>
+                                <div class="ui label"><i class="globe icon"></i> Additional Languages</div>
+                                <div class="ui right floated primary button">
+                                    Buy tickets
+                                    <i class="right chevron icon"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="extra content">
-                        <button class="ui button">去支付宝付款</button>
-                    </div>
-                </div>
-
-                <div class="ui card">
-                    <div class="content">
-                        <div class="header">Project Timeline</div>
-                    </div>
-                    <div class="content">
-                        <h4 class="ui sub header">Activity</h4>
-                        <div class="ui small feed">
-                            <div class="event">
-                                <div class="content">
-                                    <div class="summary">
-                                        <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project
-                                    </div>
-                                </div>
+                    <div class="item">
+                        <div class="image">
+                            <img src="http://semantic-ui.com/images/wireframe/image.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">My Neighbor Totoro</a>
+                            <div class="meta">
+                                <span class="cinema">IFC Cinema</span>
                             </div>
-                            <div class="event">
-                                <div class="content">
-                                    <div class="summary">
-                                        <a>Stevie Feliciano</a> was added as an <a>Administrator</a>
-                                    </div>
-                                </div>
+                            <div class="description">
+                                <p></p>
                             </div>
-                            <div class="event">
-                                <div class="content">
-                                    <div class="summary">
-                                        <a>Helen Troy</a> added two pictures
-                                    </div>
+                            <div class="extra">
+                                <div class="ui right floated primary button">
+                                    Buy tickets
+                                    <i class="right chevron icon"></i>
                                 </div>
+                                <div class="ui label">Limited</div>
                             </div>
                         </div>
                     </div>
-                    <div class="extra content">
-                        <button class="ui button">Join Project</button>
+                    <div class="item">
+                        <div class="image">
+                            <img src="http://semantic-ui.com/images/wireframe/image.png">
+                        </div>
+                        <div class="content">
+                            <a class="header">Watchmen</a>
+                            <div class="meta">
+                                <span class="cinema">IFC</span>
+                            </div>
+                            <div class="description">
+                                <p></p>
+                            </div>
+                            <div class="extra">
+                                <div class="ui right floated primary button">
+                                    Buy tickets
+                                    <i class="right chevron icon"></i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
+        <div class="row"></div>
     </div>
 
 @endsection

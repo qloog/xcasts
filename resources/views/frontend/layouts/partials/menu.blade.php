@@ -5,10 +5,13 @@
             <i class="home icon"></i> 首页
         </a>
         <a class="item" href="{{ route('course.index') }}">
-            <i class="student icon"></i> 课程
+            <i class="record icon"></i> 视频
         </a>
         <a class="item" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区
+        </a>
+        <a class="item" href="{{ route('vip') }}">
+            <i class="unhide icon"></i> 订阅
         </a>
         <a class="item">
             <div class="ui icon search input">

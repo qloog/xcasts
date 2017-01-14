@@ -46,6 +46,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     // comment
     Route::post('comment', 'CommentController@store')->name('comment.store');
     Route::get('vip', 'VipController@index')->name('vip');
+    Route::get('plan/payment', 'PlanController@payment')->name('plan.payment');
 });
 
 /**

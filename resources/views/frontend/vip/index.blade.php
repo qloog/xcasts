@@ -22,7 +22,7 @@
                                 <div class="ui label">IMAX</div>
                                 <div class="ui label"><i class="globe icon"></i> Additional Languages</div>
                                 <div class="ui right floated primary button">
-                                    Buy tickets
+                                    <a href="{{ route('plan.payment', ['plan' => 'monthly']) }}" >支付宝支付</a>
                                     <i class="right chevron icon"></i>
                                 </div>
                             </div>

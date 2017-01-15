@@ -10,5 +10,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface OrdersRepository extends RepositoryInterface
 {
-    //
+    public function genOrderNo();
 }

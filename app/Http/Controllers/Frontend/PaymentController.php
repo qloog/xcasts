@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\GoodsRepository;
 use App\Contracts\Repositories\OrdersRepository;
+use Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Input;
@@ -33,7 +34,15 @@ class PaymentController extends Controller
         $goodsInfo = $this->goodsRepo->findByField('alias', $plan);
 
         // 生成订单
-        $orderData = [];
+        $orderData = [
+            'id' => $this->orderRepo->genOrderNo(),
+            'order_amount' => $goodsInfo->price,
+            'pay_amount' => $goodsInfo->price,
+            'quantity' => 1,
+            'is_paid' => 0,
+            'user_id' => Auth::id(),
+            'created_at' => time()
+        ];
         $orderNo = $this->orderRepo->create($orderData);
 
         // 获取支付跳转链接并跳转

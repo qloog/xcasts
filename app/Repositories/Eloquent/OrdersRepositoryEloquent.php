@@ -33,4 +33,9 @@ class OrdersRepositoryEloquent extends BaseRepository implements OrdersRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    public function genOrderNo()
+    {
+        return date('YmdHis' . rand(10000,99999));
+    }
 }

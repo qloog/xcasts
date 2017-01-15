@@ -159,7 +159,8 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-        PHPCast\LaravelFollow\FollowServiceProvider::class
+        PHPCast\LaravelFollow\FollowServiceProvider::class,
+        Latrell\Alipay\AlipayServiceProvider::class
     ],
     /*
     |--------------------------------------------------------------------------

@@ -45,8 +45,10 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::resource('reply', 'ReplyController');
     // comment
     Route::post('comment', 'CommentController@store')->name('comment.store');
-    Route::get('vip', 'VipController@index')->name('vip');
-    Route::get('plan/payment', 'PlanController@payment')->name('plan.payment');
+    Route::get('vip', 'PlanController@index')->name('vip');
+    Route::get('payment/pay', 'PaymentController@pay')->name('payment.pay');
+    Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
+    Route::get('payment/return', 'PaymentController@return')->name('payment.return');
 });
 
 /**

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f31d349a1452d2cd1e2cca34b0d05b67",
-    "content-hash": "a7e888d361a7cb90e09591bc340b86ae",
+    "hash": "73eea9301cee404e61484eb70967fb77",
+    "content-hash": "4109f584e6d8c17fabbef0359155b763",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1553,6 +1553,52 @@
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "http://laravelcollective.com",
             "time": "2016-08-27 23:52:43"
+        },
+        {
+            "name": "latrell/alipay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/latrell/Alipay.git",
+                "reference": "7c26ff347ca3925901a5ef48275376b8045f28d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/latrell/Alipay/7c26ff347ca3925901a5ef48275376b8045f28d1.zip",
+                "reference": "7c26ff347ca3925901a5ef48275376b8045f28d1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.*",
+                "illuminate/events": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Latrell\\Alipay\\": "src/Latrell/Alipay/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Latrell Chan",
+                    "email": "i@latrell.me"
+                }
+            ],
+            "description": "支付宝SDK在Laravel5封装包。",
+            "keywords": [
+                "Alipay SDK",
+                "alipay",
+                "l5",
+                "laravel",
+                "laravel 5"
+            ],
+            "time": "2016-08-06 11:12:40"
         },
         {
             "name": "league/flysystem",
@@ -7034,7 +7080,8 @@
     "stability-flags": {
         "laravel/socialite": 20,
         "zizaco/entrust": 20,
-        "phpcast/laravel-follow": 20
+        "phpcast/laravel-follow": 20,
+        "latrell/alipay": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

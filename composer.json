@@ -26,7 +26,8 @@
         "qiniu/php-sdk": "^7.1",
         "erusev/parsedown": "^1.6",
         "league/html-to-markdown": "^4.3",
-        "PHPCast/laravel-follow": "dev-master"
+        "PHPCast/laravel-follow": "dev-master",
+        "latrell/alipay": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.5",

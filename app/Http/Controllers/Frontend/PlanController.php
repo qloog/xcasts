@@ -7,31 +7,10 @@ use App\Http\Controllers\Controller;
 
 class PlanController extends Controller
 {
-    /**
-     * 支付
-     */
-    public function payment()
+
+    public function index()
     {
-        echo 'developing...';
-
-        // 下订单
-
-        // 获取支付跳转链接并跳转
+        return view('frontend.plan.index');
     }
 
-    
-    public function return()
-    {
-
-    }
-
-    public function notify()
-    {
-
-    }
-
-    public function cancel()
-    {
-        
-    }
 }

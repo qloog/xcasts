@@ -31,7 +31,7 @@ class PaymentController extends Controller
     {
         // 下订单
         $plan = $request->get('plan');
-        $goodsInfo = $this->goodsRepo->findByField('alias', $plan);
+        $goodsInfo = $this->goodsRepo->findByField('alias', $plan)->first();
 
         // 生成订单
         $orderData = [

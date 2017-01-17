@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "73eea9301cee404e61484eb70967fb77",
-    "content-hash": "4109f584e6d8c17fabbef0359155b763",
+    "hash": "9798a90ce763aec078736a94660abb28",
+    "content-hash": "9130754219820a8c36e395d290ca943d",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -2216,6 +2216,46 @@
                 "php"
             ],
             "time": "2016-12-06 11:30:35"
+        },
+        {
+            "name": "overtrue/laravel-follow",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-follow.git",
+                "reference": "5d49bfce854ef093d02a44668fa184054cb52167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/overtrue/laravel-follow/5d49bfce854ef093d02a44668fa184054cb52167.zip",
+                "reference": "5d49bfce854ef093d02a44668fa184054cb52167",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "laravel/framework": "~5.1",
+                "phpunit/phpunit": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelFollow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "i@overtrue.me"
+                }
+            ],
+            "description": "Laravel 5 User Based System",
+            "time": "2017-01-02 07:26:09"
         },
         {
             "name": "paragonie/random_compat",

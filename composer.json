@@ -27,7 +27,8 @@
         "erusev/parsedown": "^1.6",
         "league/html-to-markdown": "^4.3",
         "PHPCast/laravel-follow": "dev-master",
-        "latrell/alipay": "dev-master"
+        "latrell/alipay": "dev-master",
+        "overtrue/laravel-follow": "^1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.5",

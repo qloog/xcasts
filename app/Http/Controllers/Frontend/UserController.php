@@ -177,12 +177,10 @@ class UserController extends Controller
     {
         if ($this->userRepo->followUser($id)) {
             // TODO add msg
-
+            return response()->json(['code' => 200, 'msg' => 'success']);
         } else {
             // TODO add msg
-
+            return response()->json(['code' => 400, 'msg' => 'error']);
         }
-        //return redirect()->back();
-        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 }

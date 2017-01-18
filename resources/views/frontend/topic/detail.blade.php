@@ -128,10 +128,17 @@
                                     {{ $topic->user->follower_count }} 粉丝
                                 </a>
                             </div>
-                            <div class="ui bottom attached orange button" id="follow_user" data-user-id="{{ $topic->user->id }}">
-                                <i class="add icon"></i>
-                                关注
+                            @if($topic->user->isFollowedBy(Auth::id()))
+                            <div class="ui bottom attached button" id="follow_user">
+                                <i class="minus icon"></i>
+                                取消关注
                             </div>
+                            @else
+                                <div class="ui bottom attached orange button" id="follow_user">
+                                    <i class="add icon"></i>
+                                    关注
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -156,8 +163,9 @@
                     data: {'_token': '{{ csrf_token() }}','_method':'post'},
                     dataType:'json',
                     success: function (ret) {
-                        console.log(ret);
-                        window.location.reload();
+                        if (ret.code == 200 ) {
+                            window.location.reload();
+                        }
                     }
                 });
             })

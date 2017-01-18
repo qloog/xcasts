@@ -6,6 +6,7 @@ use App\Exceptions\GeneralException;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\Vote;
+use Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -181,7 +182,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function followUser($userId)
     {
-        $user = $this->find($userId);
+        $user = $this->find(Auth::id());
 
         if ($user->isFollowing($userId)) {
             return $user->unfollow($userId);

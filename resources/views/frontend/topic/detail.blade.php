@@ -128,6 +128,10 @@
                                     {{ $topic->user->follower_count }} 粉丝
                                 </a>
                             </div>
+                            <div class="ui bottom attached orange button" id="follow_user" data-user-id="{{ $topic->user->id }}">
+                                <i class="add icon"></i>
+                                关注
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -144,6 +148,20 @@
             $('.ui.dropdown').dropdown();
 
             $('.button').popup();
+
+            $('#follow_user').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('user.follow', $topic->user->id) }}',
+                    data: {'_token': '{{ csrf_token() }}','_method':'post'},
+                    dataType:'json',
+                    success: function (ret) {
+                        console.log(ret);
+                        window.location.reload();
+                    }
+                });
+            })
+
         });
     </script>
 @endsection

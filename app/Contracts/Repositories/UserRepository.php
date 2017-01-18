@@ -20,5 +20,7 @@ interface UserRepository extends RepositoryInterface
 
     public function getFollowersByUserId($userId, $limit);
 
+    public function followUser($userId);
+
 
 }

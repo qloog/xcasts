@@ -178,4 +178,15 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         return $this->find($userId)->followers()->orderBy('id', 'desc')->paginate($limit);
     }
+
+    public function followUser($userId)
+    {
+        $user = $this->find($userId);
+
+        if ($user->isFollowing($userId)) {
+            return $user->unfollow($userId);
+        } else {
+            return $user->follow($userId);
+        }
+    }
 }

@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');
     Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');
     Route::get('user/{id}/following', 'UserController@following')->name('user.following');
+    Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
 
     // course
     Route::resource('course', 'CourseController');

@@ -62,6 +62,17 @@ class PaymentController extends Controller
     /**
      * 同步通知
      *
+     * 同步和异步回调回来需要检查相关数据:
+     * ①交易状态码验证
+     * ②卖家账号是否一致
+     * ③通知id验证
+     * ④签名验证
+     * ⑤订单状态检验
+     * ⑥登录用户是否为订单关联的用户
+     * ⑦交易金额是否一致
+     *
+     * @link http://www.jianshu.com/p/f3ad1dca22f5
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function return()
@@ -90,7 +101,7 @@ class PaymentController extends Controller
     }
 
     /**
-     * 异步通知
+     * 异步通知, 因同步可能会被关闭浏览器,所以异步通知最好也打开。
      *
      * @return string
      */

@@ -180,14 +180,21 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return $this->find($userId)->followers()->orderBy('id', 'desc')->paginate($limit);
     }
 
+    /**
+     * 关注/取消关注某用户
+     *
+     * @param int $userId 被关注或取消关乎的用户id
+     * @return bool
+     */
     public function followUser($userId)
     {
         $user = $this->find(Auth::id());
+        $targetUser = $this->find($userId);
 
         if ($user->isFollowing($userId)) {
-            return $user->unfollow($userId);
+            return $user->unfollow($userId)  && $targetUser->decrement('follower_count', 1);
         } else {
-            return $user->follow($userId);
+            return $user->follow($userId) && $targetUser->increment('follower_count', 1);
         }
     }
 }

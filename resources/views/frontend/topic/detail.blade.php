@@ -87,15 +87,14 @@
                                 @endforeach
                             </div>
                         </div>
-
                         <div class="ui large middle aligned divided relaxed list">
                             <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                                <div class="field">
-                                    <textarea name="body" placeholder="请使用Markdown语法编写 :)"></textarea>
+                                <div class="@if(!Auth::check()) disabled field @endif">
+                                    <textarea name="body" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
                                 </div>
-                                <button class="ui teal submit labeled icon button" type="submit">
+                                <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
                                     <i class="icon edit"></i> 回复
                                 </button>
                             </form>
@@ -128,16 +127,18 @@
                                     {{ $topic->user->follower_count }} 粉丝
                                 </a>
                             </div>
-                            @if($topic->user->isFollowedBy(Auth::id()))
-                            <div class="ui bottom attached button" id="follow_user">
-                                <i class="minus icon"></i>
-                                取消关注
-                            </div>
-                            @else
-                                <div class="ui bottom attached orange button" id="follow_user">
-                                    <i class="add icon"></i>
-                                    关注
-                                </div>
+                            @if(Auth::check())
+                                @if($topic->user->isFollowedBy(Auth::id()))
+                                    <div class="ui bottom attached button" id="follow_user">
+                                        <i class="minus icon"></i>
+                                        取消关注
+                                    </div>
+                                @else
+                                    <div class="ui bottom attached orange button" id="follow_user">
+                                        <i class="add icon"></i>
+                                        关注
+                                    </div>
+                                @endif
                             @endif
                         </div>
                     </div>

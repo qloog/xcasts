@@ -95,10 +95,10 @@
                         {!! csrf_field() !!}
                         <input type="hidden" name="relation_id" value="{{ $video->id }}" >
                         <input type="hidden" name="type" value="video" >
-                        <div class="field">
-                            <textarea name="content" placeholder="支持Markdown语法"></textarea>
+                        <div class="@if(!Auth::check()) disabled field @endif">
+                            <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif"></textarea>
                         </div>
-                        <button class="ui primary submit labeled icon button" type="submit"><i class="icon edit"></i>发表回复</button>
+                        <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
                     </form>
                 </div>
             </div>

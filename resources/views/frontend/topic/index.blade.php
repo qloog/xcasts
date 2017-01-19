@@ -36,9 +36,11 @@
                         </div>
                     </div>
                     <div class="four wide column">
+                        @if(Auth::check())
                         <div class="ui center aligned segment">
                             <a class="ui teal big basic button" href="{{ route('topic.create') }}"><i class="write icon"></i>新建话题</a>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -35,7 +35,7 @@
                             <div class="ui buttons">
                                 <button class="ui teal button" data-inverted=""
                                         data-tooltip="点赞相当于收藏，可以在个人页面的「赞过的话题」导航里查看"
-                                        data-position="top center">
+                                        data-position="top center" id="up_vote">
                                     <i class="thumbs up white icon"></i>点赞
                                 </button>
                                 <div class="or"></div>
@@ -47,14 +47,12 @@
                             </div>
 
                             <p></p>
-                            <div >
-                                @for($i=0;$i<10;$i++)
-                                <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/matt.jpg" style="width: 40px;height: 40px;"/>
-                                <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/elliot.jpg" style="width: 40px;height: 40px;"/>
-                                <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/helen.jpg" style="width: 40px;height: 40px;"/>
-                                <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/jenny.jpg" style="width: 40px;height: 40px;"/>
-                                <img class="ui  avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg" style="width: 40px;height: 40px;"/>
-                                @endfor
+                            <div id="voted_user_list">
+                                @foreach($votedUsers as $user)
+                                <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::id() }}">
+                                    <img class="ui avatar image" src="{{ $user['avatar'] }}" style="width: 40px;height: 40px;"/>
+                                </a>
+                                @endforeach
                             </div>
                         </div>
 
@@ -102,20 +100,13 @@
                     </div>
                     <div class="four wide column">
                         <div class="ui card">
-                            <div class="blurring dimmable image">
-                                <div class="ui dimmer transition hidden">
-                                    <div class="content">
-                                        <div class="center">
-                                            <div class="ui inverted button">Add Friend</div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="ui large circular image">
                                 <img src="{{ $topic->user->avatar }}">
                             </div>
                             <div class="content">
                                 <div class="header">{{ $topic->user->name }}</div>
                                 <div class="meta">
-                                    <a class="group">Pundit</a>
+                                    <a class="group">{{ $topic->user->introduction }}</a>
                                 </div>
                             </div>
                             <div class="extra content">
@@ -169,7 +160,40 @@
                         }
                     }
                 });
-            })
+            });
+
+            $('#up_vote').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('topic.upvote', $topic->id) }}',
+                    data: {'_token': '{{ csrf_token() }}','_method':'post'},
+                    dataType:'json',
+                    success: function (ret) {
+                        if (ret.code == 200 ) {
+                            var str = '<a href="{{ route('user.show', Auth::id()) }}" data-uid="{{ Auth::id() }}"> \
+                                    <img class="ui avatar image" src="{{ Auth::user()->avatar }}" style="width: 40px;height: 40px;"/> \
+                                    </a>';
+
+                            var voted_a_obj = $('#voted_user_list a');
+                            var voted_user_count = voted_a_obj.length;
+                            if (voted_user_count == 0) {
+                                $('#voted_user_list').append(str);
+                                return false;
+                            }
+                            voted_a_obj.map(function (key,value) {
+                                console.log(value.getAttribute('data-uid'));
+                                if (value.getAttribute('data-uid') == '{{ Auth::id() }}') {
+                                    $(this).remove(key);
+                                } else {
+                                    if (key == 0) {
+                                        value.before(str);
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            });
 
         });
     </script>

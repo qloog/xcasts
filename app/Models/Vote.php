@@ -12,6 +12,8 @@ class Vote extends Model implements Transformable
 
     protected $table = 'votes';
 
+    protected $fillable = ['user_id', 'votable_id', 'votable_type', 'is'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

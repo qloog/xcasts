@@ -43,6 +43,8 @@ Route::group(['namespace' => 'Frontend'], function ()
 
     // topic
     Route::resource('topic', 'TopicController');
+    Route::post('topic/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
+    Route::post('topic/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
     Route::resource('reply', 'ReplyController');
     // comment
     Route::post('comment', 'CommentController@store')->name('comment.store');

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Qiniu\Auth;
 use Redirect;
 
 class TopicController extends Controller
@@ -16,9 +17,9 @@ class TopicController extends Controller
     /**
      * @var TopicRepository
      */
-    protected $topics;
-    protected $replies;
-    protected $votes;
+    protected $topicRepo;
+    protected $replyRepo;
+    protected $voteRepo;
 
     /**
      * TopicController constructor.
@@ -28,9 +29,9 @@ class TopicController extends Controller
      */
     public function __construct(TopicRepository $topics, ReplyRepository $replies, VoteRepository $votes)
     {
-        $this->topics = $topics;
-        $this->replies = $replies;
-        $this->votes = $votes;
+        $this->topicRepo = $topics;
+        $this->replyRepo = $replies;
+        $this->voteRepo = $votes;
     }
 
     /**
@@ -40,7 +41,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = $this->topics->orderBy('created_at', 'desc')->paginate(10);
+        $topics = $this->topicRepo->orderBy('created_at', 'desc')->paginate(10);
         return view('frontend.topic.index', compact('topics'));
     }
 
@@ -62,7 +63,7 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->topics->create($request->all())) {
+        if ($this->topicRepo->create($request->all())) {
             return redirect()->route('topic.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -76,13 +77,14 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = $this->topics->find($id);
+        $topic = $this->topicRepo->find($id);
 
-        $replies = $this->replies->findWhere(['topic_id' => $id]);
+        $replies = $this->replyRepo->findWhere(['topic_id' => $id]);
+        $votedUsers = $this->topicRepo->voteBy($id);
 
-        $this->topics->increment($id, 'view_count');
+        $this->topicRepo->increment($id, 'view_count');
 
-        return view('frontend.topic.detail', compact('topic', 'replies'));
+        return view('frontend.topic.detail', compact('topic', 'replies','votedUsers'));
     }
 
     /**
@@ -108,24 +110,24 @@ class TopicController extends Controller
         //
     }
 
-    public function voteUp($id)
+    public function upVote($id)
     {
-        $topic = $this->topics->find($id);
-        $this->votes->topicUpVote($topic);
+        $topic = $this->topicRepo->find($id);
+        $this->voteRepo->topicUpVote($topic);
 
         return response([
-            'vote-up' => true,
+            'code' => 200,
             'vote_count' => $topic->vote_count
         ]);
     }
 
-    public function voteDown($id)
+    public function downVote($id)
     {
-        $topic = $this->topics->find($id);
-        $this->votes->topicDownVote($topic);
+        $topic = $this->topicRepo->find($id);
+        $this->voteRepo->topicDownVote($topic);
 
         return response([
-            'vote-down' => true,
+            'code' => 200,
             'vote_count' => $topic->vote_count
         ]);
     }

@@ -24,21 +24,21 @@
                         <div class="ui large middle aligned divided relaxed list padded segment">
 
                             <div class="ui comments">
-                                @foreach($votes as $vote)
+                                @foreach($topics as $topic)
                                     <div class="comment">
                                         <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $vote->topic_id) }}" target="_blank">{{ $vote->topic->title }}</a>
+                                            <a class="teal color" href="{{ route('topic.show', $topic->id) }}" target="_blank">{{ $topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
-                                                    {{ $vote->topic['vote_count'] }} 点赞 ⋅ {{ $vote->topic['reply_count'] }} 回复 ⋅
+                                                    {{ $topic['vote_count'] }} 点赞 ⋅ {{ $topic['reply_count'] }} 回复 ⋅
                                                 </div>
-                                                {{ $vote->created_at->diffForHumans() }}
+                                                {{ $topic->created_at->diffForHumans() }}
                                             </div>
                                         </div>
                                     </div>
                                 @endforeach
                             </div>
-                            {!! $votes->render() !!}
+                            {!! $topics->render() !!}
                         </div>
                     </div>
                 </div>

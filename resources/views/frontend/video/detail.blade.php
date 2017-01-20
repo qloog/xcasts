@@ -74,10 +74,10 @@
                     @foreach($comments as $comment)
                     <div class="comment">
                         <a class="avatar">
-                            <img src="http://alcdn.img.xiaoka.tv/20161017/eaa/10a/2725024/eaa10a6a418be34d6ab830edceabcfce.jpg">
+                            <img src="{{ $comment->user->avatar }}">
                         </a>
                         <div class="content">
-                            <a class="author">{{ $comment->user->username }}</a>
+                            <a class="author">{{ $comment->user->name }}</a>
                             <div class="metadata">
                                 <div class="date">{{ $comment->created_at->diffForHumans() }}</div>
                             </div>

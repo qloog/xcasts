@@ -49,7 +49,7 @@
                             <p></p>
                             <div id="voted_user_list">
                                 @foreach($votedUsers as $user)
-                                <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::id() }}">
+                                <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::check() ? Auth::id() : 0 }}">
                                     <img class="ui avatar image" src="{{ $user['avatar'] }}" style="width: 40px;height: 40px;"/>
                                 </a>
                                 @endforeach
@@ -170,9 +170,12 @@
                     dataType:'json',
                     success: function (ret) {
                         if (ret.code == 200 ) {
+
+                            @if(Auth::check())
                             var str = '<a href="{{ route('user.show', Auth::id()) }}" data-uid="{{ Auth::id() }}"> \
                                     <img class="ui avatar image" src="{{ Auth::user()->avatar }}" style="width: 40px;height: 40px;"/> \
                                     </a>';
+                            @endif
 
                             var voted_a_obj = $('#voted_user_list a');
                             var voted_user_count = voted_a_obj.length;

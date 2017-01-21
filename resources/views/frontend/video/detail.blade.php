@@ -21,13 +21,9 @@
             <div class="one wide column"></div>
             <div class="fourteen wide column">
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
-                           poster="{{ $video->cdn_cover_image }}" data-setup='{}'>
-                        {{--<source src="{{ $video->cdn_mp4_url }}" type='video/mp4'>--}}
-                        <source src=""
-                                type="video/flv"
-                                data-quality="HD"
-                                label="HD"
-                                data-default="true">
+                           poster="http://vjs.zencdn.net/v/oceans.png" data-setup='{}'>
+                        <source src="http://vjs.zencdn.net/v/oceans.mp4" type='video/mp4'>
+                        <source src="" type="video/flv" data-quality="HD" label="HD" data-default="true">
                         <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a web browser that
                             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>

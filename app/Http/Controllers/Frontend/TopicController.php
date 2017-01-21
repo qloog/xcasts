@@ -41,7 +41,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = $this->topicRepo->orderBy('created_at', 'desc')->paginate(10);
+        $topics = $this->topicRepo->orderBy('created_at', 'desc')->paginate(20);
         return view('frontend.topic.index', compact('topics'));
     }
 

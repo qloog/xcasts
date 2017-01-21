@@ -34,6 +34,7 @@
                             @endforeach
                             @endif
                         </div>
+                        {!! $topics->render('partials.semantic-pagination') !!}
                     </div>
                     <div class="four wide column">
                         @if(Auth::check())

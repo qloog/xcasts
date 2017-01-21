@@ -33,7 +33,7 @@
                         <div class="content">
                             <div class="ui header">
                                 <div class="ui big breadcrumb">
-                                    <a class="section">Yaf路由</a>
+                                    <a class="section" href="{{ route('course.show', $video->course_id) }}">{{ $video->course->name }}</a>
                                     <i class="right arrow icon divider"></i>
                                     <div class="active section">{{ $video->name }}</div>
                                 </div>

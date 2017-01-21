@@ -30,4 +30,9 @@ class Video extends Model implements Transformable
         return $this->hasOne(User::class);
     }
 
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
 }

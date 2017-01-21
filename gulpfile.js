@@ -46,5 +46,7 @@ elixir(function(mix) {
 
         // video.js
         .copy('resources/assets/bower/video.js/dist','public/videojs')
+        // simplemde
+        .copy('resources/assets/bower/simplemde/dist','public/simplemde')
 
 });

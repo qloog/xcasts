@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('styles')
+    <link rel="stylesheet" type="text/css" href="{{ asset('simplemde/simplemde.min.css') }}">
+@endsection
+
 @section('content')
     <div class="ui grid">
         <div class="row"></div>
@@ -42,7 +46,7 @@
                                 </div>
                                 <div class="field">
                                     <label></label>
-                                    <textarea name="body" rows="20" placeholder="请使用Markdown格式书写:)"></textarea>
+                                    <textarea name="body" id="body" rows="20" placeholder="请使用Markdown格式书写:), 代码片段黏贴时请注意使用高亮语法。"></textarea>
                                 </div>
                                 <button class="ui button teal" type="submit">发布</button>
                             </form>
@@ -79,9 +83,20 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('simplemde/simplemde.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ui.dropdown').dropdown();
+
+            var simplemde = new SimpleMDE({
+                spellChecker: false,
+                autosave: {
+                    enabled: true,
+                    delay: 1,
+                    unique_id: "body"
+                },
+                forceSync: true
+            });
         });
     </script>
 @endsection

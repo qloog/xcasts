@@ -1,12 +1,8 @@
 <div class="ui center aligned segment">
-    <div class="ui massive horizontal divided list">
-        <div class="item">
-            <img class="ui tiny avatar image" src="{{ Auth::user()->avatar }}">
-            <div class="content">
-                <div class="header">Helen</div>
-            </div>
-        </div>
-    </div>
+    <h2 class="ui header">
+        <img src="{{ Auth::user()->avatar }}" class="ui circular image">
+        {{ Auth::user()->name }}
+    </h2>
     <div>
         <div class="ui list">
             <div class="item">第 {{ $user->id }} 位会员</div>

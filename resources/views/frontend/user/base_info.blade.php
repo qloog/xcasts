@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="ui divider"></div>
-    <div class="ui small statistics centered">
+    <div class="ui three small statistics">
         <div class="teal statistic">
             <a class="value" href="#">
                 {{ $user->follower_count }}

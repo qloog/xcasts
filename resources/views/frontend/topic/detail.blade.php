@@ -41,7 +41,9 @@
                                 <div class="or"></div>
                                 <button class="ui yellow button" data-inverted=""
                                         data-tooltip="如果觉得我的文章对您有用，请随意打赏。你的支持将鼓励我继续创作！可以修改个人资料「支付二维码」开启打赏功能。"
-                                        data-position="top center">
+                                        data-position="top center"
+                                        id="reward"
+                                >
                                     <i class="heart white icon"></i>打赏
                                 </button>
                             </div>
@@ -139,6 +141,31 @@
         <div class="row"></div>
     </div>
 
+    <div class="ui standard test modal" id="user_qrcode_modal">
+        <div class="header">
+            Select a Photo
+        </div>
+        <div class="image content">
+            <div class="ui medium image">
+                <img src="http://semantic-ui.com/images/avatar2/large/rachel.png">
+            </div>
+            <div class="description">
+                <div class="ui header">Default Profile Image</div>
+                <p>We've found the following <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your e-mail address.</p>
+                <p>Is it okay to use this photo?</p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                Nope
+            </div>
+            <div class="ui positive right labeled icon button">
+                Yep, that's me
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('scripts')
@@ -147,6 +174,16 @@
             $('.ui.dropdown').dropdown();
 
             $('.button').popup();
+
+            // display user qrcode
+            $('#reward').click(function () {
+                $('#user_qrcode_modal')
+                .modal({
+                    blurring: true
+                })
+                .modal('show');
+            });
+
 
             $('#follow_user').click(function () {
                 $.ajax({

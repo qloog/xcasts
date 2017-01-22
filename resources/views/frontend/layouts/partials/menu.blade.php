@@ -23,6 +23,9 @@
             </div>
         </a>
         <div class="right item">
+            <a class="ui circular label" style="margin-right: 10px;">
+                0
+            </a>
         @if (Auth::guest())
             <a class="ui button" href="{{ route('login') }}">登录</a>
             <a class="ui teal button" href="{{ url('register') }}">注册</a>

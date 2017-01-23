@@ -50,7 +50,7 @@ class VoteRepositoryEloquent extends BaseRepository implements VoteRepository
             // first time click
             $topic->votes()->create(['user_id' => Auth::id(), 'is' => 'upvote']);
             $topic->increment('vote_count', 1);
-            //Notification::notify('topic_upvote', Auth::user(), $topic->user, $topic);
+            // Notification::notify('topic_upvote', Auth::user(), $topic->user, $topic);
         }
     }
 

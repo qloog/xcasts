@@ -78,6 +78,7 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
         //user
+        Route::get('user', 'UserController@index')->name('admin.user');
         Route::resource('auth/user', 'UserController', ['as' => 'auth']);
         Route::get('auth/user/change-password/{id}', 'UserController@changePassword');
         Route::post('auth/user/update-password/{id}', ['as' => 'user.update-password', 'uses' => 'UserController@updatePassword']);
@@ -102,7 +103,6 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('video', 'VideoController');
 
         //forum
-        //Route::resource('topic/category', 'TopicCategoryController', ['as' => 'topic']);
         Route::resource('topics', 'TopicController');
 
         //comment
@@ -122,5 +122,8 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::post('upload/folder', 'UploadController@createFolder');
         Route::delete('upload/folder', 'UploadController@deleteFolder');
         Route::post('upload/image', ['as' => 'upload.image', 'uses' => 'UploadController@uploadImage']);
+
+        // qiniu
+        Route::get('qiniu/index', 'QiniuController@index')->name('qiniu.index');
     });
 });

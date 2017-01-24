@@ -185,9 +185,15 @@
                 </ul>
             </li>
 
+            <li class="header">常用工具</li>
             <li @if(Request::is('admin/upload')) class="active" @endif>
                 <a href="/admin/upload">
                     <i class="fa fa-file-o"></i> <span>文件管理</span>
+                </a>
+            </li>
+            <li @if(Request::is('admin/qiniu')) class="active" @endif>
+                <a href="{{ route('admin.qiniu.index') }}">
+                    <i class="fa fa-file-o"></i> <span>七牛文件管理</span>
                 </a>
             </li>
 

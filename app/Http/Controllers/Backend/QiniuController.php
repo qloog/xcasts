@@ -9,6 +9,7 @@ class QiniuController extends Controller
 {
     public function index()
     {
-        return view('backend.qiniu.index');
+        $albums = [];
+        return view('backend.qiniu.index', compact('albums'));
     }
 }

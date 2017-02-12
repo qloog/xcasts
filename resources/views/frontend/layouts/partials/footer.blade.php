@@ -44,7 +44,7 @@
         <div class="ui inverted horizontal list">
             <a class="disabled item">Developed By</a><a class="item" href="http://lnmp100.com">Qloog</a>,<a class="disabled item">Powered By</a><a class="item" href="https://laravel.com">Laravel</a>
             <div class="item"><a href="{{ url('/service') }}">服务条款</a></div>
-            <div class="disabled item">© PHPCasts 2016. All rights reserved.</div>
+            <div class="disabled item">© PHPCasts 2017. All rights reserved.</div>
         </div>
 
         <a class="back-to-top" href="javascript:;"></a>

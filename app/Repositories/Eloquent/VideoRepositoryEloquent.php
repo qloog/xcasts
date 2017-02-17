@@ -2,7 +2,6 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Services\QiNiuService;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\VideoRepository;
@@ -25,7 +24,6 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
         return Video::class;
     }
 
-    
 
     /**
      * Boot up the repository, pushing criteria
@@ -34,4 +32,5 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
 }

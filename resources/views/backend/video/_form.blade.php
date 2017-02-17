@@ -21,7 +21,7 @@
                     {!! Form::label('url', '视频文件', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::file('url', ['class' => 'form-control']) !!}
+                            {!! Form::file('mp4_url', ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 </div>

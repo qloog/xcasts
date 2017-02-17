@@ -82,7 +82,7 @@
                                     </div>
                                     <div class="hidden-sm hidden-xs action-buttons">
                                         <a href="javascript:;">
-                                            <i class="fa fa-link text-orange"></i>关联视频
+                                            <i class="fa fa-link text-orange"></i>添加视频
                                         </a>
                                     </div>
                                 </td>

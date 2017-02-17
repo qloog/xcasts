@@ -51,34 +51,27 @@
                     <table id="user-table" class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>id</th>
-                            <th>封面</th>
-                            <th>名称</th>
-                            <th>照片数量</th>
-                            <th>描述</th>
-                            <th>创建时间</th>
-                            <th>更新时间</th>
+                            <th>hash</th>
+                            <th>图片</th>
+                            <th>size</th>
+                            <th>mimeType</th>
+                            <th>上传时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($albums))
-                        @foreach ($albums as $album)
+                        @if(count($files))
+                        @foreach ($files as $file)
                             <tr>
-                                <td>{{ $album->id }}</td>
-                                <td><img src="{{ $album->cover_image }}" width="80px"/></td>
-                                <td>{{ $album->name }}</td>
-                                <td>{{ $album->photo_count }}</td>
-                                <td>{{ $album->description }}</td>
-                                <td>{{ $album->created_at }}</td>
-                                <td>{{ $album->updated_at }}</td>
+                                <td>{{ $file['hash'] }}</td>
+                                <td><img src="{{ $file['key'] }}" width="80px"/></td>
+                                <td>{{ $file['fsize'] }}</td>
+                                <td>{{ $file['mimeType'] }}</td>
+                                <td>{{ $file['putTime'] }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="{{ route('admin.album.edit', [$album->id]) }}">
-                                            <i class="fa fa-edit text-green"></i>编辑
-                                        </a>
-                                        <a class="blue" href="{{ url('admin/album/'.$album->id.'/photos') }}">
-                                            <i class="fa fa-upload text-yellow" aria-hidden="true"></i>上传照片
+                                        <a class="green" href="{{ route('admin.album.edit', [$file['hash']]) }}">
+                                            <i class="fa fa-edit text-green"></i>下载
                                         </a>
                                     </div>
                                 </td>
@@ -92,7 +85,7 @@
 
                 <div class="box-footer">
                     <div class="pull-right">
-                        {!! $albums && $albums->render() !!}
+                        {{--{!! $files && $files->render() !!}--}}
                     </div>
                 </div>
             </div>

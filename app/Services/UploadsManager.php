@@ -233,6 +233,7 @@ class UploadsManager
      * @param File  $file
      * @param int  $width
      * @param null $height
+     *
      * @return string
      */
     public function uploadImage($file, $width=1440, $height=null)
@@ -275,6 +276,39 @@ class UploadsManager
             'origin_name' => $fileName,
             'extension' => $extension,
             'image_path' => $folderName .'/'. $safeName
+        ];
+    }
+
+    /**
+     * 上传图片,返回图片的相对路径
+     * @param File  $file
+     * @param array $allowed_extensions
+     *
+     * @return string
+     */
+    public function uploadFile($file, $allowed_extensions = ["mp4"])
+    {
+        if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
+            return ['error' => 'You may only upload png, jpg or gif.'];
+        }
+        $fileName        = $file->getClientOriginalName();
+        $extension       = $file->getClientOriginalExtension() ?: 'mp4';
+        $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Ym", time()) .'/'.date("d", time());
+        $destinationPath = public_path() . '/' . $folderName;
+        $safeNameWithoutExt = str_random(10);
+        $safeName        = $safeNameWithoutExt . '.' . $extension;
+        $file->move($destinationPath, $safeName);
+        // If is not gif file, we will try to reduse the file size
+        Image::create(['image_name' => $safeNameWithoutExt, 'image_path' => $folderName .'/'. $safeName, 'user_id' => Auth::user()->id]);
+
+        $imagePath = $folderName .'/'. $safeName;
+
+        (new QiNiuService())->upload($imagePath, public_path() . $imagePath);
+
+        return [
+            'origin_name' => $fileName,
+            'extension' => $extension,
+            'file_path' => $folderName .'/'. $safeName
         ];
     }
 }

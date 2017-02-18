@@ -248,7 +248,7 @@ class UploadsManager
         }
         $fileName        = $file->getClientOriginalName();
         $extension       = $file->getClientOriginalExtension() ?: 'png';
-        $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Ym", time()) .'/'.date("d", time());
+        $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Y/m", time()) .'/'.date("d", time());
         $destinationPath = public_path() . '/' . $folderName;
         $safeNameWithoutExt = str_random(10);
         $safeName        = $safeNameWithoutExt . '.' . $extension;
@@ -288,12 +288,20 @@ class UploadsManager
      */
     public function uploadFile($file, $allowed_extensions = ["mp4"])
     {
+        if (!is_object($file)) {
+            return [
+                'origin_name' => '',
+                'extension' => '',
+                'file_path' => ''
+            ];
+        }
+
         if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
             return ['error' => 'You may only upload png, jpg or gif.'];
         }
         $fileName        = $file->getClientOriginalName();
         $extension       = $file->getClientOriginalExtension() ?: 'mp4';
-        $folderName      = rtrim(config('custom.uploads.images'), '/') . '/' . date("Ym", time()) .'/'.date("d", time());
+        $folderName      = rtrim(config('custom.uploads.videos'), '/') . '/' . date("Y/m", time()) .'/'.date("d", time());
         $destinationPath = public_path() . '/' . $folderName;
         $safeNameWithoutExt = str_random(10);
         $safeName        = $safeNameWithoutExt . '.' . $extension;
@@ -303,7 +311,7 @@ class UploadsManager
 
         $imagePath = $folderName .'/'. $safeName;
 
-        (new QiNiuService())->upload($imagePath, public_path() . $imagePath);
+        //(new QiNiuService())->upload($imagePath, public_path() . $imagePath);
 
         return [
             'origin_name' => $fileName,

@@ -5,7 +5,8 @@ return [
     'uploads' => [
         'storage' => 'local',
         'web_path' => '/uploads',
-        'images'  => '/uploads/images'
+        'images'  => '/uploads/images',
+        'videos'  => '/uploads/videos'
     ],
     'default_image' => '/uploads/images/default_image.jpg',
     'static_domain' => ''

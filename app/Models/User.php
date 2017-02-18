@@ -61,7 +61,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'real_name', 'avatar', 'city', 'company',
+        'name', 'email', 'password', 'real_name', 'avatar', 'city', 'company',
         'weibo_url','wechat_id','personal_website','introduction','topic_count',
         'reply_count','follwer_count', 'status','last_login_time','last_login_ip',
         'created_at','updated_at'

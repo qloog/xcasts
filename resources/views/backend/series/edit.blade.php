@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '编辑课程')
+@section('title', '编辑系列')
 
 @section('breadcrumb')
         <li>
@@ -8,10 +8,10 @@
             <a href="/admin/dashboard">主页</a>
         </li>
         <li>
-            <a>课程管理</a>
+            <a>系列管理</a>
         </li>
         <li>
-            编辑课程
+            编辑系列
         </li>
 @endsection
 
@@ -25,11 +25,11 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::model($course, ['route' => ['admin.course.update', $course->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::model($course, ['route' => ['admin.series.update', $course->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
                     {!! Form::hidden('_method', 'PUT') !!}
 
                     <div class="box-body">
-                        @include('backend.course._form')
+                        @include('backend.series._form')
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">

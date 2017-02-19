@@ -4,15 +4,15 @@ namespace App\Repositories\Eloquent;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\CourseRepository;
-use App\Models\Course;
+use App\Contracts\Repositories\SeriesRepository;
+use App\Models\Series;
 use App\Validators\CourseValidator;
 
 /**
  * Class CourseRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class CourseRepositoryEloquent extends BaseRepository implements CourseRepository
+class SeriesRepositoryEloquent extends BaseRepository implements SeriesRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
      */
     public function model()
     {
-        return Course::class;
+        return Series::class;
     }
 
     /**

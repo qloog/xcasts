@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\CourseRepository;
+use App\Contracts\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Redirect;
 
-class CourseController extends Controller
+class SeriesController extends Controller
 {
     /**
-     * @var CourseRepository
+     * @var SeriesRepository
      */
-    protected $courseRepo;
+    protected $seriesRepo;
 
-    public function __construct(CourseRepository $courses)
+    public function __construct(SeriesRepository $courses)
     {
-        $this->courseRepo = $courses;
+        $this->seriesRepo = $courses;
     }
 
     /**
@@ -28,9 +28,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = $this->courseRepo->orderBy('id', 'DESC')->paginate(10);
+        $series = $this->seriesRepo->orderBy('id', 'DESC')->paginate(10);
 
-        return view('backend.course.index', compact('courses'));
+        return view('backend.series.index', compact('series'));
     }
 
     /**
@@ -40,7 +40,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('backend.course.create');
+        return view('backend.series.create');
     }
 
     /**
@@ -51,8 +51,8 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->courseRepo->create($request->all())) {
-            return redirect()->route('admin.course.index');
+        if ($this->seriesRepo->create($request->all())) {
+            return redirect()->route('admin.series.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
@@ -76,9 +76,9 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = $this->courseRepo->find($id);
+        $course = $this->seriesRepo->find($id);
 
-        return view('backend.course.edit', compact('course'));
+        return view('backend.series.edit', compact('course'));
     }
 
     /**
@@ -90,8 +90,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->courseRepo->update($request->all(), $id)) {
-            return redirect()->route('admin.course.index');
+        if ($this->seriesRepo->update($request->all(), $id)) {
+            return redirect()->route('admin.series.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

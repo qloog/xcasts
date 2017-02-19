@@ -5,10 +5,10 @@ namespace App\Contracts\Repositories;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Interface CourseRepository
+ * Interface SeriesRepository
  * @package namespace App\Contracts\Repositories;
  */
-interface CourseRepository extends RepositoryInterface
+interface SeriesRepository extends RepositoryInterface
 {
     public function getCourseListByType($type, $limit);
 }

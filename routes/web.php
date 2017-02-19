@@ -97,8 +97,8 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('album/{id}/photos', ['as' => 'album.photos', 'uses' => 'AlbumController@photos']);
         Route::post('album/upload', ['as' => 'album.upload', 'uses' => 'AlbumController@storePhoto']);
 
-        //course
-        Route::resource('course', 'CourseController');
+        //series
+        Route::resource('series', 'SeriesController');
         //video
         Route::resource('video', 'VideoController');
 

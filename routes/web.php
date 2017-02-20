@@ -100,8 +100,7 @@ Route::group(['namespace' => 'Backend'], function ()
         //series
         Route::resource('series', 'SeriesController');
         //video
-        Route::resource('video', 'VideoController');
-
+        Route::resource('lesson', 'LessonController');
         //forum
         Route::resource('topics', 'TopicController');
 

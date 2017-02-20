@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Video extends Model implements Transformable
+class Lesson extends Model implements Transformable
 {
     use TransformableTrait;
 
     protected $fillable = [
         'id',
-        'course_id',
+        'series_id',
         'name',
         'description',
         'cover_image',
@@ -29,9 +29,9 @@ class Video extends Model implements Transformable
         return $this->belongsTo(User::class);
     }
 
-    public function course()
+    public function series()
     {
-        return $this->belongsTo(Course::class);
+        return $this->belongsTo(Series::class);
     }
 
 }

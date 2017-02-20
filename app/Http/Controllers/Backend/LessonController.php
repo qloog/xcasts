@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\VideoRepository;
-use App\Services\QiNiuService;
+use App\Contracts\Repositories\LessonRepository;
 use App\Services\UploadsManager;
 use Illuminate\Http\Request;
 
@@ -11,15 +10,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
-class VideoController extends Controller
+class LessonController extends Controller
 {
 
-    protected $videoRepo;
+    protected $lessonRepo;
     protected $uploadManager;
 
-    public function __construct(VideoRepository $videos, UploadsManager $uploadsManager)
+    public function __construct(LessonRepository $videos, UploadsManager $uploadsManager)
     {
-        $this->videoRepo = $videos;
+        $this->lessonRepo = $videos;
         $this->uploadManager = $uploadsManager;
     }
 
@@ -30,9 +29,9 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = $this->videoRepo->orderBy('id', 'desc')->paginate(10);
+        $lessons = $this->lessonRepo->orderBy('id', 'desc')->paginate(10);
 
-        return view('backend.video.index', compact('videos'));
+        return view('backend.lesson.index', compact('lessons'));
     }
 
     /**
@@ -42,7 +41,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('backend.video.create');
+        return view('backend.lesson.create');
     }
 
     /**
@@ -60,8 +59,8 @@ class VideoController extends Controller
             }
         }
 
-        if ($this->videoRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path']]))) {
-            return redirect()->route('admin.video.index');
+        if ($this->lessonRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path']]))) {
+            return redirect()->route('admin.lesson.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
@@ -85,9 +84,9 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        $video = $this->videoRepo->find($id);
+        $video = $this->lessonRepo->find($id);
 
-        return view('backend.video.edit', compact('video'));
+        return view('backend.lesson.edit', compact('video'));
     }
 
     /**
@@ -108,8 +107,8 @@ class VideoController extends Controller
             $postData['mp4_url'] = $fileInfo['file_path'];
         }
 
-        if ($this->videoRepo->update($postData, $id)) {
-            return redirect()->route('admin.video.index');
+        if ($this->lessonRepo->update($postData, $id)) {
+            return redirect()->route('admin.lesson.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

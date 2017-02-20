@@ -2,17 +2,17 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Lesson;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\VideoRepository;
-use App\Models\Video;
+use App\Contracts\Repositories\LessonRepository;
 use App\Validators\VideoValidator;
 
 /**
- * Class VideoRepositoryEloquent
+ * Class LessonRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
+class LessonRepositoryEloquent extends BaseRepository implements LessonRepository
 {
     /**
      * Specify Model class name
@@ -21,7 +21,7 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
      */
     public function model()
     {
-        return Video::class;
+        return Lesson::class;
     }
 
 

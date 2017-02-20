@@ -1,10 +1,10 @@
 @extends('backend.layouts.master')
 
-@section('page_title', '视频管理')
+@section('page_title', '课程管理')
 
 @section('breadcrumb')
     <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
-    <li>视频管理</li>
+    <li>课程管理</li>
     <li>列表</li>
 @endsection
 
@@ -16,7 +16,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加视频</a>
+                        <a href="{{ route('admin.lesson.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加课程</a>
                     </h3>
                     <div class="box-tools">
                         <!--
@@ -66,11 +66,11 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($videos as $item)
+                        @foreach ($lessons as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->course->name }}</td>
+                                <td>{{ $item->series->name }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
                                 <td><a href="{{ $item->mp4_url }}">视频地址</a></td>
                                 <td>{{ $item->length }}</td>
@@ -80,7 +80,7 @@
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="{{ route('admin.video.edit', [$item->id]) }}">
+                                        <a class="green" href="{{ route('admin.lesson.edit', [$item->id]) }}">
                                             <i class="fa fa-edit text-green"></i>编辑
                                         </a>
                                     </div>
@@ -94,7 +94,7 @@
 
                 <div class="box-footer">
                     <div class="pull-right">
-                        {!! $videos->render() !!}
+                        {!! $lessons->render() !!}
                     </div>
                 </div>
             </div>

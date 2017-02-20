@@ -54,7 +54,7 @@
                         <tr>
                             <th>ID</th>
                             <th>视频名称</th>
-                            <th>所属课程</th>
+                            <th>所属系列</th>
                             <th>封面</th>
                             <th>视频地址</th>
                             <th>长度</th>

@@ -47,7 +47,7 @@ class CommentController extends Controller
     public function store(Request $request)
     {
         if ($this->repository->create($request->all())) {
-            return redirect()->route('course.video.show', $request->get('relation_id'));
+            return redirect()->route('series.lesson.show', ['slug' => $request->get('slug'), 'episode_id' => $request->get('episode_id')]);
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

@@ -70,7 +70,7 @@ class LessonController extends Controller
         $lesson = $lesson[0];
         $comments = $this->comments->findWhere(['type' => 'lesson', 'relation_id' => $series->id])->all();
 
-        return view('frontend.lesson.detail', compact('lesson','comments'));
+        return view('frontend.lesson.detail', compact('series', 'lesson', 'comments'));
     }
 
     /**

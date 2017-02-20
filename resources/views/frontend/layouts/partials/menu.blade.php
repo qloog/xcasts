@@ -4,10 +4,10 @@
         <a class="item" href="/">
             <i class="home icon"></i> 首页
         </a>
-        <a class="item" href="{{ route('course.index') }}">
+        <a class="item" href="{{ route('series.index') }}">
             <i class="record icon"></i> 视频
         </a>
-        <a class="item" href="{{ route('course.index') }}">
+        <a class="item" href="{{ route('series.index') }}">
             <i class="maximize icon"></i> 技能
         </a>
         <a class="item" href="{{ route('topic.index') }}">

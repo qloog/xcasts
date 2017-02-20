@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\CourseRepository;
+use App\Contracts\Repositories\SeriesRepository;
 use App\Http\Controllers\Controller;
 use App\Models\Page;
 
@@ -18,18 +18,18 @@ class WelcomeController extends Controller {
 	| controllers, you are free to modify or remove it as you desire.
 	|
 	*/
-    protected $courses;
+    protected $seriesRepo;
 
     /**
      * Create a new controller instance.
      *
-     * @param CourseRepository $courses
+     * @param SeriesRepository $series
      */
-	public function __construct(CourseRepository $courses)
+	public function __construct(SeriesRepository $series)
 	{
 		$this->middleware('guest');
 
-        $this->courses = $courses;
+        $this->seriesRepo = $series;
 	}
 
 	/**
@@ -39,9 +39,9 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        $courses = $this->courses->orderBy('id', 'DESC')->paginate(10);
+        $series = $this->seriesRepo->orderBy('id', 'DESC')->paginate(10);
 
-		return view('frontend.welcome', compact('courses'));
+		return view('frontend.welcome', compact('series'));
 	}
 
 }

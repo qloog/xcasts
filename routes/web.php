@@ -37,9 +37,9 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('user/{id}/following', 'UserController@following')->name('user.following');
     Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
 
-    // course
-    Route::resource('course', 'CourseController');
-    Route::get('course/video/{videoId}', ['as' => 'course.video.show', 'uses' => 'VideoController@show']);
+    // series
+    Route::resource('series', 'SeriesController');
+    Route::get('series/{slug}/episodes/{episode_id}', ['as' => 'series.lesson.show', 'uses' => 'LessonController@show']);
 
     // topic
     Route::resource('topic', 'TopicController');

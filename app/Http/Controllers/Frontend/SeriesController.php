@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\CourseRepository;
+use App\Contracts\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class CourseController extends Controller
+class SeriesController extends Controller
 {
     /**
-     * @var CourseRepository
+     * @var SeriesRepository
      */
-    protected $courses;
+    protected $seriesRepo;
 
 
-    public function __construct(CourseRepository $courses)
+    public function __construct(SeriesRepository $series)
     {
-        $this->courses = $courses;
+        $this->seriesRepo = $series;
     }
 
     /**
@@ -30,9 +30,9 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $type = $request->get('type');
-        $courses = $this->courses->getCourseListByType($type, 15);
+        $series = $this->seriesRepo->getCourseListByType($type, 15);
 
-        return view('frontend.course.index', compact('courses', 'type'));
+        return view('frontend.series.index', compact('series', 'type'));
     }
 
     /**
@@ -64,9 +64,9 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = $this->courses->findByField('id', $id)->first();
+        $series = $this->seriesRepo->findByField('id', $id)->first();
 
-        return view('frontend.course.detail', compact('course'));
+        return view('frontend.series.detail', compact('series'));
     }
 
     /**

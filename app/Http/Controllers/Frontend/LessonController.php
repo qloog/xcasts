@@ -3,20 +3,23 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CommentRepository;
-use App\Contracts\Repositories\VideoRepository;
+use App\Contracts\Repositories\LessonRepository;
+use App\Contracts\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class VideoController extends Controller
+class LessonController extends Controller
 {
-    protected $videos;
+    protected $seriesRepo;
+    protected $lessonRepo;
     protected $comments;
 
-    public function __construct(VideoRepository $videos, CommentRepository $comments)
+    public function __construct(SeriesRepository $series, LessonRepository $lessons, CommentRepository $comments)
     {
-        $this->videos = $videos;
+        $this->seriesRepo = $series;
+        $this->lessonRepo = $lessons;
         $this->comments = $comments;
     }
 
@@ -54,16 +57,20 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param $slug
+     * @param $episodeId
      * @return \Illuminate\Http\Response
-     * @internal param int $id
      */
-    public function show($id)
+    public function show($slug, $episodeId)
     {
-        $video = $this->videos->find($id);
-        $comments = $this->comments->findWhere(['type' => 'video', 'relation_id' => $id])->all();
+        $series = $this->seriesRepo->findByField('slug', $slug);
+        $series = $series[0];
 
-        return view('frontend.video.detail', compact('video','comments'));
+        $lesson = $this->lessonRepo->findWhere(['series_id' => $series->id, 'episode_id' => $episodeId]);
+        $lesson = $lesson[0];
+        $comments = $this->comments->findWhere(['type' => 'lesson', 'relation_id' => $series->id])->all();
+
+        return view('frontend.lesson.detail', compact('lesson','comments'));
     }
 
     /**

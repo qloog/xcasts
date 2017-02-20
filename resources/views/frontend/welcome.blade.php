@@ -26,7 +26,7 @@
 	</div>
 
 	<div class="ui container">
-		@include('frontend.layouts.partials.course_list')
+		@include('frontend.layouts.partials.series_list')
 	</div>
 
 	<div class="ui center aligned header basic segment">

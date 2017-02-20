@@ -13,6 +13,7 @@ class Lesson extends Model implements Transformable
     protected $fillable = [
         'id',
         'series_id',
+        'episode_id',
         'name',
         'description',
         'cover_image',

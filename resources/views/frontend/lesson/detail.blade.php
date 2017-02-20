@@ -33,17 +33,17 @@
                         <div class="content">
                             <div class="ui header">
                                 <div class="ui big breadcrumb">
-                                    <a class="section" href="{{ route('course.show', $video->course_id) }}">{{ $video->course->name }}</a>
+                                    <a class="section" href="{{ route('series.show', $lesson->series_id) }}">{{ $lesson->series->name }}</a>
                                     <i class="right arrow icon divider"></i>
-                                    <div class="active section">{{ $video->name }}</div>
+                                    <div class="active section">{{ $lesson->name }}</div>
                                 </div>
                             </div>
-                            <div class="meta">发布于: {{ $video->created_at }}</div>
+                            <div class="meta">发布于: {{ $lesson->created_at }}</div>
                             <div class="ui large feed">
                                 <div class="event">
                                     <div class="content">
                                         <div class="summary">
-                                            {{ $video->description }}
+                                            {{ $lesson->description }}
                                         </div>
                                     </div>
                                 </div>
@@ -89,8 +89,8 @@
                     @endforeach
                     <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
                         {!! csrf_field() !!}
-                        <input type="hidden" name="relation_id" value="{{ $video->id }}" >
-                        <input type="hidden" name="type" value="video" >
+                        <input type="hidden" name="relation_id" value="{{ $lesson->id }}" >
+                        <input type="hidden" name="type" value="lesson" >
                         <div class="@if(!Auth::check()) disabled field @endif">
                             <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif"></textarea>
                         </div>

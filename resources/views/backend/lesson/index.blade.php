@@ -55,6 +55,7 @@
                             <th>ID</th>
                             <th>视频名称</th>
                             <th>所属系列</th>
+                            <th>episode_id</th>
                             <th>封面</th>
                             <th>视频地址</th>
                             <th>长度</th>
@@ -71,6 +72,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->series->name }}</td>
+                                <td>{{ $item->episode_id }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
                                 <td><a href="{{ $item->mp4_url }}">视频地址</a></td>
                                 <td>{{ $item->length }}</td>

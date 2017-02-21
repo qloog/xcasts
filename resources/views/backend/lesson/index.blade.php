@@ -71,7 +71,7 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->series->name }}</td>
+                                <td>【{{ $item->series->id }}】{{ $item->series->name }}</td>
                                 <td>{{ $item->episode_id }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
                                 <td><a href="{{ $item->mp4_url }}">视频地址</a></td>

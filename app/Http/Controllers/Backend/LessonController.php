@@ -16,9 +16,9 @@ class LessonController extends Controller
     protected $lessonRepo;
     protected $uploadManager;
 
-    public function __construct(LessonRepository $videos, UploadsManager $uploadsManager)
+    public function __construct(LessonRepository $lessons, UploadsManager $uploadsManager)
     {
-        $this->lessonRepo = $videos;
+        $this->lessonRepo = $lessons;
         $this->uploadManager = $uploadsManager;
     }
 
@@ -29,7 +29,7 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = $this->lessonRepo->orderBy('id', 'desc')->paginate(10);
+        $lessons = $this->lessonRepo->orderBy('series_id', 'desc')->orderBy('episode_id','desc')->paginate(10);
 
         return view('backend.lesson.index', compact('lessons'));
     }

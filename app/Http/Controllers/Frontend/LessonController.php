@@ -66,9 +66,9 @@ class LessonController extends Controller
         $series = $this->seriesRepo->findByField('slug', $slug);
         $series = $series[0];
 
-        $lesson = $this->lessonRepo->findWhere(['series_id' => $series->id, 'episode_id' => $episodeId]);
-        $lesson = $lesson[0];
-        $comments = $this->comments->findWhere(['type' => 'lesson', 'relation_id' => $series->id])->all();
+        $lessons = $this->lessonRepo->findWhere(['series_id' => $series->id, 'episode_id' => $episodeId]);
+        $lesson = $lessons[0];
+        $comments = $this->comments->findWhere(['type' => 'lesson', 'relation_id' => $lesson->id])->all();
 
         return view('frontend.lesson.detail', compact('series', 'lesson', 'comments'));
     }

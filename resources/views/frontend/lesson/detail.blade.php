@@ -33,7 +33,7 @@
                         <div class="content">
                             <div class="ui header">
                                 <div class="ui big breadcrumb">
-                                    <a class="section" href="{{ route('series.show', $lesson->series_id) }}">{{ $lesson->series->name }}</a>
+                                    <a class="section" href="{{ route('series.show', ['slug' => $series->slug]) }}">{{ $lesson->series->name }}</a>
                                     <i class="right arrow icon divider"></i>
                                     <div class="active section">{{ $lesson->name }}</div>
                                 </div>

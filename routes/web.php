@@ -40,6 +40,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     // series
     Route::resource('series', 'SeriesController');
     Route::get('series/{slug}/episodes/{episode_id}', ['as' => 'series.lesson.show', 'uses' => 'LessonController@show']);
+    Route::resource('series/{slug}', 'SeriesController@show');
 
     // topic
     Route::resource('topic', 'TopicController');

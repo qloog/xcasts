@@ -59,12 +59,12 @@ class SeriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $series = $this->seriesRepo->findByField('id', $id)->first();
+        $series = $this->seriesRepo->findByField('slug', $slug)->first();
 
         return view('frontend.series.detail', compact('series'));
     }

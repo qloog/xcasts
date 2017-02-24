@@ -94,7 +94,7 @@
                         <input type="hidden" name="episode_id" value="{{ $lesson->episode_id }}" >
                         <input type="hidden" name="type" value="lesson" >
                         <div class="@if(!Auth::check()) disabled field @endif">
-                            <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif"></textarea>
+                            <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
                         </div>
                         <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
                     </form>

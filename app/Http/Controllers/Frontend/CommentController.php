@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CommentRepository;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -10,6 +11,7 @@ use App\Http\Controllers\Controller;
 
 class CommentController extends Controller
 {
+    use ValidatesRequests;
 
     protected $repository;
 
@@ -46,6 +48,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'relation_id' => 'required',
+            'slug' => 'required',
+            'episode_id' => 'required',
+            'type' => 'required',
+            'content' => 'required'
+        ]);
         if ($this->repository->create($request->all())) {
             return redirect()->route('series.lesson.show', ['slug' => $request->get('slug'), 'episode_id' => $request->get('episode_id')]);
         }

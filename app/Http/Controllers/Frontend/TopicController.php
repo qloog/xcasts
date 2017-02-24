@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Contracts\Repositories\ReplyRepository;
 use App\Contracts\Repositories\TopicRepository;
 use App\Contracts\Repositories\VoteRepository;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,6 +15,8 @@ use Redirect;
 
 class TopicController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * @var TopicRepository
      */
@@ -63,6 +66,12 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'category' => 'required',
+            'title' => 'required|unique:forum_topics|max:255',
+            'body' => 'required'
+        ]);
+
         if ($this->topicRepo->create($request->all())) {
             return redirect()->route('topic.index');
         }

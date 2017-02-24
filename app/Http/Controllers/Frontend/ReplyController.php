@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\ReplyRepository;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ReplyController extends Controller
 {
+
+    use ValidatesRequests;
+
     protected $repository;
 
     public function __construct(ReplyRepository $repository)
@@ -43,6 +47,11 @@ class ReplyController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'topic_id' => 'required',
+            'body' => 'required'
+        ]);
+
         if ($this->repository->create($request->all())) {
             return redirect()->route('topic.show', $request->get('topic_id'));
         }

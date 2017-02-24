@@ -11,6 +11,13 @@
             <div class="thirteen wide column centered">
                 <div class="ui grid">
                     <div class="twelve wide column">
+                        @if(count($errors) > 0)
+                            <div class="ui red message">
+                            @foreach($errors->all() as $error)
+                                {{ $error }}<br/>
+                            @endforeach
+                            </div>
+                        @endif
                         <div class="ui yellow message">
                             我们希望 PHPCasts 能够成为拥有浓厚技术氛围的开发者社区，
                             而实现这个目标，需要我们所有人的共同努力：友善，公平，尊重知识和事实。
@@ -22,11 +29,12 @@
                                 <div class="field">
                                     <label>分类</label>
                                     <select name="category" class="ui fluid search dropdown">
-                                        <option value="1">PHP</option>
-                                        <option value="2">MySQL</option>
-                                        <option value="3">Laravel</option>
-                                        <option value="4">Javascript</option>
-                                        <option value="5">NodeJS</option>
+                                        <option value="">请选择</option>
+                                        <option value="1">后端</option>
+                                        <option value="2">前端</option>
+                                        <option value="3">服务</option>
+                                        <option value="4">工具</option>
+                                        <option value="5">测试</option>
                                     </select>
                                 </div>
                                 <div class="field">

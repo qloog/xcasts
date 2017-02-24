@@ -63,14 +63,17 @@
                             <h3 class="ui dividing header">回复数量: {{ $topic->reply_count }}</h3>
 
                             <div class="ui comments">
-                                @foreach($replies as $reply)
+                                @foreach($replies as $key => $reply)
                                 <div class="comment">
                                     <a class="avatar">
                                         <img src="http://semantic-ui.com/images/avatar/small/matt.jpg">
                                     </a>
                                     <div class="content">
-                                        <a class="author" href="{{ route('user.show', $reply->user->id) }}">{{ $reply->user->name }}</a>
+                                        <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key}}">{{ $reply->user->name }}</a>
                                         <div class="metadata">
+                                            <div class="date">
+                                                <a href="{{ route('topic.show', $topic->id) }}#reply{{$reply->id}}"> #{{ $key + 1 }}</a>
+                                            </div>
                                             <div class="date">
                                                 {{ $reply->created_at->diffForHumans() }}
                                             </div>

@@ -7,9 +7,6 @@
         <a class="item" href="{{ route('series.index') }}">
             <i class="record icon"></i> 视频
         </a>
-        <a class="item" href="{{ route('series.index') }}">
-            <i class="maximize icon"></i> 技能
-        </a>
         <a class="item" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区
         </a>

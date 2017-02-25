@@ -53,7 +53,7 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>课程名称</th>
+                            <th>名称</th>
                             <th>封面</th>
                             <th>slug</th>
                             <th>描述</th>

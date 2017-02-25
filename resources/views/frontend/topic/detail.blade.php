@@ -38,14 +38,14 @@
                                         data-position="top center" id="up_vote">
                                     <i class="thumbs up white icon"></i>点赞
                                 </button>
-                                <div class="or"></div>
-                                <button class="ui yellow button" data-inverted=""
-                                        data-tooltip="如果觉得我的文章对您有用，请随意打赏。你的支持将鼓励我继续创作！可以修改个人资料「支付二维码」开启打赏功能。"
-                                        data-position="top center"
-                                        id="reward"
-                                >
-                                    <i class="heart white icon"></i>打赏
-                                </button>
+                                {{--<div class="or"></div>--}}
+                                {{--<button class="ui yellow button" data-inverted=""--}}
+                                        {{--data-tooltip="如果觉得我的文章对您有用，请随意打赏。你的支持将鼓励我继续创作！可以修改个人资料「支付二维码」开启打赏功能。"--}}
+                                        {{--data-position="top center"--}}
+                                        {{--id="reward"--}}
+                                {{-->--}}
+                                    {{--<i class="heart white icon"></i>打赏--}}
+                                {{--</button>--}}
                             </div>
 
                             <p></p>

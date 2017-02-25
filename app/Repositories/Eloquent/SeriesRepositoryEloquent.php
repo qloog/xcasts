@@ -35,8 +35,8 @@ class SeriesRepositoryEloquent extends BaseRepository implements SeriesRepositor
     public function getCourseListByType($type = null, $limit = 10)
     {
         if ($type) {
-            return $this->model->type($type)->paginate($limit);
+            return $this->model->type($type)->orderBy('id','desc')->paginate($limit);
         }
-        return $this->model->paginate($limit);
+        return $this->model->orderBy('id','desc')->paginate($limit);
     }
 }

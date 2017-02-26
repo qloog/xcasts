@@ -17,6 +17,11 @@ class Series extends Model implements Transformable
         return $this->hasMany(Lesson::class);
     }
 
+    /**
+     * @param $query
+     * @param $type
+     * @return mixed
+     */
     public function scopeType($query, $type)
     {
         return $query->where('type', '=', $type);

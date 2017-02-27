@@ -53,11 +53,10 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>视频名称</th>
-                            <th>所属系列</th>
-                            <th>episode_id</th>
                             <th>封面</th>
-                            <th>视频地址</th>
+                            <th>视频名称</th>
+                            <th>episode_id</th>
+                            <th>所属系列</th>
                             <th>长度</th>
                             <th>是否免费</th>
                             <th>创建者</th>
@@ -70,11 +69,10 @@
                         @foreach ($lessons as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>【{{ $item->series->id }}】{{ $item->series->name }}</td>
-                                <td>{{ $item->episode_id }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
-                                <td><a href="{{ $item->mp4_url }}">视频地址</a></td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->episode_id }}</td>
+                                <td>【{{ $item->series->id }}】{{ $item->series->name }}</td>
                                 <td>{{ $item->length }}</td>
                                 <td>{!! $item->is_free == 1 ? '免费视频' : '<i class="fa fa-money"></i> 收费' !!} </td>
                                 <td>{{ $item->user->name }}</td>

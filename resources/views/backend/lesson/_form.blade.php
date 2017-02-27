@@ -12,7 +12,7 @@
                     <div class="col-sm-5">
                         <div class="clearfix">
                             <input type="file" name="file" id="file" class="form-control" />
-                            <input type="hidden" name="cover_image" id="cover_image" value="{!! $video->cover_image!!}" />
+                            <input type="hidden" name="cover_image" id="cover_image" />
                         </div>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
 
     <script type="text/javascript">
         $(function () {
-            var page_img = '{!! isset($video->cover_image) ? $video->cover_image : '' !!}';
+            var page_img = '{!! isset($lesson->cover_image) ? $lesson->cover_image : '' !!}';
 
             $('#file').fileinput({
                 language: 'zh',
@@ -64,7 +64,7 @@
                 initialCaption: "请选择一张封面图",
                 allowedFileExtensions: ["jpg", "jpeg", "png", "gif"],
                 maxFilePreviewSize: 10240,
-                @if(isset($video->cover_image))
+                @if(isset($lesson->cover_image))
                 initialPreview: [
                     "<img src=" + page_img + " class=\"file-preview-image\" width=\"200px\" />",
                 ],

@@ -54,6 +54,13 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
     Route::get('payment/return', 'PaymentController@return')->name('payment.return');
     Route::get('notifications', 'NotificationController@index')->name('notifications');
+
+    // footer
+    Route::get('path', 'PathController@index')->name('path');
+    Route::get('link', 'HelpController@link')->name('link');
+    Route::get('one-to-one', 'HelpController@one-to-one')->name('one-to-one');
+    Route::get('copyright', 'HelpController@copyright')->name('copyright');
+    Route::get('terms', 'HelpController@terms')->name('terms');
 });
 
 /**

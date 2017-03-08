@@ -58,7 +58,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     // footer
     Route::get('path', 'PathController@index')->name('path');
     Route::get('link', 'HelpController@link')->name('link');
-    Route::get('one-to-one', 'HelpController@one-to-one')->name('one-to-one');
+    Route::get('one-to-one', 'HelpController@oto')->name('oto');
     Route::get('copyright', 'HelpController@copyright')->name('copyright');
     Route::get('terms', 'HelpController@terms')->name('terms');
 });

@@ -16,7 +16,7 @@
                     <div class="twelve wide column">
                         <!-- detail -->
                         <div class="ui secondary segment">
-                            友情链接
+                            稍后补充...
                         </div>
                     </div>
                 </div>

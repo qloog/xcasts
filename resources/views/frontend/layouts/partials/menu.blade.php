@@ -10,9 +10,9 @@
         <a class="item" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区
         </a>
-        <a class="item" href="{{ route('vip') }}">
-            <i class="unhide icon"></i> 订阅
-        </a>
+        {{--<a class="item" href="{{ route('vip') }}">--}}
+            {{--<i class="unhide icon"></i> 订阅--}}
+        {{--</a>--}}
         <a class="item">
             <div class="ui icon search input">
                 <input class="prompt" type="text" placeholder="Laravel">
@@ -33,7 +33,7 @@
                 <div class="menu">
                     <a class="item" href="{{ route('user.show', Auth::user()->id) }}"><i class="user icon"></i> 个人中心</a>
                     <a class="item" href="{{ route('user.edit', Auth::user()->id) }}"><i class="settings icon"></i> 编辑资料</a>
-                    <a class="item" href="{{ route('user.edit', Auth::user()->id) }}"><i class="unordered list icon"></i> 我的订单</a>
+{{--                    <a class="item" href="{{ route('user.edit', Auth::user()->id) }}"><i class="unordered list icon"></i> 我的订单</a>--}}
                     <a class="item" href="{{ route('logout') }}"><i class="sign out icon"></i>退出登录</a>
                 </div>
             </div>

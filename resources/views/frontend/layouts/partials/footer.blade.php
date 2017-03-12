@@ -47,6 +47,6 @@
             <div class="disabled item">© PHPCasts 2017. All rights reserved.</div>
         </div>
 
-        <a class="back-to-top" href="javascript:;"></a>
+        {{--<a class="back-to-top" href="javascript:;"></a>--}}
     </div>
 </div>

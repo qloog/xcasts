@@ -15,7 +15,11 @@
             成为一名现代化的Web Develop Engineer
         </h1>
         <h2>Just Do it.</h2>
-        <div class="ui huge teal button"><a class="ui disable" href="{{ url('/register') }}"> 马上加入 </a><i class="right arrow icon"></i></div>
+        @if(Auth::id())
+            <div class="ui huge teal button"><a class="ui disable" href="{{ url('/vip') }}"> 马上订阅所有视频 </a><i class="right arrow icon"></i></div>
+        @else
+            <div class="ui huge teal button"><a class="ui disable" href="{{ url('/register') }}"> 马上加入2 </a><i class="right arrow icon"></i></div>
+        @endif
     </div>
 @endsection
 

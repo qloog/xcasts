@@ -88,7 +88,7 @@ class TopicController extends Controller
     {
         $topic = $this->topicRepo->find($id);
 
-        $replies = $this->replyRepo->findWhere(['topic_id' => $id]);
+        $replies = $this->replyRepo->orderBy('created_at', 'desc')->findWhere(['topic_id' => $id]);
         $votedUsers = $this->topicRepo->voteBy($id);
 
         $this->topicRepo->increment($id, 'view_count');

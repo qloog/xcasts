@@ -14,13 +14,13 @@ class LessonController extends Controller
 {
     protected $seriesRepo;
     protected $lessonRepo;
-    protected $comments;
+    protected $commentRepo;
 
     public function __construct(SeriesRepository $series, LessonRepository $lessons, CommentRepository $comments)
     {
         $this->seriesRepo = $series;
         $this->lessonRepo = $lessons;
-        $this->comments = $comments;
+        $this->commentRepo = $comments;
     }
 
     /**
@@ -68,7 +68,10 @@ class LessonController extends Controller
 
         $lessons = $this->lessonRepo->findWhere(['series_id' => $series->id, 'episode_id' => $episodeId]);
         $lesson = $lessons[0];
-        $comments = $this->comments->findWhere(['type' => 'lesson', 'relation_id' => $lesson->id])->all();
+        $comments = $this->commentRepo
+            ->orderBy('created_at','desc')
+            ->findWhere(['type' => 'lesson', 'relation_id' => $lesson->id])
+            ->all();
 
         return view('frontend.lesson.detail', compact('series', 'lesson', 'comments'));
     }

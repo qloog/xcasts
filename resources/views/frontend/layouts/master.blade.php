@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- Site Properties -->
-    <title>Homepage - Semantic</title>
+    <title>@yield('title') - PHPCasts</title>
     <link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">
     <style type="text/css">
         a {

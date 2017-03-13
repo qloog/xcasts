@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $lesson->name }} - {{ $series->name }} - 视频
+@endsection
+
 @section('styles')
     <link href="{{ asset('videojs/video-js.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">

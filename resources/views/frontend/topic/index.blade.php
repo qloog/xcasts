@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    社区
+@endsection
+
 @section('content')
     <div class="ui grid">
         <div class="row"></div>

@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+	首页
+@endsection
+
 @section('styles')
 <style type="text/css">
 	.masthead.segment {

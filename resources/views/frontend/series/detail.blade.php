@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $series->name }} - 视频
+@endsection
+
 @section('content')
 
     <!-- banner -->

@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    视频
+@endsection
+
 @section('content')
 
     <div class="ui center aligned header basic raised segment">

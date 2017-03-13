@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $topic->title }} - 社区
+@endsection
+
 @section('styles')
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">

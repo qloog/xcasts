@@ -67,6 +67,17 @@
             <div class="fourteen wide column">
                 <div class="ui comments segment">
                     <h3 class="ui dividing header">发表评论</h3>
+                    <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
+                        {!! csrf_field() !!}
+                        <input type="hidden" name="relation_id" value="{{ $lesson->id }}" >
+                        <input type="hidden" name="slug" value="{{ $series->slug }}" >
+                        <input type="hidden" name="episode_id" value="{{ $lesson->episode_id }}" >
+                        <input type="hidden" name="type" value="lesson" >
+                        <div class="@if(!Auth::check()) disabled field @endif">
+                            <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
+                        </div>
+                        <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
+                    </form>
                     @foreach($comments as $comment)
                     <div class="comment">
                         <a class="avatar">
@@ -81,23 +92,12 @@
                                 <p>{!! $comment->content !!}</p>
                             </div>
                             <div class="actions">
-                                <a class="reply"><i class="thumbs outline up icon"></i>赞</a>
+                                <a class="reply"><i class="thumbs outline up icon"></i>赞(0)</a>
                                 <a class="reply"><i class="reply icon"></i>回复</a>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                    <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
-                        {!! csrf_field() !!}
-                        <input type="hidden" name="relation_id" value="{{ $lesson->id }}" >
-                        <input type="hidden" name="slug" value="{{ $series->slug }}" >
-                        <input type="hidden" name="episode_id" value="{{ $lesson->episode_id }}" >
-                        <input type="hidden" name="type" value="lesson" >
-                        <div class="@if(!Auth::check()) disabled field @endif">
-                            <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
-                        </div>
-                        <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
-                    </form>
                 </div>
             </div>
             <div class="one wide column"></div>

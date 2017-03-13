@@ -59,6 +59,18 @@
                         </div>
 
                         <!-- comments -->
+                        <div class="ui large middle aligned divided relaxed list">
+                            <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
+                                {!! csrf_field() !!}
+                                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                                <div class="@if(!Auth::check()) disabled field @endif">
+                                    <textarea name="body" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
+                                </div>
+                                <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
+                                    <i class="icon edit"></i> 回复
+                                </button>
+                            </form>
+                        </div>
                         <div class="ui large middle aligned divided relaxed list padded segment">
                             <h3 class="ui dividing header">回复数量: {{ $topic->reply_count }}</h3>
 
@@ -66,7 +78,7 @@
                                 @foreach($replies as $key => $reply)
                                 <div class="comment">
                                     <a class="avatar">
-                                        <img src="http://semantic-ui.com/images/avatar/small/matt.jpg">
+                                        <img src="{{ $reply->user->avatar }}">
                                     </a>
                                     <div class="content">
                                         <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key}}">{{ $reply->user->name }}</a>
@@ -82,25 +94,13 @@
                                             {!! $reply->body !!}
                                         </div>
                                         <div class="actions">
-                                            <a class="reply"><i class="thumbs outline up icon"></i></a>
-                                            <a class="reply"><i class="reply icon"></i></a>
+                                            <a class="reply"><i class="thumbs outline up icon"></i>赞(0)</a>
+                                            <a class="reply"><i class="reply icon"></i>回复</a>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
                             </div>
-                        </div>
-                        <div class="ui large middle aligned divided relaxed list">
-                            <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                                <div class="@if(!Auth::check()) disabled field @endif">
-                                    <textarea name="body" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
-                                </div>
-                                <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
-                                    <i class="icon edit"></i> 回复
-                                </button>
-                            </form>
                         </div>
                     </div>
                     <div class="four wide column">

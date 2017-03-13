@@ -8,7 +8,7 @@
             <div class="three wide column">
                 <h4 class="ui inverted small header">产品与服务</h4>
                 <div class="ui inverted list">
-                    <a href="{{ url('vip') }}" class="item">VIP会员</a>
+                    {{--<a href="{{ url('vip') }}" class="item">VIP会员</a>--}}
                     <a href="{{ url('path') }}" class="item">学习路线</a>
                     <a href="{{ url('one-to-one') }}" class="item">一对一</a>
                 </div>
@@ -17,7 +17,7 @@
                 <h4 class="ui inverted small header">支持</h4>
                 <div class="ui inverted list">
                     <a href="{{ route('topic.index') }}" class="item">问答社区</a>
-                    <a href="{{ url('blog') }}" class="item">技术博客</a>
+                    {{--<a href="{{ url('blog') }}" class="item">技术博客</a>--}}
                     <a href="http://laravel.com" target="_blank" class="item">Laravel官网</a>
                 </div>
             </div>
@@ -39,7 +39,7 @@
         <div class="ui divider inverted"></div>
 
         <div class="ui inverted right floated horizontal list">
-            <div class="disabled item" href="#">运行于 Aliyun 的 ECS 云主机上.</div>
+            <div class="disabled item" href="#"></div>
         </div>
         <div class="ui inverted horizontal list">
             <a class="disabled item">Powered By</a><a class="item" href="https://laravel.com">Laravel</a>

@@ -5,7 +5,7 @@
             <i class="home icon"></i> 首页
         </a>
         <a class="item" href="{{ route('series.index') }}">
-            <i class="record icon"></i> 课程
+            <i class="student icon"></i> 课程
         </a>
         <a class="item" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区

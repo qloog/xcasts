@@ -83,44 +83,6 @@ Route::group(['namespace' => 'Backend'], function ()
     // need to auth controller
     Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'auth.admin'], function ()
     {
-        //dashboard
-        Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
-
-        //user
-        Route::get('user', 'UserController@index')->name('admin.user');
-        Route::resource('auth/user', 'UserController', ['as' => 'auth']);
-        Route::get('auth/user/change-password/{id}', 'UserController@changePassword');
-        Route::post('auth/user/update-password/{id}', ['as' => 'user.update-password', 'uses' => 'UserController@updatePassword']);
-        Route::resource('auth/role', 'RoleController', ['as' => 'auth']);
-        Route::resource('auth/permission', 'PermissionController', ['as' => 'auth']);
-
-        //news
-        Route::resource('news/category', 'NewsCategoryController', ['as' => 'news']);
-        Route::resource('news', 'NewsController');
-
-        //event
-        Route::resource('event', 'EventController');
-
-        //album
-        Route::resource('album', 'AlbumController');
-        Route::get('album/{id}/photos', ['as' => 'album.photos', 'uses' => 'AlbumController@photos']);
-        Route::post('album/upload', ['as' => 'album.upload', 'uses' => 'AlbumController@storePhoto']);
-
-        //series
-        Route::resource('series', 'SeriesController');
-        //video
-        Route::resource('lesson', 'LessonController');
-        //forum
-        Route::resource('topics', 'TopicController');
-
-        //comment
-        Route::resource('comment', 'CommentController');
-
-        //page
-        Route::resource('page', 'PagesController');
-        Route::resource('goods', 'GoodsController');
-
         //upload
         // After the line that reads
         Route::get('upload', 'UploadController@index');
@@ -134,5 +96,33 @@ Route::group(['namespace' => 'Backend'], function ()
 
         // qiniu
         Route::get('qiniu/index', 'QiniuController@index')->name('qiniu.index');
+
+        //dashboard
+        Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+
+        //user
+        Route::get('user', 'UserController@index')->name('admin.user');
+        Route::resource('auth/user', 'UserController', ['as' => 'auth']);
+        Route::get('auth/user/change-password/{id}', 'UserController@changePassword');
+        Route::post('auth/user/update-password/{id}', ['as' => 'user.update-password', 'uses' => 'UserController@updatePassword']);
+        Route::resource('auth/role', 'RoleController', ['as' => 'auth']);
+        Route::resource('auth/permission', 'PermissionController', ['as' => 'auth']);
+
+        //series
+        Route::resource('series', 'SeriesController');
+        //lesson
+        Route::resource('lesson', 'LessonController');
+        //forum
+        Route::resource('topics', 'TopicController');
+
+        //comment
+        Route::resource('comment', 'CommentController');
+
+        // goods
+        Route::resource('goods', 'GoodsController');
+
+        //blog
+        Route::resource('post', 'PostController');
     });
 });

@@ -4,7 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * App\Models\Page
+ * App\Models\Post
  *
  * @property integer $id
  * @property string $title
@@ -14,16 +14,16 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Comment[] $hasManyComments
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereSlug($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereContent($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Page whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Post whereUpdatedAt($value)
  * @mixin \Eloquent
  */
-class Page extends Model
+class Post extends Model
 {
 
     /**
@@ -31,7 +31,7 @@ class Page extends Model
      *
      * @var string
      */
-    protected $table = 'pages';
+    protected $table = 'posts';
 
     /**
      * The attributes that are mass assignable.
@@ -50,7 +50,7 @@ class Page extends Model
 	//
     public function hasManyComments()
     {
-        return $this->hasMany('App\Models\Comment', 'page_id', 'id');
+        return $this->hasMany('App\Models\Comment', 'post_id', 'id');
     }
 
 }

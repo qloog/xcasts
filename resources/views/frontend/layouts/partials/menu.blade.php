@@ -5,10 +5,13 @@
             <i class="home icon"></i> 首页
         </a>
         <a class="item" href="{{ route('series.index') }}">
-            <i class="record icon"></i> 视频
+            <i class="record icon"></i> 课程
         </a>
         <a class="item" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区
+        </a>
+        <a class="item" href="{{ route('blog.index') }}">
+        <i class="content icon"></i> 博客
         </a>
         {{--<a class="item" href="{{ route('vip') }}">--}}
             {{--<i class="unhide icon"></i> 订阅--}}

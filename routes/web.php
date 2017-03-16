@@ -50,6 +50,9 @@ Route::group(['namespace' => 'Frontend'], function ()
     // comment
     Route::post('comment', 'CommentController@store')->name('comment.store');
 
+    // blog
+    Route::resource('blog', 'PostController');
+
     // vip
     Route::get('vip', 'PlanController@index')->name('vip');
     Route::get('payment/pay', 'PaymentController@pay')->name('payment.pay');
@@ -123,6 +126,6 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('goods', 'GoodsController');
 
         //blog
-        Route::resource('post', 'PostController');
+        //Route::resource('post', 'PostController');
     });
 });

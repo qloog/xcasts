@@ -22,21 +22,21 @@
                                     <div class="content">
                                         <a class="header" href="javascript:;">12 Years a Slave</a>
                                         <div class="meta">
-                                            <span class="cinema">Union Square 14</span>
+                                            <span class="cinema">发布于：2017-10-10</span>
                                         </div>
                                         <div class="description">
                                             <p>
                                                 我是简单的描述貌似我是简单的描述貌似我是简单的描述貌似我是简单的描述貌似我是简
                                             </p>
                                         </div>
-                                        <div class="extra">
-                                            <div class="ui label">IMAX</div>
-                                            <div class="ui label"><i class="globe icon"></i> Additional Languages</div>
-                                            <div class="ui right floated primary button">
-                                                Buy tickets
-                                                <i class="right chevron icon"></i>
-                                            </div>
-                                        </div>
+                                        {{--<div class="extra">--}}
+                                            {{--<div class="ui label">IMAX</div>--}}
+                                            {{--<div class="ui label"><i class="globe icon"></i> Additional Languages</div>--}}
+                                            {{--<div class="ui right floated primary button">--}}
+                                                {{--Buy tickets--}}
+                                                {{--<i class="right chevron icon"></i>--}}
+                                            {{--</div>--}}
+                                        {{--</div>--}}
                                     </div>
                                 </div>
                                 @endforeach

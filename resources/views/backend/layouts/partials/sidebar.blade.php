@@ -45,55 +45,10 @@
                     </li>
                 </ul>
             </li>
-            {{--<li @if(Request::is('admin/news*')) class="treeview active" @else class="treeview" @endif>--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-newspaper-o"></i>--}}
-                    {{--<span>新闻管理</span>--}}
-                    {{--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li @if(Request::is('admin/news')) class="active" @endif>--}}
-                        {{--<a href="{{ url('admin/news') }}"><i class="fa fa-circle-o"></i> 新闻列表</a>--}}
-                    {{--</li>--}}
-                    {{--<li @if(Request::is('admin/news/category')) class="active" @endif>--}}
-                        {{--<a href="{{ url('admin/news/category') }}"><i class="fa fa-circle-o"></i> 分类管理</a>--}}
-                    {{--</li>--}}
-                    {{--<li @if(Request::is('admin/news/create')) class="active" @endif>--}}
-                        {{--<a href="{{ url('admin/news/create') }}"><i class="fa fa-circle-o"></i> 添加新闻</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li @if(Request::is('admin/album*')) class="treeview active" @else class="treeview" @endif>--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-photo"></i>--}}
-                    {{--<span>相册管理</span>--}}
-                    {{--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li @if(Request::is('admin/album')) class="active" @endif>--}}
-                        {{--<a href="/admin/album"><i class="fa fa-circle-o"></i> 相册列表</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<li @if(Request::is('admin/event*')) class="treeview active" @else class="treeview" @endif>--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-calendar-check-o"></i>--}}
-                    {{--<span>活动管理</span>--}}
-                    {{--<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu">--}}
-                    {{--<li @if(Request::is('admin/event')) class="active" @endif>--}}
-                        {{--<a href="{{ url('admin/event') }}"><i class="fa fa-circle-o"></i> 活动列表</a>--}}
-                    {{--</li>--}}
-                    {{--<li @if(Request::is('admin/event/create')) class="active" @endif>--}}
-                        {{--<a href="{{ url('admin/event/create') }}"><i class="fa fa-circle-o"></i> 添加活动</a>--}}
-                    {{--</li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
             <li @if(Request::is('admin/blog*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
-                    <span>POST管理</span>
+                    <span>博客管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">

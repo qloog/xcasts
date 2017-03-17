@@ -14,7 +14,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = [];
+        $posts = [
+            ['title' => '123'],
+            ['title' => '123'],
+        ];
 
         return view('frontend.post.index', compact('posts'));
     }

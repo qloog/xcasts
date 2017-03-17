@@ -12,31 +12,36 @@
                 <div class="ui grid">
                     <div class="sixteen wide column">
                         <div class="ui large middle aligned divided relaxed list padded segment">
+                            <div class="ui divided items">
                             @if(count($posts))
                                 @foreach($posts as $post)
-                                    <div class="item">
-                                        <div class="right floated content">
-                                            <div class="ui circular labels">
-                                                <a class="ui label">
-                                                    {{ $post->reply_count }}
-                                                </a>
-                                            </div>
+                                <div class="item">
+                                    {{--<div class="image">--}}
+                                        {{--<img src="/images/wireframe/image.png">--}}
+                                    {{--</div>--}}
+                                    <div class="content">
+                                        <a class="header" href="javascript:;">12 Years a Slave</a>
+                                        <div class="meta">
+                                            <span class="cinema">Union Square 14</span>
                                         </div>
-                                        <img class="ui avatar image" src="{{ $post->user->avatar }}">
-                                        <div class="content">
-                                            <a class="header" href="{{ route('topic.show', $post->id) }}">{{ $post->title }}</a>
-                                            <div class="meta" style="margin-top: 5px;">
-                                        <span style="font-size: 12px; color: #ccc">
-                                            <a class="item"><div class="ui horizontal label">PHP</div></a>
-                                            ⋅  <a href="{{ route('user.show', $post->user_id) }}">{{ $post->user->name }}</a>
-                                            ⋅ 于 {{ $post->created_at->diffForHumans() }}
-                                            ⋅ 最后回复由 <a href="{{ route('user.show', $post->last_reply_user_id) }}">{{ $post->lastReplyUser->name }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
-                                        </span>
+                                        <div class="description">
+                                            <p>
+                                                我是简单的描述貌似我是简单的描述貌似我是简单的描述貌似我是简单的描述貌似我是简
+                                            </p>
+                                        </div>
+                                        <div class="extra">
+                                            <div class="ui label">IMAX</div>
+                                            <div class="ui label"><i class="globe icon"></i> Additional Languages</div>
+                                            <div class="ui right floated primary button">
+                                                Buy tickets
+                                                <i class="right chevron icon"></i>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             @endif
+                            </div>
                         </div>
                         {{--{!! $posts->render('partials.semantic-pagination') !!}--}}
                     </div>

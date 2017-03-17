@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Repositories\PostRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+
+    protected $postRepo;
+
+    public function __construct(PostRepository $posts)
+    {
+        $this->postRepo = $posts;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,10 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = [
-            ['title' => '123'],
-            ['title' => '123'],
-        ];
+        $posts = $this->postRepo->orderBy('created_at', 'desc')->paginate(10);
 
         return view('frontend.post.index', compact('posts'));
     }
@@ -51,7 +57,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->postRepo->find($id);
+
+        return view('frontend.post.show', compact('post'));
     }
 
     /**

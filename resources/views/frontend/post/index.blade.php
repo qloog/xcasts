@@ -20,13 +20,13 @@
                                         {{--<img src="/images/wireframe/image.png">--}}
                                     {{--</div>--}}
                                     <div class="content">
-                                        <a class="header" href="javascript:;">12 Years a Slave</a>
+                                        <a class="header" href="{{ route('blog.show', ['id' => $post->id]) }}">{{ $post->title }}</a>
                                         <div class="meta">
-                                            <span class="cinema">发布于：2017-10-10</span>
+                                            <span class="cinema">发布于：{{ $post->created_at }}</span>
                                         </div>
                                         <div class="description">
                                             <p>
-                                                我是简单的描述貌似我是简单的描述貌似我是简单的描述貌似我是简单的描述貌似我是简
+                                                {{ $post->content }}
                                             </p>
                                         </div>
                                         {{--<div class="extra">--}}
@@ -43,7 +43,7 @@
                             @endif
                             </div>
                         </div>
-                        {{--{!! $posts->render('partials.semantic-pagination') !!}--}}
+                        {!! $posts->render('partials.semantic-pagination') !!}
                     </div>
                 </div>
             </div>

@@ -2,35 +2,38 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\CommentRepository;
-use App\Contracts\Repositories\LessonRepository;
+use App\Contracts\Repositories\CourseRepository;
 use App\Contracts\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-class LessonController extends Controller
+class CourseController extends Controller
 {
-    protected $seriesRepo;
-    protected $lessonRepo;
-    protected $commentRepo;
+    /**
+     * @var CourseRepository
+     */
+    protected $courseRepo;
 
-    public function __construct(SeriesRepository $series, LessonRepository $lessons, CommentRepository $comments)
+
+    public function __construct(CourseRepository $courses)
     {
-        $this->seriesRepo = $series;
-        $this->lessonRepo = $lessons;
-        $this->commentRepo = $comments;
+        $this->courseRepo = $courses;
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $type = $request->get('type');
+        $courses = $this->courseRepo->getCourseListByType($type, 15);
+
+        return view('frontend.course.index', compact('courses', 'type'));
     }
 
     /**
@@ -40,7 +43,7 @@ class LessonController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -57,23 +60,14 @@ class LessonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $slug
-     * @param $episodeId
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($slug, $episodeId)
+    public function show($slug)
     {
-        $series = $this->seriesRepo->findByField('slug', $slug);
-        $series = $series[0];
+        $course = $this->courseRepo->findByField('slug', $slug)->first();
 
-        $lessons = $this->lessonRepo->findWhere(['series_id' => $series->id, 'episode_id' => $episodeId]);
-        $lesson = $lessons[0];
-        $comments = $this->commentRepo
-            ->orderBy('created_at','desc')
-            ->findWhere(['type' => 'lesson', 'relation_id' => $lesson->id])
-            ->all();
-
-        return view('frontend.lesson.detail', compact('series', 'lesson', 'comments'));
+        return view('frontend.course.detail', compact('course'));
     }
 
     /**

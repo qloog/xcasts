@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\LessonRepository;
+use App\Contracts\Repositories\VideoRepository;
 use App\Services\UploadsManager;
 use Illuminate\Http\Request;
 
@@ -10,15 +10,15 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 
-class LessonController extends Controller
+class VideoController extends Controller
 {
 
-    protected $lessonRepo;
+    protected $videoRepo;
     protected $uploadManager;
 
-    public function __construct(LessonRepository $lessons, UploadsManager $uploadsManager)
+    public function __construct(VideoRepository $videos, UploadsManager $uploadsManager)
     {
-        $this->lessonRepo = $lessons;
+        $this->videoRepo = $videos;
         $this->uploadManager = $uploadsManager;
     }
 
@@ -29,9 +29,9 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = $this->lessonRepo->orderBy('series_id', 'desc')->orderBy('episode_id','desc')->paginate(10);
+        $videos = $this->videoRepo->orderBy('course_id', 'desc')->orderBy('episode_id','desc')->paginate(10);
 
-        return view('backend.lesson.index', compact('lessons'));
+        return view('backend.video.index', compact('videos'));
     }
 
     /**
@@ -41,7 +41,7 @@ class LessonController extends Controller
      */
     public function create()
     {
-        return view('backend.lesson.create');
+        return view('backend.video.create');
     }
 
     /**
@@ -59,8 +59,8 @@ class LessonController extends Controller
             }
         }
 
-        if ($this->lessonRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path']]))) {
-            return redirect()->route('admin.lesson.index');
+        if ($this->videoRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path']]))) {
+            return redirect()->route('admin.video.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
@@ -84,9 +84,9 @@ class LessonController extends Controller
      */
     public function edit($id)
     {
-        $video = $this->lessonRepo->find($id);
+        $video = $this->videoRepo->find($id);
 
-        return view('backend.lesson.edit', compact('video'));
+        return view('backend.video.edit', compact('video'));
     }
 
     /**
@@ -107,8 +107,8 @@ class LessonController extends Controller
             $postData['mp4_url'] = $fileInfo['file_path'];
         }
 
-        if ($this->lessonRepo->update($postData, $id)) {
-            return redirect()->route('admin.lesson.index');
+        if ($this->videoRepo->update($postData, $id)) {
+            return redirect()->route('admin.video.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

@@ -13,7 +13,7 @@ class CreateSeriesTable extends Migration
 	 */
 	public function up()
 	{
-        Schema::create('series', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->comment('课程名称');
             $table->enum('type', ['backend','frontend','service','tool'])->comment('课程分类');
@@ -33,7 +33,7 @@ class CreateSeriesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('series');
+		Schema::drop('courses');
 	}
 
 }

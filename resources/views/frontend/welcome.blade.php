@@ -38,7 +38,7 @@
 	</div>
 
 	<div class="ui container">
-		@include('frontend.layouts.partials.series_list')
+		@include('frontend.layouts.partials.course_list')
 	</div>
 
 	@include('frontend.layouts.partials.path_list')

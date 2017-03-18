@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\SeriesRepository;
+use App\Contracts\Repositories\CourseRepository;
 use App\Http\Controllers\Controller;
-use App\Models\Page;
 
 class HomeController extends Controller {
 
@@ -18,18 +17,18 @@ class HomeController extends Controller {
     | controllers, you are free to modify or remove it as you desire.
     |
     */
-    protected $seriesRepo;
+    protected $courseRepo;
 
     /**
      * Create a new controller instance.
      *
-     * @param SeriesRepository $series
+     * @param CourseRepository $courses
      */
-    public function __construct(SeriesRepository $series)
+    public function __construct(CourseRepository $courses)
     {
         $this->middleware('auth');
 
-        $this->seriesRepo = $series;
+        $this->courseRepo = $courses;
     }
 
     /**
@@ -39,9 +38,9 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        $series = $this->seriesRepo->orderBy('id', 'DESC')->paginate(10);
+        $courses = $this->courseRepo->orderBy('id', 'DESC')->paginate(10);
 
-        return view('frontend.welcome', compact('series'));
+        return view('frontend.welcome', compact('courses'));
     }
 
 }

@@ -88,27 +88,27 @@
                 </ul>
             </li>
 
-            <li @if(Request::is('admin/series*')) class="treeview active" @else class="treeview" @endif>
+            <li @if(Request::is('admin/course*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-mortar-board"></i>
-                    <span>系列管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li @if(Request::is('admin/series')) class="active" @endif>
-                        <a href="{{ url('admin/series') }}"><i class="fa fa-circle-o"></i> 系列列表</a>
-                    </li>
-                </ul>
-            </li>
-            <li @if(Request::is('admin/lesson*')) class="treeview active" @else class="treeview" @endif>
-                <a href="#">
-                    <i class="fa fa-file-video-o"></i>
                     <span>课程管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::is('admin/lesson')) class="active" @endif>
-                        <a href="{{ url('admin/lesson') }}"><i class="fa fa-circle-o"></i>课程列表</a>
+                    <li @if(Request::is('admin/course')) class="active" @endif>
+                        <a href="{{ url('admin/course') }}"><i class="fa fa-circle-o"></i> 课程列表</a>
+                    </li>
+                </ul>
+            </li>
+            <li @if(Request::is('admin/video*')) class="treeview active" @else class="treeview" @endif>
+                <a href="#">
+                    <i class="fa fa-file-video-o"></i>
+                    <span>视频管理</span>
+                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li @if(Request::is('admin/video')) class="active" @endif>
+                        <a href="{{ url('admin/video') }}"><i class="fa fa-circle-o"></i>视频列表</a>
                     </li>
                 </ul>
             </li>

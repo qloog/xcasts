@@ -13,9 +13,9 @@ class CreateLessonsTable extends Migration
 	 */
 	public function up()
 	{
-        Schema::create('lessons', function (Blueprint $table) {
+        Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('series_id')->unsigned()->default(0)->comment('所属系列id');
+            $table->integer('course_id')->unsigned()->default(0)->comment('所属课程id');
             $table->string('name')->nullable()->comment('名称');
             $table->string('description')->nullable()->comment('描述');
             $table->string('cover_image')->default('')->comment('封面图');
@@ -35,7 +35,7 @@ class CreateLessonsTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('lessons');
+		Schema::drop('videos');
 	}
 
 }

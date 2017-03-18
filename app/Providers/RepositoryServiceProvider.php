@@ -27,8 +27,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Contracts\Repositories\RoleRepository::class, \App\Repositories\Eloquent\RoleRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\PermissionRepository::class, \App\Repositories\Eloquent\PermissionRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\TopicRepository::class, \App\Repositories\Eloquent\TopicRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\SeriesRepository::class, \App\Repositories\Eloquent\SeriesRepositoryEloquent::class);
-        $this->app->bind(\App\Contracts\Repositories\LessonRepository::class, \App\Repositories\Eloquent\LessonRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\CourseRepository::class, \App\Repositories\Eloquent\CourseRepositoryEloquent::class);
+        $this->app->bind(\App\Contracts\Repositories\VideoRepository::class, \App\Repositories\Eloquent\VideoRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\CommentRepository::class, \App\Repositories\Eloquent\CommentRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\ReplyRepository::class, \App\Repositories\Eloquent\ReplyRepositoryEloquent::class);
         $this->app->bind(\App\Contracts\Repositories\VoteRepository::class, \App\Repositories\Eloquent\VoteRepositoryEloquent::class);

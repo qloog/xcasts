@@ -1,24 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\SeriesRepository;
+use App\Contracts\Repositories\CommentRepository;
+use App\Contracts\Repositories\VideoRepository;
+use App\Contracts\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Redirect;
 
-class SeriesController extends Controller
+class VideoController extends Controller
 {
-    /**
-     * @var SeriesRepository
-     */
-    protected $seriesRepo;
+    protected $courseRepo;
+    protected $videoRepo;
+    protected $commentRepo;
 
-    public function __construct(SeriesRepository $courses)
+    public function __construct(CourseRepository $courses, VideoRepository $videos, CommentRepository $comments)
     {
-        $this->seriesRepo = $courses;
+        $this->courseRepo = $courses;
+        $this->videoRepo = $videos;
+        $this->commentRepo = $comments;
     }
 
     /**
@@ -28,9 +30,7 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        $series = $this->seriesRepo->orderBy('id', 'DESC')->paginate(10);
-
-        return view('backend.series.index', compact('series'));
+        //
     }
 
     /**
@@ -40,7 +40,7 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        return view('backend.series.create');
+        //
     }
 
     /**
@@ -51,21 +51,29 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->seriesRepo->create($request->all())) {
-            return redirect()->route('admin.series.index');
-        }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $slug
+     * @param $episodeId
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug, $episodeId)
     {
-        //
+        $courses = $this->courseRepo->findByField('slug', $slug);
+        $course = $courses[0];
+
+        $videos = $this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId]);
+        $video = $videos[0];
+        $comments = $this->commentRepo
+            ->orderBy('created_at','desc')
+            ->findWhere(['type' => 'lesson', 'relation_id' => $video->id])
+            ->all();
+
+        return view('frontend.video.detail', compact('course', 'video', 'comments'));
     }
 
     /**
@@ -76,9 +84,7 @@ class SeriesController extends Controller
      */
     public function edit($id)
     {
-        $course = $this->seriesRepo->find($id);
-
-        return view('backend.series.edit', compact('course'));
+        //
     }
 
     /**
@@ -90,10 +96,7 @@ class SeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->seriesRepo->update($request->all(), $id)) {
-            return redirect()->route('admin.series.index');
-        }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
+        //
     }
 
     /**

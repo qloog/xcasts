@@ -4,7 +4,7 @@
         <a class="item" href="/">
             <i class="home icon"></i> 首页
         </a>
-        <a class="item" href="{{ route('series.index') }}">
+        <a class="item" href="{{ route('course.index') }}">
             <i class="student icon"></i> 课程
         </a>
         <a class="item" href="{{ route('topic.index') }}">

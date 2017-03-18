@@ -24,9 +24,9 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['route' => 'admin.lesson.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
+                {!! Form::open(['route' => 'admin.video.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
                 <div class="box-body">
-                    @include('backend.lesson._form')
+                    @include('backend.video._form')
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

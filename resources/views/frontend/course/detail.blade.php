@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    {{ $series->name }} - 视频
+    {{ $course->name }} - 视频
 @endsection
 
 @section('content')
@@ -11,8 +11,8 @@
         <div class="row">
             <div class="three wide column"></div>
             <div class="ten wide column" style="color: #ffffff;margin-top: 40px;">
-                <h3>{{ $series->name }}</h3>
-                <div class="label">{{ $series->description }}</div>
+                <h3>{{ $course->name }}</h3>
+                <div class="label">{{ $course->description }}</div>
             </div>
             <div class="three wide column"></div>
         </div>
@@ -25,21 +25,21 @@
             <div class="eight wide column">
                 <table class="ui single line selectable  table">
                     <tbody>
-                    @if (count($series->lessons) > 0)
-                        @foreach($series->lessons as $key => $lesson)
+                    @if (count($course->videos) > 0)
+                        @foreach($course->videos as $key => $video)
                         <tr style="display: table-row">
-                            <td class="ui center aligned">{{ $lesson->episode_id }}</td>
+                            <td class="ui center aligned">{{ $video->episode_id }}</td>
                             <td>
                                 <i class="video play outline large icon"></i>
-                                <a href="{{ route('series.lesson.show', ['slug' => $series->slug, $lesson->episode_id]) }}">{{ $lesson->name }}</a>
+                                <a href="{{ route('course.video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
                             </td>
                             <td class="ui right aligned">
-                                @if($lesson->is_free == 1)
+                                @if($video->is_free == 1)
                                     <a class="ui green label">Free</a>
                                 @endif
                             </td>
-                            <td class="ui right aligned">{{ $lesson->length }}</td>
-                            <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($lesson->created_at)) }}</td>
+                            <td class="ui right aligned">{{ $video->length }}</td>
+                            <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->created_at)) }}</td>
                         </tr>
                         @endforeach
                     @endif

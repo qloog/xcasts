@@ -1,38 +1,36 @@
 <?php
 
-namespace App\Http\Controllers\Frontend;
+namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\SeriesRepository;
+use App\Contracts\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Redirect;
 
-class SeriesController extends Controller
+class CourseController extends Controller
 {
     /**
-     * @var SeriesRepository
+     * @var CourseRepository
      */
-    protected $seriesRepo;
+    protected $courseRepo;
 
-
-    public function __construct(SeriesRepository $series)
+    public function __construct(CourseRepository $courses)
     {
-        $this->seriesRepo = $series;
+        $this->courseRepo = $courses;
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $type = $request->get('type');
-        $series = $this->seriesRepo->getCourseListByType($type, 15);
+        $courses = $this->courseRepo->orderBy('id', 'DESC')->paginate(10);
 
-        return view('frontend.series.index', compact('series', 'type'));
+        return view('backend.course.index', compact('courses'));
     }
 
     /**
@@ -42,7 +40,7 @@ class SeriesController extends Controller
      */
     public function create()
     {
-
+        return view('backend.course.create');
     }
 
     /**
@@ -53,20 +51,21 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($this->courseRepo->create($request->all())) {
+            return redirect()->route('admin.course.index');
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  string  $slug
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $series = $this->seriesRepo->findByField('slug', $slug)->first();
-
-        return view('frontend.series.detail', compact('series'));
+        //
     }
 
     /**
@@ -77,7 +76,9 @@ class SeriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = $this->courseRepo->find($id);
+
+        return view('backend.course.edit', compact('course'));
     }
 
     /**
@@ -89,7 +90,10 @@ class SeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($this->courseRepo->update($request->all(), $id)) {
+            return redirect()->route('admin.course.index');
+        }
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**

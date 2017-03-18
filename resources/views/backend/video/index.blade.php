@@ -16,7 +16,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.lesson.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加课程</a>
+                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加课程</a>
                     </h3>
                     <div class="box-tools">
                         <!--
@@ -66,13 +66,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($lessons as $item)
+                        @if(count($videos))
+                        @foreach ($videos as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->episode_id }}</td>
-                                <td>【{{ $item->series->id }}】{{ $item->series->name }}</td>
+                                <td>【{{ $item->course->id }}】{{ $item->course->name }}</td>
                                 <td>{{ $item->length }}</td>
                                 <td>{!! $item->is_free == 1 ? '免费视频' : '<i class="fa fa-money"></i> 收费' !!} </td>
                                 <td>{{ $item->user->name }}</td>
@@ -80,13 +81,14 @@
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="{{ route('admin.lesson.edit', [$item->id]) }}">
+                                        <a class="green" href="{{ route('admin.video.edit', [$item->id]) }}">
                                             <i class="fa fa-edit text-green"></i>编辑
                                         </a>
                                     </div>
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>
@@ -94,7 +96,7 @@
 
                 <div class="box-footer">
                     <div class="pull-right">
-                        {!! $lessons->render() !!}
+                        {!! $videos->render() !!}
                     </div>
                 </div>
             </div>

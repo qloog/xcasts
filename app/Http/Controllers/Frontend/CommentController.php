@@ -56,7 +56,7 @@ class CommentController extends Controller
             'content' => 'required'
         ]);
         if ($this->repository->create($request->all())) {
-            return redirect()->route('series.lesson.show', ['slug' => $request->get('slug'), 'episode_id' => $request->get('episode_id')]);
+            return redirect()->route('course.video.show', ['slug' => $request->get('slug'), 'episode_id' => $request->get('episode_id')]);
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

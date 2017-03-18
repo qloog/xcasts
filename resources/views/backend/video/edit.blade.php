@@ -25,11 +25,11 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::model($video, ['route' => ['admin.lesson.update', $video->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::model($video, ['route' => ['admin.video.update', $video->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
                     {!! Form::hidden('_method', 'PUT') !!}
 
                     <div class="box-body">
-                        @include('backend.lesson._form')
+                        @include('backend.video._form')
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">

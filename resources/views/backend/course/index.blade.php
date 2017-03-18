@@ -16,7 +16,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.series.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加系列</a>
+                        <a href="{{ route('admin.course.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加系列</a>
                     </h3>
                     <div class="box-tools">
                         <!--
@@ -64,7 +64,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($series as $item)
+                        @foreach ($courses as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
@@ -76,7 +76,7 @@
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="{{ route('admin.series.edit', [$item->id]) }}">
+                                        <a href="{{ route('admin.course.edit', [$item->id]) }}">
                                             <i class="fa fa-edit text-green"></i>编辑
                                         </a>
                                     </div>
@@ -95,7 +95,7 @@
 
                 <div class="box-footer">
                     <div class="pull-right">
-                        {!! $series->render() !!}
+                        {!! $courses->render() !!}
                     </div>
                 </div>
             </div>

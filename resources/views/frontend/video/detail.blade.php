@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    {{ $lesson->name }} - {{ $series->name }} - 视频
+    {{ $video->name }} - {{ $course->name }} - 视频
 @endsection
 
 @section('styles')
@@ -25,8 +25,8 @@
             <div class="one wide column"></div>
             <div class="fourteen wide column">
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
-                           poster="{{ $lesson->cover_image }}" data-setup='{}'>
-                        <source src="{{ $lesson->mp4_url }}" type='video/mp4'>
+                           poster="{{ $video->cover_image }}" data-setup='{}'>
+                        <source src="{{ $video->mp4_url }}" type='video/mp4'>
                         <source src="" type="video/flv" data-quality="HD" label="HD" data-default="true">
                         <p class="vjs-no-js">
                             To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -37,17 +37,17 @@
                         <div class="content">
                             <div class="ui header">
                                 <div class="ui big breadcrumb">
-                                    <a class="section" href="{{ route('series.show', ['slug' => $series->slug]) }}">{{ $lesson->series->name }}</a>
+                                    <a class="section" href="{{ route('course.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
                                     <i class="right arrow icon divider"></i>
-                                    <div class="active section">{{ $lesson->name }}</div>
+                                    <div class="active section">{{ $video->name }}</div>
                                 </div>
                             </div>
-                            <div class="meta">发布于: {{ $lesson->created_at }}</div>
+                            <div class="meta">发布于: {{ $video->created_at }}</div>
                             <div class="ui large feed">
                                 <div class="event">
                                     <div class="content">
                                         <div class="summary">
-                                            {{ $lesson->description }}
+                                            {{ $video->description }}
                                         </div>
                                     </div>
                                 </div>
@@ -73,9 +73,9 @@
                     <h3 class="ui dividing header">发表评论</h3>
                     <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
                         {!! csrf_field() !!}
-                        <input type="hidden" name="relation_id" value="{{ $lesson->id }}" >
-                        <input type="hidden" name="slug" value="{{ $series->slug }}" >
-                        <input type="hidden" name="episode_id" value="{{ $lesson->episode_id }}" >
+                        <input type="hidden" name="relation_id" value="{{ $video->id }}" >
+                        <input type="hidden" name="slug" value="{{ $course->slug }}" >
+                        <input type="hidden" name="episode_id" value="{{ $video->episode_id }}" >
                         <input type="hidden" name="type" value="lesson" >
                         <div class="@if(!Auth::check()) disabled field @endif">
                             <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>

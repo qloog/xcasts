@@ -37,10 +37,10 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('user/{id}/following', 'UserController@following')->name('user.following');
     Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
 
-    // series
-    Route::resource('series', 'SeriesController');
-    Route::get('series/{slug}/episodes/{episode_id}', ['as' => 'series.lesson.show', 'uses' => 'LessonController@show']);
-    Route::get('series/{slug}', 'SeriesController@show');
+    // course & video
+    Route::resource('course', 'CourseController');
+    Route::get('course/{slug}/episodes/{episode_id}', ['as' => 'course.video.show', 'uses' => 'VideoController@show']);
+    Route::get('course/{slug}', 'CourseController@show');
 
     // topic
     Route::resource('topic', 'TopicController');
@@ -112,10 +112,10 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('auth/role', 'RoleController', ['as' => 'auth']);
         Route::resource('auth/permission', 'PermissionController', ['as' => 'auth']);
 
-        //series
-        Route::resource('series', 'SeriesController');
-        //lesson
-        Route::resource('lesson', 'LessonController');
+        //course
+        Route::resource('course', 'CourseController');
+        //video
+        Route::resource('video', 'VideoController');
         //forum
         Route::resource('topics', 'TopicController');
 

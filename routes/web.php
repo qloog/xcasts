@@ -126,6 +126,6 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('goods', 'GoodsController');
 
         //blog
-        //Route::resource('post', 'PostController');
+        Route::resource('post', 'PostController');
     });
 });

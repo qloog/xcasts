@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Contracts\Repositories\PostRepository;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Models\Page;
+use App\Models\Post;
 use Redirect, Input, Auth;
 
 class PostController extends baseController
 {
 
-    public function __construct()
-    {
+    protected $postRepo;
 
+    public function __construct(PostRepository $posts)
+    {
+        $this->postRepo = $posts;
     }
 
     /**
@@ -22,10 +25,9 @@ class PostController extends baseController
      */
     public function index()
     {
-        $page = Post::where('slug', '=', 'overview')->first();
-        $gallery = Post::where('slug', '=', 'gallery')->first();
-        $images = explode(',', $gallery->content);
-        return view('backend.post.index', ['page' => $page, 'gallery' => $gallery, 'images' => $images]);
+        $posts = $this->postRepo->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('backend.post.index', compact('posts'));
     }
 
     /**
@@ -35,8 +37,7 @@ class PostController extends baseController
      */
     public function create()
     {
-        //
-        return view('admin.post.create');
+        return view('backend.post.create');
     }
 
     /**

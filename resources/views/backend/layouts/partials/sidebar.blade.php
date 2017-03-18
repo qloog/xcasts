@@ -45,21 +45,18 @@
                     </li>
                 </ul>
             </li>
-            <li @if(Request::is('admin/blog*')) class="treeview active" @else class="treeview" @endif>
+            <li @if(Request::is('admin/post*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
                     <span>博客管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::is('admin/blog')) class="active" @endif>
-                        <a href="{{ url('admin/blog') }}"><i class="fa fa-circle-o"></i>文章管理</a>
+                    <li @if(Request::is('admin/post')) class="active" @endif>
+                        <a href="{{ route('admin.post.index') }}"><i class="fa fa-circle-o"></i>文章管理</a>
                     </li>
-                    <li @if(Request::is('admin/blog/category')) class="active" @endif>
-                        <a href="{{ url('admin/blog/category') }}"><i class="fa fa-circle-o"></i> 分类管理</a>
-                    </li>
-                    <li @if(Request::is('admin/blog/create')) class="active" @endif>
-                        <a href="{{ url('admin/blog/create') }}"><i class="fa fa-circle-o"></i> 添加博文</a>
+                    <li @if(Request::is('admin/post/create')) class="active" @endif>
+                        <a href="{{ route('admin.post.create') }}"><i class="fa fa-circle-o"></i> 添加文章</a>
                     </li>
                 </ul>
             </li>

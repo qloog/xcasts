@@ -181,7 +181,7 @@
         function reply(username) {
             var replyContent = $('#reply_content');
             var oldContent = replyContent.val();
-            var lastAtUser = '@' + username + ' ';
+            var lastAtUser = "@" + username + " ";
             var newContent = '';
             if (oldContent.length > 0) {
                 if (oldContent != lastAtUser) {

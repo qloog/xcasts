@@ -11,6 +11,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\ReplyRepository;
 use App\Models\Reply;
 use App\Validators\ReplyValidator;
+use App\XCasts\Notifications\Mention;
 
 /**
  * Class ReplyRepositoryEloquent
@@ -28,8 +29,6 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
         return Reply::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -46,6 +45,8 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
         }
 
         $attributes['user_id'] = Auth::id();
+        $attributes['body'] = (new Mention())->parse($attributes['body']);
+
         $attributes['origin_body'] = $attributes['body'];
         //TODO markdown 做下封装处理
         $attributes['body'] = (new Parsedown())->setBreaksEnabled(true)->text($attributes['body']);

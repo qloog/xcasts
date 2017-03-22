@@ -23,6 +23,11 @@ class Topic extends Model implements Transformable
         return $this->belongsTo(User::class);
     }
 
+    public function attentedUsers()
+    {
+
+    }
+
     public function lastReplyUser()
     {
         return $this->belongsTo(User::class, 'last_reply_user_id');

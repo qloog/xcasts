@@ -1,6 +1,6 @@
 <?php
 
-namespace App\XCasts\Notifications;
+namespace XCasts\Notifications;
 
 use App\Models\User;
 

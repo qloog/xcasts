@@ -76,7 +76,7 @@
                                         <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key+1}}">{{ $reply->user->name }}</a>
                                         <div class="metadata">
                                             <div class="date">
-                                                <a href="{{ route('topic.show', $topic->id) }}#reply{{ $key+1 }}" id="reply{{ $key + 1 }}"> #{{ $key + 1 }}</a>
+                                                <a href="{{ route('topic.show', $topic->id) }}#reply{{ $reply->id }}" id="reply{{ $reply->id }}"> #{{ $key + 1 }}</a>
                                             </div>
                                             <div class="date">
                                                 {{ $reply->created_at->diffForHumans() }}

@@ -23,9 +23,17 @@
             </div>
         </a>
         <div class="right item">
-            {{--<a class="ui circular label" style="margin-right: 10px;">--}}
-                {{--0--}}
-            {{--</a>--}}
+            @if(!Auth::guest())
+                @if(Auth::user()->notification_count)
+                    <a class="ui circular ui orange label" style="margin-right: 10px;" href="{{ route('notifications.index') }}">
+                        {{ Auth::user()->notification_count }}
+                    </a>
+                @else
+                    <a class="ui circular ui label" style="margin-right: 10px;" href="{{ route('notifications.index') }}">
+                        0
+                    </a>
+                @endif
+            @endif
         @if (Auth::guest())
             <a class="ui button" href="{{ route('login') }}">登录</a>
             <a class="ui teal button" href="{{ url('register') }}">注册</a>

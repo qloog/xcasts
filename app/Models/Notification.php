@@ -46,7 +46,7 @@ class Notification extends Model
         $data = [];
         foreach ($users as $toUser) {
             if ($fromUser->id == $toUser->id) {
-                //continue;
+                continue;
             }
             $data[] = [
                 'from_user_id' => $fromUser->id,
@@ -58,7 +58,7 @@ class Notification extends Model
                 'created_at' => $nowTimestamp,
                 'updated_at' => $nowTimestamp
             ];
-            //$toUser->increment('notification_count', 1);
+            $toUser->increment('notification_count', 1);
         }
         if (count($data)) {
             Notification::insert($data);

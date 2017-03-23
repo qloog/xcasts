@@ -36,6 +36,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');
     Route::get('user/{id}/following', 'UserController@following')->name('user.following');
     Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
+    Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
     // course & video
     Route::resource('course', 'CourseController');
@@ -58,7 +59,6 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('payment/pay', 'PaymentController@pay')->name('payment.pay');
     Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
     Route::get('payment/return', 'PaymentController@return')->name('payment.return');
-    Route::get('notifications', 'NotificationController@index')->name('notifications');
 
     // footer
     Route::get('path', 'PathController@index')->name('path');

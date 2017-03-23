@@ -4,14 +4,16 @@
     <div class="ui grid" style="background-color: #E9EAED">
         <div class="row"></div>
         <div class="row">
-            <div class="sixteen wide column centered">
+            <div class="thirteen wide column centered">
                 <div class="ui grid">
-                    {{--<div class="four wide column">--}}
-                        {{--@include('frontend.user.base_info')--}}
-
-                        {{--@include('frontend.user.info_nav')--}}
-                    {{--</div>--}}
-                    <div class="sixteen wide column">
+                    <div class="four wide column">
+                        <div class="ui center aligned segment">
+                            <div class="ui divided very relaxed large list">
+                                <a class="item" href="{{ route('notifications.index') }}"><i class="alarm icon"></i>通知</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="twelve wide column">
                         <div class="ui large middle aligned divided list padded segment">
                             <div class="ui breadcrumb">
                                 <div class="active section">我的提醒</div>
@@ -22,21 +24,36 @@
                         <div class="ui large middle aligned divided relaxed list padded segment">
 
                             <div class="ui comments">
-                                @foreach($notifications as $item)
-                                    <div class="comment">
-                                        <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $item->topic_id) }}" target="_blank">test</a>
-                                            <div class="metadata">
-                                                <div class="date">
-                                                    {{ $item->created_at->diffForHumans() }}
+                                @if(count($notifications))
+                                    @foreach($notifications as $notification)
+                                        <div class="comment">
+                                            <div class="content">
+
+                                                <a href="{{ route('user.show', $notification->user->id) }}">{{ $notification->user->name }}</a>
+                                                 •
+                                                @if($notification->type == 'at')
+                                                    在话体中提及你:
+                                                @elseif($notification->type == 'new_reply')
+                                                    回复了你:
+                                                @endif
+                                                <a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
+                                                <div class="metadata">
+                                                    <div class="date">
+                                                        • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                    </div>
+                                                </div>
+                                                <div class="text markdown-body">
+                                                    {!! $notification->body !!}
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                    {!! $notifications->render('partials.semantic-pagination') !!}
+                                @endif
                             </div>
-{{--                            {!! $notifications->render('partials.semantic-pagination') !!}--}}
+
                         </div>
+
                     </div>
                 </div>
             </div>

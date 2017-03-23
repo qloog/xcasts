@@ -110,4 +110,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->morphedByMany(Topic::class, 'votable', 'votes')->withPivot('created_at');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class)->recent()->with('topic', 'fromUser')->paginate(20);
+    }
+
 }

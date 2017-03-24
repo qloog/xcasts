@@ -32,19 +32,30 @@
                                                 <a href="{{ route('user.show', $notification->user->id) }}">{{ $notification->user->name }}</a>
                                                  •
                                                 @if($notification->type == 'at')
-                                                    在话体中提及你:
-                                                @elseif($notification->type == 'new_reply')
-                                                    回复了你:
-                                                @endif
-                                                <a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
-                                                <div class="metadata">
-                                                    <div class="date">
-                                                        • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                    在话体中提及你: <a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
+                                                    <div class="metadata">
+                                                        <div class="date">
+                                                            • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="text markdown-body">
-                                                    {!! $notification->body !!}
-                                                </div>
+                                                @elseif($notification->type == 'new_reply')
+                                                    回复了你:<a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
+                                                    <div class="metadata">
+                                                        <div class="date">
+                                                            • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="text markdown-body">
+                                                        {!! $notification->body !!}
+                                                    </div>
+                                                @elseif($notification->type == 'follow')
+                                                    关注了你
+                                                    <div class="metadata">
+                                                        <div class="date">
+                                                            • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                        </div>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     @endforeach

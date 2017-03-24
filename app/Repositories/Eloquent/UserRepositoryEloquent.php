@@ -189,12 +189,13 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function followUser($userId)
     {
         $user = $this->find(Auth::id());
-        $targetUser = $this->find($userId);
+        $toUser = $this->find($userId);
 
         if ($user->isFollowing($userId)) {
-            return $user->unfollow($userId)  && $targetUser->decrement('follower_count', 1);
+            return $user->unfollow($userId)  && $toUser->decrement('follower_count', 1);
         } else {
-            return $user->follow($userId) && $targetUser->increment('follower_count', 1);
+            app('XCasts\Notifications\Notifier')->newFollowNotify($user, $toUser);
+            return $user->follow($userId) && $toUser->increment('follower_count', 1);
         }
     }
 }

@@ -40,6 +40,17 @@ class Notifier
     }
 
     /**
+     * 发送关注用户通知
+     *
+     * @param User $fromUser
+     * @param User $toUser
+     */
+    public function newFollowNotify(User $fromUser, User $toUser)
+    {
+        Notification::notify('follow', $fromUser, $toUser, null, null, null);
+    }
+
+    /**
      * in case of a user get a lot of the same notification
      *
      * @param $users

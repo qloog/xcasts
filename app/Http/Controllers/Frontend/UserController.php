@@ -176,7 +176,6 @@ class UserController extends Controller
     public function follow($id)
     {
         if ($this->userRepo->followUser($id)) {
-            // TODO add msg
             return response()->json(['code' => 200, 'msg' => 'success']);
         } else {
             // TODO add msg

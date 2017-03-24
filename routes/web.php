@@ -21,22 +21,41 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::auth();
     Route::get('logout', 'Auth\LoginController@logout');
 
+    // need to auth controller
+    Route::group(['middleware' => 'auth'], function ()
+    {
+        Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+
+        // user
+        Route::get('user/{id}/avatar', 'UserController@editAvatar')->name('user.avatar.edit');
+        Route::put('user/{id}/avatar', 'UserController@updateAvatar')->name('user.avatar.update');
+        Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
+        Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
+        Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+
+        // comment
+        Route::post('comment', 'CommentController@store')->name('comment.store');
+
+        // vip
+        Route::get('vip', 'PlanController@index')->name('vip');
+        Route::get('payment/pay', 'PaymentController@pay')->name('payment.pay');
+        Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
+        Route::get('payment/return', 'PaymentController@return')->name('payment.return');
+
+        Route::post('topic/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
+        Route::post('topic/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
+        Route::resource('reply', 'ReplyController');
+    });
+
     // business route
-    Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
 
     // user
     Route::resource('user', 'UserController');
-    Route::get('user/{id}/avatar', 'UserController@editAvatar')->name('user.avatar.edit');
-    Route::put('user/{id}/avatar', 'UserController@updateAvatar')->name('user.avatar.update');
-    Route::get('user/{id}/notification', 'UserController@notification')->name('user.notification');
-    Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
     Route::get('user/{id}/topics', 'UserController@topics')->name('user.topics');
     Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');
     Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');
     Route::get('user/{id}/following', 'UserController@following')->name('user.following');
-    Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
-    Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
 
     // course & video
     Route::resource('course', 'CourseController');
@@ -45,20 +64,9 @@ Route::group(['namespace' => 'Frontend'], function ()
 
     // topic
     Route::resource('topic', 'TopicController');
-    Route::post('topic/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
-    Route::post('topic/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
-    Route::resource('reply', 'ReplyController');
-    // comment
-    Route::post('comment', 'CommentController@store')->name('comment.store');
 
     // blog
     Route::resource('blog', 'PostController');
-
-    // vip
-    Route::get('vip', 'PlanController@index')->name('vip');
-    Route::get('payment/pay', 'PaymentController@pay')->name('payment.pay');
-    Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
-    Route::get('payment/return', 'PaymentController@return')->name('payment.return');
 
     // footer
     Route::get('path', 'PathController@index')->name('path');

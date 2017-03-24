@@ -1,7 +1,7 @@
 <div class="ui center aligned segment">
     <h2 class="ui header">
-        <img src="{{ Auth::user()->avatar }}" class="ui circular image">
-        {{ Auth::user()->name }}
+        <img src="{{ $user->avatar }}" class="ui circular image">
+        {{ $user->name }}
     </h2>
     <div>
         <div class="ui list">
@@ -38,5 +38,7 @@
         </div>
     </div>
     <div class="ui divider"></div>
+    @if(Auth()->id())
     <a class="ui fluid teal button" href="{{ route('user.edit', Auth()->id()) }}"><i class="edit icon"></i> 编辑个人资料 </a>
+    @endif
 </div>

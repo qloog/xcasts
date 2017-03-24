@@ -86,7 +86,9 @@
                                             {!! $reply->body !!}
                                         </div>
                                         <div class="actions">
-                                            <a class="reply"><i class="thumbs outline up icon"></i>赞(0)</a>
+                                            <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $reply->id }})">
+                                                <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>)
+                                            </a>
                                             <a class="reply" href="javascript:void(0)" onclick="reply('{{ $reply->user->name }}')"><i class="reply icon"></i>回复</a>
                                         </div>
                                     </div>
@@ -195,6 +197,22 @@
             replyContent.val(newContent);
         }
 
+        function reply_vote(reply_id) {
+            console.log(reply_id);
+            $.ajax({
+                type: 'POST',
+                url: '/reply/' + reply_id + '/vote',
+                data: {'_token': '{{ csrf_token() }}','_method':'post'},
+                dataType:'json',
+                success: function (ret) {
+                    console.log(ret);
+                    if (ret.code == 200 ) {
+                        $('#vote_count_' + reply_id).text(ret.count);
+                    }
+                }
+            });
+        }
+
         $(document).ready(function () {
             $('.ui.dropdown').dropdown();
 
@@ -259,7 +277,6 @@
                     }
                 });
             });
-
         });
     </script>
 @endsection

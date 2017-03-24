@@ -84,4 +84,18 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
                             ->first();
         return count($lastReply) && strcmp($lastReply->origin_body, $data['body']) === 0;
     }
+
+    /**
+     * reply 投票数+1
+     *
+     * @param     $id
+     * @param int $count
+     * @return int
+     */
+    public function vote($id, $count = 1)
+    {
+        $reply = $this->find($id);
+
+        return $reply->increment('vote_count', $count);
+    }
 }

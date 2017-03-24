@@ -75,7 +75,7 @@ class VoteRepositoryEloquent extends BaseRepository implements VoteRepository
     public function replyUpVote(Reply $reply)
     {
         if (Auth::id() == $reply->user_id) {
-            return \Flash::warning(lang('Can not vote your feedback'));
+            return \Flash::warning('不能投自己');
         }
         $return = [];
         if ($reply->votes()->ByWhom(Auth::id())->WithType('upvote')->count()) {

@@ -45,6 +45,7 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::post('topic/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
         Route::post('topic/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
         Route::resource('reply', 'ReplyController');
+        Route::post('reply/{id}/vote', 'ReplyController@vote')->name('reply.vote');
     });
 
     // business route

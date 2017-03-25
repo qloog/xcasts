@@ -22,13 +22,11 @@
 
                         <!-- detail -->
                         <div class="ui large middle aligned divided relaxed list padded segment">
-
                             <div class="ui comments">
                                 @if(count($notifications))
                                     @foreach($notifications as $notification)
                                         <div class="comment">
                                             <div class="content">
-
                                                 <a href="{{ route('user.show', $notification->user->id) }}">{{ $notification->user->name }}</a>
                                                  •
                                                 @if($notification->type == 'at')
@@ -56,6 +54,7 @@
                                                         </div>
                                                     </div>
                                                 @endif
+                                                <h4 class="ui dividing header"></h4>
                                             </div>
                                         </div>
                                     @endforeach

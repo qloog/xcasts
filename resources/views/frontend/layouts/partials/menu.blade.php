@@ -16,12 +16,12 @@
         {{--<a class="item" href="{{ route('vip') }}">--}}
             {{--<i class="unhide icon"></i> 订阅--}}
         {{--</a>--}}
-        <a class="item">
-            <div class="ui icon search input">
-                <input class="prompt" type="text" placeholder="Laravel">
-                <i class="search icon"></i>
-            </div>
-        </a>
+        {{--<a class="item">--}}
+            {{--<div class="ui icon search input">--}}
+                {{--<input class="prompt" type="text" placeholder="Laravel">--}}
+                {{--<i class="search icon"></i>--}}
+            {{--</div>--}}
+        {{--</a>--}}
         <div class="right item">
             @if(!Auth::guest())
                 @if(Auth::user()->notification_count)

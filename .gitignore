@@ -14,8 +14,10 @@
 /public/ueditor
 /public/semantic/
 /public/simplemde
+/public/assets
+/public/build
 
-/resources/assets/bower
+/resources/assets
 
 .DS_Store
 .idea

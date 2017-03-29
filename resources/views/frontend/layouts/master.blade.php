@@ -9,7 +9,8 @@
 
     <!-- Site Properties -->
     <title>@yield('title') - PHPCasts</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">
+    {{--<link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">--}}
+    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
     <style type="text/css">
         a {
             color: #00B5AD;
@@ -138,17 +139,18 @@
     <!-- Footer -->
     @include('frontend.layouts.partials.footer')
 
-<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
-<script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function(){ //scroll to top
-        $('.back-to-top').click(function(){
-            $('html, body').animate({scrollTop : 0}, 700);
-            return false;
+{{--<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>--}}
+{{--<script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>--}}
+    <script src="{{ elixir('assets/js/app.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){ //scroll to top
+            $('.back-to-top').click(function(){
+                $('html, body').animate({scrollTop : 0}, 700);
+                return false;
+            });
         });
-    });
 
-</script>
+    </script>
 @yield('scripts')
 </body>
 </html>

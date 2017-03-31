@@ -96,8 +96,12 @@
                                 <p>{!! $comment->content !!}</p>
                             </div>
                             <div class="actions">
-                                <a class="reply"><i class="thumbs outline up icon"></i>赞(0)</a>
-                                <a class="reply"><i class="reply icon"></i>回复</a>
+                                <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $comment->id }})">
+                                    <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $comment->id }}">{{ $comment->vote_count }}</span>)
+                                </a>
+                                <a class="reply">
+                                    <i class="reply icon"></i>回复
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -125,5 +129,21 @@
         }).ready(function () {
 
         });
+
+        function reply_vote(comment_id) {
+            console.log(comment_id);
+            $.ajax({
+                type: 'POST',
+                url: '/comment/' + comment_id + '/vote',
+                data: {'_token': '{{ csrf_token() }}','_method':'post'},
+                dataType:'json',
+                success: function (ret) {
+                    console.log(ret);
+                    if (ret.code == 200 ) {
+                        $('#vote_count_' + comment_id).text(ret.count);
+                    }
+                }
+            });
+        }
     </script>
 @endsection

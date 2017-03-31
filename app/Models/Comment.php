@@ -13,9 +13,19 @@ class Comment extends Model implements Transformable
 
     protected $fillable = ['type', 'relation_id', 'ip', 'origin_content', 'content','user_id', 'up_count', 'device_type', 'updated_at', 'created_at'];
 
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votable');
+    }
+
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
+    }
+
+    public function topic()
+    {
+        return $this->belongsTo(Topic::class);
     }
 
 }

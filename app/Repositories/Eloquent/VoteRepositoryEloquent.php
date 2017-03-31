@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Comment;
 use App\Models\Reply;
 use App\Models\Topic;
 use Auth;
@@ -95,6 +96,33 @@ class VoteRepositoryEloquent extends BaseRepository implements VoteRepository
             $reply->increment('vote_count', 1);
             $return['action_type'] = 'add';
             //Notification::notify('reply_upvote', Auth::user(), $reply->user, $reply->topic, $reply);
+        }
+        return $return;
+    }
+
+    public function commentUpVote(Comment $comment)
+    {
+        if (Auth::id() == $comment->user_id) {
+            return \Flash::warning('不能投自己');
+        }
+        $return = [];
+        if ($comment->votes()->ByWhom(Auth::id())->WithType('upvote')->count()) {
+            // click twice for remove upvote
+            $comment->votes()->ByWhom(Auth::id())->WithType('upvote')->delete();
+            $comment->decrement('vote_count', 1);
+            $return['action_type'] = 'sub';
+        } elseif ($comment->votes()->ByWhom(Auth::id())->WithType('downvote')->count()) {
+            // user already clicked downvote once
+            $comment->votes()->ByWhom(Auth::id())->WithType('downvote')->delete();
+            $comment->votes()->create(['user_id' => Auth::id(), 'is' => 'upvote']);
+            $comment->increment('vote_count', 2);
+            $return['action_type'] = 'add';
+        } else {
+            // first time click
+            $comment->votes()->create(['user_id' => Auth::id(), 'is' => 'upvote']);
+            $comment->increment('vote_count', 1);
+            $return['action_type'] = 'add';
+            //Notification::notify('comment_upvote', Auth::user(), $reply->user, $reply->topic, $reply);
         }
         return $return;
     }

@@ -16,6 +16,19 @@ const elixir = require('laravel-elixir');
  * Default gulp is to run this elixir stuff
  */
 elixir(function(mix) {
+    // frontend
+    // jquery
+    mix.copy('resources/assets/bower/jquery/dist/jquery.min.js','resources/assets/frontend/js');
+    // semantic ui
+    mix.copy('resources/assets/bower/semantic/dist/semantic.min.js','resources/assets/frontend/js');
+    mix.copy('resources/assets/bower/semantic/dist/semantic.min.css','resources/assets/frontend/css');
+    mix.copy('resources/assets/bower/semantic/dist/themes/default','public/build/assets/css/themes/default');
+    // video.js
+    mix.copy('resources/assets/bower/video.js/dist/video.min.js','resources/assets/frontend/js');
+    mix.copy('resources/assets/bower/video.js/dist/video-js.min.css','resources/assets/frontend/css');
+    // simplemde
+    mix.copy('resources/assets/bower/simplemde/dist/simplemde.min.js','resources/assets/frontend/js');
+    mix.copy('resources/assets/bower/simplemde/dist/simplemde.min.css','resources/assets/frontend/css');
 
     // font-awesome
     mix.copy('resources/assets/bower/font-awesome/fonts/*.*','public/assets/fonts/');
@@ -39,18 +52,6 @@ elixir(function(mix) {
 
     // bootstrap-fileinput
     mix.copy('resources/assets/bower/bootstrap-fileinput','public/plugins/bootstrap-fileinput');
-
-     // frontend
-     // semantic ui
-    mix.copy('resources/assets/bower/semantic/dist/semantic.min.js','resources/assets/frontend/js');
-    mix.copy('resources/assets/bower/semantic/dist/semantic.min.css','resources/assets/frontend/css');
-    mix.copy('resources/assets/bower/semantic/dist/themes/default','public/build/assets/css/themes/default');
-     // video.js
-    mix.copy('resources/assets/bower/video.js/dist/video.min.js','resources/assets/frontend/js');
-    mix.copy('resources/assets/bower/video.js/dist/video-js.min.css','resources/assets/frontend/css');
-    // simplemde
-    mix.copy('resources/assets/bower/simplemde/dist/simplemde.min.js','resources/assets/frontend/js');
-    mix.copy('resources/assets/bower/simplemde/dist/simplemde.min.css','resources/assets/frontend/css');
 
     // 合并前端的CSS样式文件
     mix.styles([
@@ -80,6 +81,7 @@ elixir(function(mix) {
 
     // 合并前端的Javascript脚本文件
     mix.scripts([
+            'js/jquery.min.js',
             'js/semantic.min.js',
             'js/simplemde.min.js',
             'js/video.min.js'

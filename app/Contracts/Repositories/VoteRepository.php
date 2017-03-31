@@ -2,6 +2,7 @@
 
 namespace App\Contracts\Repositories;
 
+use App\Models\Comment;
 use App\Models\Reply;
 use App\Models\Topic;
 use Prettus\Repository\Contracts\RepositoryInterface;
@@ -17,4 +18,6 @@ interface VoteRepository extends RepositoryInterface
     public function topicDownVote(Topic $topic);
 
     public function replyUpVote(Reply $reply);
+
+    public function commentUpVote(Comment $comment);
 }

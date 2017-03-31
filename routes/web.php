@@ -35,6 +35,7 @@ Route::group(['namespace' => 'Frontend'], function ()
 
         // comment
         Route::post('comment', 'CommentController@store')->name('comment.store');
+        Route::post('comment/{id}/vote', 'CommentController@vote')->name('comment.vote');
 
         // vip
         Route::get('vip', 'PlanController@index')->name('vip');

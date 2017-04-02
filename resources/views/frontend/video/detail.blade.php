@@ -78,7 +78,7 @@
                         <input type="hidden" name="episode_id" value="{{ $video->episode_id }}" >
                         <input type="hidden" name="type" value="lesson" >
                         <div class="@if(!Auth::check()) disabled field @endif">
-                            <textarea name="content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
+                            <textarea name="content" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
                         </div>
                         <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
                     </form>
@@ -99,7 +99,7 @@
                                 <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $comment->id }})">
                                     <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $comment->id }}">{{ $comment->vote_count }}</span>)
                                 </a>
-                                <a class="reply">
+                                <a class="reply" href="javascript:void(0)" onclick="reply('{{ $comment->user->name }}')">
                                     <i class="reply icon"></i>回复
                                 </a>
                             </div>
@@ -144,6 +144,23 @@
                     }
                 }
             });
+        }
+
+        function reply(username) {
+            var replyContent = $('#reply_content');
+            var oldContent = replyContent.val();
+            var lastAtUser = "@" + username + " ";
+            var newContent = '';
+            if (oldContent.length > 0) {
+                if (oldContent != lastAtUser) {
+                    newContent = oldContent + "\n" + lastAtUser;
+                }
+            } else {
+                newContent = lastAtUser;
+            }
+
+            replyContent.focus();
+            replyContent.val(newContent);
         }
     </script>
 @endsection

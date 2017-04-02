@@ -9,10 +9,12 @@
 
 namespace XCasts\Notifications;
 
+use App\Models\Comment;
 use App\Models\Notification;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\User;
+use App\Models\Video;
 
 class Notifier
 {
@@ -37,6 +39,26 @@ class Notifier
 
         // notify mentioned users
         Notification::batchNotify('at', $fromUser, $this->removeDuplication($mentionParser->users), $topic, $reply);
+    }
+
+    /**
+     * 新评论通知
+     *
+     * @param User    $fromUser
+     * @param Mention $mentionParser
+     * @param Video   $video
+     * @param Comment $comment
+     */
+    public function newCommentNotify(User $fromUser, Mention $mentionParser, Video $video, Comment $comment)
+    {
+        // notify the author
+        Notification::batchNotify('new_video_reply', $fromUser, $this->removeDuplication([$video->user]), $video, $comment);
+
+        // notify attented users
+        //Notification::batchNotify('attention', $fromUser, $topic->attentedUsers(), $topic, $reply);
+
+        // notify mentioned users
+        Notification::batchNotify('video_at', $fromUser, $this->removeDuplication($mentionParser->users), $video, $comment);
     }
 
     /**

@@ -55,7 +55,6 @@ class CommentController extends Controller
             'relation_id' => 'required',
             'slug' => 'required',
             'episode_id' => 'required',
-            'type' => 'required',
             'content' => 'required'
         ]);
         if ($this->repository->create($request->all())) {

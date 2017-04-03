@@ -25,6 +25,9 @@ class Video extends Model implements Transformable
         'updated_at'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

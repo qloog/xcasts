@@ -73,6 +73,44 @@ class Notification extends Model
         //}
     }
 
+    /**
+     * Create a notification
+     * @param  string $type     have 'at', 'new_reply', 'attention', 'append'
+     * @param  User   $fromUser come from who
+     * @param  array  $users    to who, array of users
+     * @param Video   $video
+     * @param Comment $comment
+     * @param null    $content
+     */
+    public static function batchNotifyFromComment($type, User $fromUser, $users, Video $video, Comment $comment = null, $content = null)
+    {
+        $nowTimestamp = Carbon::now()->toDateTimeString();
+        $data = [];
+        foreach ($users as $toUser) {
+            if ($fromUser->id == $toUser->id) {
+                continue;
+            }
+            $data[] = [
+                'from_user_id' => $fromUser->id,
+                'user_id' => $toUser->id,
+                'relation_id' => $video->id,
+                'body' => $content ?: ($comment ? $comment->content : ''),
+                'type' => $type,
+                'created_at' => $nowTimestamp,
+                'updated_at' => $nowTimestamp
+            ];
+            $toUser->increment('notification_count', 1);
+        }
+        if (count($data)) {
+            Notification::insert($data);
+            //foreach ($users as $toUser) {
+            //$job = (new SendNotifyMail($type, $fromUser, $toUser, $topic, $reply, $content))
+            //    ->delay(10);
+            //dispatch($job);
+            //}
+        }
+    }
+
     public function scopeRecent($query)
     {
         return $query->orderBy('created_at', 'desc');

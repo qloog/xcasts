@@ -70,7 +70,7 @@ class VideoController extends Controller
         $video = $videos[0];
         $comments = $this->commentRepo
             ->orderBy('created_at','desc')
-            ->findWhere(['type' => 'lesson', 'relation_id' => $video->id])
+            ->findWhere(['type' => 'video', 'relation_id' => $video->id])
             ->all();
 
         return view('frontend.video.detail', compact('course', 'video', 'comments'));

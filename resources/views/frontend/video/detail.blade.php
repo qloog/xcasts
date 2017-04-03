@@ -76,7 +76,6 @@
                         <input type="hidden" name="relation_id" value="{{ $video->id }}" >
                         <input type="hidden" name="slug" value="{{ $course->slug }}" >
                         <input type="hidden" name="episode_id" value="{{ $video->episode_id }}" >
-                        <input type="hidden" name="type" value="lesson" >
                         <div class="@if(!Auth::check()) disabled field @endif">
                             <textarea name="content" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
                         </div>

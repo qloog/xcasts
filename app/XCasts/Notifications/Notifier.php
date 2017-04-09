@@ -52,13 +52,13 @@ class Notifier
     public function newCommentNotify(User $fromUser, Mention $mentionParser, Video $video, Comment $comment)
     {
         // notify the author
-        Notification::batchNotifyFromComment('new_video_comment', $fromUser, $this->removeDuplication([$video->user]), $video, $comment);
+        Notification::batchNotifyFromComment('new_video_reply', $fromUser, $this->removeDuplication([$video->user]), $video, $comment);
 
         // notify attented users
         //Notification::batchNotify('attention', $fromUser, $topic->attentedUsers(), $topic, $reply);
 
         // notify mentioned users
-        Notification::batchNotifyFromComment('comment_at', $fromUser, $this->removeDuplication($mentionParser->users), $video, $comment);
+        Notification::batchNotifyFromComment('video_at', $fromUser, $this->removeDuplication($mentionParser->users), $video, $comment);
     }
 
     /**

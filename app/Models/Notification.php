@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     // Don't forget to fill this array
-    protected $fillable = ['from_user_id', 'user_id', 'topic_id', 'reply_id', 'body', 'type'];
+    protected $fillable = ['from_user_id', 'user_id', 'topic_id', 'video_id', 'reply_id', 'body', 'type'];
 
     public function user()
     {
@@ -18,6 +18,11 @@ class Notification extends Model
     public function topic()
     {
         return $this->belongsTo(Topic::class);
+    }
+
+    public function video()
+    {
+        return $this->belongsTo(Video::class);
     }
 
     public function fromUser()
@@ -93,7 +98,7 @@ class Notification extends Model
             $data[] = [
                 'from_user_id' => $fromUser->id,
                 'user_id' => $toUser->id,
-                'relation_id' => $video->id,
+                'video_id' => $video->id,
                 'body' => $content ?: ($comment ? $comment->content : ''),
                 'type' => $type,
                 'created_at' => $nowTimestamp,
@@ -128,7 +133,7 @@ class Notification extends Model
         $data = [
             'from_user_id' => $fromUser->id,
             'user_id' => $toUser->id,
-            'topic_id' => $topic ? $topic->id : 0,
+            'video_id' => $topic ? $topic->id : 0,
             'reply_id' => $reply ? $reply->id : 0,
             'body' => $reply ? $reply->body : '',
             'type' => $type,

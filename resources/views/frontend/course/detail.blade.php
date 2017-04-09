@@ -31,7 +31,7 @@
                             <td class="ui center aligned">{{ $video->episode_id }}</td>
                             <td>
                                 <i class="video play outline large icon"></i>
-                                <a href="{{ route('course.video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
+                                <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
                             </td>
                             <td class="ui right aligned">
                                 @if($video->is_free == 1)

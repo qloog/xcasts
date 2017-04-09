@@ -61,7 +61,7 @@ Route::group(['namespace' => 'Frontend'], function ()
 
     // course & video
     Route::resource('course', 'CourseController');
-    Route::get('course/{slug}/episodes/{episode_id}', ['as' => 'course.video.show', 'uses' => 'VideoController@show']);
+    Route::get('course/{slug}/episodes/{episode_id}', ['as' => 'video.show', 'uses' => 'VideoController@show']);
     Route::get('course/{slug}', 'CourseController@show');
 
     // topic

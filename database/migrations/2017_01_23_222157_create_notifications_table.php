@@ -17,9 +17,10 @@ class CreateNotificationsTable extends Migration
                 $table->integer('from_user_id')->index();
                 $table->integer('user_id')->index();
                 $table->integer('topic_id')->index();
+                $table->integer('video_id')->index();
                 $table->integer('reply_id')->nullable()->index();
                 $table->text('body')->nullable();
-                $table->string('type')->index();
+                $table->string('type')->index()->comment('类型,new_reply,at,follow,new_video_reply,video_at');
                 $table->timestamps();
             }
         );

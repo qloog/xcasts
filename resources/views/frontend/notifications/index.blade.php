@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    我的提醒
+@endsection
+
 @section('content')
     <div class="ui grid" style="background-color: #E9EAED">
         <div class="row"></div>

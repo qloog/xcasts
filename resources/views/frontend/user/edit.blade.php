@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    编辑个人资料
+@endsection
+
 @section('content')
     <div class="ui grid">
         <div class="row"></div>

@@ -1,7 +1,7 @@
                 <div class="form-group">
-                    {!! Form::label('username', '用户名', ['class' => 'col-lg-2 control-label']) !!}
+                    {!! Form::label('name', '用户名', ['class' => 'col-lg-2 control-label']) !!}
                     <div class="col-lg-3">
-                        {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => '用户名']) !!}
+                        {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '用户名']) !!}
                     </div>
                 </div><!--form control-->
 

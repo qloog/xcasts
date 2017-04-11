@@ -66,7 +66,7 @@
                         <thead>
                         <tr>
                             <th>{{ trans('crud.users.id') }}</th>
-                            <th>{{ trans('crud.users.username') }}</th>
+                            <th>{{ trans('crud.users.name') }}</th>
                             <th>{{ trans('crud.users.roles') }}</th>
                             <th>{{ trans('crud.users.email') }}</th>
                             <th>{{ trans('crud.users.created') }}</th>
@@ -79,7 +79,7 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->username }}</td>
+                                <td>{{ $user->name }}</td>
                                 <td>
                                     @if ($user->roles()->count() > 0)
                                         @foreach ($user->roles as $role)

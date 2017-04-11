@@ -49,6 +49,10 @@ class AuthenticateAdmin
             } else {
                 return redirect()->guest('admin/login');
             }
+        } else {
+            if (Auth::id() != 1) {
+                abort(404, 'Unauthorized action.');
+            }
         }
 
         //if (!Auth::user()->can(Route::currentRouteName())) {

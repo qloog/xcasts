@@ -32,7 +32,6 @@ class CourseController extends Controller
     {
         $type = $request->get('type');
         $courses = $this->courseRepo->getCourseListByType($type, 15);
-        var_dump($courses);exit;
 
         return view('frontend.course.index', compact('courses', 'type'));
     }

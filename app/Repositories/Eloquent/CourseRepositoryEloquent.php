@@ -36,23 +36,8 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
     public function getCourseListByType($type = null, $limit = 10)
     {
         if ($type) {
-            $list = $this->model->type($type)->orderBy('id','desc')->paginate($limit);
-            return $this->handleCoverImage($list);
+            return$this->model->type($type)->orderBy('id','desc')->paginate($limit);
         }
-        $list = $this->model->orderBy('id','desc')->paginate($limit);
-        return $this->handleCoverImage($list);
-    }
-
-    private function handleCoverImage($data)
-    {
-        if (!$data) {
-            return $data;
-        }
-
-        $qiNiuSrv = new QiNiuService();
-        foreach ($data as &$item) {
-            $item->cover_image = $qiNiuSrv->fileUrlWithToken($item->cover_image);
-        }
-
+        return $this->model->orderBy('id','desc')->paginate($limit);
     }
 }

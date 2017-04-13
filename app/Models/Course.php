@@ -13,7 +13,7 @@ class Course extends Model implements Transformable
 
     protected $fillable = ['id', 'name', 'slug', 'description', 'cover_image', 'created_at', 'updated_at'];
 
-    private function handleCoverImage($data)
+    public function handleCoverImage($data)
     {
         if (!$data) {
             return $data;

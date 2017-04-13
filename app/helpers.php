@@ -2,6 +2,8 @@
 /*
  * Global helpers file with misc functions
  */
+use App\Services\QiNiuService;
+
 if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name
@@ -106,4 +108,17 @@ if ( ! function_exists('get_relation_title')) {
         }
         return $title;
     }
+}
+
+/**
+ * @param $path
+ * @return string
+ */
+function cdn($path)
+{
+    $qiNiuSrv = new QiNiuService();
+    //todo: 域名不带/, bucket空间里path不带/
+    $url = 'http://statics.phpcasts.org/' . $path;
+
+    return $qiNiuSrv->fileUrlWithToken($url);
 }

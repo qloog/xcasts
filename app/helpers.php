@@ -111,6 +111,8 @@ if ( ! function_exists('get_relation_title')) {
 }
 
 /**
+ * get cdn url for image or mp4
+ *
  * @param $path
  * @return string
  */

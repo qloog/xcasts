@@ -13,11 +13,6 @@ class Course extends Model implements Transformable
 
     protected $fillable = ['id', 'name', 'slug', 'description', 'cover_image', 'created_at', 'updated_at'];
 
-    public function getCoverImageAttribute($coverImage)
-    {
-        return $this->attributes['cover_image'] = cdn($coverImage);
-    }
-
     public function videos()
     {
         return $this->hasMany(Video::class);

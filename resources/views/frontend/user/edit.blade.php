@@ -22,23 +22,23 @@
                                 <input type="hidden" name="_method" value="PUT">
                                 {!! csrf_field() !!}
                                     <div class="field">
-                                        <label>昵称</label>
-                                        <input type="text" name="name" disabled=disabled value="{{ Auth()->user()->name }}">
+                                        <label for="name">用户名</label>
+                                        <input type="text" name="name" id="name" disabled=disabled value="{{ Auth()->user()->name }}">
                                     </div>
                                     <div class="field">
-                                        <label>邮箱</label>
-                                        <input type="text" name="email"  disabled=disabled value="{{ Auth()->user()->email }}">
+                                        <label for="email">邮箱</label>
+                                        <input type="text" name="email"  id="email" disabled=disabled value="{{ Auth()->user()->email }}">
                                     </div>
                                     <div class="field">
-                                        <label>真实姓名</label>
+                                        <label>称呼</label>
                                         <input type="text" name="real_name" value="{{ $user->real_name }}">
                                     </div>
                                     <div class="field">
-                                        <label>城市</label>
+                                        <label>所在城市</label>
                                         <input type="text" name="city" value="{{ $user->city }}">
                                     </div>
                                     <div class="field">
-                                        <label>公司</label>
+                                        <label>所在公司</label>
                                         <input type="text" name="company" value="{{ $user->company }}">
                                     </div>
                                     <div class="field">

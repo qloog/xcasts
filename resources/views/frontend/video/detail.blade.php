@@ -5,7 +5,6 @@
 @endsection
 
 @section('styles')
-    <link href="{{ asset('videojs/video-js.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">
         /* Hidden by default, selectively shown.
@@ -114,10 +113,6 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('videojs/video.min.js') }}"></script>
-    <!-- If you'd like to support IE8 -->
-    <script src="{{ asset('videojs/ie8/videojs-ie8.min.js') }}"></script>
-
     <script type="text/javascript">
         var video = videojs("phpcasts-video", {
             "fluid":!0,

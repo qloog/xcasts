@@ -53,7 +53,7 @@ class VideoController extends Controller
     public function store(Request $request)
     {
         if(empty($request->file())) {
-            $fileInfo = $this->uploadManager->uploadImage($request->file('mp4_url'));
+            $fileInfo = $this->uploadManager->uploadFile($request->file('mp4_url'));
             if (empty($fileInfo)) {
                 return Redirect::back()->withInput()->withErrors('上传出错！');
             }

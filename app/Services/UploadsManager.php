@@ -311,7 +311,7 @@ class UploadsManager
 
         $imagePath = $folderName .'/'. $safeName;
 
-        //(new QiNiuService())->upload($imagePath, public_path() . $imagePath);
+        (new QiNiuService())->upload($imagePath, public_path() . $imagePath);
 
         return [
             'origin_name' => $fileName,

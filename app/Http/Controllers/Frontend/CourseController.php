@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CourseRepository;
-use App\Contracts\Repositories\SeriesRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;

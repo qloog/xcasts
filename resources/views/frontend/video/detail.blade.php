@@ -39,6 +39,7 @@
                                     <a class="section" href="{{ route('course.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
                                     <i class="right arrow icon divider"></i>
                                     <div class="active section">{{ $video->name }}</div>
+                                    <button class="ui right teal button">下一节<i class="arrow right icon"></i></button>
                                 </div>
                             </div>
                             <div class="meta">发布于: {{ $video->created_at }}</div>
@@ -52,10 +53,8 @@
                                 </div>
                             </div>
                             <div class="description">
-
                             </div>
                             <div class="extra content">
-                                <button class="ui right floated teal button">下一节<i class="arrow right icon"></i></button>
                             </div>
                         </div>
                     </div>

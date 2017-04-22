@@ -23,6 +23,18 @@
         <div class="row">
             <div class="one wide column"></div>
             <div class="fourteen wide column">
+                @if(Auth()->guest())
+                    <div class="ui centered text">
+                        <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
+                            <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;观看视频需要登录</h3>
+                            <ul class="ui list">
+                                <li><a href="{{ url('/register') }}" class="ui teal button">马上加入 PHPCasts</a></li>
+                                <li style="margin-top:20px"><a href="{{ url('/login') }}">有账号?马上登录</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @else
                     <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
                            poster="{{ cdn($video->cover_image) }}" data-setup='{}'>
                         <source src="{{ cdn($video->mp4_url) }}" type='video/mp4'>
@@ -32,6 +44,7 @@
                             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
                         </p>
                     </video>
+                @endif
                     <div class="ui fluid card" style="margin-top: 0px;">
                         <div class="content">
                             <div class="ui header">

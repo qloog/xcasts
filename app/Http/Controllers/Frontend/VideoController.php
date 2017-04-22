@@ -73,7 +73,16 @@ class VideoController extends Controller
             ->findWhere(['type' => 'video', 'relation_id' => $video->id])
             ->all();
 
-        return view('frontend.video.detail', compact('course', 'video', 'comments'));
+        $preLink = '';
+        $nextLink = '';
+        if ($this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId - 1])->toArray()) {
+            $preLink = route('video.show', ['slug' => $course->slug, 'episode_id' => $video->episode_id - 1]);
+        }
+        if ($this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId + 1])->toArray()) {
+            $nextLink = route('video.show', ['slug' => $course->slug, 'episode_id' => $video->episode_id + 1]);
+        }
+
+        return view('frontend.video.detail', compact('course', 'video', 'comments','preLink', 'nextLink'));
     }
 
     /**

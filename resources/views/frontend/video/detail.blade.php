@@ -39,7 +39,12 @@
                                     <a class="section" href="{{ route('course.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
                                     <i class="right arrow icon divider"></i>
                                     <div class="active section">{{ $video->name }}</div>
-                                    <button class="ui right teal button">下一节<i class="arrow right icon"></i></button>
+                                    @if ($preLink)
+                                    <a class="ui left teal button" href="{{ $preLink }}"><i class="arrow left icon"></i>上一节</a>
+                                    @endif
+                                    @if ($nextLink)
+                                    <a class="ui right teal button" href="{{ $nextLink }}">下一节<i class="arrow right icon"></i></a>
+                                    @endif
                                 </div>
                             </div>
                             <div class="meta">发布于: {{ $video->created_at }}</div>

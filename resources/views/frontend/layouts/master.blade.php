@@ -9,6 +9,8 @@
 
     <!-- Site Properties -->
     <title>@yield('title') - PHPCasts</title>
+    <title>@yield('keyword')</title>
+    <title>@yield('description')</title>
     {{--<link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">--}}
     <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
     <style type="text/css">

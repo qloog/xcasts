@@ -44,7 +44,7 @@
                         <a href="{{ url('admin/user') }}"><i class="fa fa-circle-o"></i> 用户列表</a>
                     </li>
                     <li @if(Request::is('admin/user/vip')) class="active" @endif>
-                        <a href="{{ url('admin/user/vip/create') }}"><i class="fa fa-circle-o"></i> 开通会员</a>
+                        <a href="{{ url('admin/user/vip/create') }}"><i class="fa fa-circle-o"></i> shoudong开通会员</a>
                     </li>
                 </ul>
             </li>

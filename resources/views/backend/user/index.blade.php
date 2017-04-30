@@ -98,6 +98,9 @@
                                         <a href="{{ route('admin.auth.user.edit', [$user->id]) }}">
                                             <i class="fa fa-edit text-green fa-lg"></i>
                                         </a>
+                                        <a href="javascript:;" data-id="{{ $user->id }}" class="_vip">
+                                            开通会员
+                                        </a>
                                         <a href="javascript:;" data-id="{{ $user->id }}" class="_delete">
                                             <i class="fa fa-trash-o text-red fa-lg"></i>
                                         </a>

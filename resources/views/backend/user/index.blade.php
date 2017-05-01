@@ -32,7 +32,6 @@
                         <a href="/admin/auth/user/create" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加用户</a>
                     </h3>
                     <div class="box-tools">
-                        <!--
                         <div class="form-inline  pull-right">
                             <form action="" method="get">
                                 <fieldset>
@@ -56,7 +55,6 @@
                                 </fieldset>
                             </form>
                         </div>
-                        -->
 
                     </div>
                 </div>

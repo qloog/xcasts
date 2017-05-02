@@ -20,7 +20,11 @@ interface UserRepository extends RepositoryInterface
 
     public function getFollowersByUserId($userId, $limit);
 
+    public function getUserIdByName($name);
+
     public function followUser($userId);
+
+    public function openVip($data);
 
 
 }

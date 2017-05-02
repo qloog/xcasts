@@ -90,14 +90,17 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>
-                                <td><small class="label label-success">{{ $user->status }}</small></td>
+                                <td>
+                                    @if ($user->status == '正常')
+                                        <small class="label label-success">{{ $user->status }}</small>
+                                    @else
+                                        <small class="label label-danger">{{ $user->status }}</small>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
                                         <a href="{{ route('admin.auth.user.edit', [$user->id]) }}">
                                             <i class="fa fa-edit text-green fa-lg"></i>
-                                        </a>
-                                        <a href="javascript:;" data-id="{{ $user->id }}" class="_vip">
-                                            开通会员
                                         </a>
                                         <a href="javascript:;" data-id="{{ $user->id }}" class="_delete">
                                             <i class="fa fa-trash-o text-red fa-lg"></i>
@@ -128,6 +131,7 @@
     <!-- /.row -->
 
     <div class="clearfix"></div>
+
 @endsection
 
 @section('scripts')

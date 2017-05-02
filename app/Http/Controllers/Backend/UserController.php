@@ -133,7 +133,8 @@ class UserController extends BaseController
      * @param Request $request
      * @return mixed
      */
-    public function changePassword($id, Request $request) {
+    public function changePassword($id, Request $request)
+    {
         return view('backend.user.change-password')
             ->withUser($this->users->find($id));
     }
@@ -143,7 +144,8 @@ class UserController extends BaseController
      * @param Request $request
      * @return mixed
      */
-    public function updatePassword($id, Request $request) {
+    public function updatePassword($id, Request $request)
+    {
         $this->users->updatePassword($id, $request->all());
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(trans("alerts.users.updated_password"));
     }
@@ -161,5 +163,18 @@ class UserController extends BaseController
         return redirect()
             ->route('admin.auth.user.index')
             ->withSuccess('Post deleted.');
+    }
+
+    public function createVip()
+    {
+        return view('backend.user.create_vip');
+    }
+
+    public function openVip(Request $request)
+    {
+        $this->users->openVip($request->all());
+
+        return redirect()
+            ->route('admin.auth.user.index');
     }
 }

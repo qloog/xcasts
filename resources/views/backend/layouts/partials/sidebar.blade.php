@@ -43,6 +43,9 @@
                     <li @if(Request::is('admin/user')) class="active" @endif>
                         <a href="{{ url('admin/user') }}"><i class="fa fa-circle-o"></i> 用户列表</a>
                     </li>
+                    <li @if(Request::is('admin/user/create_vip')) class="active" @endif>
+                        <a href="{{ url('admin/user/create_vip') }}"><i class="fa fa-circle-o"></i> 开通会员</a>
+                    </li>
                 </ul>
             </li>
             <li @if(Request::is('admin/post*')) class="treeview active" @else class="treeview" @endif>

@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
+use App\Models\Orders;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\Vote;
@@ -197,5 +198,40 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             app('XCasts\Notifications\Notifier')->newFollowNotify($user, $toUser);
             return $user->follow($userId) && $toUser->increment('follower_count', 1);
         }
+    }
+
+    public function getUserIdByName($name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return $user ? $user->id : 0;
+    }
+
+    /**
+     * @param $data
+     * @throws GeneralException
+     */
+    public function openVip($data)
+    {
+        if (empty($data['name']) || empty($data['plan_type']) || empty($data['pay_method'])) {
+            throw new GeneralException('open vip need params error');
+        }
+
+        // generate order
+        $order = new Orders();
+        $order->id = date('YmdHis' . rand(10000,99999));
+        $order->order_amount = $data['order_amount'];
+        $order->pay_amount = $data['pay_amount'];
+        $order->quantity = 1;
+        $order->pay_method = $data['pay_method'];
+        $order->is_paid = 1;
+        $order->paid_at = $data['paid_at'];
+        $order->completed_at = $data['paid_at'];
+        $order->status = 'paid';
+        $order->user_id = $this->getUserIdByName($data['name']);
+        $orderRet = $order->save();
+
+        // write to order_details
+        // $orderDetailModel = new orderDetails();
     }
 }

@@ -120,7 +120,7 @@ function cdn($path)
 {
     $qiNiuSrv = new QiNiuService();
     //todo: 域名不带/, bucket空间里path不带/
-    $url = 'http://statics.phpcasts.org/' . $path;
+    $url = env('QINIU_CDN_URL') . $path;
 
     return $qiNiuSrv->fileUrlWithToken($url);
 }

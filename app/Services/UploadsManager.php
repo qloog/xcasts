@@ -230,6 +230,7 @@ class UploadsManager
 
     /**
      * 上传图片,返回图片的相对路径
+     *
      * @param File  $file
      * @param int  $width
      * @param null $height
@@ -269,8 +270,7 @@ class UploadsManager
         }
 
         $imagePath = $folderName .'/'. $safeName;
-
-        (new QiNiuService())->upload($imagePath, public_path() . $imagePath);
+        (new QiNiuService())->upload(trim($imagePath, '/'), public_path() . $imagePath);
 
         return [
             'origin_name' => $fileName,
@@ -281,6 +281,7 @@ class UploadsManager
 
     /**
      * 上传图片,返回图片的相对路径
+     *
      * @param File  $file
      * @param array $allowed_extensions
      *
@@ -311,7 +312,7 @@ class UploadsManager
 
         $imagePath = $folderName .'/'. $safeName;
 
-        (new QiNiuService())->upload($imagePath, public_path() . $imagePath);
+        (new QiNiuService())->upload(trim($imagePath, '/'), public_path() . $imagePath);
 
         return [
             'origin_name' => $fileName,

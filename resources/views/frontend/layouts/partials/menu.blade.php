@@ -13,9 +13,9 @@
         <a class="item" href="{{ route('blog.index') }}">
         <i class="content icon"></i> 博客
         </a>
-        {{--<a class="item" href="{{ route('vip') }}">--}}
-            {{--<i class="unhide icon"></i> 订阅--}}
-        {{--</a>--}}
+        <a class="item" href="{{ route('vip') }}">
+            <i class="unhide icon"></i> 订阅
+        </a>
         {{--<a class="item">--}}
             {{--<div class="ui icon search input">--}}
                 {{--<input class="prompt" type="text" placeholder="Laravel">--}}

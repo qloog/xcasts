@@ -1,5 +1,5 @@
 <div class="ui center aligned segment">
-    <h2 class="ui header">
+    <h2 class="ui small sequenced images">
         <img src="{{ $user->avatar }}" class="ui circular image">
         {{ $user->name }}
     </h2>

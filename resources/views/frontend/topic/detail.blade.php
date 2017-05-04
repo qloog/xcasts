@@ -56,7 +56,7 @@
                             <div id="voted_user_list">
                                 @foreach($votedUsers as $user)
                                 <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::check() ? Auth::id() : 0 }}">
-                                    <img class="ui avatar image" src="{{ $user['avatar'] }}" style="width: 40px;height: 40px;"/>
+                                    <img class="ui avatar image" src="{{ cdn($user['avatar']) }}" style="width: 40px;height: 40px;"/>
                                 </a>
                                 @endforeach
                             </div>
@@ -70,7 +70,7 @@
                                 @foreach($replies as $key => $reply)
                                 <div class="comment">
                                     <a class="avatar">
-                                        <img src="{{ $reply->user->avatar }}">
+                                        <img src="{{ cdn($reply->user->avatar) }}">
                                     </a>
                                     <div class="content">
                                         <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key+1}}">{{ $reply->user->name }}</a>
@@ -112,7 +112,7 @@
                     <div class="four wide column">
                         <div class="ui card">
                             <div class="ui large circular image">
-                                <img src="{{ $topic->user->avatar }}">
+                                <img src="{{ cdn($topic->user->avatar) }}">
                             </div>
                             <div class="content">
                                 <div class="header">{{ $topic->user->name }}</div>

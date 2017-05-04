@@ -22,7 +22,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <img class="ui avatar image" src="{{ $topic->user->avatar }}">
+                                <img class="ui avatar image" src="{{ cdn($topic->user->avatar) }}">
                                 <div class="content">
                                     <a class="header" href="{{ route('topic.show', $topic->id) }}">{{ $topic->title }}</a>
                                     <div class="meta" style="margin-top: 5px;">

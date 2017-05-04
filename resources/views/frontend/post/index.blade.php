@@ -5,50 +5,57 @@
 @endsection
 
 @section('content')
-    <div class="ui grid">
-        <div class="row"></div>
-        <div class="row">
-            <div class="thirteen wide column centered">
-                <div class="ui grid">
-                    <div class="sixteen wide column">
-                        <div class="ui large middle aligned divided relaxed list padded segment">
-                            <div class="ui divided items">
-                            @if(count($posts))
-                                @foreach($posts as $post)
-                                <div class="item">
-                                    {{--<div class="image">--}}
-                                        {{--<img src="/images/wireframe/image.png">--}}
-                                    {{--</div>--}}
-                                    <div class="content">
-                                        <a class="header" href="{{ route('blog.show', ['id' => $post->id]) }}">{{ $post->title }}</a>
-                                        <div class="meta">
-                                            <span class="cinema">发布于：{{ $post->created_at }}</span>
-                                        </div>
-                                        <div class="description">
-                                            <p>
-                                                {{ $post->content }}
-                                            </p>
-                                        </div>
-                                        {{--<div class="extra">--}}
-                                            {{--<div class="ui label">IMAX</div>--}}
-                                            {{--<div class="ui label"><i class="globe icon"></i> Additional Languages</div>--}}
-                                            {{--<div class="ui right floated primary button">--}}
-                                                {{--Buy tickets--}}
-                                                {{--<i class="right chevron icon"></i>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    </div>
-                                </div>
-                                @endforeach
-                            @endif
-                            </div>
+    <div class="ui container">
+
+        <div class="ui hidden divider"></div>
+
+        <div class="ui relaxed divided items">
+            <div class="item">
+                <div class="ui medium image">
+                    <img src="http://opd6y74sx.bkt.clouddn.com/uploads/images/2017/05/03/lfkxui1XNB.jpg?e=1493869551&token=qvuNOgNkZMAJXYEPSHBT-6JEigk2AechM_fm57zS:ThGP8kPUR6mQ9e3DA2YTNmuW9E8=">
+                </div>
+                <div class="content">
+                    <a class="header">内容标题</a>
+                    <div class="meta">
+                        <a>日期</a>
+                        <a>分类</a>
+                    </div>
+                    <div class="description">
+                        对内容进行描述的一段文字。
+                    </div>
+                    <div class="extra">
+                        <div class="ui right floated primary button">
+                            正文
+                            <i class="right chevron icon"></i>
                         </div>
-                        {!! $posts->render('partials.semantic-pagination') !!}
+                        <div class="ui label">Limited</div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row"></div>
-    </div>
+            <div class="item">
+                <div class="ui medium image">
+                    <img src="http://opd6y74sx.bkt.clouddn.com/uploads/images/2017/05/03/lfkxui1XNB.jpg?e=1493869551&token=qvuNOgNkZMAJXYEPSHBT-6JEigk2AechM_fm57zS:ThGP8kPUR6mQ9e3DA2YTNmuW9E8=">
+                </div>
+                <div class="content">
+                    <a class="header">内容标题</a>
+                    <div class="meta">
+                        <a>日期</a>
+                        <a>分类</a>
+                    </div>
+                    <div class="description">
+                        对内容进行描述的一段文字。
+                    </div>
+                    <div class="extra">
+                        <div class="ui right floated primary button">
+                            正文
+                            <i class="right chevron icon"></i>
+                        </div>
+                        <div class="ui label">Limited</div>
+                    </div>
+                </div>
+            </div>
 
+            <div class="ui hidden divider"></div>
+        </div>
+    </div>
 @endsection

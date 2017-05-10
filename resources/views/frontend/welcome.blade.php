@@ -14,9 +14,9 @@
 @endsection
 
 @section('get-start')
-	<div class="ui text container">
+	<div class="ui container">
 		<h1 class="ui inverted header">
-			成为一名现代化的Web Develop Engineer
+			成为一名工匠级的现代化<br>Web Develop Engineer
 		</h1>
 		<h2>Just Do it.</h2>
 		@if(Auth::id())

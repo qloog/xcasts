@@ -16,32 +16,19 @@
             <div class="ui card">
                 <div class="content">
                     <div class="header center aligned">按月付</div>
-                    <div class="meta center aligned">free and unlimited</div>
-                    <div class="ui divider horizontal"><h1 class="ui teal header">59</h1></div>
+                    <div class="meta center aligned"></div>
+                    <div class="ui divider horizontal"><h1 class="ui teal header">69</h1></div>
                     <div class="ui list">
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                Do things
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>25.000</b> of stuff
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>30</b> days of history
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>20</b> is just a number
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>15</b> is another number
-                            </div></div>
-                        <div class="item"><i class="icon minus"></i> <div class="content">
-                                <b>Default</b> Server
-                                <br><small>(50 Petaflops/s)</small>
-                            </div></div>
+                        <div class="item"><i class="icon checkmark blue"></i>
+                            <div class="content">
+                                <b>先体验一个月</b>
+                                <br><small></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">Default</button>
+                    <button class="ui button fluid teal">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -50,100 +37,55 @@
                         {{--<i class="icon plus"></i>--}}
                     {{--</a>--}}
                     <div class="header center aligned">按季付</div>
-                    <div class="meta center aligned">prio ressources</div>
-                    <div class="ui divider horizontal"><h1 class="ui teal header">169</h1></div>
+                    <div class="meta center aligned"></div>
+                    <div class="ui divider horizontal"><h1 class="ui teal header">199</h1></div>
                     <div class="ui list">
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                Do <b>all</b> things
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>60.000</b> of stuff
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>120</b> days of history
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>100</b> is just a number
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>60</b> is another number
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>Awesome</b> Server
-                                <br><small>(50 Petaflops/s)</small>
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>Support</b> the development
-                            </div></div>
+                        <div class="item"><i class="icon checkmark blue"></i>
+                            <div class="content">
+                                <b>来一季度试试</b>
+                                <br><small></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">Order now</button>
+                    <button class="ui button fluid teal">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
                 <div class="content">
                     <div class="header center aligned">半年付</div>
-                    <div class="meta center aligned">free and unlimited</div>
-                    <div class="ui divider horizontal"><h1 class="ui teal header">299</h1></div>
+                    <div class="meta center aligned"></div>
+                    <div class="ui divider horizontal"><h1 class="ui teal header">399</h1></div>
                     <div class="ui list">
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                Do things
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>25.000</b> of stuff
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>30</b> days of history
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>20</b> is just a number
-                            </div></div>
-                        <div class="item"><i class="icon checkmark"></i> <div class="content">
-                                <b>15</b> is another number
-                            </div></div>
-                        <div class="item"><i class="icon minus"></i> <div class="content">
-                                <b>Default</b> Server
-                                <br><small>(50 Petaflops/s)</small>
-                            </div></div>
+                        <div class="item"><i class="icon minus"></i>
+                            <div class="content">
+                                <b>半年适合我</b>
+                                <br><small></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">Default</button>
+                    <button class="ui button fluid teal">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
                 <div class="content">
                     <div class="header center aligned">按年付</div>
-                    <div class="meta center aligned">prio ressources</div>
+                    <div class="meta center aligned">学习还是需要投资的</div>
                     <div class="ui divider horizontal"><h1 class="ui teal header">599</h1></div>
                     <div class="ui list">
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                Do <b>all</b> things
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>60.000</b> of stuff
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>120</b> days of history
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>100</b> is just a number
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>60</b> is another number
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>Awesome</b> Server
-                                <br><small>(50 Petaflops/s)</small>
-                            </div></div>
-                        <div class="item"><i class="icon checkmark blue"></i> <div class="content">
-                                <b>Support</b> the development
-                            </div></div>
+                        <div class="item"><i class="icon checkmark blue"></i>
+                            <div class="content">
+                                <b>来上一年</b>
+                                <br><small></small>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">Order now</button>
+                    <button class="ui button fluid teal">现在购买</button>
                 </div>
             </div>
         </div>

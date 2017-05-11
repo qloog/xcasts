@@ -29,21 +29,31 @@
                             <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;观看视频需要登录</h3>
                             <ul class="ui list">
                                 <li><a href="{{ url('/register') }}" class="ui teal button">马上加入 PHPCasts</a></li>
-                                <li style="margin-top:20px"><a href="{{ url('/login') }}">有账号?马上登录</a>
-                                </li>
+                                <li style="margin-top:20px"><a href="{{ url('/login') }}">有账号?马上登录</a></li>
                             </ul>
                         </div>
                     </div>
                 @else
-                    <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
-                           poster="{{ cdn($video->cover_image) }}" data-setup='{}'>
-                        <source src="{{ cdn($video->mp4_url) }}" type='video/mp4'>
-                        <source src="" type="video/flv" data-quality="HD" label="HD" data-default="true">
-                        <p class="vjs-no-js">
-                            To view this video please enable JavaScript, and consider upgrading to a web browser that
-                            <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                        </p>
-                    </video>
+                    @if ($video->is_free == 1)
+                        <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
+                               poster="{{ cdn($video->cover_image) }}" data-setup='{}'>
+                            <source src="{{ cdn($video->mp4_url) }}" type='video/mp4'>
+                            <source src="" type="video/flv" data-quality="HD" label="HD" data-default="true">
+                            <p class="vjs-no-js">
+                                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                            </p>
+                        </video>
+                    @else
+                        <div class="ui centered text">
+                            <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
+                                <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;订阅后可以观看全部视频</h3>
+                                <ul class="ui list">
+                                    <li><a href="{{ url('/vip') }}" class="ui teal button">马上加入 订阅</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                 @endif
                     <div class="ui fluid card" style="margin-top: 0px;">
                         <div class="content">
@@ -100,7 +110,7 @@
                     @foreach($comments as $comment)
                     <div class="comment">
                         <a class="avatar">
-                            <img src="{{ $comment->user->avatar }}">
+                            <img src="{{ cdn($comment->user->avatar) }}">
                         </a>
                         <div class="content">
                             <a class="author">{{ $comment->user->name }}</a>

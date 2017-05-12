@@ -172,7 +172,7 @@ class UserController extends BaseController
 
     public function openVip(Request $request)
     {
-        $this->users->openVip($request->all());
+        $result = $this->users->openVip($request->all());
 
         return redirect()
             ->route('admin.auth.user.index');

@@ -3,7 +3,8 @@
 namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
-use App\Models\Orders;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\Vote;
@@ -209,6 +210,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     /**
      * @param $data
+     * @return bool
      * @throws GeneralException
      */
     public function openVip($data)
@@ -217,9 +219,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             throw new GeneralException('open vip need params error');
         }
 
+        $userId = $this->getUserIdByName($data['name']);
+
         // generate order
-        $order = new Orders();
-        $order->id = date('YmdHis' . rand(10000,99999));
+        $orderId = date('YmdHis' . rand(10000,99999));
+        $order = new Order();
+        $order->id = $orderId;
         $order->order_amount = $data['order_amount'];
         $order->pay_amount = $data['pay_amount'];
         $order->quantity = 1;
@@ -231,7 +236,26 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $order->user_id = $this->getUserIdByName($data['name']);
         $orderRet = $order->save();
 
+        if (!$orderRet) {
+            throw new GeneralException('订单创建失败');
+        }
+
         // write to order_details
-        // $orderDetailModel = new orderDetails();
+        $ret = false;
+        if ($orderId) {
+            $detail = new orderDetail();
+            $detail->order_id = $orderId;
+            $detail->goods_id = 1;
+            $detail->goods_name = '月度会员';
+            $detail->goods_price = $data['pay_amount'];
+            $detail->quantity = 1;
+            $detail->expire_at = time();
+            $detail->user_id = $userId;
+            $ret = $detail->save();
+        }
+
+        if ($ret) {
+            return true;
+        }
     }
 }

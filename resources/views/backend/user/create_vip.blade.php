@@ -3,6 +3,8 @@
 @section('title', '新建用户')
 
 @section('styles')
+    <!-- bootstrap datepicker -->
+    <link rel="stylesheet" href="{{ asset('plugins/datepicker/datepicker3.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugins/select2/select2.min.css') }}">
 @endsection
@@ -54,21 +56,21 @@
                         <div class="col-lg-6">
                             <input type="radio" name="plan_type" value="1" checked="">月付
                             <input type="radio" name="plan_type" value="2">季付
-                            <input type="radio" name="plan_type" value="3" disabled="">半年付
-                            <input type="radio" name="plan_type" value="4" disabled="">年付
+                            <input type="radio" name="plan_type" value="3">半年付
+                            <input type="radio" name="plan_type" value="4">年付
                         </div>
                     </div><!--form control-->
                     <div class="form-group">
                         {!! Form::label('pay_method', '支付方式', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-3">
-                            <input type="radio" name="pay_method" id="wepay" value="wechat" checked="" class="from-control">微信支付
+                            <input type="radio" name="pay_method" id="wepay" value="wechat" checked="checked" class="from-control">微信支付
                             <input type="radio" name="pay_method" id="alipay" value="alipay" class="from-control">支付宝支付
                         </div>
                     </div><!--form control-->
                     <div class="form-group">
                         {!! Form::label('paid_at', '支付时间', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-6">
-                            {!! Form::text('paid_at', null, ['class' => 'form-control', 'placeholder' => '支付时间']) !!}
+                            {!! Form::text('paid_at', null, ['class' => 'form-control', 'placeholder' => '支付时间','id'=>'datepicker']) !!}
                         </div>
                     </div><!--form control-->
                 </div>
@@ -85,12 +87,20 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('plugins/datepicker/bootstrap-datepicker.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugins/select2/select2.full.min.js') }}"></script>
     <script>
         $(function () {
             $(".role-select").select2({
                 placeholder: "请选择至少一个角色"
+            });
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true,
+                format: 'yyyy-mm-dd',
+                language: 'zh-CN'
             });
         });
 

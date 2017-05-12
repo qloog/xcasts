@@ -19,14 +19,11 @@
 			成为一名工匠级的现代化<br>Web Develop Engineer
 		</h1>
 		<h2>Just Do it.</h2>
+		<!-- todo: check is vip-->
 		@if(Auth::id())
-			{{--<div class="ui huge button">--}}
-			{{--<a class="ui disable" href="{{ url('/vip') }}"> 马上观看所有视频 </a><i class="right arrow icon"></i>--}}
-			{{--</div>--}}
+			<a class="ui huge teal button" href="{{ url('/vip') }}">马上观看所有视频<i class="right arrow icon"></i></a>
 		@else
-			<div class="ui huge button">
-				<a class="ui disable" href="{{ url('/register') }}"> 马上加入 </a><i class="right arrow icon"></i>
-			</div>
+			<a class="ui huge teal button" href="{{ url('register') }}">马上加入<i class="right arrow icon"></i></a>
 		@endif
 	</div>
 @endsection

@@ -52,12 +52,14 @@
                     <table id="user-table" class="table table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>id</th>
-                            <th>名称</th>
-                            <th>封面</th>
-                            <th>slug</th>
-                            <th>描述</th>
-                            <th>创建者</th>
+                            <th>订单号</th>
+                            <th>商品信息</th>
+                            <th>支付金额</th>
+                            <th>购买方式</th>
+                            <th>是否支付</th>
+                            <th>支付时间</th>
+                            <th>订单状态</th>
+                            <th>买家uid</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
                             <th>操作</th>
@@ -67,24 +69,21 @@
                         @foreach ($orders as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td><img src="{{ $item->cover_image }}" width="100px"></td>
-                                <td>{{ $item->slug }}</td>
-                                <td>{{ $item->description }}</td>
+                                <td>{{ $item->goodsInfo }}</td>
+                                <td>{{ $item->pay_amount }}</td>
+                                <td>{{ $item->pay_method }}</td>
+                                <td>{{ $item->is_paid }}</td>
+                                <td>{{ $item->paid_at }}</td>
+                                <td>{{ $item->status }}</td>
                                 <td>{{ $item->user_id }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
-                                    <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="{{ route('admin.course.edit', [$item->id]) }}">
-                                            <i class="fa fa-edit text-green"></i>编辑
-                                        </a>
-                                    </div>
-                                    <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="javascript:;">
-                                            <i class="fa fa-link text-orange"></i>添加视频
-                                        </a>
-                                    </div>
+                                    {{--<div class="hidden-sm hidden-xs action-buttons">--}}
+                                        {{--<a href="{{ route('admin.course.edit', [$item->id]) }}">--}}
+                                            {{--<i class="fa fa-edit text-green"></i>编辑--}}
+                                        {{--</a>--}}
+                                    {{--</div>--}}
                                 </td>
                             </tr>
                         @endforeach

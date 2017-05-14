@@ -241,6 +241,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
 
         // write to order_details
+        // todo: drop order_details and add vips(order_id, user_id, type, expire_at)
         $ret = false;
         if ($orderId) {
             $detail = new orderDetail();

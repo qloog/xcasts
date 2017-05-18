@@ -259,4 +259,14 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             return true;
         }
     }
+
+    public function isVip()
+    {
+        $detail = OrderDetail::where('user_id', Auth::id())->first();
+        if ($detail) {
+            return strtotime($detail->expired_at) > time() ? true:  false;
+        }
+
+        return false;
+    }
 }

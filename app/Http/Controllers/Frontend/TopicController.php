@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Contracts\Repositories\ReplyRepository;
 use App\Contracts\Repositories\TopicRepository;
 use App\Contracts\Repositories\VoteRepository;
+use App\Models\Category;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
@@ -55,7 +56,10 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('frontend.topic.create');
+        //todo move serice or repository
+        $categories = Category::all();
+
+        return view('frontend.topic.create', compact('categories'));
     }
 
     /**

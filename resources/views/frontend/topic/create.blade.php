@@ -30,11 +30,9 @@
                                     <label>分类</label>
                                     <select name="category" class="ui fluid search dropdown">
                                         <option value="">请选择</option>
-                                        <option value="1">后端</option>
-                                        <option value="2">前端</option>
-                                        <option value="3">服务</option>
-                                        <option value="4">工具</option>
-                                        <option value="5">测试</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="field">

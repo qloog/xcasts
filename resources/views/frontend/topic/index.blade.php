@@ -27,7 +27,7 @@
                                     <a class="header" href="{{ route('topic.show', $topic->id) }}">{{ $topic->title }}</a>
                                     <div class="meta" style="margin-top: 5px;">
                                         <span style="font-size: 12px; color: #ccc">
-                                            <a class="item"><div class="ui horizontal label">PHP</div></a>
+                                            <a class="item"><div class="ui horizontal label">{{ $topic->category->name }}</div></a>
                                             ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a>
                                             ⋅ 于 {{ $topic->created_at->diffForHumans() }}
                                             ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->name }}</a> 于 {{ $topic->updated_at->diffForHumans() }}

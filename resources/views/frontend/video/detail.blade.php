@@ -86,6 +86,7 @@
                             </div>
                         </div>
                     </div>
+                <!--todo: add share function-->
             </div>
             <div class="one wide column"></div>
         </div>

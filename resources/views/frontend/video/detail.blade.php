@@ -5,6 +5,7 @@
 @endsection
 
 @section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">
         /* Hidden by default, selectively shown.
@@ -80,13 +81,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="description">
-                            </div>
-                            <div class="extra content">
-                            </div>
+                            <div class="description"></div>
+                            <div class="extra content"></div>
+                            <!--social share bar-->
+                            <div class="social-share"></div>
                         </div>
                     </div>
-                <!--todo: add share function-->
             </div>
             <div class="one wide column"></div>
         </div>
@@ -141,6 +141,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
     <script type="text/javascript">
         var video = videojs("phpcasts-video", {
             "fluid":!0,

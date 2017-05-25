@@ -12,11 +12,9 @@
 @stop
 
 @section('content')
-    <div class="ui grid">
-        <div class="row"></div>
-        <div class="row">
-            <div class="thirteen wide column centered">
-                <div class="ui grid">
+    <div class="ui container">
+        <div class="ui hidden divider"></div>
+        <div class="ui grid">
                     <div class="twelve wide column">
                         <!-- detail -->
                         <div class="ui secondary segment">
@@ -145,9 +143,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row"></div>
+        <div class="ui hidden divider"></div>
     </div>
 
     <div class="ui standard test modal" id="user_qrcode_modal">

@@ -5,11 +5,9 @@
 @endsection
 
 @section('content')
-  <div class="ui grid">
-    <div class="row"></div>
-    <div class="row">
-      <div class="thirteen wide column centered">
-        <div class="ui grid">
+  <div class="ui container">
+    <div class="ui hidden divider"></div>
+    <div class="ui grid">
           <div class="sixteen wide column">
             <div class="ui large middle aligned divided relaxed list padded segment">
               <div class="ui divided items">
@@ -32,9 +30,7 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row"></div>
+    <div class="ui hidden divider"></div>
   </div>
 
 @endsection

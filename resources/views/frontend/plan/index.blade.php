@@ -5,12 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="ui grid">
-        <div class="row"></div>
-        <div class="row"></div>
-    </div>
 
     <div class="ui container">
+        <div class="ui hidden divider"></div>
+        <div class="ui hidden divider"></div>
+
         <div class="ui header center aligned">订阅，观看更多视频</div>
         <div class="ui cards four">
             <div class="ui card">

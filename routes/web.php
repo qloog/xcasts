@@ -20,6 +20,8 @@ Route::group(['namespace' => 'Frontend'], function ()
     // about login and logout
     Route::auth();
     Route::get('logout', 'Auth\LoginController@logout');
+    // vip
+    Route::get('vip', 'PlanController@index')->name('vip');
 
     // need to auth controller
     Route::group(['middleware' => 'auth'], function ()
@@ -37,8 +39,6 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::post('comment', 'CommentController@store')->name('comment.store');
         Route::post('comment/{id}/vote', 'CommentController@vote')->name('comment.vote');
 
-        // vip
-        Route::get('vip', 'PlanController@index')->name('vip');
         Route::get('payment/pay', 'PaymentController@pay')->name('payment.pay');
         Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
         Route::get('payment/return', 'PaymentController@return')->name('payment.return');

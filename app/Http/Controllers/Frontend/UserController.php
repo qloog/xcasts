@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\UserRepository;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Services\UploadsManager;
 use Ender\UEditor\Uploader\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Redirect;
+use Illuminate\Support\Facades\Redirect;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
@@ -105,6 +107,25 @@ class UserController extends Controller
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
 
+    }
+
+    public function editPassword($id)
+    {
+        $user = $this->userRepo->find($id);
+        $this->authorize('update', $user);
+
+        return view('frontend.user.edit_password', compact('user'));
+    }
+
+    public function updatePassword($id, ResetPasswordRequest $request)
+    {
+        $user = $this->userRepo->find($id);
+        $this->authorize('update', $user);
+
+        if ($this->userRepo->update(['password' => bcrypt($request->password)], $id, false)) {
+            //Flash::success(lang('Operation succeeded.'));
+             return redirect(route('frontend.user.edit_password', $id));
+        }
     }
 
     /**

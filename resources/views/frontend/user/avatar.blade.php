@@ -23,7 +23,7 @@
                         <div class="ui large middle aligned divided relaxed list padded segment">
                             <h2 class="ui header">修改头像</h2>
                             <div class="ui divider"></div>
-                            <form class="ui form" method="post" action="{{ route('user.avatar.update', Auth()->id()) }}" enctype="multipart/form-data" accept-charset="utf-8">
+                            <form class="ui form" method="post" action="{{ route('user.update_avatar', Auth()->id()) }}" enctype="multipart/form-data" accept-charset="utf-8">
                                 <input type="hidden" name="_method" value="PUT">
                                 {!! csrf_field() !!}
                                 <div class="field">

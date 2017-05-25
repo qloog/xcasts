@@ -17,7 +17,7 @@
                     <h2 class="ui header"><i class="ui lock"></i>修改密码</h2>
                     <div class="ui divider"></div>
                     <form class="ui form" method="POST" action="{{ route('user.update_password', Auth()->id()) }}">
-                        <input type="hidden" name="_method" value="PATCH">
+                        <input type="hidden" name="_method" value="PUT">
                         {!! csrf_field() !!}
                         <div class="field">
                             <label for="email">邮箱</label>

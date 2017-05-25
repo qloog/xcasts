@@ -12,17 +12,15 @@
 @stop
 
 @section('content')
-    <div class="ui grid">
-        <div class="row"></div>
-        <div class="row">
-            <div class="thirteen wide column centered">
-                <div class="ui grid">
+    <div class="ui container">
+        <div class="ui hidden divider"></div>
+        <div class="ui grid">
                     <div class="four wide column">
                         @include('frontend.user.setting_nav')
                     </div>
                     <div class="twelve wide column">
                         <!-- detail -->
-                        <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
+                        <div class="ui large middle aligned divided relaxed list padded segment">
                             <h2 class="ui header">修改头像</h2>
                             <div class="ui divider"></div>
                             <form class="ui form" method="post" action="{{ route('user.avatar.update', Auth()->id()) }}" enctype="multipart/form-data" accept-charset="utf-8">
@@ -38,9 +36,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row"></div>
+        <div class="ui hidden divider"></div>
     </div>
 
 @endsection

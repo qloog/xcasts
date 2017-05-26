@@ -7,17 +7,6 @@
         <div class="row">
             <div class="five wide column"></div>
             <div class="six wide column">
-                @if (count($errors) > 0)
-                    <div class="ui error message container">
-                        <i class="close icon"></i>
-                        <ul class="list">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
-
                 <form class="ui form ten columns segment " method="POST" action="{{ url('/register') }}">
                     {{ csrf_field() }}
 

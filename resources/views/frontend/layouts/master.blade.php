@@ -137,6 +137,18 @@
         @yield('get-start')
     </div>
 
+    @if (count($errors) > 0)
+        <div class="ui container error message">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @include('flash::message')
+
     @yield('content')
 
     <!-- Footer -->

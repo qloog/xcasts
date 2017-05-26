@@ -31,11 +31,11 @@ Route::group(['namespace' => 'Frontend'], function ()
         // user
         Route::get('user/{id}/edit_avatar', 'UserController@editAvatar')->name('user.edit_avatar');
         Route::put('user/{id}/update_avatar', 'UserController@updateAvatar')->name('user.update_avatar');
-        Route::get('/users/{id}/edit_password', 'UserController@editPassword')->name('user.edit_password');
-        Route::put('/users/{id}/update_password', 'UserController@updatePassword')->name('user.update_password');
+        Route::get('user/{id}/edit_password', 'UserController@editPassword')->name('user.edit_password');
+        Route::put('user/{id}/update_password', 'UserController@updatePassword')->name('user.update_password');
         Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
         Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
-        Route::get('/notifications', 'NotificationsController@index')->name('notifications.index');
+        Route::get('notifications', 'NotificationsController@index')->name('notifications.index');
 
         // comment
         Route::post('comment', 'CommentController@store')->name('comment.store');

@@ -117,14 +117,18 @@ class UserController extends Controller
         return view('frontend.user.edit_password', compact('user'));
     }
 
-    public function updatePassword(ResetPasswordRequest $request, $id)
+    public function updatePassword(Request $request, $id)
     {
+        $this->validate($request, [
+            'password' => 'required|confirmed|min:6',
+        ]);
+
         $user = $this->userRepo->find($id);
         $this->authorize('update', $user);
 
         if ($this->userRepo->update(['password' => bcrypt($request->password)], $id, false)) {
-             // Flash::success(lang('Operation succeeded.'));
-             return redirect(route('frontend.user.edit_password', $id));
+             Flash::success('修改成功');
+             return redirect(route('user.edit_password', $id));
         }
     }
 

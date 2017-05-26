@@ -25,11 +25,11 @@
                         </div>
                         <div class="field">
                             <label>密码</label>
-                            <input type="password" name="password" value="">
+                            <input type="password" name="password" value="" required>
                         </div>
                         <div class="field">
                             <label>确认密码</label>
-                            <input type="password" name="password_confirmation" value="">
+                            <input type="password" name="password_confirmation" value="" required>
                         </div>
                         <button class="ui teal center aligned button" type="submit">保存修改</button>
                     </form>

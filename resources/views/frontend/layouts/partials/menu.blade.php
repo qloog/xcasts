@@ -4,16 +4,16 @@
         <a class="item" href="/">
             <i class="home icon"></i> 首页
         </a>
-        <a class="item" href="{{ route('course.index') }}">
+        <a class="item @if(Request::is('course*')) active @endif" href="{{ route('course.index') }}">
             <i class="student icon"></i> 课程
         </a>
-        <a class="item" href="{{ route('topic.index') }}">
+        <a class="item @if(Request::is('topic*')) active @endif" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区
         </a>
-        <a class="item" href="{{ route('blog.index') }}">
+        <a class="item @if(Request::is('blog*')) active @endif" href="{{ route('blog.index') }}">
         <i class="content icon"></i> 博客
         </a>
-        <a class="item" href="{{ route('vip') }}">
+        <a class="item @if(Request::is('vip')) active @endif" href="{{ route('vip') }}">
             <i class="unhide icon"></i> 订阅
         </a>
         {{--<a class="item">--}}

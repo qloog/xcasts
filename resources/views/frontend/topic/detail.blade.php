@@ -15,134 +15,134 @@
     <div class="ui container">
         <div class="ui hidden divider"></div>
         <div class="ui grid">
-                    <div class="twelve wide column">
-                        <!-- detail -->
-                        <div class="ui secondary segment">
-                            <h2>{{ $topic->title }}</h2>
-                            <p><a href="#"> 分类</a>
-                                ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a>
-                                ⋅ 于 {{ $topic->created_at->diffForHumans() }}
-                                ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->name }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
-                                ⋅ {{ $topic->view_count }} 阅读
-                            </p>
-                        </div>
-                        <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
-                            <div class="markdown-body">
-                                {!! $topic->body !!}
-                            </div>
-                        </div>
-
-                        <!-- votes -->
-                        <div class="ui large center aligned divided relaxed list padded segment">
-                            <div class="ui buttons">
-                                <button class="ui teal button" data-inverted=""
-                                        data-tooltip="点赞相当于收藏，可以在个人页面的「赞过的话题」导航里查看"
-                                        data-position="top center" id="up_vote">
-                                    <i class="thumbs up white icon"></i>点赞
-                                </button>
-                                {{--<div class="or"></div>--}}
-                                {{--<button class="ui yellow button" data-inverted=""--}}
-                                        {{--data-tooltip="如果觉得我的文章对您有用，请随意打赏。你的支持将鼓励我继续创作！可以修改个人资料「支付二维码」开启打赏功能。"--}}
-                                        {{--data-position="top center"--}}
-                                        {{--id="reward"--}}
-                                {{-->--}}
-                                    {{--<i class="heart white icon"></i>打赏--}}
-                                {{--</button>--}}
-                            </div>
-
-                            <p></p>
-                            <div id="voted_user_list">
-                                @foreach($votedUsers as $user)
-                                <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::check() ? Auth::id() : 0 }}">
-                                    <img class="ui avatar image" src="{{ cdn($user['avatar']) }}" style="width: 40px;height: 40px;"/>
-                                </a>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <!-- comments -->
-                        <div class="ui large middle aligned divided relaxed list padded segment">
-                            <h3 class="ui dividing header">回复数量: {{ $topic->reply_count }}</h3>
-
-                            <div class="ui comments">
-                                @foreach($replies as $key => $reply)
-                                <div class="comment">
-                                    <a class="avatar">
-                                        <img src="{{ cdn($reply->user->avatar) }}">
-                                    </a>
-                                    <div class="content">
-                                        <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key+1}}">{{ $reply->user->name }}</a>
-                                        <div class="metadata">
-                                            <div class="date">
-                                                <a href="{{ route('topic.show', $topic->id) }}#reply{{ $reply->id }}" id="reply{{ $reply->id }}"> #{{ $key + 1 }}</a>
-                                            </div>
-                                            <div class="date">
-                                                {{ $reply->created_at->diffForHumans() }}
-                                            </div>
-                                        </div>
-                                        <div class="text markdown-body">
-                                            {!! $reply->body !!}
-                                        </div>
-                                        <div class="actions">
-                                            <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $reply->id }})">
-                                                <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>)
-                                            </a>
-                                            <a class="reply" href="javascript:void(0)" onclick="reply('{{ $reply->user->name }}')"><i class="reply icon"></i>回复</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
-                        <div class="ui large middle aligned divided relaxed list">
-                            <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
-                                {!! csrf_field() !!}
-                                <input type="hidden" name="topic_id" value="{{ $topic->id }}">
-                                <div class="@if(!Auth::check()) disabled field @endif">
-                                    <textarea name="body" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
-                                </div>
-                                <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
-                                    <i class="icon edit"></i> 回复
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="four wide column">
-                        <div class="ui card">
-                            <div class="ui large circular image">
-                                <img src="{{ cdn($topic->user->avatar) }}">
-                            </div>
-                            <div class="content">
-                                <div class="header">{{ $topic->user->name }}</div>
-                                <div class="meta">
-                                    <a class="group">{{ $topic->user->introduction }}</a>
-                                </div>
-                            </div>
-                            <div class="extra content">
-                                <a class="right floated created">
-                                    {{ $topic->user->created_at->diffForHumans() }}加入
-                                </a>
-                                <a class="friends">
-                                    <i class="user icon"></i>
-                                    {{ $topic->user->follower_count }} 粉丝
-                                </a>
-                            </div>
-                            @if(Auth::check())
-                                @if($topic->user->isFollowedBy(Auth::id()))
-                                    <div class="ui bottom attached button" id="follow_user">
-                                        <i class="minus icon"></i>
-                                        取消关注
-                                    </div>
-                                @else
-                                    <div class="ui bottom attached orange button" id="follow_user">
-                                        <i class="add icon"></i>
-                                        关注
-                                    </div>
-                                @endif
-                            @endif
-                        </div>
+            <div class="twelve wide column">
+                <!-- detail -->
+                <div class="ui secondary segment">
+                    <h2>{{ $topic->title }}</h2>
+                    <p><a href="#"> 分类</a>
+                        ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a>
+                        ⋅ 于 {{ $topic->created_at->diffForHumans() }}
+                        ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->name }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
+                        ⋅ {{ $topic->view_count }} 阅读
+                    </p>
+                </div>
+                <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
+                    <div class="markdown-body">
+                        {!! $topic->body !!}
                     </div>
                 </div>
+
+                <!-- votes -->
+                <div class="ui large center aligned divided relaxed list padded segment">
+                    <div class="ui buttons">
+                        <button class="ui teal button" data-inverted=""
+                                data-tooltip="点赞相当于收藏，可以在个人页面的「赞过的话题」导航里查看"
+                                data-position="top center" id="up_vote">
+                            <i class="thumbs up white icon"></i>点赞
+                        </button>
+                        {{--<div class="or"></div>--}}
+                        {{--<button class="ui yellow button" data-inverted=""--}}
+                                {{--data-tooltip="如果觉得我的文章对您有用，请随意打赏。你的支持将鼓励我继续创作！可以修改个人资料「支付二维码」开启打赏功能。"--}}
+                                {{--data-position="top center"--}}
+                                {{--id="reward"--}}
+                        {{-->--}}
+                            {{--<i class="heart white icon"></i>打赏--}}
+                        {{--</button>--}}
+                    </div>
+
+                    <p></p>
+                    <div id="voted_user_list">
+                        @foreach($votedUsers as $user)
+                        <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::check() ? Auth::id() : 0 }}">
+                            <img class="ui avatar image" src="{{ cdn($user['avatar']) }}" style="width: 40px;height: 40px;"/>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- comments -->
+                <div class="ui large middle aligned divided relaxed list padded segment">
+                    <h3 class="ui dividing header">回复数量: {{ $topic->reply_count }}</h3>
+
+                    <div class="ui comments">
+                        @foreach($replies as $key => $reply)
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="{{ cdn($reply->user->avatar) }}">
+                            </a>
+                            <div class="content">
+                                <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key+1}}">{{ $reply->user->name }}</a>
+                                <div class="metadata">
+                                    <div class="date">
+                                        <a href="{{ route('topic.show', $topic->id) }}#reply{{ $reply->id }}" id="reply{{ $reply->id }}"> #{{ $key + 1 }}</a>
+                                    </div>
+                                    <div class="date">
+                                        {{ $reply->created_at->diffForHumans() }}
+                                    </div>
+                                </div>
+                                <div class="text markdown-body">
+                                    {!! $reply->body !!}
+                                </div>
+                                <div class="actions">
+                                    <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $reply->id }})">
+                                        <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>)
+                                    </a>
+                                    <a class="reply" href="javascript:void(0)" onclick="reply('{{ $reply->user->name }}')"><i class="reply icon"></i>回复</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                <div class="ui large middle aligned divided relaxed list">
+                    <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
+                        {!! csrf_field() !!}
+                        <input type="hidden" name="topic_id" value="{{ $topic->id }}">
+                        <div class="@if(!Auth::check()) disabled field @endif">
+                            <textarea name="body" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
+                        </div>
+                        <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
+                            <i class="icon edit"></i> 回复
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="four wide column">
+                <div class="ui card">
+                    <div class="ui large circular image">
+                        <img src="{{ cdn($topic->user->avatar) }}">
+                    </div>
+                    <div class="content">
+                        <div class="header">{{ $topic->user->name }}</div>
+                        <div class="meta">
+                            <a class="group">{{ $topic->user->introduction }}</a>
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        <a class="right floated created">
+                            {{ $topic->user->created_at->diffForHumans() }}加入
+                        </a>
+                        <a class="friends">
+                            <i class="user icon"></i>
+                            {{ $topic->user->follower_count }} 粉丝
+                        </a>
+                    </div>
+                    @if(Auth::check())
+                        @if($topic->user->isFollowedBy(Auth::id()))
+                            <div class="ui bottom attached button" id="follow_user">
+                                <i class="minus icon"></i>
+                                取消关注
+                            </div>
+                        @else
+                            <div class="ui bottom attached orange button" id="follow_user">
+                                <i class="add icon"></i>
+                                关注
+                            </div>
+                        @endif
+                    @endif
+                </div>
+            </div>
+        </div>
         <div class="ui hidden divider"></div>
     </div>
 

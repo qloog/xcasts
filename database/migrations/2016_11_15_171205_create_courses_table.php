@@ -35,5 +35,4 @@ class CreateSeriesTable extends Migration
 	{
 		Schema::drop('courses');
 	}
-
 }

@@ -175,7 +175,7 @@
 
 @section('scripts')
     <script type="text/javascript">
-
+        // 回复用户
         function reply(username) {
             var replyContent = $('#reply_content');
             var oldContent = replyContent.val();
@@ -193,6 +193,7 @@
             replyContent.val(newContent);
         }
 
+        // 回复投票
         function reply_vote(reply_id) {
             console.log(reply_id);
             $.ajax({
@@ -223,7 +224,7 @@
                 .modal('show');
             });
 
-
+            // 关注用户
             $('#follow_user').click(function () {
                 $.ajax({
                     type: 'POST',

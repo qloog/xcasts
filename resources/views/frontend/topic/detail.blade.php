@@ -239,6 +239,7 @@
                 });
             });
 
+            // 点赞
             $('#up_vote').click(function () {
                 $.ajax({
                     type: 'POST',

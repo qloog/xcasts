@@ -104,8 +104,8 @@ class UserController extends Controller
         if ($this->userRepo->update(['avatar' => $imageInfo['image_path']], $id, false)) {
             return redirect()->route('user.avatar.edit', $id);
         }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
 
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     public function editPassword($id)
@@ -144,6 +144,7 @@ class UserController extends Controller
         if ($this->userRepo->update($request->except(['name','email']), $id, false)) {
             return redirect()->route('user.edit', $id);
         }
+
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 

@@ -79,6 +79,7 @@ class TopicController extends Controller
         if ($this->topicRepo->create($request->all())) {
             return redirect()->route('topic.index');
         }
+
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 

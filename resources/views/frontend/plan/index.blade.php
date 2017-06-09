@@ -29,7 +29,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="69" data-title="按月付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -52,7 +52,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="199" data-title="按季付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -72,7 +72,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="399" data-title="半年付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -92,7 +92,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="599" data-title="按年付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
                 </div>
             </div>
         </div>
@@ -102,4 +102,54 @@
         <div class="row"></div>
         <div class="row"></div>
     </div>
+
+    <div class="ui modal">
+        <i class="close icon"></i>
+        <div class="header">
+            微信扫码支付
+        </div>
+        <div class="image content">
+            <div class="ui medium image">
+                <img id="qr_url" src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">
+            </div>
+            <div class="description">
+                <div class="ui header" id="title">按月购买</div>
+                <p><h1 class="ui teal header" id="price">￥69</h1></p>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="ui black deny button">
+                再想想
+            </div>
+            <div class="ui positive right labeled icon button">
+                购买完毕
+                <i class="checkmark icon"></i>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){ //scroll to top
+            $('.buy_action').click(function () {
+                var title = $(this).attr('data-title');
+                console.log(title);
+                var price = $(this).attr('data-price');
+                var qr_url = $(this).attr('data-qr-url');
+                $('#title').text(title);
+                $('#price').text(price);
+                $('#qr_url').attr('src', qr_url);
+
+                $('.ui.modal')
+                    .modal({
+                        blurring: true
+                    })
+                    .modal('show')
+                ;
+            });
+
+        });
+
+    </script>
 @endsection

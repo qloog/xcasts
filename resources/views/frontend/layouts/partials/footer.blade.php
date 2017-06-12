@@ -32,7 +32,7 @@
             </div>
             <div class="two wide column">
                 <h4 class="ui inverted small header">服务提供商</h4>
-                <img class="ui image" src="https://oj1ylm48b.qnssl.com/qiniu-white-195x105.png?e=1488901273&token=qvuNOgNkZMAJXYEPSHBT-6JEigk2AechM_fm57zS:YpYLdIknyqaL75clcpzgD5R9LWU">
+                <img class="ui image" src="{{ cdn('/qiniu-white-195x105.png') }}">
             </div>
         </div>
 

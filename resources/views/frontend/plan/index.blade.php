@@ -29,7 +29,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal buy_action" data-price="69" data-title="按月付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="69" data-title="按月付" data-qr-url="{{ cdn('/images/month.jpeg') }}">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -52,7 +52,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal buy_action" data-price="199" data-title="按季付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="199" data-title="按季付" data-qr-url="{{ cdn('/images/quarter.jpeg') }}">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -72,7 +72,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal buy_action" data-price="399" data-title="半年付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="399" data-title="半年付" data-qr-url="{{ cdn('/images/half-year.jpeg') }}">现在购买</button>
                 </div>
             </div>
             <div class="ui card">
@@ -92,7 +92,7 @@
                     {{--</div>--}}
                 </div>
                 <div class="extra content">
-                    <button class="ui button fluid teal buy_action" data-price="599" data-title="按年付" data-qr-url="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1062989499,1682648318&fm=58">现在购买</button>
+                    <button class="ui button fluid teal buy_action" data-price="599" data-title="按年付" data-qr-url="{{ cdn('/images/year.jpeg') }}">现在购买</button>
                 </div>
             </div>
         </div>
@@ -115,6 +115,20 @@
             <div class="description">
                 <div class="ui header" id="title">按月购买</div>
                 <p><h1 class="ui teal header" id="price">￥69</h1></p>
+                <p>
+                <div class="ui warning message">
+                    <i class="close icon"></i>
+                    <div class="header">
+                        购买时请添加留言，如下：
+                    </div>
+                    <ul class="list">
+                        <li>如是月付，请填写： 月付-用户id</li>
+                        <li>如是季付，请填写： 季付-用户id</li>
+                        <li>如是半年付，请填写： 半年付-用户id</li>
+                        <li>如是年付，请填写： 年付-用户id</li>
+                    </ul>
+                </div>
+                </p>
             </div>
         </div>
         <div class="actions">

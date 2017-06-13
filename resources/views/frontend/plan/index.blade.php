@@ -115,20 +115,25 @@
             <div class="description">
                 <div class="ui header" id="title">按月购买</div>
                 <p><h1 class="ui teal header" id="price">￥69</h1></p>
-                <p>
+                @if(Auth::id())
                 <div class="ui warning message">
                     <i class="close icon"></i>
                     <div class="header">
-                        购买时请添加留言，如下：
+                        购买时请同时添加留言,格式为 {金额}-{你的用户id},具体如下:
                     </div>
                     <ul class="list">
-                        <li>如是月付，请填写： 月付-用户id</li>
-                        <li>如是季付，请填写： 季付-用户id</li>
-                        <li>如是半年付，请填写： 半年付-用户id</li>
-                        <li>如是年付，请填写： 年付-用户id</li>
+                        <li>如是月付，请填写： 69-{{ Auth::id() }}</li>
+                        <li>如是季付，请填写： 199-{{ Auth::id() }}</li>
+                        <li>如是半年付，请填写： 399-{{ Auth::id() }}</li>
+                        <li>如是年付，请填写： 599-{{ Auth::id() }}</li>
                     </ul>
                 </div>
-                </p>
+                @endif
+                <div class="ui success message">
+                    <div class="header">
+                        PS: 因微信、支付宝不支持对个人开放支付权限,所以目前只支持微信转账支付,收到提醒后会在10分钟内开通相应的vip权限。
+                    </div>
+                </div>
             </div>
         </div>
         <div class="actions">
@@ -145,6 +150,12 @@
 
 @section('scripts')
     <script type="text/javascript">
+        // check if user is logined
+        var user_id = {{ Auth::id() }};
+        if (user_id == 1) {
+            // swal 提示
+        }
+
         $(document).ready(function(){ //scroll to top
             $('.buy_action').click(function () {
                 var title = $(this).attr('data-title');

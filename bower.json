@@ -20,6 +20,7 @@
     "semantic": "^2.2.6",
     "video.js": "^5.13.1",
     "simplemde": "^1.11.2",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "sweetalert": "^1.1.3"
   }
 }

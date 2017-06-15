@@ -53,12 +53,17 @@ elixir(function(mix) {
     // bootstrap-fileinput
     mix.copy('resources/assets/bower/bootstrap-fileinput','public/plugins/bootstrap-fileinput');
 
+    // sweet-alert
+    mix.copy('resources/assets/bower/sweetalert/dist/sweetalert.css','resources/assets/frontend/css');
+    mix.copy('resources/assets/bower/sweetalert/dist/sweetalert.min.js','resources/assets/frontend/js');
+
     // 合并前端的CSS样式文件
     mix.styles([
             'css/semantic.min.css',
             'css/simplemde.min.css',
             'css/video-js.min.css',
-            'css/font-awesome.min.css'
+            'css/font-awesome.min.css',
+            'css/sweetalert.css'
         ],
         'public/assets/css/app.min.css',
         'resources/assets/frontend/'
@@ -84,7 +89,8 @@ elixir(function(mix) {
             'js/jquery.min.js',
             'js/semantic.min.js',
             'js/simplemde.min.js',
-            'js/video.min.js'
+            'js/video.min.js',
+            'js/sweetalert.min.js'
         ],
         'public/assets/js/app.min.js',
         'resources/assets/frontend'

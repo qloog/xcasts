@@ -150,14 +150,28 @@
 
 @section('scripts')
     <script type="text/javascript">
-        // check if user is logined
-        var user_id = {{ Auth::id() }};
-        if (user_id == 1) {
-            // swal 提示
-        }
-
         $(document).ready(function(){ //scroll to top
             $('.buy_action').click(function () {
+                // check if user is logined
+                var user_id = '{{ Auth::id() }}';
+                if (!user_id) {
+                    // swal 提示
+                    swal({
+                        title: "请确认登录",
+                        //text: "You will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "取消",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "去登录",
+                        closeOnConfirm: false
+                    },
+                    function(){
+                        window.location.href = '{{ route('login') }}';
+                    });
+
+                    return false;
+                }
                 var title = $(this).attr('data-title');
                 console.log(title);
                 var price = $(this).attr('data-price');

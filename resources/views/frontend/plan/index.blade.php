@@ -187,8 +187,6 @@
                     .modal('show')
                 ;
             });
-
         });
-
     </script>
 @endsection

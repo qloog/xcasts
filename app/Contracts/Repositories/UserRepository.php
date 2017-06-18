@@ -26,5 +26,9 @@ interface UserRepository extends RepositoryInterface
 
     public function openVip($data);
 
+    public function vipDetail($userId);
+
+    public function isVip($userId);
+
 
 }

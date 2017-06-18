@@ -66,6 +66,8 @@
                             <th>{{ trans('crud.users.id') }}</th>
                             <th>{{ trans('crud.users.name') }}</th>
                             <th>{{ trans('crud.users.roles') }}</th>
+                            <th>是否会员</th>
+                            <th>会员等级</th>
                             <th>{{ trans('crud.users.email') }}</th>
                             <th>{{ trans('crud.users.created') }}</th>
                             <th>{{ trans('crud.users.updated') }}</th>
@@ -87,6 +89,13 @@
                                         --
                                     @endif
                                 </td>
+                                <td>@if ($user->is_vip == 1)
+                                        <small class="label label-success">是</small>
+                                    @else
+                                        <small class="label label-danger">否</small>
+                                    @endif
+                                    (过期时间:{{ $user->expired_at }})</td>
+                                <td>{{ $user->vip_level }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>

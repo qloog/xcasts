@@ -250,7 +250,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             $detail->goods_name = '月度会员';
             $detail->goods_price = $data['pay_amount'];
             $detail->quantity = 1;
-            $detail->expire_at = time();
+            $detail->expired_at = time();   // todo: 通过计算获得
             $detail->user_id = $userId;
             $ret = $detail->save();
         }
@@ -260,9 +260,14 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
     }
 
-    public function isVip()
+    public function vipDetail($userId)
     {
-        $detail = OrderDetail::where('user_id', Auth::id())->first();
+        return OrderDetail::where('user_id', $userId)->first();
+    }
+
+    public function isVip($userId)
+    {
+        $detail = OrderDetail::where('user_id', $userId)->first();
         if ($detail) {
             return strtotime($detail->expired_at) > time() ? true:  false;
         }

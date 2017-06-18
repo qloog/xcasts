@@ -20,7 +20,7 @@ class CreateOrderDetailsTable extends Migration
             $table->string('goods_name')->default('')->comment('商品名称');
             $table->decimal('goods_price')->unsigned()->default(0.00)->comment('商品价格');
             $table->integer('quantity')->default(0)->comment('购买总数');
-            $table->timestamp('expire_at')->default('0')->comment('plan过期时间');
+            $table->timestamp('expired_at')->default('0')->comment('plan过期时间');
             $table->tinyInteger('user_id')->unsigned()->default(0)->comment('买家uid');
             $table->softDeletes();
             $table->timestamps();

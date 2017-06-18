@@ -51,6 +51,16 @@ class UserController extends BaseController
     {
         $users = $this->users->orderBy('id', 'desc')->paginate(10);
 
+        if($users) {
+            // todo: move to model or how to use isVip of Repository
+            foreach ($users as &$user) {
+                $orderDetail = $this->users->vipDetail($user->id);
+                $user['is_vip'] = $orderDetail ? 1 : 0;
+                $user['expired_at'] = $orderDetail ? $orderDetail['expired_at'] : '--';
+                $user['vip_level'] = $orderDetail ? $orderDetail['goods_name'] : '--';
+            }
+        }
+
         return view('backend.user.index', ['users' => $users]);
     }
 

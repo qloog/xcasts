@@ -94,7 +94,7 @@
                                     @else
                                         <small class="label label-danger">否</small>
                                     @endif
-                                    (过期时间:{{ $user->expired_at }})</td>
+                                    [过期时间:{{ $user->expired_at }}]</td>
                                 <td>{{ $user->vip_level }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>

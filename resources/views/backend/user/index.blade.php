@@ -65,12 +65,14 @@
                         <tr>
                             <th>{{ trans('crud.users.id') }}</th>
                             <th>{{ trans('crud.users.name') }}</th>
-                            <th>{{ trans('crud.users.roles') }}</th>
                             <th>是否会员</th>
                             <th>会员等级</th>
+                            <th>过期时间</th>
                             <th>{{ trans('crud.users.email') }}</th>
                             <th>{{ trans('crud.users.created') }}</th>
                             <th>{{ trans('crud.users.updated') }}</th>
+                            <th>最后登录时间</th>
+                            <th>最后登录IP</th>
                             <th>状态</th>
                             <th>{{ trans('crud.actions') }}</th>
                         </tr>
@@ -80,25 +82,19 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>
-                                    @if ($user->roles()->count() > 0)
-                                        @foreach ($user->roles as $role)
-                                            <span class="badge bg-yellow">{!! $role->name !!}</span>
-                                        @endforeach
-                                    @else
-                                        --
-                                    @endif
-                                </td>
                                 <td>@if ($user->is_vip == 1)
                                         <small class="label label-success">是</small>
                                     @else
                                         <small class="label label-danger">否</small>
                                     @endif
-                                    [过期时间:{{ $user->expired_at }}]</td>
+                                </td>
+                                <td>{{ $user->expired_at }}</td>
                                 <td>{{ $user->vip_level }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>
+                                <td>{{ $user->last_login_time }}</td>
+                                <td>{{ $user->last_login_ip }}</td>
                                 <td>
                                     @if ($user->status == '正常')
                                         <small class="label label-success">{{ $user->status }}</small>

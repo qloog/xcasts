@@ -22,7 +22,7 @@
                     <div class="col-sm-5">
                         <div class="clearfix">
                             {!! Form::file('mp4_url', ['class' => 'form-control']) !!}
-                            {!! Form::text('mp4_url', cdn($video->mp4_url), ['class' => 'form-control', 'disabled' => 'disabled']) !!}
+                            {!! Form::text('mp4_url', isset($video->mp4_url) ? cdn($video->mp4_url) : '', ['class' => 'form-control', 'disabled' => 'disabled']) !!}
                         </div>
                     </div>
                 </div>

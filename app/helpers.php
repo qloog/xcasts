@@ -92,7 +92,6 @@ if ( ! function_exists('get_relation_title')) {
      */
     function get_relation_title($type, $relation_id)
     {
-        $title = '';
         switch($type){
             case 'news':
                 $obj = DB::table('news')->select('title')->where('id', '=', $relation_id)->first();

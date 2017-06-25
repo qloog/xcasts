@@ -102,7 +102,7 @@ class UserController extends Controller
         }
 
         if ($this->userRepo->update(['avatar' => $imageInfo['image_path']], $id, false)) {
-            return redirect()->route('user.avatar.edit', $id);
+            return redirect()->route('user.edit_avatar', $id);
         }
 
         return Redirect::back()->withInput()->withErrors('保存失败！');

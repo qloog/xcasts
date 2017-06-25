@@ -49,9 +49,9 @@ class MyResetPassword extends Notification
     {
         return (new MailMessage)
                     ->subject('帐号激活')
-                    ->line('You are receiving this email because we received a password reset request for your account.')
+                    ->line('您收到此电子邮件，因为我们收到了密码重置请求您的帐户。')
                     ->action('Reset Password', url('password/reset', $this->token))
-                    ->line('If you did not request a password reset, no further action is required.');
+                    ->line('如果您没有要求密码重置，则不需要进一步的操作。');
     }
 
     /**

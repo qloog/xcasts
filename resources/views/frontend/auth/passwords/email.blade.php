@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    重置密码
+@endsection
+
 <!-- Main Content -->
 @section('content')
     <div class="ui stackable grid container">

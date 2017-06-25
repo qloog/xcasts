@@ -29,7 +29,8 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
         // user
-        Route::resource('user', 'UserController');
+        Route::get('user/{user}/edit', 'UserController@edit')->name('user.edit');
+        Route::put('user/{user}', 'UserController@update')->name('user.update');
         Route::get('user/{id}/edit_avatar', 'UserController@editAvatar')->name('user.edit_avatar');
         Route::put('user/{id}/update_avatar', 'UserController@updateAvatar')->name('user.update_avatar');
         Route::get('user/{id}/edit_password', 'UserController@editPassword')->name('user.edit_password');
@@ -56,6 +57,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
 
     // user's
+    Route::get('user/{user}', 'UserController@show')->name('user.show');
     Route::get('user/{id}/topics', 'UserController@topics')->name('user.topics');
     Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');
     Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');

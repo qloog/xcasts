@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    重置密码
+@endsection
+
 @section('content')
     <form class="ui large form container" method="POST" action="{{ url('/password/reset') }}">
         <div class="ui stacked segment">

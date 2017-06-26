@@ -53,7 +53,7 @@
                     <p></p>
                     <div id="voted_user_list">
                         @foreach($votedUsers as $user)
-                        <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ Auth::check() ? Auth::id() : 0 }}">
+                        <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ $user['id'] }}">
                             <img class="ui avatar image" src="{{ cdn($user['avatar']) }}" style="width: 40px;height: 40px;"/>
                         </a>
                         @endforeach
@@ -241,6 +241,26 @@
 
             // 点赞
             $('#up_vote').click(function () {
+                // check if user is logined
+                var user_id = '{{ Auth::id() }}';
+                if (!user_id) {
+                    // swal 提示
+                    swal({
+                        title: "请确认登录",
+                        //text: "You will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "取消",
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "去登录",
+                        closeOnConfirm: false
+                    },
+                    function(){
+                        window.location.href = '{{ route('login') }}';
+                    });
+
+                    return false;
+                }
                 $.ajax({
                     type: 'POST',
                     url: '{{ route('topic.upvote', $topic->id) }}',
@@ -263,6 +283,7 @@
                             }
                             voted_a_obj.map(function (key,value) {
                                 console.log(value.getAttribute('data-uid'));
+                                // todo: 当前用户判断错误
                                 if (value.getAttribute('data-uid') == '{{ Auth::id() }}') {
                                     $(this).remove(key);
                                 } else {

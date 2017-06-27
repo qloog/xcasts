@@ -49,7 +49,6 @@
                             {{--<i class="heart white icon"></i>打赏--}}
                         {{--</button>--}}
                     </div>
-
                     <p></p>
                     <div id="voted_user_list">
                         @foreach($votedUsers as $user)
@@ -268,7 +267,6 @@
                     dataType:'json',
                     success: function (ret) {
                         if (ret.code == 200 ) {
-
                             @if(Auth::check())
                             var str = '<a href="{{ route('user.show', Auth::id()) }}" data-uid="{{ Auth::id() }}"> \
                                     <img class="ui avatar image" src="{{ Auth::user()->avatar }}" style="width: 40px;height: 40px;"/> \
@@ -283,9 +281,9 @@
                             }
                             voted_a_obj.map(function (key,value) {
                                 console.log(value.getAttribute('data-uid'));
-                                // todo: 当前用户判断错误
                                 if (value.getAttribute('data-uid') == '{{ Auth::id() }}') {
-                                    $(this).remove(key);
+                                    //todo: 如何移除对象里对应的item[js里如何动态删除和添加list]
+                                    $(this).remove(voted_a_obj[key]);
                                 } else {
                                     if (key == 0) {
                                         value.before(str);

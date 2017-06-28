@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    发表的回复
+@endsection
+
 @section('styles')
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">

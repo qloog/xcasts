@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    赞过的话题
+@endsection
+
 @section('content')
     <div class="ui grid" style="background-color: #E9EAED">
         <div class="ui container">

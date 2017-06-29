@@ -11,7 +11,6 @@
             <div class="ui grid">
                         <div class="four wide column">
                             @include('frontend.user.base_info')
-
                             @include('frontend.user.info_nav')
                         </div>
                         <div class="twelve wide column">
@@ -48,5 +47,4 @@
             <div class="ui hidden divider"></div>
         </div>
     </div>
-
 @endsection

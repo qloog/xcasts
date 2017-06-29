@@ -9,7 +9,7 @@
     <style type="text/css">
         .ui.comments { max-width: 100%!important}
     </style>
-@stop
+@endsection
 
 @section('content')
     <div class="ui container">

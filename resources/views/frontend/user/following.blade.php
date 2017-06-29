@@ -52,7 +52,6 @@
             <div class="ui hidden divider"></div>
         </div>
     </div>
-
 @endsection
 
 @section('scripts')

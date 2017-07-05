@@ -63,7 +63,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ui.dropdown').dropdown();
-
             $('.button').popup();
         });
     </script>

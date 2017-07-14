@@ -209,14 +209,16 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
+     * 开通会员
+     *
      * @param $data
      * @return bool
      * @throws GeneralException
      */
-    public function openVip($data)
+    public function openMember($data)
     {
         if (empty($data['name']) || empty($data['plan_type']) || empty($data['pay_method'])) {
-            throw new GeneralException('open vip need params error');
+            throw new GeneralException('open member need params error');
         }
 
         $userId = $this->getUserIdByName($data['name']);
@@ -260,12 +262,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
     }
 
-    public function vipDetail($userId)
+    public function memberDetail($userId)
     {
         return OrderDetail::where('user_id', $userId)->first();
     }
 
-    public function isVip($userId)
+    public function isMember($userId)
     {
         $detail = OrderDetail::where('user_id', $userId)->first();
         if ($detail) {

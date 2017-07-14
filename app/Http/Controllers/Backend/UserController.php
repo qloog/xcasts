@@ -175,14 +175,14 @@ class UserController extends BaseController
             ->withSuccess('Post deleted.');
     }
 
-    public function createVip()
+    public function addMember()
     {
-        return view('backend.user.create_vip');
+        return view('backend.user.add_member');
     }
 
-    public function openVip(Request $request)
+    public function openMember(Request $request)
     {
-        $result = $this->users->openVip($request->all());
+        $result = $this->users->openMember($request->all());
 
         return redirect()
             ->route('admin.auth.user.index');

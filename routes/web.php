@@ -126,8 +126,8 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::post('auth/user/update-password/{id}', ['as' => 'user.update-password', 'uses' => 'UserController@updatePassword']);
         Route::resource('auth/role', 'RoleController', ['as' => 'auth']);
         Route::resource('auth/permission', 'PermissionController', ['as' => 'auth']);
-        Route::get('user/create_vip', 'UserController@createVip')->name('user.create_ip');
-        Route::post('user/open_vip', 'UserController@openVip')->name('user.open_vip');
+        Route::get('user/add_member', 'UserController@addMember')->name('user.add_member');
+        Route::post('user/open_member', 'UserController@openMember')->name('user.open_member');
 
         //course
         Route::resource('course', 'CourseController');

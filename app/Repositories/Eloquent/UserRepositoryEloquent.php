@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Reply;
 use App\Models\Topic;
+use App\Models\UserMember;
 use App\Models\Vote;
 use Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -222,8 +223,26 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
 
         $userId = $this->getUserIdByName($data['name']);
-
         // generate order
+        $orderId = $this->createOrder($userId, $data);
+        if ($orderId) {
+            $this->createOrderDetail($userId, $orderId, $data);
+            $this->createUserMember($userId, $data);
+        }
+
+        return $orderId ? true : false;
+    }
+
+    /**
+     * 创建订单
+     *
+     * @param $userId
+     * @param $data
+     * @return bool|string
+     * @throws GeneralException
+     */
+    private function createOrder($userId, $data)
+    {
         $orderId = date('YmdHis' . rand(10000,99999));
         $order = new Order();
         $order->id = $orderId;
@@ -235,31 +254,74 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $order->paid_at = $data['paid_at'];
         $order->completed_at = $data['paid_at'];
         $order->status = 'paid';
-        $order->user_id = $this->getUserIdByName($data['name']);
-        $orderRet = $order->save();
+        $order->user_id = $userId;
+        $ret = $order->save();
 
-        if (!$orderRet) {
+        if (!$ret) {
             throw new GeneralException('订单创建失败');
         }
 
-        // write to order_details
-        // todo: drop order_details and add vips(order_id, user_id, type, expire_at)
-        $ret = false;
-        if ($orderId) {
-            $detail = new orderDetail();
-            $detail->order_id = $orderId;
-            $detail->goods_id = 1;
-            $detail->goods_name = '月度会员';
-            $detail->goods_price = $data['pay_amount'];
-            $detail->quantity = 1;
-            $detail->expired_at = time();   // todo: 通过计算获得
-            $detail->user_id = $userId;
-            $ret = $detail->save();
+        return  $ret ? $orderId : 0;
+    }
+
+    private function createOrderDetail($userId, $orderId, $data)
+    {
+        $detail = new orderDetail();
+        $detail->order_id = $orderId;
+        $detail->goods_id = 1;
+        $detail->goods_name = '月度会员';
+        $detail->goods_price = $data['pay_amount'];
+        $detail->quantity = 1;
+        $detail->user_id = $userId;
+        $detail->save();
+    }
+
+    private function createUserMember($userId, $data)
+    {
+        $userMember = new UserMember();
+        $userMember->level = $data['level'];
+        $startTime = date('Y-m-d H:i:s');
+        $userMember->start_time = $startTime;
+        $userMember->end_time = $this->getEndTime($startTime, $data['level']);
+        $userMember->status = 1;
+        $userMember->user_id = $userId;
+
+        return $userMember->saveOrFail();
+    }
+
+    /**
+     * 获得结束时间
+     *
+     * @param $startTime
+     * @param $level
+     * @return bool|string
+     */
+    private function getEndTime($startTime, $level)
+    {
+        $startTime = strtotime($startTime);
+        $monthTime = 24*3600*30;
+        switch ($level) {
+            case 1:
+                $endTime = $startTime + $monthTime;
+                break;
+            case 2:
+                $endTime = $startTime + $monthTime*3;
+                break;
+            case 3:
+                $endTime = $startTime + $monthTime*6;
+                break;
+            case 4:
+                $endTime = $startTime + $monthTime*12;
+                break;
+            case 5:
+                $endTime = $startTime + $monthTime*24;
+                break;
+            case 6:
+                $endTime = $startTime + $monthTime*36;
+                break;
         }
 
-        if ($ret) {
-            return true;
-        }
+        return date('Y-m-d H:i:s', $endTime);
     }
 
     public function memberDetail($userId)

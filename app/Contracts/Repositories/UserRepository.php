@@ -24,11 +24,11 @@ interface UserRepository extends RepositoryInterface
 
     public function followUser($userId);
 
-    public function openVip($data);
+    public function openMember($data);
 
-    public function vipDetail($userId);
+    public function memberDetail($userId);
 
-    public function isVip($userId);
+    public function isMember($userId);
 
 
 }

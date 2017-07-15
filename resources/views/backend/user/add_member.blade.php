@@ -31,7 +31,7 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['route' => 'admin.user.open_vip', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
+                {!! Form::open(['route' => 'admin.user.open_member', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post']) !!}
                 <div class="box-body">
                     <div class="form-group">
                         {!! Form::label('name', '用户名', ['class' => 'col-lg-2 control-label']) !!}
@@ -52,19 +52,21 @@
                         </div>
                     </div><!--form control-->
                     <div class="form-group">
-                        {!! Form::label('plan_type', '会员类型', ['class' => 'col-lg-2 control-label']) !!}
+                        {!! Form::label('type', '会员类型', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-6">
-                            <input type="radio" name="plan_type" value="1" checked="">月付
-                            <input type="radio" name="plan_type" value="2">季付
-                            <input type="radio" name="plan_type" value="3">半年付
-                            <input type="radio" name="plan_type" value="4">年付
+                            <input type="radio" name="type" value="1" checked="">月付
+                            <input type="radio" name="type" value="2">季付
+                            <input type="radio" name="type" value="3">半年付
+                            <input type="radio" name="type" value="4">年付
+                            <input type="radio" name="type" value="5">2年付
+                            <input type="radio" name="type" value="6">3年付
                         </div>
                     </div><!--form control-->
                     <div class="form-group">
                         {!! Form::label('pay_method', '支付方式', ['class' => 'col-lg-2 control-label']) !!}
                         <div class="col-lg-3">
-                            <input type="radio" name="pay_method" id="wepay" value="wechat" checked="checked" class="from-control">微信支付
-                            <input type="radio" name="pay_method" id="alipay" value="alipay" class="from-control">支付宝支付
+                            <input type="radio" name="pay_method" id="wepay" value="wechat" checked="checked" class="from-control">微信
+                            <input type="radio" name="pay_method" id="alipay" value="alipay" class="from-control">支付宝
                         </div>
                     </div><!--form control-->
                     <div class="form-group">
@@ -97,6 +99,7 @@
             });
 
             //Date picker
+            // todo: 精确到时分秒
             $('#datepicker').datepicker({
                 autoclose: true,
                 format: 'yyyy-mm-dd',

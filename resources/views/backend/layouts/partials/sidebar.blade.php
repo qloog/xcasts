@@ -43,8 +43,8 @@
                     <li @if(Request::is('admin/user')) class="active" @endif>
                         <a href="{{ url('admin/user') }}"><i class="fa fa-circle-o"></i> 用户列表</a>
                     </li>
-                    <li @if(Request::is('admin/user/create_vip')) class="active" @endif>
-                        <a href="{{ url('admin/user/create_vip') }}"><i class="fa fa-circle-o"></i> 开通会员</a>
+                    <li @if(Request::is('admin/user/add_member')) class="active" @endif>
+                        <a href="{{ url('admin/user/add_member') }}"><i class="fa fa-circle-o"></i> 开通会员</a>
                     </li>
                 </ul>
             </li>

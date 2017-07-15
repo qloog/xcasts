@@ -218,11 +218,12 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
      */
     public function openMember($data)
     {
-        if (empty($data['name']) || empty($data['plan_type']) || empty($data['pay_method'])) {
+        if (empty($data['name']) || empty($data['type']) || empty($data['pay_method'])) {
             throw new GeneralException('open member need params error');
         }
 
         $userId = $this->getUserIdByName($data['name']);
+        // todo: 使用事务
         // generate order
         $orderId = $this->createOrder($userId, $data);
         if ($orderId) {
@@ -279,10 +280,11 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     private function createUserMember($userId, $data)
     {
         $userMember = new UserMember();
-        $userMember->level = $data['level'];
-        $startTime = date('Y-m-d H:i:s');
+        $userMember->type = $data['type'];
+        //
+        $startTime = $data['paid_at'];
         $userMember->start_time = $startTime;
-        $userMember->end_time = $this->getEndTime($startTime, $data['level']);
+        $userMember->end_time = $this->getEndTime($startTime, $data['type']);
         $userMember->status = 1;
         $userMember->user_id = $userId;
 

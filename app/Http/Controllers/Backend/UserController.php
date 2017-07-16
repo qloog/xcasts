@@ -54,10 +54,10 @@ class UserController extends BaseController
         if($users) {
             // todo: move to model or how to use isVip of Repository
             foreach ($users as &$user) {
-                $orderDetail = $this->users->memberDetail($user->id);
-                $user['is_vip'] = $orderDetail ? 1 : 0;
-                $user['expired_at'] = $orderDetail ? $orderDetail['expired_at'] : '--';
-                $user['vip_level'] = $orderDetail ? $orderDetail['goods_name'] : '--';
+                $memberDetail = $this->users->memberDetail($user->id);
+                $user['is_member'] = $memberDetail ? 1 : 0;
+                $user['expired_at'] = $memberDetail ? $memberDetail['end_time'] : '--';
+                $user['type'] = $memberDetail ? $memberDetail['type'] : '--';
             }
         }
 

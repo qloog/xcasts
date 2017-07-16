@@ -330,14 +330,14 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function memberDetail($userId)
     {
-        return OrderDetail::where('user_id', $userId)->first();
+        return UserMember::where('user_id', $userId)->first();
     }
 
     public function isMember($userId)
     {
-        $detail = OrderDetail::where('user_id', $userId)->first();
+        $detail = UserMember::where('user_id', $userId)->first();
         if ($detail) {
-            return strtotime($detail->expired_at) > time() ? true:  false;
+            return ((time() > strtotime($detail->start_time)) && (strtotime($detail->end_time) > time()))  ? true:  false;
         }
 
         return false;

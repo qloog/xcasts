@@ -82,14 +82,14 @@
                             <tr>
                                 <td>{{ $user->id }}</td>
                                 <td>{{ $user->name }}</td>
-                                <td>@if ($user->is_vip == 1)
+                                <td>@if ($user->is_member == 1)
                                         <small class="label label-success">是</small>
                                     @else
                                         <small class="label label-danger">否</small>
                                     @endif
                                 </td>
+                                <td>{{ $user->type }}</td>
                                 <td>{{ $user->expired_at }}</td>
-                                <td>{{ $user->vip_level }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>

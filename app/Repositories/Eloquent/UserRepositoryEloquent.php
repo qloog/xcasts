@@ -10,6 +10,7 @@ use App\Models\Topic;
 use App\Models\UserMember;
 use App\Models\Vote;
 use Auth;
+use DB;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -223,13 +224,14 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         }
 
         $userId = $this->getUserIdByName($data['name']);
-        // todo: 使用事务
+
+        $orderId = 0;
         // generate order
-        $orderId = $this->createOrder($userId, $data);
-        if ($orderId) {
+        DB::transaction(function () use($userId, $data) {
+            $orderId = $this->createOrder($userId, $data);
             $this->createOrderDetail($userId, $orderId, $data);
             $this->createUserMember($userId, $data);
-        }
+        });
 
         return $orderId ? true : false;
     }

@@ -99,7 +99,7 @@ Route::group(['namespace' => 'Backend'], function ()
     });
 
     // need to auth controller
-    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'web'], function ()
+    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function ()
     {
         //upload
         // After the line that reads

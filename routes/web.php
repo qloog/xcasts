@@ -99,22 +99,8 @@ Route::group(['namespace' => 'Backend'], function ()
     });
 
     // need to auth controller
-    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => 'admin'], function ()
+    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['web','auth','auth:admin']], function ()
     {
-        //upload
-        // After the line that reads
-        Route::get('upload', 'UploadController@index');
-
-        // Add the following routes
-        Route::post('upload/file', ['as' => 'upload.file', 'uses' => 'UploadController@uploadFile']);
-        Route::delete('upload/file', 'UploadController@deleteFile');
-        Route::post('upload/folder', 'UploadController@createFolder');
-        Route::delete('upload/folder', 'UploadController@deleteFolder');
-        Route::post('upload/image', ['as' => 'upload.image', 'uses' => 'UploadController@uploadImage']);
-
-        // qiniu
-        Route::get('qiniu/index', 'QiniuController@index')->name('qiniu.index');
-
         //dashboard
         Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
@@ -128,6 +114,19 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('auth/permission', 'PermissionController', ['as' => 'auth']);
         Route::get('user/add_member', 'UserController@addMember')->name('user.add_member');
         Route::post('user/open_member', 'UserController@openMember')->name('user.open_member');
+
+        //upload
+        // After the line that reads
+        Route::get('upload', 'UploadController@index');
+        // Add the following routes
+        Route::post('upload/file', ['as' => 'upload.file', 'uses' => 'UploadController@uploadFile']);
+        Route::delete('upload/file', 'UploadController@deleteFile');
+        Route::post('upload/folder', 'UploadController@createFolder');
+        Route::delete('upload/folder', 'UploadController@deleteFolder');
+        Route::post('upload/image', ['as' => 'upload.image', 'uses' => 'UploadController@uploadImage']);
+
+        // qiniu
+        Route::get('qiniu/index', 'QiniuController@index')->name('qiniu.index');
 
         //course
         Route::resource('course', 'CourseController');

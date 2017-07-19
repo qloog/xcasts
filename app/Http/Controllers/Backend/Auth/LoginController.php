@@ -26,9 +26,9 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/dashboard';
+     protected $redirectTo = '/admin/dashboard';
 
-    // protected $guard = 'admin';
+     // protected $guard = 'admin';
 
     /**
      * Create a new controller instance.
@@ -53,5 +53,15 @@ class LoginController extends Controller
         Auth::logout();
 
         return redirect('/admin/login');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }

@@ -330,7 +330,41 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function memberDetail($userId)
     {
-        return UserMember::where('user_id', $userId)->first();
+        $record =  UserMember::where('user_id', $userId)->first();
+
+        if ($record) {
+            $record->type = $this->getTypeText($record->type);
+        }
+
+        return $record;
+    }
+
+    private function getTypeText($type)
+    {
+        switch ($type) {
+            case 1:
+                $text = '月度';
+                break;
+            case 2:
+                $text = '季度';
+                break;
+            case 3:
+                $text = '半年';
+                break;
+            case 4:
+                $text = '年';
+                break;
+            case 5:
+                $text = '2年';
+                break;
+            case 6:
+                $text = '3年';
+                break;
+            default:
+                $text = '--';
+        }
+
+        return $text;
     }
 
     public function isMember($userId)

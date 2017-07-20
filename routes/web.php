@@ -99,7 +99,7 @@ Route::group(['namespace' => 'Backend'], function ()
     });
 
     // need to auth controller
-    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['web','auth','auth:admin']], function ()
+    Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth:admin']], function ()
     {
         //dashboard
         Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
@@ -144,6 +144,6 @@ Route::group(['namespace' => 'Backend'], function ()
         //blog
         Route::resource('post', 'PostController');
         // orders
-        Route::get('orders', 'OrderController@index')->name('admin.order.list');
+        Route::get('orders', 'OrderController@index')->name('order.list');
     });
 });

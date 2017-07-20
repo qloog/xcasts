@@ -11,11 +11,11 @@ class AdminsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->delete();
+        DB::table('admins')->delete();
 
         // init super admin
         \App\Models\Admin::create([
-            'name'   => 'tester',
+            'name'   => 'admin',
             'email' => 'wql2008@vip.qq.com',
             'password' => bcrypt(123456789),
             'created_at' => date('Y-m-d H:i:s', time())

@@ -67,7 +67,7 @@
                             <th>{{ trans('crud.users.name') }}</th>
                             <th>是否会员</th>
                             <th>会员等级</th>
-                            <th>过期时间</th>
+                            <th>会员时间</th>
                             <th>{{ trans('crud.users.email') }}</th>
                             <th>{{ trans('crud.users.created') }}</th>
                             <th>{{ trans('crud.users.updated') }}</th>
@@ -81,7 +81,7 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->name }}</td>
+                                <td><a href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a></td>
                                 <td>@if ($user->is_member == 1)
                                         <small class="label label-success">是</small>
                                     @else
@@ -89,7 +89,7 @@
                                     @endif
                                 </td>
                                 <td>{{ $user->type }}</td>
-                                <td>{{ $user->expired_at }}</td>
+                                <td>{{ $user->start_time }} <br> {{ $user->end_time }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>

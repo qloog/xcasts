@@ -56,7 +56,8 @@ class UserController extends BaseController
             foreach ($users as &$user) {
                 $memberDetail = $this->users->memberDetail($user->id);
                 $user['is_member'] = $memberDetail ? 1 : 0;
-                $user['expired_at'] = $memberDetail ? $memberDetail['end_time'] : '--';
+                $user['start_time'] = $memberDetail ? $memberDetail['start_time'] : '--';
+                $user['end_time'] = $memberDetail ? $memberDetail['end_time'] : '--';
                 $user['type'] = $memberDetail ? $memberDetail['type'] : '--';
             }
         }

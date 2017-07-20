@@ -29,8 +29,6 @@ class LoginController extends Controller
      */
      protected $redirectTo = '/admin/dashboard';
 
-     // protected $guard = 'admin';
-
     /**
      * Create a new controller instance.
      *
@@ -42,10 +40,6 @@ class LoginController extends Controller
 
     public function showLoginForm()
     {
-        if (view()->exists('auth.authenticate')) {
-            return view('auth.authenticate');
-        }
-
         return view('backend.auth.login');
     }
 

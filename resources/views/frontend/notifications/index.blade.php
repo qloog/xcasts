@@ -29,7 +29,7 @@
                             @foreach($notifications as $notification)
                                 <div class="comment">
                                     <div class="content">
-                                        <a href="{{ route('user.show', $notification->user->id) }}">{{ $notification->user->name }}</a>
+                                        <a href="{{ route('user.show', $notification->fromUser->id) }}">{{ $notification->fromUser->name }}</a>
                                          •
                                         @if($notification->type == 'at')
                                             在话题中提及你: <a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>

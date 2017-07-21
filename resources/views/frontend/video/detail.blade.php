@@ -46,6 +46,7 @@
                             </p>
                         </video>
                     @else
+                        <!-- todo: check user is member -->
                         <div class="ui centered text">
                             <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
                                 <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;订阅后可以观看全部视频</h3>

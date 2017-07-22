@@ -115,6 +115,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->hasMany(Notification::class)->recent()->with('topic', 'fromUser')->paginate(20);
     }
 
+    /**
+     * 验证用户是否是会员
+     *
+     * @return bool
+     */
     public function getIsMemberAttribute()
     {
         $memberRelation = $this->hasOne(UserMember::class, 'user_id');

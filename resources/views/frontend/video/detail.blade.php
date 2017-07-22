@@ -46,15 +46,26 @@
                             </p>
                         </video>
                     @else
-                        <!--todo: check user is member -->
-                        <div class="ui centered text">
-                            <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
-                                <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;订阅后可以观看全部视频</h3>
-                                <ul class="ui list">
-                                    <li><a href="{{ url('/vip') }}" class="ui teal button">马上加入 订阅</a></li>
-                                </ul>
+                        @if(Auth()->user()->isMember)
+                            <video id="phpcasts-video" class="video-js vjs-fluid vjs-big-play-centered placeholder"
+                                   poster="{{ cdn($video->cover_image) }}" data-setup='{}'>
+                                <source src="{{ cdn($video->mp4_url) }}" type='video/mp4'>
+                                <source src="" type="video/flv" data-quality="HD" label="HD" data-default="true">
+                                <p class="vjs-no-js">
+                                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                                </p>
+                            </video>
+                        @else
+                            <div class="ui centered text">
+                                <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
+                                    <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;订阅后可以观看全部视频</h3>
+                                    <ul class="ui list">
+                                        <li><a href="{{ url('/vip') }}" class="ui teal button">马上加入 订阅</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     @endif
                 @endif
                     <div class="ui fluid card" style="margin-top: 0px;">

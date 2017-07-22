@@ -3,21 +3,25 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CommentRepository;
+use App\Contracts\Repositories\UserRepository;
 use App\Contracts\Repositories\VideoRepository;
 use App\Contracts\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
     protected $courseRepo;
     protected $videoRepo;
     protected $commentRepo;
+    protected $userRepo;
 
-    public function __construct(CourseRepository $courses, VideoRepository $videos, CommentRepository $comments)
+    public function __construct(UserRepository $users, CourseRepository $courses, VideoRepository $videos, CommentRepository $comments)
     {
+        $this->userRepo = $users;
         $this->courseRepo = $courses;
         $this->videoRepo = $videos;
         $this->commentRepo = $comments;

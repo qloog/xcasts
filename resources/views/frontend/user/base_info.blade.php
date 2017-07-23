@@ -1,6 +1,6 @@
 <div class="ui center aligned segment">
     <h2 class="ui small sequenced images">
-        <img src="{{ $user->avatar }}" class="ui circular image">
+        <img src="{{ $user->avatar ? cdn($user->avatar) : '/avatars/default.png' }}" class="ui circular image">
         {{ $user->name }}
     </h2>
     <div>

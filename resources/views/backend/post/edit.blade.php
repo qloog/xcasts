@@ -23,7 +23,7 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          {!! Form::model($role, ['route' => ['admin.post.update', $role->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
+          {!! Form::model($post, ['route' => ['admin.post.update', $post->id], 'class' => 'form-horizontal', 'role' => 'form']) !!}
           {!! Form::hidden('_method', 'PUT') !!}
           <div class="box-body">
             @include('backend.post._form')
@@ -41,7 +41,7 @@
     </div>
 
     {{-- Confirm Delete --}}
-    @include('backend.layouts.partials.delete_modal', array('action' => route('admin.post.destroy', $role->id)))
+    @include('backend.layouts.partials.delete_modal', array('action' => route('admin.post.destroy', $post->id)))
   </div>
 @endsection
 

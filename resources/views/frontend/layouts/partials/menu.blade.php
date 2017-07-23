@@ -10,7 +10,7 @@
         <a class="item @if(Request::is('topic*')) active @endif" href="{{ route('topic.index') }}">
             <i class="talk icon"></i> 社区
         </a>
-        <a class="item @if(Request::is('blog*')) active @endif" href="{{ route('blog.index') }}">
+        <a class="item @if(Request::is('post*')) active @endif" href="{{ route('blog.index') }}">
         <i class="content icon"></i> 博客
         </a>
         <a class="item @if(Request::is('vip')) active @endif" href="{{ route('vip') }}">

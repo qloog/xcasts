@@ -74,6 +74,9 @@
                         <tr>
                             <th>ID</th>
                             <th>标题</th>
+                            <th>slug</th>
+                            <th>摘要</th>
+                            <th>状态</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
                             <th>操作</th>
@@ -83,7 +86,10 @@
                         @foreach ($posts as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
+                                <td><a href="{{ route('blog.show', ['id' => $item->id]) }}" target="_blank">{{ $item->title }}</a></td>
+                                <td>{{ $item->slug }}</td>
+                                <td>{{ $item->summary }}</td>
+                                <td>{{ $item->status ? '已发布' : '草稿' }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>

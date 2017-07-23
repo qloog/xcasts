@@ -72,8 +72,8 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::resource('topic', 'TopicController');
 
     // blog
-    Route::get('blog', 'PostController@index')->name('blog.index');
-    Route::get('blog/{id}', 'PostController@show')->name('blog.show');
+    Route::get('post', 'PostController@index')->name('blog.index');
+    Route::get('post/{id}', 'PostController@show')->name('blog.show');
 
     // footer
     Route::get('path', 'PathController@index')->name('path');

@@ -83,8 +83,7 @@ class PostController extends baseController
      */
     public function edit($id)
     {
-        //
-        return view('admin.post.edit')->withPage(Page::find($id));
+        return view('backend.post.edit')->withPost(Post::find($id));
     }
 
     /**
@@ -97,18 +96,24 @@ class PostController extends baseController
     {
         //
         $this->validate($request, [
-            'ueditor' => 'required',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
         $page = Post::find($id);
-        $page->content = Input::get('ueditor');
+        $page->title = Input::get('title');
+        $page->slug = Input::get('slug');
+        $page->summary = Input::get('summary');
+        $page->content = Input::get('content');
+        $page->status = Input::get('status');
+        //$page->content = Input::get('ueditor');
         $page->user_id = Auth::user()->id;
 
         if ($page->save()) {
             return Redirect::to('admin/post');
-        } else {
-            return Redirect::back()->withInput()->withErrors('保存失败！');
         }
+
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**

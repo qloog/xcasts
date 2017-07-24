@@ -27,9 +27,9 @@
                 </div><!--form control-->
 
                 <div class="form-group">
-                    {!! Form::label('content', '正文', ['class' => 'col-lg-2 control-label']) !!}
+                    {!! Form::label('origin_content', '正文', ['class' => 'col-lg-2 control-label']) !!}
                     <div class="col-lg-8">
-                        {!! Form::textarea('content', null, ['cols' => 100, 'rows' => 10, 'class' => 'form-control', 'placeholder' => '']) !!}
+                        {!! Form::textarea('origin_content', null, ['cols' => 100, 'rows' => 10, 'class' => 'form-control', 'placeholder' => '']) !!}
                     </div>
                 </div><!--form control-->
 

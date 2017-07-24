@@ -47,21 +47,17 @@ class PostController extends baseController
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, [
-            'ueditor' => 'required',
+            //'category' => 'required',
+            'title' => 'required|unique:posts|max:255',
+            'content' => 'required'
         ]);
 
-
-        $page = new Post;
-        $page->content = Input::get('editor');
-        $page->user_id = Auth::user()->id;
-
-        if ($page->save()) {
-            return Redirect::to('admin/post');
-        } else {
-            return Redirect::back()->withInput()->withErrors('保存失败！');
+        if ($this->postRepo->create($request->all())) {
+            return redirect()->route('admin.post.index');
         }
+
+        return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
     /**

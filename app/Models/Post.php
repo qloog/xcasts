@@ -25,6 +25,8 @@ class Post extends Model implements Transformable
     protected $fillable = [
         'title',
         'slug',
+        'summary',
+        'origin_content',
         'content',
         'user_id',
         'status',

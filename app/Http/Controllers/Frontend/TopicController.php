@@ -56,7 +56,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //todo move serice or repository
+        //todo move service or repository
         $categories = Category::all();
 
         return view('frontend.topic.create', compact('categories'));

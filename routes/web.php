@@ -47,8 +47,8 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
         Route::get('payment/return', 'PaymentController@return')->name('payment.return');
 
-        Route::post('topic/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
-        Route::post('topic/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
+        Route::post('topics/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
+        Route::post('topics/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
         Route::resource('reply', 'ReplyController');
         Route::post('reply/{id}/vote', 'ReplyController@vote')->name('reply.vote');
     });
@@ -64,16 +64,16 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('user/{id}/following', 'UserController@following')->name('user.following');
 
     // course & video
-    Route::resource('course', 'CourseController');
-    Route::get('course/{slug}/episodes/{episode_id}', ['as' => 'video.show', 'uses' => 'VideoController@show']);
-    Route::get('course/{slug}', 'CourseController@show');
+    Route::resource('courses', 'CourseController');
+    Route::get('courses/{slug}/episodes/{episode_id}', ['as' => 'video.show', 'uses' => 'VideoController@show']);
+    Route::get('courses/{slug}', 'CourseController@show');
 
     // topic
-    Route::resource('topic', 'TopicController');
+    Route::resource('topics', 'TopicController');
 
     // blog
-    Route::get('post', 'PostController@index')->name('blog.index');
-    Route::get('post/{id}', 'PostController@show')->name('blog.show');
+    Route::get('posts', 'PostController@index')->name('blog.index');
+    Route::get('posts/{slug}', 'PostController@show')->name('blog.show');
 
     // footer
     Route::get('path', 'PathController@index')->name('path');

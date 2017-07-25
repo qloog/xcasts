@@ -22,7 +22,7 @@
                                 </div>
                                 <img class="ui avatar image" src="{{ cdn($topic->user->avatar) }}">
                                 <div class="content">
-                                    <a class="header" href="{{ route('topic.show', $topic->id) }}">{{ $topic->title }}</a>
+                                    <a class="header" href="{{ route('topics.show', $topic->id) }}">{{ $topic->title }}</a>
                                     <div class="meta" style="margin-top: 5px;">
                                         <span style="font-size: 12px; color: #ccc">
                                             <a class="item"><div class="ui horizontal label">{{ $topic->category->name }}</div></a>
@@ -41,7 +41,7 @@
                     <div class="four wide column">
                         @if(Auth::check())
                         <div class="ui center aligned segment">
-                            <a class="ui teal big basic button" href="{{ route('topic.create') }}"><i class="write icon"></i>新建话题</a>
+                            <a class="ui teal big basic button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
                         </div>
                         @endif
                     </div>

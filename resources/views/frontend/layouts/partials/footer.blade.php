@@ -16,7 +16,7 @@
             <div class="three wide column">
                 <h4 class="ui inverted small header">支持</h4>
                 <div class="ui inverted list">
-                    <a href="{{ route('topic.index') }}" class="item">问答社区</a>
+                    <a href="{{ route('topics.index') }}" class="item">问答社区</a>
                     {{--<a href="{{ url('blog') }}" class="item">技术博客</a>--}}
                     <a href="http://laravel.com" target="_blank" class="item">Laravel官网</a>
                 </div>

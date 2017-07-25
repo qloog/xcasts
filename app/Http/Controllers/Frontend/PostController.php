@@ -52,12 +52,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $post = $this->postRepo->find($id);
+        $post = $this->postRepo->findByField('slug',$slug)->first();
 
         return view('frontend.post.show', compact('post'));
     }

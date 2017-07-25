@@ -4,6 +4,13 @@
   {{ $post->title }} - 博客
 @endsection
 
+@section('styles')
+    <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
+    <style type="text/css">
+        .ui.comments { max-width: 100%!important}
+    </style>
+@endsection
+
 @section('content')
   <div class="ui container">
     <div class="ui hidden divider"></div>
@@ -16,14 +23,16 @@
                       {{--<img src="/images/wireframe/image.png">--}}
                       {{--</div>--}}
                       <div class="content">
-                        <a class="header" href="{{ route('blog.show', ['id' => $post->id]) }}">{{ $post->title }}</a>
+                        <a class="header" href="{{ route('blog.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                         <div class="meta">
                           <p class="cinema">发布时间：{{ $post->created_at }}</p>
                           <span class="cinema">更新时间：{{ $post->updated_at }}</span>
                         </div>
-                        <div class="description">
-                            {{ $post->content }}
-                        </div>
+                          <div class="description markdown-body">
+                              <div class="ui hidden divider"></div>
+                              {!! $post->content !!}
+                              <div class="ui hidden divider"></div>
+                          </div>
                       </div>
                     </div>
               </div>

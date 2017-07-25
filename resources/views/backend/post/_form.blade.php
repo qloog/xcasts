@@ -13,13 +13,6 @@
                 </div><!--form control-->
 
                 <div class="form-group">
-                    {!! Form::label('description', '描述', ['class' => 'col-lg-2 control-label']) !!}
-                    <div class="col-lg-8">
-                        {!! Form::textarea('description', null, ['cols' => 100, 'rows' => 5, 'class' => 'form-control', 'placeholder' => '']) !!}
-                    </div>
-                </div><!--form control-->
-
-                <div class="form-group">
                     {!! Form::label('summary', '摘要', ['class' => 'col-lg-2 control-label']) !!}
                     <div class="col-lg-8">
                         {!! Form::textarea('summary', null, ['cols' => 100, 'rows' => 5, 'class' => 'form-control', 'placeholder' => '']) !!}

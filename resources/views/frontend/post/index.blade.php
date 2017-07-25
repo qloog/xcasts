@@ -16,7 +16,7 @@
                     <img src="http://opd6y74sx.bkt.clouddn.com/uploads/images/2017/05/03/lfkxui1XNB.jpg?e=1493869551&token=qvuNOgNkZMAJXYEPSHBT-6JEigk2AechM_fm57zS:ThGP8kPUR6mQ9e3DA2YTNmuW9E8=">
                 </div>
                 <div class="content">
-                    <a class="header" href="{{ route('blog.show', $post->id) }}">{{ $post->title }}</a>
+                    <a class="header" href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                     <div class="meta">
                         <a>{{ $post->created_at }}</a>
                         <a>分类</a>
@@ -28,7 +28,7 @@
                         {{--<div class="ui right floated primary button">--}}
                             {{--<i class="right chevron icon"></i>--}}
                         {{--</div>--}}
-                        <div class="ui label">tag1</div>
+                        {{--<div class="ui label">tag1</div>--}}
                     </div>
                 </div>
             </div>

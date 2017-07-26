@@ -33,3 +33,28 @@
                         {!! Form::radio('status', 1) !!}发布
                     </div>
                 </div><!--form control-->
+
+                @section('scripts')
+                    <!-- iCheck -->
+                    <script src="{{ asset('plugins/iCheck/icheck.min.js') }}"></script>
+                    <script src="{{ asset('simplemde/simplemde.min.js') }}"></script>
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('input').iCheck({
+                                checkboxClass: 'icheckbox_square-blue',
+                                radioClass: 'iradio_square-blue',
+                                increaseArea: '20%' // optional
+                            });
+
+                            $('.ui.dropdown').dropdown();
+
+                            var simplemde = new SimpleMDE({
+                                element: document.getElementById("origin_content"),
+                                spellChecker: false,
+                                showIcons: ["code", "table"],
+                                forceSync: true,
+                                promptURLs: true
+                            });
+                        });
+                    </script>
+                @endsection

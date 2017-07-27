@@ -115,15 +115,15 @@
                     </li>
                 </ul>
             </li>
-            <li @if(Request::is('admin/goods*')) class="treeview active" @else class="treeview" @endif>
+            <li @if(Request::is('admin/plan*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>
-                    <span>商品管理</span>
+                    <span>PLAN管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::is('admin/goods')) class="active" @endif>
-                        <a href="{{ url('admin/goods') }}"><i class="fa fa-circle-o"></i> 商品列表</a>
+                    <li @if(Request::is('admin/plan')) class="active" @endif>
+                        <a href="{{ url('admin/plan') }}"><i class="fa fa-circle-o"></i> plan列表</a>
                     </li>
                 </ul>
             </li>

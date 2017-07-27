@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\GoodsRepository;
+use App\Contracts\Repositories\PlanRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class GoodsController extends Controller
+class PlanController extends Controller
 {
-    protected $goodsRepo;
+    protected $planRepo;
 
     /**
-     * GoodsController constructor.
-     * @param GoodsRepository $goodsRepository
+     * PlanController constructor.
+     * @param planRepository $PlanRepository
      */
-    public function __construct(GoodsRepository $goodsRepository)
+    public function __construct(PlanRepository $planRepository)
     {
-        $this->goodsRepo = $goodsRepository;
+        $this->planRepo = $planRepository;
     }
     /**
      * Display a listing of the resource.
@@ -25,9 +25,9 @@ class GoodsController extends Controller
      */
     public function index()
     {
-        $goodsList = $this->goodsRepo->paginate(15);
+        $planList = $this->planRepo->paginate(15);
 
-        return view('backend.goods.index', compact('goodsList'));
+        return view('backend.plan.index', compact('planList'));
     }
 
     /**
@@ -37,7 +37,7 @@ class GoodsController extends Controller
      */
     public function create()
     {
-        return view('backend.goods.create');
+        return view('backend.plan.create');
     }
 
     /**
@@ -48,8 +48,8 @@ class GoodsController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->goodsRepo->create($request->all())) {
-            return redirect()->route('admin.goods.index');
+        if ($this->planRepo->create($request->all())) {
+            return redirect()->route('admin.plan.index');
         }
 
         return redirect()->back()->withInput()->withErrors('保存失败！');
@@ -74,9 +74,9 @@ class GoodsController extends Controller
      */
     public function edit($id)
     {
-        $goods = $this->goodsRepo->find($id);
+        $plan = $this->planRepo->find($id);
 
-        return view('backend.goods.edit', compact('goods'));
+        return view('backend.plan.edit', compact('plan'));
     }
 
     /**
@@ -88,8 +88,8 @@ class GoodsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->goodsRepo->update($request->all(), $id)) {
-            return redirect()->route('admin.goods.index');
+        if ($this->planRepo->update($request->all(), $id)) {
+            return redirect()->route('admin.plan.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

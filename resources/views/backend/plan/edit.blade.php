@@ -26,11 +26,11 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::model($goods, ['route' => ['admin.goods.update', $goods->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::model($plan, ['route' => ['admin.plan.update', $plan->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
                     {!! Form::hidden('_method', 'PUT') !!}
 
                     <div class="box-body">
-                        @include('backend.goods._form')
+                        @include('backend.plan._form')
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">

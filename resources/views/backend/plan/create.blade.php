@@ -24,9 +24,9 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['route' => 'admin.goods.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
+                {!! Form::open(['route' => 'admin.plan.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
                 <div class="box-body">
-                    @include('backend.goods._form')
+                    @include('backend.plan._form')
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Goods extends Model implements Transformable
+class Plan extends Model implements Transformable
 {
     use TransformableTrait;
 

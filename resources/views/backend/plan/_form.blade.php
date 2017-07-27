@@ -1,5 +1,5 @@
 <div class="form-group">
-    {!! Form::label('title', '商品名称', ['class' => 'col-lg-2 control-label']) !!}
+    {!! Form::label('title', '名称', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-6">
         <div class="clearfix">
             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '名称']) !!}
@@ -8,34 +8,34 @@
 </div>
 
 <div class="form-group">
-    {!! Form::label('summary', '商品描述', ['class' => 'col-lg-2 control-label ']) !!}
+    {!! Form::label('description', '描述', ['class' => 'col-lg-2 control-label ']) !!}
     <div class="col-lg-6">
-        {!! Form::textarea('introduction', null, ['size' => '20x5', 'class' => 'form-control', 'placeholder' => '简单描述']) !!}
+        {!! Form::textarea('description', null, ['size' => '20x5', 'class' => 'form-control', 'placeholder' => '简单描述']) !!}
     </div>
 </div>
 
 <div class="space-4"></div>
 
 <div class="form-group">
-    {!! Form::label('views', '商品价格', ['class' => 'col-lg-2 control-label']) !!}
+    {!! Form::label('price', '价格', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-6">
         {!! Form::text('price', null, ['class' => 'form-control', 'placeholder' => '99.00']) !!}
     </div>
 </div>
 
 <div class="form-group">
-    {!! Form::label('views', '促销价格', ['class' => 'col-lg-2 control-label']) !!}
+    {!! Form::label('promo_price', '促销价格', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-6">
-        {!! Form::text('promotion_price', null, ['class' => 'form-control', 'placeholder' => '69.00']) !!}
+        {!! Form::text('promo_price', null, ['class' => 'form-control', 'placeholder' => '69.00']) !!}
     </div>
 </div>
 
 <div class="form-group">
-    {!! Form::label('views', '促销时间', ['class' => 'col-lg-2 control-label']) !!}
+    {!! Form::label('promo_time', '促销时间', ['class' => 'col-lg-2 control-label']) !!}
     <div class="col-lg-3">
-        {!! Form::text('promotion_time', null, ['class' => 'form-control', 'id' => 'promotion_time', 'placeholder' => '']) !!}
-        {!! Form::hidden('promotion_start', null, ['id' => 'promotion_start']) !!}
-        {!! Form::hidden('promotion_end', null, ['id' => 'promotion_end']) !!}
+        {!! Form::text('promo_time', null, ['class' => 'form-control', 'id' => 'promotion_time', 'placeholder' => '']) !!}
+        {!! Form::hidden('promo_start', null, ['id' => 'promotion_start']) !!}
+        {!! Form::hidden('promo_end', null, ['id' => 'promotion_end']) !!}
     </div>
 </div>
 

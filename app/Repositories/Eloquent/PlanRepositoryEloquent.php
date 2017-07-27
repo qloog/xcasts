@@ -5,15 +5,15 @@ namespace App\Repositories\Eloquent;
 use Illuminate\Support\Facades\Auth;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Contracts\Repositories\GoodsRepository;
-use App\Models\Goods;
-use App\Validators\GoodsValidator;
+use App\Contracts\Repositories\PlanRepository;
+use App\Models\Plan;
+use App\Validators\planValidator;
 
 /**
- * Class GoodsRepositoryEloquent
+ * Class planRepositoryEloquent
  * @package namespace App\Repositories\Eloquent;
  */
-class GoodsRepositoryEloquent extends BaseRepository implements GoodsRepository
+class planRepositoryEloquent extends BaseRepository implements PlanRepository
 {
     /**
      * Specify Model class name
@@ -22,7 +22,7 @@ class GoodsRepositoryEloquent extends BaseRepository implements GoodsRepository
      */
     public function model()
     {
-        return Goods::class;
+        return plan::class;
     }
 
     

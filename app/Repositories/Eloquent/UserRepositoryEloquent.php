@@ -271,9 +271,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     {
         $detail = new orderDetail();
         $detail->order_id = $orderId;
-        $detail->goods_id = 1;
-        $detail->goods_name = '月度会员';
-        $detail->goods_price = $data['pay_amount'];
+        $detail->plan_id = 1;
+        $detail->plan_name = '月度会员';
+        $detail->plan_price = $data['pay_amount'];
         $detail->quantity = 1;
         $detail->user_id = $userId;
         $detail->save();

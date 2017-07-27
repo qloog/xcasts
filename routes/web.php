@@ -143,8 +143,8 @@ Route::group(['namespace' => 'Backend'], function ()
         //comment
         Route::resource('comment', 'CommentController');
 
-        // goods
-        Route::resource('goods', 'GoodsController');
+        // plan
+        Route::resource('plan', 'PlanController');
 
         //blog
         Route::resource('post', 'PostController');

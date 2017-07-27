@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '商品管理')
+@section('title', 'Plan管理')
 
 @section('styles')
     <!-- DataTables -->
@@ -36,7 +36,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.goods.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加商品</a>
+                        <a href="{{ route('admin.plan.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加plan</a>
                     </h3>
                     <div class="box-tools">
                         <!--
@@ -83,18 +83,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($goodsList as $item)
+                        @foreach ($planList as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
-                                <td>{{ $item->introduction }}</td>
+                                <td>{{ $item->description }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>{{ $item->status }}</td>
                                 <td>{{ $item->user['name'] }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="{{ route('admin.goods.edit', [$item->id]) }}">
+                                        <a href="{{ route('admin.plan.edit', [$item->id]) }}">
                                             <i class="fa fa-edit text-green fa-lg"></i>
                                         </a>
                                         <a href="javascript:;" data-id="{{ $item->id }}" class="_delete">
@@ -112,7 +112,7 @@
                 <div class="box-footer">
 
                     <div class="pull-right">
-                        {!! $goodsList->render() !!}
+                        {!! $planList->render() !!}
                     </div>
                 </div>
             </div>

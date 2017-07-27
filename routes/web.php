@@ -54,7 +54,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     });
 
     // business route
-    Route::get('/', ['as' => 'welcome', 'uses' => 'WelcomeController@index']);
+    Route::get('/', 'WelcomeController@index')->name('welcome');
 
     // user's
     Route::get('user/{user}', 'UserController@show')->name('user.show');
@@ -74,6 +74,11 @@ Route::group(['namespace' => 'Frontend'], function ()
     // blog
     Route::get('posts', 'PostController@index')->name('blog.index');
     Route::get('posts/{slug}', 'PostController@show')->name('blog.show');
+
+    // feedback
+    Route::get('feedback', 'FeedbackController@create')->name('feedback.create');
+    Route::post('feedback', 'FeedbackController@store')->name('feedback.store');
+    Route::get('feedback/success', 'FeedbackController@success')->name('feedback.success');
 
     // footer
     Route::get('path', 'PathController@index')->name('path');

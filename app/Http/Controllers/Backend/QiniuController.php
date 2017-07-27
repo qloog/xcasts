@@ -12,6 +12,7 @@ class QiniuController extends Controller
     {
         $qiniuSrv = new QiNiuService();
         $files = $qiniuSrv->list();
+
         return view('backend.qiniu.index', compact('files'));
     }
 }

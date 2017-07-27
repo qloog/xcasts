@@ -15,7 +15,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.album.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>上传文件</a>
+                        {{--<a href="{{ route('admin.album.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>上传文件</a>--}}
                     </h3>
                     <div class="box-tools">
                         <!--
@@ -70,9 +70,9 @@
                                 <td>{{ $file['putTime'] }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a class="green" href="{{ route('admin.album.edit', [$file['hash']]) }}">
-                                            <i class="fa fa-edit text-green"></i>下载
-                                        </a>
+                                        {{--<a class="green" href="{{ route('admin.album.edit', [$file['hash']]) }}">--}}
+                                            {{--<i class="fa fa-edit text-green"></i>下载--}}
+                                        {{--</a>--}}
                                     </div>
                                 </td>
                             </tr>

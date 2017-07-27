@@ -64,13 +64,13 @@
                         @foreach ($files as $file)
                             <tr>
                                 <td>{{ $file['hash'] }}</td>
-                                <td><img src="{{ $file['key'] }}" width="80px"/></td>
+                                <td><img src="{{ cdn($file['key']) }}" width="80px"/></td>
                                 <td>{{ $file['fsize'] }}</td>
                                 <td>{{ $file['mimeType'] }}</td>
                                 <td>{{ $file['putTime'] }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        {{--<a class="green" href="{{ route('admin.album.edit', [$file['hash']]) }}">--}}
+{{--                                        <a class="green" href="{{ route('admin.album.edit', [$file['hash']]) }}">--}}
                                             {{--<i class="fa fa-edit text-green"></i>下载--}}
                                         {{--</a>--}}
                                     </div>

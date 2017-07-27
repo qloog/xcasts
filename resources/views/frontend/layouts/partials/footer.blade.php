@@ -8,7 +8,7 @@
             <div class="three wide column">
                 <h4 class="ui inverted small header">产品与服务</h4>
                 <div class="ui inverted list">
-                    {{--<a href="{{ url('vip') }}" class="item">VIP会员</a>--}}
+                    <a href="{{ url('vip') }}" class="item">VIP会员</a>
                     <a href="{{ url('path') }}" class="item">学习路线</a>
                     <a href="{{ url('one-to-one') }}" class="item">一对一</a>
                 </div>
@@ -17,7 +17,8 @@
                 <h4 class="ui inverted small header">支持</h4>
                 <div class="ui inverted list">
                     <a href="{{ route('topics.index') }}" class="item">问答社区</a>
-                    {{--<a href="{{ url('blog') }}" class="item">技术博客</a>--}}
+                    <a href="{{ url('blog.index') }}" class="item">博客</a>
+                    <a href="{{ url('feedback.create') }}" class="item">留言反馈</a>
                     <a href="http://laravel.com" target="_blank" class="item">Laravel官网</a>
                 </div>
             </div>

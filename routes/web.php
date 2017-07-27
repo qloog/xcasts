@@ -148,7 +148,7 @@ Route::group(['namespace' => 'Backend'], function ()
 
         //blog
         Route::resource('post', 'PostController');
-        // orders
-        Route::get('orders', 'OrderController@index')->name('order.list');
+        // order
+        Route::get('order', 'OrderController@index')->name('order.list');
     });
 });

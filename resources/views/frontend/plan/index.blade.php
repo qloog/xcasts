@@ -96,6 +96,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="ui icon message">
+            <i class="announcement icon"></i>
+            <div class="content">
+                <div class="header">
+                    购买提示
+                </div>
+                <ul class="list">
+                    <li>目前只支持微信支付</li>
+                    <li>学习需要投资,未来的你一定会感谢现在的自己^_^</li>
+                    <li>Just do it.</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <div class="ui grid">

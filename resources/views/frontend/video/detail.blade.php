@@ -72,7 +72,7 @@
                         <div class="content">
                             <div class="ui header">
                                 <div class="ui big breadcrumb">
-                                    <a class="section" href="{{ route('course.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
+                                    <a class="section" href="{{ route('courses.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
                                     <i class="right arrow icon divider"></i>
                                     <div class="active section">{{ $video->name }}</div>
                                     @if ($preLink)

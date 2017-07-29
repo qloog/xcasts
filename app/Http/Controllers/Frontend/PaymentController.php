@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\GoodsRepository;
+use App\Contracts\Repositories\PlanRepository;
 use App\Contracts\Repositories\OrdersRepository;
 use Auth;
 use Illuminate\Http\Request;
@@ -11,14 +11,14 @@ use Input;
 use Log;
 
 /**
- * @property GoodsRepository  goodsRepo
+ * @property PlanRepository  planRepo
  * @property OrdersRepository orderRepo
  */
 class PaymentController extends Controller
 {
-    public function __construct(GoodsRepository $goodsRepository, OrdersRepository $ordersRepository)
+    public function __construct(PlanRepository $planRepository, OrdersRepository $ordersRepository)
     {
-        $this->goodsRepo = $goodsRepository;
+        $this->planRepo = $planRepository;
         $this->orderRepo = $ordersRepository;
     }
 
@@ -31,7 +31,7 @@ class PaymentController extends Controller
     {
         // 下订单
         $plan = $request->get('plan');
-        $goodsInfo = $this->goodsRepo->findByField('alias', $plan)->first();
+        $goodsInfo = $this->planRepo->findByField('alias', $plan)->first();
 
         // 生成订单
         $orderData = [

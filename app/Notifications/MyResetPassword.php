@@ -48,9 +48,9 @@ class MyResetPassword extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('帐号激活')
+                    ->subject('密码重置')
                     ->line('您收到此电子邮件，因为我们收到了密码重置请求您的帐户。')
-                    ->action('Reset Password', url('password/reset', $this->token))
+                    ->action('重置密码', url('password/reset', $this->token))
                     ->line('如果您没有要求密码重置，则不需要进一步的操作。');
     }
 

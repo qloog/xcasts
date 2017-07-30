@@ -19,7 +19,6 @@
                     <a href="{{ route('topics.index') }}" class="item">问答社区</a>
                     <a href="{{ url('blog.index') }}" class="item">博客</a>
                     <a href="{{ url('feedback.create') }}" class="item">留言反馈</a>
-                    <a href="http://laravel.com" target="_blank" class="item">Laravel官网</a>
                 </div>
             </div>
             <div class="three wide column">

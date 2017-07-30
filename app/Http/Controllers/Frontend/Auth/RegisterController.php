@@ -3,6 +3,11 @@
 namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Models\User;
+use DB;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
+use Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -72,5 +77,42 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         return view('frontend.auth.register');
+    }
+
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        if ($user->is_activated == 1) {
+            $this->guard()->login($user);
+        }
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
+    }
+
+    protected function registered(Request $request, $user)
+    {
+        // send activation code
+        $user = $user->toArray();
+        $token = str_random(30);
+        $user['token'] = $token;
+        DB::table('user_activations')->insert(['user_id' => $user['id'], 'token'=> $token]);
+
+        // todo: use notification
+        Mail::send('emails.activation', $user, function($message) use ($user) {
+            $message->to($user['email']);
+            $message->subject('PHPCasts - 帐号激活链接');
+        });
+
+        Flash::success('已发送激活链接,请检查您的邮箱。');
     }
 }

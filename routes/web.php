@@ -57,6 +57,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::get('/', 'WelcomeController@index')->name('welcome');
 
     // user's
+    Route::get('user/activation/{token}', 'Auth\LoginController@userActivation')->name('user.activation');
     Route::get('user/{user}', 'UserController@show')->name('user.show');
     Route::get('user/{id}/topics', 'UserController@topics')->name('user.topics');
     Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');

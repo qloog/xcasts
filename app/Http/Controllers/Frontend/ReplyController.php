@@ -57,7 +57,7 @@ class ReplyController extends Controller
         ]);
 
         if ($this->repository->create($request->all())) {
-            return redirect()->route('topic.show', $request->get('topic_id'));
+            return redirect()->route('topics.show', $request->get('topic_id'));
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }

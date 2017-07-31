@@ -56,7 +56,7 @@ class TopicController extends Controller
      */
     public function create()
     {
-        //todo move service or repository
+        //todo: move to service or repository from here
         $categories = Category::all();
 
         return view('frontend.topic.create', compact('categories'));
@@ -77,7 +77,7 @@ class TopicController extends Controller
         ]);
 
         if ($this->topicRepo->create($request->all())) {
-            return redirect()->route('topic.index');
+            return redirect()->route('topics.index');
         }
 
         return Redirect::back()->withInput()->withErrors('保存失败！');

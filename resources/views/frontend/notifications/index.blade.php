@@ -32,14 +32,14 @@
                                         <a href="{{ route('user.show', $notification->fromUser->id) }}">{{ $notification->fromUser->name }}</a>
                                          •
                                         @if($notification->type == 'at')
-                                            在话题中提及你: <a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
+                                            在话题中提及你: <a class="teal color" href="{{ route('topics.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     • 于 •  {{ $notification->created_at->diffForHumans() }}
                                                 </div>
                                             </div>
                                         @elseif($notification->type == 'new_reply')
-                                            回复了你: <a class="teal color" href="{{ route('topic.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
+                                            回复了你: <a class="teal color" href="{{ route('topics.show', $notification->topic_id) }}" target="_blank">{{ $notification->topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     • 于 •  {{ $notification->created_at->diffForHumans() }}

@@ -47,8 +47,8 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::get('payment/notify', 'PaymentController@notify')->name('payment.notify');
         Route::get('payment/return', 'PaymentController@return')->name('payment.return');
 
-        Route::post('topics/{id}/upvote', 'TopicController@upVote')->name('topic.upvote');
-        Route::post('topics/{id}/downvote', 'TopicController@downVote')->name('topic.downvote');
+        Route::post('topics/{id}/upvote', 'TopicController@upVote')->name('topics.upvote');
+        Route::post('topics/{id}/downvote', 'TopicController@downVote')->name('topics.downvote');
         Route::resource('reply', 'ReplyController');
         Route::post('reply/{id}/vote', 'ReplyController@vote')->name('reply.vote');
     });

@@ -262,7 +262,7 @@
                 }
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('topic.upvote', $topic->id) }}',
+                    url: '{{ route('topics.upvote', $topic->id) }}',
                     data: {'_token': '{{ csrf_token() }}','_method':'post'},
                     dataType:'json',
                     success: function (ret) {

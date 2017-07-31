@@ -30,7 +30,7 @@
                                     @foreach($topics as $topic)
                                         <div class="comment">
                                             <div class="content">
-                                                <a class="teal color" href="{{ route('topic.show', $topic->id) }}" target="_blank">{{ $topic->title }}</a>
+                                                <a class="teal color" href="{{ route('topics.show', $topic->id) }}" target="_blank">{{ $topic->title }}</a>
                                                 <div class="metadata">
                                                     <div class="date">
                                                         {{ $topic->created_at->diffForHumans() }}

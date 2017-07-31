@@ -36,7 +36,7 @@
                                 @foreach($replies as $reply)
                                     <div class="comment">
                                         <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $reply->topic->id) }}" target="_blank">{{ $reply->topic->title }}</a>
+                                            <a class="teal color" href="{{ route('topics.show', $reply->topic->id) }}" target="_blank">{{ $reply->topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     {{ $reply->created_at->diffForHumans() }}

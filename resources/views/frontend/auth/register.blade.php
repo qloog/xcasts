@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 
+@section('title', '注册')
+
 @section('content')
     <div class="ui stackable grid container">
         <div class="row"></div>

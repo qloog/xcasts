@@ -1,8 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title')
-    视频
-@endsection
+@section('title', '课程')
 
 @section('content')
 

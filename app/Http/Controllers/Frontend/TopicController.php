@@ -23,6 +23,9 @@ class TopicController extends Controller
      */
     protected $topicRepo;
     protected $replyRepo;
+    /**
+     * @var VoteRepository
+     */
     protected $voteRepo;
 
     /**

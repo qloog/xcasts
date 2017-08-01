@@ -53,7 +53,7 @@
                     <div id="voted_user_list">
                         @foreach($votedUsers as $user)
                         <a href="{{ route('user.show', $user['id']) }}" data-uid="{{ $user['id'] }}">
-                            <img class="ui avatar image" src="{{ cdn($user['avatar']) }}" style="width: 40px;height: 40px;"/>
+                            <img class="ui avatar image" src="{{ $user['avatar'] ? cdn($user['avatar']) : '/avatars/default.png' }}" style="width: 40px;height: 40px;"/>
                         </a>
                         @endforeach
                     </div>
@@ -269,7 +269,7 @@
                         if (ret.code == 200 ) {
                             @if(Auth::check())
                             var str = '<a href="{{ route('user.show', Auth::id()) }}" data-uid="{{ Auth::id() }}"> \
-                                    <img class="ui avatar image" src="{{ Auth::user()->avatar }}" style="width: 40px;height: 40px;"/> \
+                                    <img class="ui avatar image" src="{{ Auth::user()->avatar ? cdn(Auth::user()->avatar) : '/avatars/default.png'}}" style="width: 40px;height: 40px;"/> \
                                     </a>';
                             @endif
 

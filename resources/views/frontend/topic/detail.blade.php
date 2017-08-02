@@ -267,29 +267,30 @@
                     dataType:'json',
                     success: function (ret) {
                         if (ret.code == 200 ) {
-                            @if(Auth::check())
-                            var str = '<a href="{{ route('user.show', Auth::id()) }}" data-uid="{{ Auth::id() }}"> \
-                                    <img class="ui avatar image" src="{{ Auth::user()->avatar ? cdn(Auth::user()->avatar) : '/avatars/default.png'}}" style="width: 40px;height: 40px;"/> \
-                                    </a>';
-                            @endif
+                            window.location.reload();
+                            {{--@if(Auth::check())--}}
+                            {{--var str = '<a href="{{ route('user.show', Auth::id()) }}" data-uid="{{ Auth::id() }}">';--}}
+                                {{--str += '<img class="ui avatar image" src="{{ Auth::user()->avatar ? cdn(Auth::user()->avatar) : '/avatars/default.png'}}" style="width: 40px;height: 40px;"/>';--}}
+                                {{--str += '</a>';--}}
+                            {{--@endif--}}
 
-                            var voted_a_obj = $('#voted_user_list a');
-                            var voted_user_count = voted_a_obj.length;
-                            if (voted_user_count == 0) {
-                                $('#voted_user_list').append(str);
-                                return false;
-                            }
-                            voted_a_obj.map(function (key,value) {
-                                console.log(value.getAttribute('data-uid'));
-                                if (value.getAttribute('data-uid') == '{{ Auth::id() }}') {
-                                    //todo: 如何移除对象里对应的item[js里如何动态删除和添加list]
-                                    $(this).remove(voted_a_obj[key]);
-                                } else {
-                                    if (key == 0) {
-                                        value.before(str);
-                                    }
-                                }
-                            });
+                            {{--var voted_a_obj = $('#voted_user_list a');--}}
+                            {{--var voted_user_count = voted_a_obj.length;--}}
+                            {{--if (voted_user_count == 0) {--}}
+                                {{--$('#voted_user_list').append(str);--}}
+                                {{--return false;--}}
+                            {{--}--}}
+                            {{--voted_a_obj.map(function (key,value) {--}}
+                                {{--console.log(value.getAttribute('data-uid'));--}}
+                                {{--if (value.getAttribute('data-uid') == '{{ Auth::id() }}') {--}}
+                                    {{--//todo: 如何移除对象里对应的item[js里如何动态删除和添加list]--}}
+                                    {{--$(this).remove(voted_a_obj[key]);--}}
+                                {{--} else {--}}
+                                    {{--if (key == 0) {--}}
+                                        {{--value.before(str);--}}
+                                    {{--}--}}
+                                {{--}--}}
+                            {{--});--}}
                         }
                     }
                 });

@@ -99,6 +99,12 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
+    /**
+     * 注册之后的一些处理
+     *
+     * @param Request $request
+     * @param         $user
+     */
     protected function registered(Request $request, $user)
     {
         // send activation code

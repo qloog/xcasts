@@ -89,8 +89,10 @@ class RegisterController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        // see: https://laravel.com/docs/5.3/authentication#events
         event(new Registered($user = $this->create($request->all())));
 
+        // todo: next all move to listener
         if ($user->is_activated == 1) {
             $this->guard()->login($user);
         }

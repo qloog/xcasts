@@ -6,6 +6,8 @@ use App\Models\User;
 use DB;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
 use Laracasts\Flash\Flash;
 use Mail;
 use Validator;
@@ -121,6 +123,6 @@ class RegisterController extends Controller
             $message->subject('PHPCasts - 帐号激活链接');
         });
 
-        Flash::success('已发送激活链接,请检查您的邮箱。');
+        Flash::message('已发送激活链接,请检查您的邮箱。');
     }
 }

@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Lang;
 use Laracasts\Flash\Flash;
 
 class LoginController extends Controller
@@ -66,7 +67,7 @@ class LoginController extends Controller
             $user = Auth::getUser();
             if($user->is_activated == 0) {
                 $this->logout($request);
-                Flash::warning('您的帐号还未激活,请激活后才试。');
+                Flash::warning('您的帐号还未激活, 请激活后才试。');
                 return back();
             }
 
@@ -84,6 +85,15 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors([
+                $this->username() => Lang::get('auth.failed'),
+            ]);
     }
 
     /**

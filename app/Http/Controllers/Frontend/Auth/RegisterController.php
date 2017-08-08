@@ -123,6 +123,8 @@ class RegisterController extends Controller
             $message->subject('PHPCasts - 帐号激活链接');
         });
 
-        Flash::message('已发送激活链接,请检查您的邮箱。');
+        Flash::success('已发送激活链接,请检查您的邮箱。');
+
+        return redirect()->route('login');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend\Auth;
 
+use App\Mail\UserRegisteredActivation;
 use App\Models\User;
 use DB;
 use Illuminate\Auth\Events\Registered;
@@ -117,11 +118,14 @@ class RegisterController extends Controller
         $user['token'] = $token;
         DB::table('user_activations')->insert(['user_id' => $user['id'], 'token'=> $token]);
 
-        // todo: use notification
-        Mail::send('emails.activation', $user, function($message) use ($user) {
-            $message->to($user['email']);
-            $message->subject('PHPCasts - 帐号激活链接');
-        });
+        // todo: use mail class
+        // see: https://scotch.io/tutorials/easy-and-fast-emails-with-laravel-5-3-mailables
+        //      https://mattstauffer.co/blog/introducing-mailables-in-laravel-5-3
+        //Mail::send('emails.activation', $user, function($message) use ($user) {
+        //    $message->to($user['email']);
+        //    $message->subject('PHPCasts - 帐号激活链接');
+        //});
+        Mail::to($user['email'])->send(new UserRegisteredActivation($user));
 
         Flash::success('已发送激活链接,请检查您的邮箱。');
 

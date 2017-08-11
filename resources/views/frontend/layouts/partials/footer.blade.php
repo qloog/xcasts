@@ -18,6 +18,7 @@
                 <div class="ui inverted list">
                     <a href="{{ route('topics.index') }}" class="item">问答社区</a>
                     <a href="{{ route('blog.index') }}" class="item">博客</a>
+                    <a href="https://weibo.com/phpcasts" target="_blank" class="item">微博</a>
                     <a href="{{ route('feedback.create') }}" class="item">留言反馈</a>
                 </div>
             </div>

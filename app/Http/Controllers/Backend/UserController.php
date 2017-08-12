@@ -51,6 +51,17 @@ class UserController extends BaseController
     {
         $users = $this->users->orderBy('id', 'desc')->paginate(10);
 
+        if($users) {
+            // todo: move to model or how to use isVip of Repository
+            foreach ($users as &$user) {
+                $memberDetail = $this->users->memberDetail($user->id);
+                $user['is_member'] = $memberDetail ? 1 : 0;
+                $user['start_time'] = $memberDetail ? $memberDetail['start_time'] : '--';
+                $user['end_time'] = $memberDetail ? $memberDetail['end_time'] : '--';
+                $user['type'] = $memberDetail ? $memberDetail['type'] : '--';
+            }
+        }
+
         return view('backend.user.index', ['users' => $users]);
     }
 
@@ -133,7 +144,8 @@ class UserController extends BaseController
      * @param Request $request
      * @return mixed
      */
-    public function changePassword($id, Request $request) {
+    public function changePassword($id, Request $request)
+    {
         return view('backend.user.change-password')
             ->withUser($this->users->find($id));
     }
@@ -143,7 +155,8 @@ class UserController extends BaseController
      * @param Request $request
      * @return mixed
      */
-    public function updatePassword($id, Request $request) {
+    public function updatePassword($id, Request $request)
+    {
         $this->users->updatePassword($id, $request->all());
         return redirect()->route('admin.auth.user.index')->withFlashSuccess(trans("alerts.users.updated_password"));
     }
@@ -161,5 +174,18 @@ class UserController extends BaseController
         return redirect()
             ->route('admin.auth.user.index')
             ->withSuccess('Post deleted.');
+    }
+
+    public function addMember()
+    {
+        return view('backend.user.add_member');
+    }
+
+    public function openMember(Request $request)
+    {
+        $result = $this->users->openMember($request->all());
+
+        return redirect()
+            ->route('admin.auth.user.index');
     }
 }

@@ -286,14 +286,14 @@
                                 <img class="nav-user-photo" src="/avatars/user.jpg" alt="Jason's Photo">
                                 <span class="user-info">
                                     <small>{{ trans('strings.backend.WELCOME') }},</small>
-                                    {{ Auth::user()->username }}
+                                    {{ Auth::user('admin')->username }}
                                 </span>
                                 <i class="ace-icon fa fa-caret-down"></i>
                             </a>
 
                             <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                                 <li>
-                                    <a href="{{ url('/admin/auth/user/change-password', Auth::user()->id) }}">
+                                    <a href="{{ url('/admin/auth/user/change-password', Auth::user('admin')->id) }}">
                                         <i class="ace-icon fa fa-lock"></i>
                                         修改密码
                                     </a>

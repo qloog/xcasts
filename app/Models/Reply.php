@@ -14,6 +14,11 @@ class Reply extends Model implements Transformable
 
     protected $fillable = ['topic_id','origin_body','body','vote_count','is_blocked','source','user_id'];
 
+    public function votes()
+    {
+        return $this->morphMany(Vote::class, 'votable');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

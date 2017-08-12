@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    发表的回复
+@endsection
+
 @section('styles')
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">
@@ -9,10 +13,9 @@
 
 @section('content')
     <div class="ui grid" style="background-color: #E9EAED">
-        <div class="row"></div>
-        <div class="row">
-            <div class="thirteen wide column centered">
-                <div class="ui grid">
+        <div class="ui container">
+            <div class="ui hidden divider"></div>
+            <div class="ui grid">
                     <div class="four wide column">
                         @include('frontend.user.base_info')
 
@@ -33,7 +36,7 @@
                                 @foreach($replies as $reply)
                                     <div class="comment">
                                         <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $reply->topic->id) }}" target="_blank">{{ $reply->topic->title }}</a>
+                                            <a class="teal color" href="{{ route('topics.show', $reply->topic->id) }}" target="_blank">{{ $reply->topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     {{ $reply->created_at->diffForHumans() }}
@@ -50,9 +53,8 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <div class="ui hidden divider"></div>
         </div>
-        <div class="row"></div>
     </div>
 
 @endsection
@@ -61,7 +63,6 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('.ui.dropdown').dropdown();
-
             $('.button').popup();
         });
     </script>

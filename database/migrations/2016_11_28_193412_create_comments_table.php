@@ -16,7 +16,7 @@ class CreateCommentsTable extends Migration
 		Schema::create('comments', function(Blueprint $table) {
             $table->increments('id');
             $table->enum('type', ['video', 'blog'])->comment('评论所属类型');
-            $table->integer('relation_id')->default(0)->comment('关联id');
+            $table->integer('related_id')->default(0)->comment('关联id');
             $table->string('ip', 15)->default('')->comment('评论者所在地ip');
             $table->text('content')->comment('markdown评论内容');
             $table->text('origin_content')->comment('原始评论内容');

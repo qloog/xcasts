@@ -3,21 +3,28 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CommentRepository;
+use App\Contracts\Repositories\UserRepository;
 use App\Contracts\Repositories\VideoRepository;
+use App\Contracts\Repositories\CourseRepository;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class VideoController extends Controller
 {
-    protected $videos;
-    protected $comments;
+    protected $courseRepo;
+    protected $videoRepo;
+    protected $commentRepo;
+    protected $userRepo;
 
-    public function __construct(VideoRepository $videos, CommentRepository $comments)
+    public function __construct(UserRepository $users, CourseRepository $courses, VideoRepository $videos, CommentRepository $comments)
     {
-        $this->videos = $videos;
-        $this->comments = $comments;
+        $this->userRepo = $users;
+        $this->courseRepo = $courses;
+        $this->videoRepo = $videos;
+        $this->commentRepo = $comments;
     }
 
     /**
@@ -54,16 +61,32 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param $id
+     * @param $slug
+     * @param $episodeId
      * @return \Illuminate\Http\Response
-     * @internal param int $id
      */
-    public function show($id)
+    public function show($slug, $episodeId)
     {
-        $video = $this->videos->find($id);
-        $comments = $this->comments->findWhere(['type' => 'video', 'relation_id' => $id])->all();
+        $courses = $this->courseRepo->findByField('slug', $slug);
+        $course = $courses[0];
 
-        return view('frontend.video.detail', compact('video','comments'));
+        $videos = $this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId]);
+        $video = $videos[0];
+        $comments = $this->commentRepo
+            ->orderBy('created_at','desc')
+            ->findWhere(['type' => 'video', 'relation_id' => $video->id])
+            ->all();
+
+        $preLink = '';
+        $nextLink = '';
+        if ($this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId - 1])->toArray()) {
+            $preLink = route('video.show', ['slug' => $course->slug, 'episode_id' => $video->episode_id - 1]);
+        }
+        if ($this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId + 1])->toArray()) {
+            $nextLink = route('video.show', ['slug' => $course->slug, 'episode_id' => $video->episode_id + 1]);
+        }
+
+        return view('frontend.video.detail', compact('course', 'video', 'comments','preLink', 'nextLink'));
     }
 
     /**

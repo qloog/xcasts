@@ -41,7 +41,7 @@ return [
         'email' => 'E-mail',
         'id' => 'ID',
         'last_updated' => 'Last Updated',
-        'username' => '用户名',
+        'name' => '用户名',
         'no_banned_users' => 'No Banned Users',
         'no_deactivated_users' => 'No Deactivated Users',
         'no_deleted_users' => 'No Deleted Users',

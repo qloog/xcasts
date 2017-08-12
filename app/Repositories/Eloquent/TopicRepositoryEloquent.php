@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\User;
+use App\Models\Vote;
 use Auth;
 use Parsedown;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -82,5 +83,15 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
     public function increment($id, $field)
     {
         return Topic::where('id', $id)->increment($field);
+    }
+
+    public function voteBy($id)
+    {
+        $user_ids = Vote::where('votable_type', Topic::class)
+            ->where('votable_id', $id)
+            ->where('is', 'upvote')
+            ->pluck('user_id')
+            ->toArray();
+        return User::whereIn('id', $user_ids)->get();
     }
 }

@@ -32,7 +32,6 @@
                         <a href="/admin/auth/user/create" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加用户</a>
                     </h3>
                     <div class="box-tools">
-                        <!--
                         <div class="form-inline  pull-right">
                             <form action="" method="get">
                                 <fieldset>
@@ -56,7 +55,6 @@
                                 </fieldset>
                             </form>
                         </div>
-                        -->
 
                     </div>
                 </div>
@@ -66,11 +64,15 @@
                         <thead>
                         <tr>
                             <th>{{ trans('crud.users.id') }}</th>
-                            <th>{{ trans('crud.users.username') }}</th>
-                            <th>{{ trans('crud.users.roles') }}</th>
+                            <th>{{ trans('crud.users.name') }}</th>
+                            <th>是否会员</th>
+                            <th>会员等级</th>
+                            <th>会员时间</th>
                             <th>{{ trans('crud.users.email') }}</th>
                             <th>{{ trans('crud.users.created') }}</th>
                             <th>{{ trans('crud.users.updated') }}</th>
+                            <th>最后登录时间</th>
+                            <th>最后登录IP</th>
                             <th>状态</th>
                             <th>{{ trans('crud.actions') }}</th>
                         </tr>
@@ -79,20 +81,27 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{ $user->id }}</td>
-                                <td>{{ $user->username }}</td>
-                                <td>
-                                    @if ($user->roles()->count() > 0)
-                                        @foreach ($user->roles as $role)
-                                            <span class="badge bg-yellow">{!! $role->name !!}</span>
-                                        @endforeach
+                                <td><a href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a></td>
+                                <td>@if ($user->is_member == 1)
+                                        <small class="label label-success">是</small>
                                     @else
-                                        --
+                                        <small class="label label-danger">否</small>
                                     @endif
                                 </td>
+                                <td>{{ $user->type }}</td>
+                                <td>{{ $user->start_time }} <br> {{ $user->end_time }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->updated_at }}</td>
-                                <td><small class="label label-success">{{ $user->status }}</small></td>
+                                <td>{{ $user->last_login_time }}</td>
+                                <td>{{ $user->last_login_ip }}</td>
+                                <td>
+                                    @if ($user->status == '正常')
+                                        <small class="label label-success">{{ $user->status }}</small>
+                                    @else
+                                        <small class="label label-danger">{{ $user->status }}</small>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
                                         <a href="{{ route('admin.auth.user.edit', [$user->id]) }}">
@@ -127,6 +136,7 @@
     <!-- /.row -->
 
     <div class="clearfix"></div>
+
 @endsection
 
 @section('scripts')

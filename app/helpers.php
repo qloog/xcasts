@@ -2,6 +2,8 @@
 /*
  * Global helpers file with misc functions
  */
+use App\Services\QiNiuService;
+
 if (! function_exists('app_name')) {
     /**
      * Helper to grab the application name
@@ -90,7 +92,6 @@ if ( ! function_exists('get_relation_title')) {
      */
     function get_relation_title($type, $relation_id)
     {
-        $title = '';
         switch($type){
             case 'news':
                 $obj = DB::table('news')->select('title')->where('id', '=', $relation_id)->first();
@@ -106,4 +107,18 @@ if ( ! function_exists('get_relation_title')) {
         }
         return $title;
     }
+}
+
+/**
+ * get cdn url for image or mp4
+ *
+ * @param $path
+ * @return string
+ */
+function cdn($path)
+{
+    $qiNiuSrv = new QiNiuService();
+    $url = env('QINIU_CDN_URL') . $path;
+
+    return $qiNiuSrv->fileUrlWithToken($url);
 }

@@ -13,11 +13,11 @@ class Video extends Model implements Transformable
     protected $fillable = [
         'id',
         'course_id',
+        'episode_id',
         'name',
         'description',
         'cover_image',
-        'url',
-        'cdn_url',
+        'mp4_url',
         'is_free',
         'length',
         'user_id',
@@ -25,9 +25,17 @@ class Video extends Model implements Transformable
         'updated_at'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
     }
 
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCoursesTable extends Migration
+class CreateSeriesTable extends Migration
 {
 
 	/**
@@ -35,5 +35,4 @@ class CreateCoursesTable extends Migration
 	{
 		Schema::drop('courses');
 	}
-
 }

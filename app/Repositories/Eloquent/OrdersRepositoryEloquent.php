@@ -5,7 +5,7 @@ namespace App\Repositories\Eloquent;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\OrdersRepository;
-use App\Models\Orders;
+use App\Models\Order;
 use App\Validators\OrdersValidator;
 
 /**
@@ -21,10 +21,8 @@ class OrdersRepositoryEloquent extends BaseRepository implements OrdersRepositor
      */
     public function model()
     {
-        return Orders::class;
+        return Order::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria
@@ -33,4 +31,10 @@ class OrdersRepositoryEloquent extends BaseRepository implements OrdersRepositor
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+    public function genOrderNo()
+    {
+        return date('YmdHis' . rand(10000,99999));
+    }
+
 }

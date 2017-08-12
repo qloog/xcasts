@@ -5,45 +5,42 @@ namespace App\Http\Controllers\Frontend;
 use App\Contracts\Repositories\CourseRepository;
 use App\Http\Controllers\Controller;
 
-/**
- * Class HomeController
- * @package App\Http\Controllers\Frontend
- */
-class HomeController extends Controller
-{
+class HomeController extends Controller {
 
     /*
     |--------------------------------------------------------------------------
-    | Home Controller
+    | Welcome Controller
     |--------------------------------------------------------------------------
     |
-    | This controller renders your application's "dashboard" for users that
-    | are authenticated. Of course, you are free to change or remove the
-    | controller as you wish. It is just here to get your app started!
+    | This controller renders the "marketing page" for the application and
+    | is configured to only allow guests. Like most of the other sample
+    | controllers, you are free to modify or remove it as you desire.
     |
     */
-    protected $courses;
+    protected $courseRepo;
 
     /**
      * Create a new controller instance.
+     *
      * @param CourseRepository $courses
      */
     public function __construct(CourseRepository $courses)
     {
         $this->middleware('auth');
 
-        $this->courses = $courses;
+        $this->courseRepo = $courses;
     }
 
-
     /**
+     * Show the application welcome screen to the user.
      *
+     * @return Response
      */
-    function index()
+    public function index()
     {
-        $courses = $this->courses->orderBy('id', 'DESC')->paginate(30);
+        $courses = $this->courseRepo->orderBy('id', 'DESC')->paginate(10);
 
-        return view('frontend.home', compact('courses'));
+        return view('frontend.welcome', compact('courses'));
     }
 
 }

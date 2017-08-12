@@ -13,7 +13,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use PHPCast\LaravelFollow\FollowTrait;
+use Overtrue\LaravelFollow\FollowTrait;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Notifications\Notifiable;
 
@@ -61,10 +61,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password', 'real_name', 'avatar', 'city', 'company',
+        'name', 'email', 'password', 'real_name', 'avatar', 'city', 'company',
         'weibo_url','wechat_id','personal_website','introduction','topic_count',
         'reply_count','follwer_count', 'status','last_login_time','last_login_ip',
-        'created_at','updated_at'
+        'created_at','updated_at','is_activated'
     ];
 
     /**
@@ -110,4 +110,24 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->morphedByMany(Topic::class, 'votable', 'votes')->withPivot('created_at');
     }
 
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class)->recent()->with('topic', 'fromUser')->paginate(20);
+    }
+
+    /**
+     * 验证用户是否是会员
+     *
+     * @return bool
+     */
+    public function getIsMemberAttribute()
+    {
+        $memberRelation = $this->hasOne(UserMember::class, 'user_id');
+        $memberDetail = $memberRelation->getResults();
+        if ($memberDetail) {
+            return ((time() > strtotime($memberDetail->start_time)) && (strtotime($memberDetail->end_time) > time()))  ? true:  false;
+        }
+
+        return false;
+    }
 }

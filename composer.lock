@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f31d349a1452d2cd1e2cca34b0d05b67",
-    "content-hash": "a7e888d361a7cb90e09591bc340b86ae",
+    "hash": "9798a90ce763aec078736a94660abb28",
+    "content-hash": "9130754219820a8c36e395d290ca943d",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -1555,6 +1555,52 @@
             "time": "2016-08-27 23:52:43"
         },
         {
+            "name": "latrell/alipay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/latrell/Alipay.git",
+                "reference": "7c26ff347ca3925901a5ef48275376b8045f28d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/latrell/Alipay/7c26ff347ca3925901a5ef48275376b8045f28d1.zip",
+                "reference": "7c26ff347ca3925901a5ef48275376b8045f28d1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "5.*",
+                "illuminate/events": "5.*",
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Latrell\\Alipay\\": "src/Latrell/Alipay/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Latrell Chan",
+                    "email": "i@latrell.me"
+                }
+            ],
+            "description": "支付宝SDK在Laravel5封装包。",
+            "keywords": [
+                "Alipay SDK",
+                "alipay",
+                "l5",
+                "laravel",
+                "laravel 5"
+            ],
+            "time": "2016-08-06 11:12:40"
+        },
+        {
             "name": "league/flysystem",
             "version": "1.0.32",
             "source": {
@@ -2170,6 +2216,46 @@
                 "php"
             ],
             "time": "2016-12-06 11:30:35"
+        },
+        {
+            "name": "overtrue/laravel-follow",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/laravel-follow.git",
+                "reference": "5d49bfce854ef093d02a44668fa184054cb52167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packagist.phpcomposer.com/files/overtrue/laravel-follow/5d49bfce854ef093d02a44668fa184054cb52167.zip",
+                "reference": "5d49bfce854ef093d02a44668fa184054cb52167",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "laravel/framework": "~5.1",
+                "phpunit/phpunit": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\LaravelFollow\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "i@overtrue.me"
+                }
+            ],
+            "description": "Laravel 5 User Based System",
+            "time": "2017-01-02 07:26:09"
         },
         {
             "name": "paragonie/random_compat",
@@ -7034,7 +7120,8 @@
     "stability-flags": {
         "laravel/socialite": 20,
         "zizaco/entrust": 20,
-        "phpcast/laravel-follow": 20
+        "phpcast/laravel-follow": 20,
+        "latrell/alipay": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    {{ $course->name }} - 视频
+@endsection
+
 @section('content')
 
     <!-- banner -->
@@ -24,10 +28,10 @@
                     @if (count($course->videos) > 0)
                         @foreach($course->videos as $key => $video)
                         <tr style="display: table-row">
-                            <td class="ui center aligned">{{ $key+1 }}</td>
+                            <td class="ui center aligned">{{ $video->episode_id }}</td>
                             <td>
                                 <i class="video play outline large icon"></i>
-                                <a href="{{ route('course.video.show', $video->id) }}">{{ $video->name }}</a>
+                                <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
                             </td>
                             <td class="ui right aligned">
                                 @if($video->is_free == 1)

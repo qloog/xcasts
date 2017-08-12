@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '新建视频')
+@section('title', '新建课程')
 
 @section('breadcrumb')
         <li>
@@ -8,10 +8,10 @@
             <a href="/admin/dashboard">主页</a>
         </li>
         <li>
-            <a>视频管理</a>
+            <a>课程管理</a>
         </li>
         <li>
-            创建视频
+            创建课程
         </li>
 @endsection
 
@@ -20,7 +20,7 @@
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">添加视频</h3>
+                    <h3 class="box-title">添加课程</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->

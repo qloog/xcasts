@@ -13,12 +13,12 @@ class CourseController extends Controller
     /**
      * @var CourseRepository
      */
-    protected $courses;
+    protected $courseRepo;
 
 
     public function __construct(CourseRepository $courses)
     {
-        $this->courses = $courses;
+        $this->courseRepo = $courses;
     }
 
     /**
@@ -30,7 +30,7 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         $type = $request->get('type');
-        $courses = $this->courses->getCourseListByType($type, 15);
+        $courses = $this->courseRepo->getCourseListByType($type, 15);
 
         return view('frontend.course.index', compact('courses', 'type'));
     }
@@ -59,12 +59,12 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $course = $this->courses->findByField('id', $id)->first();
+        $course = $this->courseRepo->findByField('slug', $slug)->first();
 
         return view('frontend.course.detail', compact('course'));
     }

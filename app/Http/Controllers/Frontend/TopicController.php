@@ -5,20 +5,28 @@ namespace App\Http\Controllers\Frontend;
 use App\Contracts\Repositories\ReplyRepository;
 use App\Contracts\Repositories\TopicRepository;
 use App\Contracts\Repositories\VoteRepository;
+use App\Models\Category;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Qiniu\Auth;
 use Redirect;
 
 class TopicController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * @var TopicRepository
      */
-    protected $topics;
-    protected $replies;
-    protected $votes;
+    protected $topicRepo;
+    protected $replyRepo;
+    /**
+     * @var VoteRepository
+     */
+    protected $voteRepo;
 
     /**
      * TopicController constructor.
@@ -28,9 +36,9 @@ class TopicController extends Controller
      */
     public function __construct(TopicRepository $topics, ReplyRepository $replies, VoteRepository $votes)
     {
-        $this->topics = $topics;
-        $this->replies = $replies;
-        $this->votes = $votes;
+        $this->topicRepo = $topics;
+        $this->replyRepo = $replies;
+        $this->voteRepo = $votes;
     }
 
     /**
@@ -40,7 +48,7 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = $this->topics->orderBy('created_at', 'desc')->paginate(10);
+        $topics = $this->topicRepo->orderBy('created_at', 'desc')->paginate(20);
         return view('frontend.topic.index', compact('topics'));
     }
 
@@ -51,7 +59,10 @@ class TopicController extends Controller
      */
     public function create()
     {
-        return view('frontend.topic.create');
+        //todo: move to service or repository from here
+        $categories = Category::all();
+
+        return view('frontend.topic.create', compact('categories'));
     }
 
     /**
@@ -62,9 +73,16 @@ class TopicController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->topics->create($request->all())) {
-            return redirect()->route('topic.index');
+        $this->validate($request, [
+            'category' => 'required',
+            'title' => 'required|unique:forum_topics|max:255',
+            'body' => 'required'
+        ]);
+
+        if ($this->topicRepo->create($request->all())) {
+            return redirect()->route('topics.index');
         }
+
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
@@ -76,13 +94,14 @@ class TopicController extends Controller
      */
     public function show($id)
     {
-        $topic = $this->topics->find($id);
+        $topic = $this->topicRepo->find($id);
 
-        $replies = $this->replies->findWhere(['topic_id' => $id]);
+        $replies = $this->replyRepo->orderBy('created_at', 'asc')->findWhere(['topic_id' => $id]);
+        $votedUsers = $this->topicRepo->voteBy($id);
 
-        $this->topics->increment($id, 'view_count');
+        $this->topicRepo->increment($id, 'view_count');
 
-        return view('frontend.topic.detail', compact('topic', 'replies'));
+        return view('frontend.topic.detail', compact('topic', 'replies','votedUsers'));
     }
 
     /**
@@ -108,24 +127,24 @@ class TopicController extends Controller
         //
     }
 
-    public function voteUp($id)
+    public function upVote($id)
     {
-        $topic = $this->topics->find($id);
-        $this->votes->topicUpVote($topic);
+        $topic = $this->topicRepo->find($id);
+        $this->voteRepo->topicUpVote($topic);
 
         return response([
-            'vote-up' => true,
+            'code' => 200,
             'vote_count' => $topic->vote_count
         ]);
     }
 
-    public function voteDown($id)
+    public function downVote($id)
     {
-        $topic = $this->topics->find($id);
-        $this->votes->topicDownVote($topic);
+        $topic = $this->topicRepo->find($id);
+        $this->voteRepo->topicDownVote($topic);
 
         return response([
-            'vote-down' => true,
+            'code' => 200,
             'vote_count' => $topic->vote_count
         ]);
     }

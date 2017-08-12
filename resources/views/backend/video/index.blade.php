@@ -4,8 +4,8 @@
 
 @section('breadcrumb')
     <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
-    <li>视频管理</li>
-    <li>列表</li>
+    <li>课程管理</li>
+    <li>视频列表</li>
 @endsection
 
 @section('content')
@@ -16,7 +16,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加视频</a>
+                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加课程</a>
                     </h3>
                     <div class="box-tools">
                         <!--
@@ -53,10 +53,10 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>视频名称</th>
-                            <th>所属课程</th>
-                            <th>视频地址</th>
                             <th>封面</th>
+                            <th>视频名称</th>
+                            <th>episode_id</th>
+                            <th>所属课程</th>
                             <th>长度</th>
                             <th>是否免费</th>
                             <th>创建者</th>
@@ -66,16 +66,17 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @if(count($videos))
                         @foreach ($videos as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->course_id }}</td>
-                                <td><a href="{{ $item->mp4_url }}">视频地址</a></td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->episode_id }}</td>
+                                <td>【{{ $item->course->id }}】{{ $item->course->name }}</td>
                                 <td>{{ $item->length }}</td>
                                 <td>{!! $item->is_free == 1 ? '免费视频' : '<i class="fa fa-money"></i> 收费' !!} </td>
-                                <td>{{ $item->user_id }}</td>
+                                <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
@@ -87,6 +88,7 @@
                                 </td>
                             </tr>
                         @endforeach
+                        @endif
                         </tbody>
                     </table>
                 </div>

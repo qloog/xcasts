@@ -3,6 +3,7 @@
 namespace App\Repositories\Eloquent;
 
 use App\Models\Topic;
+use XCasts\Notifications\Notifier;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Parsedown;
@@ -11,6 +12,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\ReplyRepository;
 use App\Models\Reply;
 use App\Validators\ReplyValidator;
+use XCasts\Notifications\Mention;
 
 /**
  * Class ReplyRepositoryEloquent
@@ -28,8 +30,6 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
         return Reply::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -40,12 +40,15 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
 
     public function create(array $attributes)
     {
-        // 检查是否冲突添加
+        // 检查是否重复添加
         if ($this->isDuplicateReply($attributes)) {
             throw new \RuntimeException('请不要发布重复内容。');
         }
 
+        $mentionParser = new Mention();
         $attributes['user_id'] = Auth::id();
+        $attributes['body'] = $mentionParser->parse($attributes['body']);
+
         $attributes['origin_body'] = $attributes['body'];
         //TODO markdown 做下封装处理
         $attributes['body'] = (new Parsedown())->setBreaksEnabled(true)->text($attributes['body']);
@@ -64,7 +67,7 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
 
         Auth::user()->increment('reply_count', 1);
 
-        // TODO 通知相关人
+        app('XCasts\Notifications\Notifier')->newReplyNotify(Auth::user(), $mentionParser, $topic, $reply);
 
         return $reply;
     }
@@ -80,5 +83,19 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
                             ->orderBy('id', 'desc')
                             ->first();
         return count($lastReply) && strcmp($lastReply->origin_body, $data['body']) === 0;
+    }
+
+    /**
+     * reply 投票数+1
+     *
+     * @param     $id
+     * @param int $count
+     * @return int
+     */
+    public function vote($id, $count = 1)
+    {
+        $reply = $this->find($id);
+
+        return $reply->increment('vote_count', $count);
     }
 }

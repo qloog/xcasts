@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -26,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin/dashboard';
+     protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -34,7 +35,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+         $this->middleware('guest', ['except' => 'logout']);
     }
 
     public function showLoginForm()
@@ -42,10 +43,36 @@ class LoginController extends Controller
         return view('backend.auth.login');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
-
+        $this->guard()->logout();
+        $request->session()->flush();
+        $request->session()->regenerate();
         return redirect('/admin/login');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
+    }
+
+    /**
+     * Validate the user login request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return void
+     */
+    protected function validateLogin(Request $request)
+    {
+        $this->validate($request, [
+            $this->username() => 'required',
+            'password' => 'required',
+            'captcha' => 'required|captcha'
+        ]);
     }
 }

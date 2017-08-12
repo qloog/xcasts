@@ -149,8 +149,9 @@ $style = [
                                                 <tr>
                                                     <td style="{{ $fontFamily }}">
                                                         <p style="{{ $style['paragraph-sub'] }}">
-                                                            If you’re having trouble clicking the "{{ $actionText }}" button,
-                                                            copy and paste the URL below into your web browser:
+                                                            如果你点击"{{ $actionText }}"按钮有困难，复制并粘贴下面的URL到你的网页浏览器中。
+                                                            {{--If you’re having trouble clicking the "{{ $actionText }}" button,--}}
+                                                            {{--copy and paste the URL below into your web browser:--}}
                                                         </p>
 
                                                         <p style="{{ $style['paragraph-sub'] }}">

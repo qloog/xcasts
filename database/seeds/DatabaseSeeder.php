@@ -14,12 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $this->call('UsersTableSeeder');
+        //$this->call('UsersTableSeeder');
         //$this->call('RolesTableSeeder');
         //$this->call('PermissionsTableSeeder');
 
         //$this->call('CommentTableSeeder');
-
+        $this->call('AdminsTableSeeder');
     }
-
 }

@@ -14,6 +14,8 @@ return [
     */
     'env' => env('APP_ENV', 'production'),
 
+    'name' => 'PHPCasts',
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -159,7 +161,8 @@ return [
         Mews\Captcha\CaptchaServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-        PHPCast\LaravelFollow\FollowServiceProvider::class
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
+        Latrell\Alipay\AlipayServiceProvider::class
     ],
     /*
     |--------------------------------------------------------------------------

@@ -11,8 +11,8 @@
                     {!! Form::label('cover_image', '封面图', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            <input type="file" name="file" id="file"  class="form-control" />
-                            <input type="hidden" name="cover_image" id="cover_image" value="{!! isset($album->cover_image) ? $album->cover_image : '' !!}" />
+                            <input type="file" name="file" id="file" class="form-control" />
+                            <input type="hidden" name="cover_image" id="cover_image" value="{!! isset($video->cover_image) ? $video->cover_image : '' !!}"/>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,8 @@
                     {!! Form::label('url', '视频文件', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::file('url', ['class' => 'form-control']) !!}
+                            {!! Form::file('mp4_url', ['class' => 'form-control']) !!}
+                            {!! Form::text('mp4_url', isset($video->mp4_url) ? cdn($video->mp4_url) : '', ['class' => 'form-control', 'disabled' => 'disabled']) !!}
                         </div>
                     </div>
                 </div>

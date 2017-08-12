@@ -1,5 +1,9 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    个人中心
+@endsection
+
 @section('styles')
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">
@@ -8,11 +12,9 @@
 @stop
 
 @section('content')
-    <div class="ui grid">
-        <div class="row"></div>
-        <div class="row">
-            <div class="thirteen wide column centered">
-                <div class="ui grid">
+    <div class="ui container">
+        <div class="ui hidden divider"></div>
+        <div class="ui grid">
                     <div class="four wide column">
                         @include('frontend.user.base_info')
 
@@ -28,7 +30,7 @@
                                 @foreach($topics as $topic)
                                     <div class="comment">
                                         <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $topic->id) }}" target="_blank">{{ $topic->title }}</a>
+                                            <a class="teal color" href="{{ route('topics.show', $topic->id) }}" target="_blank">{{ $topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     {{ $topic->created_at->diffForHumans() }}
@@ -48,7 +50,7 @@
                                 @foreach($replies as $reply)
                                     <div class="comment">
                                         <div class="content">
-                                            <a class="teal color" href="{{ route('topic.show', $reply->topic->id) }}" target="_blank">{{ $reply->topic->title }}</a>
+                                            <a class="teal color" href="{{ route('topics.show', $reply->topic->id) }}" target="_blank">{{ $reply->topic->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     {{ $reply->created_at->diffForHumans() }}
@@ -64,9 +66,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row"></div>
+        <div class="ui hidden divider"></div>
     </div>
 
 @endsection

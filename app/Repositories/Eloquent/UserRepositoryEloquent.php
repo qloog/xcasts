@@ -3,9 +3,14 @@
 namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Reply;
 use App\Models\Topic;
+use App\Models\UserMember;
 use App\Models\Vote;
+use Auth;
+use DB;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\UserRepository;
@@ -177,5 +182,198 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function getFollowersByUserId($userId, $limit)
     {
         return $this->find($userId)->followers()->orderBy('id', 'desc')->paginate($limit);
+    }
+
+    /**
+     * 关注/取消关注某用户
+     *
+     * @param int $userId 被关注或取消关乎的用户id
+     * @return bool
+     */
+    public function followUser($userId)
+    {
+        $user = $this->find(Auth::id());
+        $toUser = $this->find($userId);
+
+        if ($user->isFollowing($userId)) {
+            return $user->unfollow($userId)  && $toUser->decrement('follower_count', 1);
+        } else {
+            app('XCasts\Notifications\Notifier')->newFollowNotify($user, $toUser);
+            return $user->follow($userId) && $toUser->increment('follower_count', 1);
+        }
+    }
+
+    public function getUserIdByName($name)
+    {
+        $user = User::where('name', $name)->first();
+
+        return $user ? $user->id : 0;
+    }
+
+    /**
+     * 开通会员
+     *
+     * @param $data
+     * @return bool
+     * @throws GeneralException
+     */
+    public function openMember($data)
+    {
+        if (empty($data['name']) || empty($data['type']) || empty($data['pay_method'])) {
+            throw new GeneralException('open member need params error');
+        }
+
+        $userId = $this->getUserIdByName($data['name']);
+
+        $orderId = 0;
+        // generate order
+        DB::transaction(function () use($userId, $data) {
+            $orderId = $this->createOrder($userId, $data);
+            $this->createOrderDetail($userId, $orderId, $data);
+            $this->createUserMember($userId, $data);
+        });
+
+        return $orderId ? true : false;
+    }
+
+    /**
+     * 创建订单
+     *
+     * @param $userId
+     * @param $data
+     * @return bool|string
+     * @throws GeneralException
+     */
+    private function createOrder($userId, $data)
+    {
+        $orderId = date('YmdHis' . rand(10000,99999));
+        $order = new Order();
+        $order->id = $orderId;
+        $order->order_amount = $data['order_amount'];
+        $order->pay_amount = $data['pay_amount'];
+        $order->quantity = 1;
+        $order->pay_method = $data['pay_method'];
+        $order->is_paid = 1;
+        $order->paid_at = $data['paid_at'];
+        $order->completed_at = $data['paid_at'];
+        $order->status = 'paid';
+        $order->user_id = $userId;
+        $ret = $order->save();
+
+        if (!$ret) {
+            throw new GeneralException('订单创建失败');
+        }
+
+        return  $ret ? $orderId : 0;
+    }
+
+    private function createOrderDetail($userId, $orderId, $data)
+    {
+        $detail = new orderDetail();
+        $detail->order_id = $orderId;
+        $detail->plan_id = 1;
+        $detail->plan_name = '月度会员';
+        $detail->plan_price = $data['pay_amount'];
+        $detail->quantity = 1;
+        $detail->user_id = $userId;
+        $detail->save();
+    }
+
+    private function createUserMember($userId, $data)
+    {
+        $userMember = new UserMember();
+        $userMember->type = $data['type'];
+        //
+        $startTime = $data['paid_at'];
+        $userMember->start_time = $startTime;
+        $userMember->end_time = $this->getEndTime($startTime, $data['type']);
+        $userMember->status = 1;
+        $userMember->user_id = $userId;
+
+        return $userMember->saveOrFail();
+    }
+
+    /**
+     * 获得结束时间
+     *
+     * @param $startTime
+     * @param $level
+     * @return bool|string
+     */
+    private function getEndTime($startTime, $level)
+    {
+        $startTime = strtotime($startTime);
+        $monthTime = 24*3600*30;
+        switch ($level) {
+            case 1:
+                $endTime = $startTime + $monthTime;
+                break;
+            case 2:
+                $endTime = $startTime + $monthTime*3;
+                break;
+            case 3:
+                $endTime = $startTime + $monthTime*6;
+                break;
+            case 4:
+                $endTime = $startTime + $monthTime*12;
+                break;
+            case 5:
+                $endTime = $startTime + $monthTime*24;
+                break;
+            case 6:
+                $endTime = $startTime + $monthTime*36;
+                break;
+        }
+
+        return date('Y-m-d H:i:s', $endTime);
+    }
+
+    public function memberDetail($userId)
+    {
+        $record =  UserMember::where('user_id', $userId)->first();
+
+        if ($record) {
+            $record->type = $this->getTypeText($record->type);
+        }
+
+        return $record;
+    }
+
+    private function getTypeText($type)
+    {
+        switch ($type) {
+            case 1:
+                $text = '月度';
+                break;
+            case 2:
+                $text = '季度';
+                break;
+            case 3:
+                $text = '半年';
+                break;
+            case 4:
+                $text = '年';
+                break;
+            case 5:
+                $text = '2年';
+                break;
+            case 6:
+                $text = '3年';
+                break;
+            default:
+                $text = '--';
+        }
+
+        return $text;
+    }
+
+    public function isMember($userId)
+    {
+        $detail = UserMember::where('user_id', $userId)->first();
+        if ($detail) {
+            return ((time() > strtotime($detail->start_time)) && (strtotime($detail->end_time) > time()))  ? true:  false;
+        }
+
+        return false;
     }
 }

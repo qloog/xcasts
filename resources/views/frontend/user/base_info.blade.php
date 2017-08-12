@@ -1,12 +1,8 @@
 <div class="ui center aligned segment">
-    <div class="ui massive horizontal divided list">
-        <div class="item">
-            <img class="ui tiny avatar image" src="{{ Auth::user()->avatar }}">
-            <div class="content">
-                <div class="header">Helen</div>
-            </div>
-        </div>
-    </div>
+    <h2 class="ui small sequenced images">
+        <img src="{{ $user->avatar ? cdn($user->avatar) : '/avatars/default.png' }}" class="ui circular image">
+        {{ $user->name }}
+    </h2>
     <div>
         <div class="ui list">
             <div class="item">第 {{ $user->id }} 位会员</div>
@@ -15,7 +11,7 @@
         </div>
     </div>
     <div class="ui divider"></div>
-    <div class="ui small statistics centered">
+    <div class="ui three small statistics">
         <div class="teal statistic">
             <a class="value" href="#">
                 {{ $user->follower_count }}
@@ -42,5 +38,7 @@
         </div>
     </div>
     <div class="ui divider"></div>
+    @if(Auth()->id())
     <a class="ui fluid teal button" href="{{ route('user.edit', Auth()->id()) }}"><i class="edit icon"></i> 编辑个人资料 </a>
+    @endif
 </div>

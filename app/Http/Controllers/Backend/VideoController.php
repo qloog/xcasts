@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Contracts\Repositories\VideoRepository;
-use App\Services\QiNiuService;
+use App\Services\UploadsManager;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Redirect;
 class VideoController extends Controller
 {
 
-    protected $videos;
+    protected $videoRepo;
+    protected $uploadManager;
 
-    public function __construct(VideoRepository $videos)
+    public function __construct(VideoRepository $videos, UploadsManager $uploadsManager)
     {
-        $this->videos = $videos;
+        $this->videoRepo = $videos;
+        $this->uploadManager = $uploadsManager;
     }
 
     /**
@@ -27,7 +29,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = $this->videos->orderBy('id', 'desc')->paginate(10);
+        $videos = $this->videoRepo->orderBy('course_id', 'desc')->orderBy('episode_id','desc')->paginate(10);
 
         return view('backend.video.index', compact('videos'));
     }
@@ -50,7 +52,14 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->videos->create($request->all())) {
+        if(empty($request->file())) {
+            $fileInfo = $this->uploadManager->uploadFile($request->file('mp4_url'));
+            if (empty($fileInfo)) {
+                return Redirect::back()->withInput()->withErrors('上传出错！');
+            }
+        }
+
+        if ($this->videoRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path']]))) {
             return redirect()->route('admin.video.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -75,7 +84,7 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        $video = $this->videos->find($id);
+        $video = $this->videoRepo->find($id);
 
         return view('backend.video.edit', compact('video'));
     }
@@ -89,7 +98,16 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->videos->update($request->all(), $id)) {
+        $postData = $request->all();
+        if (!empty($request->file())) {
+            $fileInfo = $this->uploadManager->uploadFile($request->file('mp4_url'));
+            if (empty($fileInfo)) {
+                return Redirect::back()->withInput()->withErrors('上传出错！');
+            }
+            $postData['mp4_url'] = $fileInfo['file_path'];
+        }
+
+        if ($this->videoRepo->update($postData, $id)) {
             return redirect()->route('admin.video.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');

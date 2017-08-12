@@ -15,6 +15,7 @@ class ForumTopicsTables extends Migration
     {
         Schema::create('forum_topics', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('category_id')->unsigned()->default(0)->comment('分类id');
             $table->string('title')->comment('标题');
             $table->text('origin_body')->comment('帖子内容');
             $table->text('body')->comment('帖子内容');
@@ -55,7 +56,6 @@ class ForumTopicsTables extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
-
     }
 
     /**

@@ -14,11 +14,11 @@ class CourseController extends Controller
     /**
      * @var CourseRepository
      */
-    protected $courses;
+    protected $courseRepo;
 
     public function __construct(CourseRepository $courses)
     {
-        $this->courses = $courses;
+        $this->courseRepo = $courses;
     }
 
     /**
@@ -28,7 +28,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = $this->courses->orderBy('id', 'DESC')->paginate(10);
+        $courses = $this->courseRepo->orderBy('id', 'DESC')->paginate(10);
 
         return view('backend.course.index', compact('courses'));
     }
@@ -51,7 +51,7 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->courses->create($request->all())) {
+        if ($this->courseRepo->create($request->all())) {
             return redirect()->route('admin.course.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -76,7 +76,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = $this->courses->find($id);
+        $course = $this->courseRepo->find($id);
 
         return view('backend.course.edit', compact('course'));
     }
@@ -90,7 +90,7 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->courses->update($request->all(), $id)) {
+        if ($this->courseRepo->update($request->all(), $id)) {
             return redirect()->route('admin.course.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');

@@ -13,8 +13,10 @@
 /public/videojs
 /public/ueditor
 /public/semantic/
-
-/resources/assets/bower
+/public/simplemde
+/public/assets
+/public/build
+/resources/assets
 
 .DS_Store
 .idea

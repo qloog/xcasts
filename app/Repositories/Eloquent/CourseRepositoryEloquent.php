@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Services\QiNiuService;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Contracts\Repositories\CourseRepository;
@@ -35,8 +36,8 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
     public function getCourseListByType($type = null, $limit = 10)
     {
         if ($type) {
-            return $this->model->type($type)->paginate($limit);
+            return$this->model->type($type)->orderBy('id','desc')->paginate($limit);
         }
-        return $this->model->paginate($limit);
+        return $this->model->orderBy('id','desc')->paginate($limit);
     }
 }

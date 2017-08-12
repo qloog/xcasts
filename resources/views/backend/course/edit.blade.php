@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '编辑课程')
+@section('title', '编辑系列')
 
 @section('breadcrumb')
         <li>
@@ -8,10 +8,10 @@
             <a href="/admin/dashboard">主页</a>
         </li>
         <li>
-            <a>课程管理</a>
+            <a>系列管理</a>
         </li>
         <li>
-            编辑课程
+            编辑系列
         </li>
 @endsection
 

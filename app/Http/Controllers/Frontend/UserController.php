@@ -3,20 +3,22 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\UserRepository;
+use App\Http\Requests\ResetPasswordRequest;
 use App\Services\UploadsManager;
-use Ender\UEditor\Uploader\Upload;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Redirect;
+use Laracasts\Flash\Flash;
 
 class UserController extends Controller
 {
 
-    protected $userRepository;
+    protected $userRepo;
     protected $uploadManager;
 
-    public function __construct(UserRepository $userRepository, UploadsManager $uploadsManager)
+    public function __construct(UserRepository $userRepo, UploadsManager $uploadsManager)
     {
-        $this->userRepository = $userRepository;
+        $this->userRepo = $userRepo;
         $this->uploadManager = $uploadsManager;
     }
 
@@ -59,11 +61,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->userRepository->find($id);
+        $user = $this->userRepo->find($id);
 
-        $topics = $this->userRepository->getTopicsByUserId($user->id, 20);
+        $topics = $this->userRepo->getTopicsByUserId($user->id, 20);
 
-        $replies = $this->userRepository->getRepliesByUserId($user->id, 20);
+        $replies = $this->userRepo->getRepliesByUserId($user->id, 20);
 
         return view('frontend.user.detail', compact('user', 'topics', 'replies'));
     }
@@ -76,14 +78,14 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->userRepository->find($id);
+        $user = $this->userRepo->find($id);
 
         return view('frontend.user.edit', compact('user'));
     }
 
     public function editAvatar($id)
     {
-        $user = $this->userRepository->find($id);
+        $user = $this->userRepo->find($id);
 
         return view('frontend.user.avatar', compact('user'));
     }
@@ -99,11 +101,35 @@ class UserController extends Controller
             return Redirect::back()->withInput()->withErrors('上传出错！');
         }
 
-        if ($this->userRepository->update(['avatar' => $imageInfo['image_path']], $id, false)) {
-            return redirect()->route('user.avatar.edit', $id);
+        if ($this->userRepo->update(['avatar' => $imageInfo['image_path']], $id, false)) {
+            return redirect()->route('user.edit_avatar', $id);
         }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
 
+        return Redirect::back()->withInput()->withErrors('保存失败！');
+    }
+
+    public function editPassword($id)
+    {
+        $user = $this->userRepo->find($id);
+        // use user policy
+        $this->authorize('update', $user);
+
+        return view('frontend.user.edit_password', compact('user'));
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $this->validate($request, [
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = $this->userRepo->find($id);
+        $this->authorize('update', $user);
+
+        if ($this->userRepo->update(['password' => bcrypt($request->password)], $id, false)) {
+             Flash::success('修改成功');
+             return redirect(route('user.edit_password', $id));
+        }
     }
 
     /**
@@ -115,9 +141,10 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->userRepository->update($request->except(['name','email']), $id, false)) {
+        if ($this->userRepo->update($request->except(['name','email']), $id, false)) {
             return redirect()->route('user.edit', $id);
         }
+
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 
@@ -134,41 +161,51 @@ class UserController extends Controller
 
     public function topics($id)
     {
-        $user = $this->userRepository->find($id);
-        $topics = $this->userRepository->getTopicsByUserId($id, 15);
+        $user = $this->userRepo->find($id);
+        $topics = $this->userRepo->getTopicsByUserId($id, 15);
 
         return view('frontend.user.topics', compact('user','topics'));
     }
 
     public function replies($id)
     {
-        $user = $this->userRepository->find($id);
-        $replies = $this->userRepository->getRepliesByUserId($id, 15);
+        $user = $this->userRepo->find($id);
+        $replies = $this->userRepo->getRepliesByUserId($id, 15);
 
         return view('frontend.user.replies', compact('user','replies'));
     }
 
     public function votes($id)
     {
-        $user = $this->userRepository->find($id);
-        $votes = $this->userRepository->getVotesByUserId($id, 15);
+        $user = $this->userRepo->find($id);
+        $topics = $this->userRepo->getVotesByUserId($id, 15);
 
-        return view('frontend.user.votes', compact('user','votes'));
+        return view('frontend.user.votes', compact('user','topics'));
     }
 
     public function following($id)
     {
-        $user = $this->userRepository->find($id);
-        $followings = $this->userRepository->getFollowingsByUserId($id, 15);
+        $user = $this->userRepo->find($id);
+        $followings = $this->userRepo->getFollowingsByUserId($id, 15);
 
         return view('frontend.user.following', compact('user','followings'));
     }
 
     public function followers($id)
     {
-        $user = $this->userRepository->find($id);
-        $followers = $this->userRepository->getFollowingsByUserId($id, 15);
+        $user = $this->userRepo->find($id);
+        $followers = $this->userRepo->getFollowingsByUserId($id, 15);
 
         return view('frontend.user.followers', compact('user','followers'));
+    }
+
+    public function follow($id)
+    {
+        if ($this->userRepo->followUser($id)) {
+            return response()->json(['code' => 200, 'msg' => 'success']);
+        } else {
+            // TODO add msg
+            return response()->json(['code' => 400, 'msg' => 'error']);
+        }
     }
 }

@@ -43,68 +43,23 @@
                     <li @if(Request::is('admin/user')) class="active" @endif>
                         <a href="{{ url('admin/user') }}"><i class="fa fa-circle-o"></i> 用户列表</a>
                     </li>
+                    <li @if(Request::is('admin/user/add_member')) class="active" @endif>
+                        <a href="{{ url('admin/user/add_member') }}"><i class="fa fa-circle-o"></i> 开通会员</a>
+                    </li>
                 </ul>
             </li>
-            <li @if(Request::is('admin/news*')) class="treeview active" @else class="treeview" @endif>
+            <li @if(Request::is('admin/post*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-newspaper-o"></i>
-                    <span>新闻管理</span>
+                    <span>博客管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::is('admin/news')) class="active" @endif>
-                        <a href="{{ url('admin/news') }}"><i class="fa fa-circle-o"></i> 新闻列表</a>
+                    <li @if(Request::is('admin/post')) class="active" @endif>
+                        <a href="{{ route('admin.post.index') }}"><i class="fa fa-circle-o"></i>文章管理</a>
                     </li>
-                    <li @if(Request::is('admin/news/category')) class="active" @endif>
-                        <a href="{{ url('admin/news/category') }}"><i class="fa fa-circle-o"></i> 分类管理</a>
-                    </li>
-                    <li @if(Request::is('admin/news/create')) class="active" @endif>
-                        <a href="{{ url('admin/news/create') }}"><i class="fa fa-circle-o"></i> 添加新闻</a>
-                    </li>
-                </ul>
-            </li>
-            <li @if(Request::is('admin/album*')) class="treeview active" @else class="treeview" @endif>
-                <a href="#">
-                    <i class="fa fa-photo"></i>
-                    <span>相册管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li @if(Request::is('admin/album')) class="active" @endif>
-                        <a href="/admin/album"><i class="fa fa-circle-o"></i> 相册列表</a>
-                    </li>
-                </ul>
-            </li>
-            <li @if(Request::is('admin/event*')) class="treeview active" @else class="treeview" @endif>
-                <a href="#">
-                    <i class="fa fa-calendar-check-o"></i>
-                    <span>活动管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li @if(Request::is('admin/event')) class="active" @endif>
-                        <a href="{{ url('admin/event') }}"><i class="fa fa-circle-o"></i> 活动列表</a>
-                    </li>
-                    <li @if(Request::is('admin/event/create')) class="active" @endif>
-                        <a href="{{ url('admin/event/create') }}"><i class="fa fa-circle-o"></i> 添加活动</a>
-                    </li>
-                </ul>
-            </li>
-            <li @if(Request::is('admin/blog*')) class="treeview active" @else class="treeview" @endif>
-                <a href="#">
-                    <i class="fa fa-newspaper-o"></i>
-                    <span>POST管理</span>
-                    <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-                </a>
-                <ul class="treeview-menu">
-                    <li @if(Request::is('admin/blog')) class="active" @endif>
-                        <a href="{{ url('admin/blog') }}"><i class="fa fa-circle-o"></i>文章管理</a>
-                    </li>
-                    <li @if(Request::is('admin/blog/category')) class="active" @endif>
-                        <a href="{{ url('admin/blog/category') }}"><i class="fa fa-circle-o"></i> 分类管理</a>
-                    </li>
-                    <li @if(Request::is('admin/blog/create')) class="active" @endif>
-                        <a href="{{ url('admin/blog/create') }}"><i class="fa fa-circle-o"></i> 添加博文</a>
+                    <li @if(Request::is('admin/post/create')) class="active" @endif>
+                        <a href="{{ route('admin.post.create') }}"><i class="fa fa-circle-o"></i> 添加文章</a>
                     </li>
                 </ul>
             </li>
@@ -160,15 +115,15 @@
                     </li>
                 </ul>
             </li>
-            <li @if(Request::is('admin/goods*')) class="treeview active" @else class="treeview" @endif>
+            <li @if(Request::is('admin/plan*')) class="treeview active" @else class="treeview" @endif>
                 <a href="#">
                     <i class="fa fa-shopping-cart"></i>
-                    <span>商品管理</span>
+                    <span>PLAN管理</span>
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::is('admin/goods')) class="active" @endif>
-                        <a href="{{ url('admin/goods') }}"><i class="fa fa-circle-o"></i> 商品列表</a>
+                    <li @if(Request::is('admin/plan')) class="active" @endif>
+                        <a href="{{ url('admin/plan') }}"><i class="fa fa-circle-o"></i> plan列表</a>
                     </li>
                 </ul>
             </li>
@@ -185,9 +140,15 @@
                 </ul>
             </li>
 
+            <li class="header">常用工具</li>
             <li @if(Request::is('admin/upload')) class="active" @endif>
                 <a href="/admin/upload">
                     <i class="fa fa-file-o"></i> <span>文件管理</span>
+                </a>
+            </li>
+            <li @if(Request::is('admin/qiniu')) class="active" @endif>
+                <a href="{{ route('admin.qiniu.index') }}">
+                    <i class="fa fa-file-o"></i> <span>七牛文件管理</span>
                 </a>
             </li>
 

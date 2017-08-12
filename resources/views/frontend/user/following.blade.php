@@ -1,11 +1,14 @@
 @extends('frontend.layouts.master')
 
+@section('title')
+    关注的用户
+@endsection
+
 @section('content')
     <div class="ui grid" style="background-color: #E9EAED">
-        <div class="row"></div>
-        <div class="row">
-            <div class="thirteen wide column centered">
-                <div class="ui grid">
+        <div class="ui container">
+            <div class="ui hidden divider"></div>
+            <div class="ui grid">
                     <div class="four wide column">
                         @include('frontend.user.base_info')
 
@@ -46,11 +49,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            <div class="ui hidden divider"></div>
         </div>
-        <div class="row"></div>
     </div>
-
 @endsection
 
 @section('scripts')

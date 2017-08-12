@@ -70,19 +70,19 @@ elixir(function(mix) {
     );
 
     // 合并后台的CSS样式文件
-    // mix.styles([
-    //         'select2.min.css',
-    //         'daterangepicker-bs3.css',
-    //         'bootstrap.min.css',
-    //         'font-awesome.min.css',
-    //         'adminlte.min.css',
-    //         'adminlte-skin.min.css',
-    //         'sweetalert.css',
-    //         'common.css'
-    //     ],
-    //     'public/assets/backend/css/app.min.css',
-    //     'resources/assets/backend/css'
-    // );
+    mix.styles([
+            'select2.min.css',
+            'daterangepicker-bs3.css',
+            'bootstrap.min.css',
+            'font-awesome.min.css',
+            'adminlte.min.css',
+            'adminlte-skin.min.css',
+            'sweetalert.css',
+            'common.css'
+        ],
+        'public/assets/backend/css/app.min.css',
+        'resources/assets/backend/css'
+    );
 
     // 合并前端的Javascript脚本文件
     mix.scripts([
@@ -97,19 +97,19 @@ elixir(function(mix) {
     );
 
     // 合并后台的Javascript脚本文件
-    // mix.scripts([
-    //         'jquery.min.js',
-    //         'bootstrap.min.js',
-    //         'adminlte.min.js',
-    //         'select2.full.min.js',
-    //         'moment.min.js',
-    //         'sweetalert.min.js',
-    //         'daterangepicker.js',
-    //         'common.js'
-    //     ],
-    //     'public/assets/backend/js/app.min.js',
-    //     'resources/assets/backend/js'
-    // );
+    mix.scripts([
+            'jquery.min.js',
+            'bootstrap.min.js',
+            'adminlte.min.js',
+            'select2.full.min.js',
+            'moment.min.js',
+            'sweetalert.min.js',
+            'daterangepicker.js',
+            'common.js'
+        ],
+        'public/assets/backend/js/app.min.js',
+        'resources/assets/backend/js'
+    );
 
     // 监控文件变动，自动刷新浏览器
     mix.browserSync({
@@ -124,8 +124,8 @@ elixir(function(mix) {
 
     // 生成版本和缓存清除
     mix.version([
-        // 'assets/backend/js/app.min.js',
-        // 'assets/backend/css/app.min.css',
+        'assets/backend/js/app.min.js',
+        'assets/backend/css/app.min.css',
         'assets/js/app.min.js',
         'assets/css/app.min.css'
     ]);

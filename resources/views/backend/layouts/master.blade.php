@@ -13,20 +13,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
+    {{--<!-- Bootstrap 3.3.6 -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">--}}
+    {{--<!-- Font Awesome -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">--}}
+    {{--<!-- Ionicons -->--}}
+    {{--<link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">--}}
 
     @yield('styles')
 
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">
+    {{--<link rel="stylesheet" href="{{ asset('css/AdminLTE.min.css') }}">--}}
     <!-- AdminLTE Skins. Choose a skin from the css/skins
            folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('css/skins/_all-skins.min.css') }}">--}}
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,11 +100,11 @@ desired effect
 <!-- REQUIRED JS SCRIPTS -->
 
 <!-- jQuery 2.2.3 -->
-<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+{{--<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>--}}
 <!-- Bootstrap 3.3.6 -->
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+{{--<script src="{{ asset('js/bootstrap.min.js') }}"></script>--}}
 <!-- AdminLTE App -->
-<script src="{{ asset('js/app.min.js') }}"></script>
+{{--<script src="{{ asset('js/app.min.js') }}"></script>--}}
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

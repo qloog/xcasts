@@ -1,5 +1,7 @@
 @extends('frontend.layouts.master')
 
+@section('title', '登录')
+
 @section('content')
     <div class="ui stackable grid container">
         <div class="row"></div>
@@ -20,12 +22,12 @@
                     </div>
                     <div class="inline field">
                         <div class="ui checkbox">
-                            <input type="checkbox" name="remember">
+                            <input type="checkbox" name="remember" >
                             <label>记住密码</label>
                         </div>
                     </div>
                     <button class="teal fluid ui button big" type="submit">立 即 登 录</button>
-                    <div class="field">
+                    <div class="inline field">
                         <a class="ui block link list" href="{{ url('/password/reset') }}">忘记密码?</a>
                     </div>
                 </form>

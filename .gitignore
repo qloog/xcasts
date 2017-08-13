@@ -4,10 +4,6 @@
 /config/wechat.php
 /storage/*.key
 
-/public/css
-/public/js
-/public/img
-/public/fonts
 /public/plugins
 /public/uploads
 /public/videojs

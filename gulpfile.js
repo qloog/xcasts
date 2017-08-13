@@ -44,6 +44,9 @@ elixir(function(mix) {
     mix.copy('resources/assets/bower/AdminLTE/bootstrap/js/bootstrap.min.js','resources/assets/backend/js');
     mix.copy('resources/assets/bower/AdminLTE/dist/js/app.min.js','resources/assets/backend/js');
     mix.copy('resources/assets/bower/AdminLTE/plugins','public/assets/backend/plugins');
+    // todo: remove
+    mix.copy('resources/assets/bower/AdminLTE/plugins','public/plugins');
+
     mix.copy('resources/assets/bower/AdminLTE/bootstrap/fonts/*.*','public/assets/backend/fonts/');
     mix.copy('resources/assets/bower/AdminLTE/bootstrap/css/bootstrap.min.css','resources/assets/backend/css');
     mix.copy('resources/assets/bower/AdminLTE/dist/css/AdminLTE.min.css','resources/assets/backend/css/adminlte.min.css');

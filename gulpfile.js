@@ -23,6 +23,7 @@ elixir(function(mix) {
     mix.copy('resources/assets/bower/semantic/dist/semantic.min.js','resources/assets/frontend/js');
     mix.copy('resources/assets/bower/semantic/dist/semantic.min.css','resources/assets/frontend/css');
     mix.copy('resources/assets/bower/semantic/dist/themes/default','public/build/assets/css/themes/default');
+    mix.copy('resources/assets/bower/semantic/*','public/semantic');
     // video.js
     mix.copy('resources/assets/bower/video.js/dist/video.min.js','resources/assets/frontend/js');
     mix.copy('resources/assets/bower/video.js/dist/video-js.min.css','resources/assets/frontend/css');

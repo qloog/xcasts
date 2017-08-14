@@ -13,7 +13,7 @@
             @foreach($posts as $post)
             <div class="item">
                 <div class="ui medium image">
-                    <img src="{{ cdn('blog-default-post-cover.jpeg') }}">
+                    <img src="{{ cdn('/blog-default-post-cover.jpeg') }}">
                 </div>
                 <div class="content">
                     <a class="header" href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>

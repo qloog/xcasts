@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use Redirect, Input, Auth;
 
-class PostController extends baseController
+class PostController extends BaseController
 {
 
     protected $postRepo;

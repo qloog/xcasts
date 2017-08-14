@@ -19,7 +19,7 @@
                     <a class="header" href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                     <div class="meta">
                         <a>{{ $post->created_at }}</a>
-                        <a>分类</a>
+                        {{--<a>分类</a>--}}
                     </div>
                     <div class="description">
                         {{ $post->summary }}

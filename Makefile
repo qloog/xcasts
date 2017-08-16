@@ -52,4 +52,4 @@ clean:
 	php artisan route:clear
 	php artisan view:clear
 
-deploy: down  clean  pull  up
+deploy: down  clean  pull  ch up

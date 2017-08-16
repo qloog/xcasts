@@ -28,7 +28,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="field">
                             <label>分类</label>
-                            <select name="category" class="ui fluid search dropdown">
+                            <select name="category_id" class="ui fluid search dropdown">
                                 <option value="">请选择</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>

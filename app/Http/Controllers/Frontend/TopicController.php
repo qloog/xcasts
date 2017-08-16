@@ -74,7 +74,7 @@ class TopicController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'category' => 'required',
+            'category_id' => 'required',
             'title' => 'required|unique:forum_topics|max:255',
             'body' => 'required'
         ]);

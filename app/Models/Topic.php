@@ -13,7 +13,7 @@ class Topic extends Model implements Transformable
     protected $table = 'forum_topics';
 
     protected $fillable = [
-        'id','title','body','origin_body', 'view_count', 'reply_count', 'vote_count',
+        'id','category_id','title','body','origin_body', 'view_count', 'reply_count', 'vote_count',
         'is_excellent','is_blocked','last_reply_user_id','source','user_id','created_at',
         'updated_at'
     ];

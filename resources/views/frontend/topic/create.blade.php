@@ -22,13 +22,6 @@
         <div class="ui hidden divider"></div>
         <div class="ui grid">
             <div class="twelve wide column">
-                @if(count($errors) > 0)
-                    <div class="ui red message">
-                    @foreach($errors->all() as $error)
-                        {{ $error }}<br/>
-                    @endforeach
-                    </div>
-                @endif
 
                 <div class="ui large middle aligned divided relaxed list padded segment">
                     <form class="ui form success" METHOD="post" action="{{ route('topics.store') }}">

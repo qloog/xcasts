@@ -1,8 +1,10 @@
 list:
 	@echo "usage: make depoly"
+
 init:
-	@git clone ***.git
-	@composer install --optimize-autoloader --no-dev
+	@echo "init project..."
+	git clone ***.git
+	composer install --optimize-autoloader --no-dev
 
 pull:
 	@echo "pull..."

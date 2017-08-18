@@ -21,7 +21,6 @@ test:
 phpcs:
 	./vendor/bin/phpcs -p --standard=PSR2 --ignore=vendor .
 
-
 rollback:
 	@echo "rollback"
 	git reset --hard HEAD~1

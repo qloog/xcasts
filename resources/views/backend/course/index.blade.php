@@ -54,6 +54,7 @@
                         <tr>
                             <th>id</th>
                             <th>名称</th>
+                            <th>分类</th>
                             <th>封面</th>
                             <th>slug</th>
                             <th>描述</th>
@@ -68,6 +69,7 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ $item->type }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->description }}</td>

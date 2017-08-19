@@ -13,7 +13,7 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
-use Overtrue\LaravelFollow\FollowTrait;
+use Overtrue\LaravelFollow\Traits\CanFollow;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use Illuminate\Notifications\Notifiable;
 
@@ -46,7 +46,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     use Authenticatable, CanResetPassword, Notifiable, EntrustUserTrait;
 
-    use FollowTrait;
+    use CanFollow;
 
     /**
      * The database table used by the model.

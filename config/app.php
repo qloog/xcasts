@@ -151,6 +151,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\BroadcastServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         /**
          * Custom Service Providers
          */

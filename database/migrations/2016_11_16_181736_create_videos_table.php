@@ -16,6 +16,7 @@ class CreateVideosTable extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('course_id')->unsigned()->default(0)->comment('所属课程id');
+            $table->integer('episode_id')->unsigned()->default(0)->comment('episode_id');
             $table->string('name')->nullable()->comment('名称');
             $table->string('description')->nullable()->comment('描述');
             $table->string('cover_image')->default('')->comment('封面图');

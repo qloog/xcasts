@@ -141,7 +141,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if ($this->userRepo->update($request->except(['name','email']), $id, false)) {
+        if ($this->userRepo->update($request->except(['email']), $id, false)) {
             return redirect()->route('user.edit', $id);
         }
 

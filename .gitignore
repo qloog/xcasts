@@ -2,7 +2,7 @@
 /node_modules
 .env
 /config/wechat.php
-/storage/*.key
+/storage
 
 /public/plugins
 /public/uploads

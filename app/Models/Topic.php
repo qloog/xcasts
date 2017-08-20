@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
 class Topic extends Model implements Transformable
 {
     use TransformableTrait;
+    use CanBeFollowed;
 
     protected $table = 'forum_topics';
 

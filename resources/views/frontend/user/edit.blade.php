@@ -20,15 +20,15 @@
                                 <input type="hidden" name="_method" value="PUT">
                                 {!! csrf_field() !!}
                                     <div class="field">
-                                        <label for="name">用户名</label>
-                                        <input type="text" name="name" id="name" disabled=disabled value="{{ Auth()->user()->name }}">
-                                    </div>
-                                    <div class="field">
                                         <label for="email">邮箱</label>
                                         <input type="text" name="email"  id="email" disabled=disabled value="{{ Auth()->user()->email }}">
                                     </div>
                                     <div class="field">
-                                        <label>称呼</label>
+                                        <label for="name">用户名</label>
+                                        <input type="text" name="name" id="name" value="{{ Auth()->user()->name }}">
+                                    </div>
+                                    <div class="field">
+                                        <label>真实姓名</label>
                                         <input type="text" name="real_name" value="{{ $user->real_name }}">
                                     </div>
                                     <div class="field">

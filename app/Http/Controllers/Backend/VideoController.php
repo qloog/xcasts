@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Contracts\Repositories\CourseRepository;
 use App\Contracts\Repositories\VideoRepository;
 use App\Services\UploadsManager;
 use Illuminate\Http\Request;
@@ -15,11 +16,13 @@ class VideoController extends Controller
 
     protected $videoRepo;
     protected $uploadManager;
+    protected $courseRepo;
 
-    public function __construct(VideoRepository $videos, UploadsManager $uploadsManager)
+    public function __construct(VideoRepository $videos, UploadsManager $uploadsManager, CourseRepository $courses)
     {
         $this->videoRepo = $videos;
         $this->uploadManager = $uploadsManager;
+        $this->courseRepo = $courses;
     }
 
     /**
@@ -41,7 +44,9 @@ class VideoController extends Controller
      */
     public function create()
     {
-        return view('backend.video.create');
+        $courses = $this->courseRepo->all()->pluck('name','id')->toArray();
+        //var_dump($courses);exit;
+        return view('backend.video.create', compact('courses'));
     }
 
     /**
@@ -52,6 +57,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
+        $fileInfo = [];
         if(empty($request->file())) {
             $fileInfo = $this->uploadManager->uploadFile($request->file('mp4_url'));
             if (empty($fileInfo)) {
@@ -59,7 +65,7 @@ class VideoController extends Controller
             }
         }
 
-        if ($this->videoRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path']]))) {
+        if ($this->videoRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path'],'user_id'=>\Auth::id()]))) {
             return redirect()->route('admin.video.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -85,8 +91,8 @@ class VideoController extends Controller
     public function edit($id)
     {
         $video = $this->videoRepo->find($id);
-
-        return view('backend.video.edit', compact('video'));
+        $courses = $this->courseRepo->all()->pluck('name','id')->toArray();
+        return view('backend.video.edit', compact('video','courses'));
     }
 
     /**

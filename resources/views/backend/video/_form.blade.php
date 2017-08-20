@@ -8,6 +8,22 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('name', '所属课程', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        <div class="clearfix">
+                            {!! Form::select('course_id', $courses, null,['class'=>'form-control']) !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {!! Form::label('name', 'episode_id', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        <div class="clearfix">
+                            {!! Form::text('episode_id', null, ['class' => 'form-control', 'placeholder' => 'episode_id']) !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     {!! Form::label('cover_image', '封面图', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
@@ -31,7 +47,8 @@
                     {!! Form::label('is_free', '是否免费', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::checkbox('is_free', 1) !!}
+                            {!! Form::radio('is_free', 1) !!}是 &nbsp;&nbsp;
+                            {!! Form::radio('is_free', 0) !!}否
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', '编辑课程')
+@section('title', '编辑视频')
 
 @section('breadcrumb')
         <li>
@@ -11,7 +11,7 @@
             <a>课程管理</a>
         </li>
         <li>
-            编辑课程
+            编辑视频
         </li>
 @endsection
 

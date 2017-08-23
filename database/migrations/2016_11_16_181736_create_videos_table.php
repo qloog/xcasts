@@ -22,7 +22,7 @@ class CreateVideosTable extends Migration
             $table->string('cover_image')->default('')->comment('封面图');
             $table->string('mp4_url')->default('')->comment('视频url地址');
             $table->tinyInteger('is_free')->unsigned()->default(0)->comment('是否免费 0:收费, 1:免费');
-            $table->integer('length')->unsigned()->default(0)->comment('视频长度');
+            $table->string('length', 10)->unsigned()->default('')->comment('视频长度');
             $table->integer('user_id')->unsigned()->default(0)->comment('用户id');
             $table->timestamps();
             $table->softDeletes();

@@ -14,6 +14,7 @@
     <meta name="description" content="@yield('description')" />
     {{--<link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">--}}
     <link rel="stylesheet" type="text/css" href="{{ elixir('assets/css/app.min.css') }}">
+    <link rel="shortcut icon" href="{{ cdn('/favicon.png') }}"/>
     <style type="text/css">
         a {
             color: #00B5AD;

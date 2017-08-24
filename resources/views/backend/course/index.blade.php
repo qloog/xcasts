@@ -1,10 +1,10 @@
 @extends('backend.layouts.master')
 
-@section('page_title', '系列管理')
+@section('title', '课程管理')
 
 @section('breadcrumb')
     <li><i class="ace-icon fa fa-home home-icon"></i><a href="/admin/dashboard">主页</a></li>
-    <li>系列管理</li>
+    <li>课程管理</li>
     <li>列表</li>
 @endsection
 
@@ -16,7 +16,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.course.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加系列</a>
+                        <a href="{{ route('admin.course.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i>添加课程</a>
                     </h3>
                     <div class="box-tools">
                         <!--

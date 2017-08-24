@@ -1,5 +1,5 @@
                 <div class="form-group">
-                    {!! Form::label('name', '系列名称', ['class' => 'col-sm-2 control-label']) !!}
+                    {!! Form::label('name', '课程名称', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
                             {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => '']) !!}
@@ -26,7 +26,7 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('description', '系列描述', ['class' => 'col-sm-2 control-label']) !!}
+                    {!! Form::label('description', '课程描述', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
                             {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => '系列描述']) !!}

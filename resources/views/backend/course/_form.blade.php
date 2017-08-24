@@ -39,7 +39,7 @@
                     <div class="col-sm-5">
                         <div class="clearfix">
                             <input type="file" name="file" id="file"  class="form-control" />
-                            <input type="hidden" name="cover_image" id="cover_image" value="{!! isset($course->cover_image) ? cdn($course->cover_image) : '' !!}" />
+                            <input type="hidden" name="cover_image" id="cover_image" value="{!! isset($course->cover_image) ? $course->cover_image : '' !!}" />
                         </div>
                     </div>
                 </div>
@@ -56,7 +56,7 @@
 
     <script type="text/javascript">
         $(function () {
-            var page_img = '{!! isset($course->cover_image) ? $course->cover_image : '' !!}';
+            var page_img = '{!! isset($course->cover_image) ? cdn($course->cover_image) : '' !!}';
 
             $('#file').fileinput({
                 language: 'zh',

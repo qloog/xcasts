@@ -70,7 +70,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->type }}</td>
-                                <td><img src="{{ $item->cover_image }}" width="100px"></td>
+                                <td><img src="{{ cdn($item->cover_image) }}" width="100px"></td>
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->user_id }}</td>

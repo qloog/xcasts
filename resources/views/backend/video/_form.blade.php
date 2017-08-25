@@ -82,7 +82,7 @@
 
     <script type="text/javascript">
         $(function () {
-            var page_img = '{!! isset($video->cover_image) ? $video->cover_image : '' !!}';
+            var page_img = '{!! isset($video->cover_image) ? cdn($video->cover_image) : '' !!}';
 
             $('#file').fileinput({
                 language: 'zh',

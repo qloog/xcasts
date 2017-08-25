@@ -1,5 +1,5 @@
 list:
-	@echo "usage: make depoly"
+	@echo "usage: make deploy"
 
 init:
 	@echo "init project..."
@@ -8,7 +8,7 @@ init:
 
 pull:
 	@echo "pull..."
-	@git pull
+	git pull
 
 push:
 	@echo "push..."

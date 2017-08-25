@@ -34,6 +34,15 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('description', '视频描述', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        <div class="clearfix">
+                            {!! Form::textarea('description', null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('url', '视频文件', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">

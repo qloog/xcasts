@@ -38,7 +38,7 @@ down:
 ch:
 	@echo "set chown & chomd..."
 	chown -R www:www *
-	chmod -R 644 *
+	chmod -R 755 *
 	chmod -R 777 storage
 
 gulp:

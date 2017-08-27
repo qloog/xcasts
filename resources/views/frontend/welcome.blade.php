@@ -31,7 +31,7 @@
 @section('content')
 	<div class="ui center aligned basic raised segment">
 		<h1>持续更新</h1>
-		<h4 class="ui grey header">享受编程和技术所带来的快乐</h4>
+		<h4 class="ui grey header">享受编程和技术所带来的乐趣</h4>
 	</div>
 
 	<div class="ui container">

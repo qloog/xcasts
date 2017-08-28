@@ -1,8 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title')
-	首页
-@endsection
+@section('title', '首页')
 
 @section('styles')
 <style type="text/css">

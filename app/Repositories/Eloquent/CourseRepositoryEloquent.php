@@ -36,8 +36,8 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
     public function getCourseListByType($type = null, $limit = 10)
     {
         if ($type) {
-            return$this->model->type($type)->orderBy('id','desc')->paginate($limit);
+            return$this->model->where(['is_publish' => 1, 'type' => $type])->orderBy('id','desc')->paginate($limit);
         }
-        return $this->model->orderBy('id','desc')->paginate($limit);
+        return $this->model->where(['is_publish' => 1])->orderBy('id','desc')->paginate($limit);
     }
 }

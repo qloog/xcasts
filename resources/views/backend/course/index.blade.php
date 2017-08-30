@@ -58,6 +58,7 @@
                             <th>封面</th>
                             <th>slug</th>
                             <th>描述</th>
+                            <th>是否发布</th>
                             <th>创建者</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
@@ -73,6 +74,7 @@
                                 <td><img src="{{ cdn($item->cover_image) }}" width="100px"></td>
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->description }}</td>
+                                <td>{{ $item->is_publish ? '已发布' : '草稿'}}</td>
                                 <td>{{ $item->user_id }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>

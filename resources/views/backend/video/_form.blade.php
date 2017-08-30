@@ -71,6 +71,7 @@
                     </div>
                 </div>
 
+                {{--todo: 控制视频是否是发布的视频--}}
 @section('styles')
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}">
 @endsection

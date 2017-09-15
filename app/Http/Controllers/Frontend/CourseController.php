@@ -64,7 +64,7 @@ class CourseController extends Controller
      */
     public function show($slug)
     {
-        $course = $this->courseRepo->findByField('slug', $slug)->first();
+        $course = $this->courseRepo->findWhere(['slug' => $slug, 'is_publish' => 1])->first();
 
         return view('frontend.course.detail', compact('course'));
     }

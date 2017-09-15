@@ -15,7 +15,7 @@ class Course extends Model implements Transformable
 
     public function videos()
     {
-        return $this->hasMany(Video::class)->orderBy('episode_id','ASC');
+        return $this->hasMany(Video::class)->where('is_publish','=',1)->orderBy('episode_id','ASC');
     }
 
     /**

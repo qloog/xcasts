@@ -21,8 +21,8 @@
     <!-- episode list-->
     <div class="ui grid"  style="background-color: #E9EAED;">
         <div class="row">
-            <div class="four wide column"></div>
-            <div class="eight wide column">
+            <div class="three wide column"></div>
+            <div class="ten wide column">
                 <table class="ui single line selectable  table">
                     <tbody>
                     @if (count($course->videos) > 0)
@@ -46,7 +46,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="four wide column"></div>
+            <div class="three wide column"></div>
         </div>
         <div class="row"></div>
     </div>

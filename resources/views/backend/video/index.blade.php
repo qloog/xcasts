@@ -55,10 +55,10 @@
                             <th>ID</th>
                             <th>封面</th>
                             <th>视频名称</th>
-                            <th>episode_id</th>
                             <th>所属课程</th>
                             <th>长度</th>
                             <th>是否免费</th>
+                            <th>发布状态</th>
                             <th>创建者</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
@@ -71,11 +71,11 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td><img src="{{ $item->cover_image }}" width="100px"></td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->episode_id }}</td>
-                                <td>【{{ $item->course->id }}】{{ $item->course->name }}</td>
+                                <td><a href="{{ route('video.show',['slug'=>$item->course->slug, 'episodes' => $item->episode_id]) }}" target="_blank">{{ $item->name }}</a></td>
+                                <td><a href="{{ route('courses.show',['slug'=>$item->course->slug]) }}" target="_blank">{{ $item->course->name }}</a></td>
                                 <td>{{ $item->length }}</td>
-                                <td>{!! $item->is_free == 1 ? '免费视频' : '<i class="fa fa-money"></i> 收费' !!} </td>
+                                <td>{!! $item->is_free == 1 ? '<span class="label label-success">免费视频</span>' : '<span class="label label-danger">收费</span>' !!} </td>
+                                <td>{!! $item->is_publish == 1 ? '<span class="label label-success">已发布</span>' : '<span class="label label-warning">未发布</span>' !!} </td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>

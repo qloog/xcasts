@@ -5,7 +5,7 @@
 
 <div class="ui container">
     <div class="ui four stackable cards">
-        <a class="card"  href="{{ url('course?type=backend') }}">
+        <a class="card"  href="{{ route('courses.index', ['type' => 'backend']) }}">
             <div class="content">
                 <div class="center aligned header">
                     <i class="huge orange terminal icon"></i>
@@ -16,7 +16,7 @@
                 </div>
             </div>
         </a>
-        <a class="card"  href="{{ url('course?type=service') }}">
+        <a class="card"  href="{{ route('courses.index', ['type' => 'service']) }}">
             <div class="content">
                 <div class="center aligned header">
                     <i class="huge green server icon"></i>
@@ -28,7 +28,7 @@
             </div>
         </a>
 
-        <a class="card" href="{{ url('course?type=frontend') }}">
+        <a class="card" href="{{ route('courses.index', ['type' => 'frontend']) }}">
             <div class="content">
                 <div class="center aligned header">
                     <i class="huge tv icon"></i>
@@ -39,7 +39,7 @@
                 </div>
             </div>
         </a>
-        <a class="card"  href="{{ url('course?type=tool') }}">
+        <a class="card"  href="{{ route('courses.index', ['type' => 'tool']) }}">
             <div class="content">
                 <div class="center aligned header">
                     <i class="huge brown setting icon"></i>

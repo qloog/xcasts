@@ -20,6 +20,7 @@ class Video extends Model implements Transformable
         'mp4_url',
         'is_free',
         'length',
+        'is_publish',
         'user_id',
         'created_at',
         'updated_at'

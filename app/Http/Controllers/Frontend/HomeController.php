@@ -38,7 +38,7 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        $courses = $this->courseRepo->orderBy('id', 'DESC')->paginate(10);
+        $courses = $this->courseRepo->getCourseListByType(null, 15);
 
         return view('frontend.welcome', compact('courses'));
     }

@@ -28,7 +28,7 @@
                     @if (count($course->videos) > 0)
                         @foreach($course->videos as $key => $video)
                         <tr style="display: table-row">
-                            <td class="ui center aligned">{{ $video->episode_id }}</td>
+                            <td class="ui center aligned">{{ $key + 1 }}</td>
                             <td>
                                 <i class="video play outline large icon"></i>
                                 <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>

@@ -40,7 +40,6 @@ class RegisterController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
      */
     public function __construct()
     {
@@ -109,12 +108,13 @@ class RegisterController extends Controller
      *
      * @param Request $request
      * @param         $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     protected function registered(Request $request, $user)
     {
         // send activation code
         $user = $user->toArray();
-        $token = str_random(30);
+        $token = $this->getActivationToken();
         $user['token'] = $token;
         DB::table('user_activations')->insert(['user_id' => $user['id'], 'token'=> $token]);
 
@@ -130,5 +130,15 @@ class RegisterController extends Controller
         Flash::success('已发送激活链接,请检查您的邮箱。');
 
         return redirect()->route('login');
+    }
+
+    /**
+     * 获取激活码
+     *
+     * @return string
+     */
+    private function getActivationToken()
+    {
+        return str_random(30);
     }
 }

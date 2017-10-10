@@ -39,7 +39,7 @@
                                 @endif
                             </td>
                             <td class="ui right aligned">{{ $video->length }}</td>
-                            <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->created_at)) }}</td>
+                            <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->updated_at)) }}</td>
                         </tr>
                         @endforeach
                     @endif

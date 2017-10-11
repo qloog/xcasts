@@ -57,15 +57,7 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        $fileInfo = [];
-        if(empty($request->file())) {
-            $fileInfo = $this->uploadManager->uploadFile($request->file('mp4_url'));
-            if (empty($fileInfo)) {
-                return Redirect::back()->withInput()->withErrors('上传出错！');
-            }
-        }
-
-        if ($this->videoRepo->create(array_merge($request->all(), ['mp4_url' => $fileInfo['file_path'],'user_id'=>\Auth::id()]))) {
+        if ($this->videoRepo->create(array_merge($request->all(), ['user_id'=>\Auth::id()]))) {
             return redirect()->route('admin.video.index');
         }
         return Redirect::back()->withInput()->withErrors('保存失败！');
@@ -108,7 +100,7 @@ class VideoController extends Controller
         if (!empty($request->file())) {
             $fileInfo = $this->uploadManager->uploadFile($request->file('mp4_url'));
             if (empty($fileInfo)) {
-                return Redirect::back()->withInput()->withErrors('上传出错！');
+                return back()->withInput()->withErrors('上传出错！');
             }
             $postData['mp4_url'] = $fileInfo['file_path'];
         }
@@ -116,7 +108,8 @@ class VideoController extends Controller
         if ($this->videoRepo->update($postData, $id)) {
             return redirect()->route('admin.video.index');
         }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
+
+        return back()->withInput()->withErrors('保存失败！');
     }
 
     /**

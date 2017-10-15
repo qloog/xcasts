@@ -4,6 +4,8 @@
     {{ $course->name }} - 视频
 @endsection
 
+@section('description', $course->description)
+
 @section('content')
 
     <!-- banner -->

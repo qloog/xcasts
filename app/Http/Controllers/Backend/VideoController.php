@@ -60,7 +60,7 @@ class VideoController extends Controller
         if ($this->videoRepo->create(array_merge($request->all(), ['user_id'=>\Auth::id()]))) {
             return redirect()->route('admin.video.index');
         }
-        return Redirect::back()->withInput()->withErrors('保存失败！');
+        return back()->withInput()->withErrors('保存失败！');
     }
 
     /**

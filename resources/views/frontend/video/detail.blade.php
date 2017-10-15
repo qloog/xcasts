@@ -4,6 +4,8 @@
     {{ $video->name }} - {{ $course->name }} - 视频
 @endsection
 
+@section('description', $video->description)
+
 @section('styles')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">

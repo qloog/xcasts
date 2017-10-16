@@ -167,6 +167,17 @@
         });
 
     </script>
-@yield('scripts')
+    <!-- baidu tongij -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?2bebd2fc54ce1a6238c5158d55bf33af";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+    @yield('scripts')
 </body>
 </html>

@@ -9,7 +9,6 @@
 
     <!-- Site Properties -->
     <title>@yield('title') - PHPCasts</title>
-    <meta name="keywords" content="@yield('keywords')" />
     <meta name="author" content="PHPCasts" />
     <meta name="description" content="@yield('description')" />
     {{--<link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">--}}

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Mail\UserRegisteredActivation;
 use App\Models\User;
+use App\Notifications\NewRegisterUser;
 use DB;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Laracasts\Flash\Flash;
@@ -126,6 +128,9 @@ class RegisterController extends Controller
         //    $message->subject('PHPCasts - 帐号激活链接');
         //});
         Mail::to($user['email'])->send(new UserRegisteredActivation($user));
+
+        // send to slack
+        Notification::send($user, new NewRegisterUser($user));
 
         Flash::success('已发送激活链接,请检查您的邮箱。');
 

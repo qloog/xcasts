@@ -43,9 +43,8 @@ class NewRegisterUser extends Notification implements ShouldQueue
     public function toSlack($notifiable)
     {
         return (new SlackMessage())
-                    ->from('phpcasts-bot')
                     ->to('#new-reg-user')
-                    ->content('welcome new user:');
+                    ->content('welcome new user:' . $this->user->name .'['.$this->user->email.']');
     }
 
     /**

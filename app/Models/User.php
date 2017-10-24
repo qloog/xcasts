@@ -76,6 +76,18 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     protected $hidden = ['password', 'remember_token'];
 
+    private $slack_webhook_url = 'https://hooks.slack.com/services/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';
+
+    /**
+     * Route notifications for the Slack channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForSlack()
+    {
+        return $this->slack_webhook_url;
+    }
+
     public function getStatusAttribute($value)
     {
         return $value == 1 ? '正常' : '已删除';

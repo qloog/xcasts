@@ -115,6 +115,7 @@ class RegisterController extends Controller
     protected function registered(Request $request, $user)
     {
         // send activation code
+        $userObj = $user;
         $user = $user->toArray();
         $token = $this->getActivationToken();
         $user['token'] = $token;
@@ -130,7 +131,7 @@ class RegisterController extends Controller
         Mail::to($user['email'])->send(new UserRegisteredActivation($user));
 
         // send to slack
-        Notification::send($user, new NewRegisterUser($user));
+        Notification::send($userObj, new NewRegisterUser($userObj));
 
         Flash::success('已发送激活链接,请检查您的邮箱。');
 

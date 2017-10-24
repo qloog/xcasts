@@ -7,7 +7,7 @@ use Illuminate\Notifications\Messages\SlackMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class NewRegisterUser extends Notification
+class NewRegisterUser extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -31,7 +31,7 @@ class NewRegisterUser extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['slack'];
     }
 
     /**
@@ -45,7 +45,7 @@ class NewRegisterUser extends Notification
         return (new SlackMessage())
                     ->from('phpcasts-bot')
                     ->to('#new-reg-user')
-                    ->content('welcome new user:' . $this->user->name[$this->user->email]);
+                    ->content('welcome new user:');
     }
 
     /**

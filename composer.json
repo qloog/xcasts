@@ -27,7 +27,8 @@
         "league/html-to-markdown": "^4.3",
         "latrell/alipay": "dev-master",
         "overtrue/laravel-follow": "^1.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "laravel/horizon": "^1.0"
     },
     "require-dev": {
         "filp/whoops": "^2.1",
@@ -82,7 +83,7 @@
     "repositories": {
         "packagist": {
             "type": "composer",
-            "url": "https://packagist.phpcomposer.com"
+            "url": "https://packagist.laravel-china.org"
         }
     }
 }

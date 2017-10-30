@@ -154,8 +154,6 @@
     <!-- Footer -->
     @include('frontend.layouts.partials.footer')
 
-{{--<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>--}}
-{{--<script src="{{ asset('semantic/dist/semantic.min.js') }}"></script>--}}
     <script src="{{ elixir('assets/js/app.min.js') }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){ //scroll to top
@@ -164,7 +162,6 @@
                 return false;
             });
         });
-
     </script>
 @yield('scripts')
 </body>

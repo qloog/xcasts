@@ -9,6 +9,7 @@
 @section('content')
 
     <!-- banner -->
+    <!--todo: 换为高大上的背景图片-->
     <div class="ui grid" style="height:260px; background: #393E46;">
         <div class="row">
             <div class="three wide column"></div>

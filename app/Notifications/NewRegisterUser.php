@@ -16,7 +16,7 @@ class NewRegisterUser extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $user
      */
     public function __construct($user)
     {
@@ -44,7 +44,7 @@ class NewRegisterUser extends Notification implements ShouldQueue
     {
         return (new SlackMessage())
                     ->to('#new-reg-user')
-                    ->content('welcome new user:' . $this->user->name .'['.$this->user->email.']');
+                    ->content('welcome new user: ' . $this->user->name .'['.$this->user->email.']');
     }
 
     /**

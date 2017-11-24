@@ -24,6 +24,7 @@ class CreateVideosTable extends Migration
             $table->tinyInteger('is_free')->unsigned()->default(0)->comment('是否免费 0:收费, 1:免费');
             $table->string('length', 10)->unsigned()->default('')->comment('视频长度');
             $table->tinyInteger('is_publish')->unsigned()->default(0)->comment('是否发布 0:否, 1:是');
+            $table->timestamp('published_at')->comment('发布时间');
             $table->integer('user_id')->unsigned()->default(0)->comment('用户id');
             $table->timestamps();
             $table->softDeletes();

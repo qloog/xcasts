@@ -9,6 +9,7 @@
 @section('content')
 
     <!-- banner -->
+    <!--todo: 换为高大上的背景图片-->
     <div class="ui grid" style="height:260px; background: #393E46;">
         <div class="row">
             <div class="three wide column"></div>
@@ -41,6 +42,7 @@
                                 @endif
                             </td>
                             <td class="ui right aligned">{{ $video->length }}</td>
+                            <!-- todo: 用发布时间取代 -->
                             <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->updated_at)) }}</td>
                         </tr>
                         @endforeach

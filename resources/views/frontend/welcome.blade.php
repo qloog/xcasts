@@ -1,6 +1,12 @@
 @extends('frontend.layouts.master')
 
-@section('title', '首页')
+@section('title')
+	PHP Yaf Laravel 视频教程
+@endsection
+
+@section('keywords')
+    PHPCasts,Yaf 视频,Laravel 视频, Yaf 教程, Laravel 教程
+@endsection
 
 @section('styles')
 <style type="text/css">

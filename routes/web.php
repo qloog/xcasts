@@ -138,6 +138,7 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('course', 'CourseController');
         //video
         Route::resource('video', 'VideoController');
+        Route::post('video/{video}/publish', 'VideoController@publish')->name('video.publish');
         //forum
         Route::resource('topics', 'TopicController');
 

@@ -4,6 +4,12 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
+/**
+ * Just for test
+ *
+ * Class SendEmails
+ * @package App\Console\Commands
+ */
 class SendEmails extends Command
 {
     /**

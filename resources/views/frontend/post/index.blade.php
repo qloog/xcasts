@@ -23,12 +23,12 @@
                 </div>
             </div>
             <div class="twelve wide column">
-                <div class="ui large middle aligned divided relaxed list padded segment">
+                <div class="ui large middle aligned divided relaxed list padded segment items">
                     @foreach($posts as $post)
                         <div class="item">
-                            {{--<div class="ui medium image">--}}
-                            {{--<img src="{{ cdn('/blog-default-post-cover.jpeg') }}">--}}
-                            {{--</div>--}}
+                            <div class="ui small image">
+                                <img src="{{ cdn('/blog-default-post-cover.jpeg') }}">
+                            </div>
                             <div class="content">
                                 <a class="header" href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
                                 <div class="meta">

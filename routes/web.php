@@ -144,7 +144,7 @@ Route::group(['namespace' => 'Backend'], function ()
         //comment
         Route::resource('comment', 'CommentController');
 
-        // plan
+        //plan
         Route::resource('plan', 'PlanController');
 
         //blog

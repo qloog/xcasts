@@ -110,7 +110,7 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::get('/', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 
-        //user
+        //users
         Route::get('user', 'UserController@index')->name('admin.user');
         Route::resource('auth/user', 'UserController', ['as' => 'auth']);
         Route::get('auth/user/change-password/{id}', 'UserController@changePassword');

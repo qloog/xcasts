@@ -95,7 +95,6 @@ Route::group(['namespace' => 'Frontend'], function ()
  */
 Route::group(['namespace' => 'Backend'], function ()
 {
-
     // about login and logout
     Route::group(['prefix' => 'admin'], function ()
     {

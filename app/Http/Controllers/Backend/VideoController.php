@@ -2,15 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 use App\Contracts\Repositories\CourseRepository;
 use App\Contracts\Repositories\VideoRepository;
 use App\Services\UploadsManager;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 
 class VideoController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Contracts\Repositories\PlanRepository;
 use Illuminate\Http\Request;
+use App\Contracts\Repositories\PlanRepository;
 use App\Http\Controllers\Controller;
 
 class PlanController extends Controller

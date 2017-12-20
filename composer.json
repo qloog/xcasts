@@ -42,7 +42,8 @@
         "barryvdh/laravel-ide-helper": "^2.1",
         "squizlabs/php_codesniffer": "2.*",
         "friendsofphp/php-cs-fixer": "^1.12",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "nunomaduro/collision": "^1.1"
     },
     "autoload": {
         "classmap": [

@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Contracts\Repositories\CourseRepository;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Contracts\Repositories\CourseRepository;
 use App\Http\Controllers\Controller;
 
 class CourseController extends Controller

@@ -21,6 +21,8 @@ class Video extends Model implements Transformable
         'is_free',
         'length',
         'is_publish',
+        'published_at',
+        'published_at',
         'user_id',
         'created_at',
         'updated_at'

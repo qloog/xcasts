@@ -69,16 +69,6 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    {!! Form::label('is_publish', '是否发布', ['class' => 'col-sm-2 control-label']) !!}
-                    <div class="col-sm-5">
-                        <div class="clearfix">
-                            {!! Form::radio('is_publish', 1) !!}是 &nbsp;&nbsp;
-                            {!! Form::radio('is_publish', 0) !!}否
-                        </div>
-                    </div>
-                </div>
 @section('styles')
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}">
 @endsection

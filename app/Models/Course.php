@@ -10,7 +10,9 @@ class Course extends Model implements Transformable
 {
     use TransformableTrait;
 
-    protected $fillable = ['id', 'name', 'slug', 'description', 'cover_image', 'is_publish', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'id', 'name', 'slug', 'description', 'cover_image', 'is_publish', 'published_at', 'created_at', 'updated_at'
+    ];
 
     /**
      * 获取当前课程的所有视频

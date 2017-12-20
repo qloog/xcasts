@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Backend;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 use App\Contracts\Repositories\CourseRepository;
 use App\Contracts\Repositories\VideoRepository;
 use App\Services\UploadsManager;
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Redirect;
 
 class VideoController extends Controller
 {
@@ -110,6 +110,26 @@ class VideoController extends Controller
         }
 
         return back()->withInput()->withErrors('保存失败！');
+    }
+
+    /**
+     * 修改发布状态
+     *
+     * @param Request $request
+     * @param         $id
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
+    public function publish(Request $request, $id)
+    {
+        $publishData = [
+            'is_publish' => 1,
+            'published_at' => Carbon::now()
+        ];
+        if ($this->videoRepo->update($publishData, $id)) {
+            return response()->json(['ret' => 1]);
+        }
+
+        return response()->json(['ret' => 0]);
     }
 
     /**

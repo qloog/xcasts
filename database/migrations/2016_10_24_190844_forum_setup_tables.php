@@ -25,6 +25,7 @@ class ForumSetupTables extends Migration
             $table->enum('is_excellent', ['yes', 'no'])->default('no')->comment('是否加精帖子');
             $table->enum('is_blocked', ['yes', 'no'])->default('no')->comment('是否block帖子');
             $table->integer('last_reply_user_id')->unsigned()->default(0)->index()->comment('最后回复用户');
+            $table->dateTime('last_reply_time_at')->comment('最后回复时间');
             $table->string('source')->default('')->comment('访问来源 iOS，Android, PC');
             $table->integer('user_id')->unsigned()->default(0)->index()->comment('创建者id');
             $table->timestamps();

@@ -62,7 +62,8 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
         $topic = Topic::find($attributes['topic_id']);
         $topic->last_reply_user_id = Auth::id();
         $topic->reply_count++;
-        $topic->updated_at = Carbon::now()->toDateTimeString();
+        //$topic->updated_at = Carbon::now()->toDateTimeString();
+        $topic->last_reply_time_at = Carbon::now()->toDateTimeString();
         $topic->save();
 
         Auth::user()->increment('reply_count', 1);

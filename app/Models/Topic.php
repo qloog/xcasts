@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Prettus\Repository\Contracts\Transformable;
@@ -19,6 +20,11 @@ class Topic extends Model implements Transformable
         'is_excellent','is_blocked','last_reply_user_id','last_reply_time_at', 'source','user_id',
         'created_at', 'updated_at'
     ];
+
+    public function getLastReplyTimeAtAttribute($date)
+    {
+        return Carbon::parse($date);
+    }
 
     public function user()
     {

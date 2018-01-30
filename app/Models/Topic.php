@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelFollow\Traits\CanBeFollowed;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
+use Carbon\Carbon;
 
 class Topic extends Model implements Transformable
 {
@@ -16,9 +17,14 @@ class Topic extends Model implements Transformable
 
     protected $fillable = [
         'id','category_id','title','body','origin_body', 'view_count', 'reply_count', 'vote_count',
-        'is_excellent','is_blocked','last_reply_user_id','source','user_id','created_at',
-        'updated_at'
+        'is_excellent','is_blocked','last_reply_user_id','last_reply_time_at', 'source','user_id',
+        'created_at', 'updated_at'
     ];
+
+    public function getLastReplyTimeAtAttribute($date)
+    {
+        return Carbon::parse($date);
+    }
 
     public function user()
     {

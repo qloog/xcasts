@@ -11,7 +11,7 @@
             <i class="talk icon"></i> 社区
         </a>
         <a class="item @if(Request::is('posts*')) active @endif" href="{{ route('blog.index') }}">
-        <i class="content icon"></i> 博客
+        <i class="content icon"></i> 文章
         </a>
         <a class="item @if(Request::is('vip')) active @endif" href="{{ route('vip') }}">
             <i class="unhide icon"></i> 订阅

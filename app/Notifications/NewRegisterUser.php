@@ -42,6 +42,7 @@ class NewRegisterUser extends Notification implements ShouldQueue
      */
     public function toSlack($notifiable)
     {
+        //todo: use redis queue
         return (new SlackMessage())
                     ->to('#new-reg-user')
                     ->content('welcome new user: ' . $this->user->name .'['.$this->user->email.']');

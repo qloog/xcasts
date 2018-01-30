@@ -28,7 +28,13 @@
                                             <a class="item"><div class="ui horizontal label">{{ $topic->category->name }}</div></a>
                                             ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a>
                                             ⋅ 于 {{ $topic->created_at->diffForHumans() }}
-                                            ⋅ 最后回复由 <a href="{{ route('user.show', $topic->last_reply_user_id) }}">{{ $topic->lastReplyUser->name }}</a> 于 {{ $topic->updated_at->diffForHumans() }}
+                                            @if($topic->last_reply_user_id > 0)
+                                            ⋅ 最后回复由
+                                                <a href="{{ route('user.show', $topic->last_reply_user_id) }}">
+                                                    {{ $topic->lastReplyUser->name }}
+                                                </a>
+                                                于 {{ $topic->last_reply_time_at->diffForHumans() }}
+                                            @endif
                                         </span>
                                     </div>
                                 </div>

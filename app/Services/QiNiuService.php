@@ -5,6 +5,7 @@ namespace App\Services;
 use Qiniu\Auth;
 use Qiniu\Storage\BucketManager;
 use Qiniu\Storage\UploadManager;
+use Qiniu\Processing\ImageUrlBuilder;
 
 class QiNiuService
 {
@@ -40,6 +41,13 @@ class QiNiuService
     public function fileUrlWithToken($url)
     {
         return $this->auth->privateDownloadUrl($url);
+    }
+
+    public function getThumbnail($url, $mode=1, $width=400, $height=300)
+    {
+        $imageUrlBuilder = new ImageUrlBuilder();
+
+        return $imageUrlBuilder->thumbnail($url, $mode, $width, $height);
     }
 
     public function list($limit = 10)

@@ -122,3 +122,12 @@ function cdn($path)
 
     return $qiNiuSrv->fileUrlWithToken($url);
 }
+
+function thumb($path)
+{
+    //$urlWithToken = cdn($path);
+    $qiNiuSrv = new QiNiuService();
+    $url = env('QINIU_CDN_URL') . $path;
+
+    return $qiNiuSrv->getThumbnail($url);
+}

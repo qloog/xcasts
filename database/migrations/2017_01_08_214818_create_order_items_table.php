@@ -15,11 +15,12 @@ class CreateOrderItemsTable extends Migration
     {
         Schema::create('order_items', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('order_id')->unsigned()->default(0)->comment('订单id');
+            $table->bigInteger('order_id')->unsigned()->default(0)->comment('订单id');
             $table->integer('item_id')->default(0)->comment('商品id');
             $table->string('name')->default('')->comment('商品名称');
             $table->decimal('price')->unsigned()->default(0.00)->comment('商品价格');
-            $table->integer('quantity')->default(0)->comment('购买总数');
+            $table->integer('quantity')->default(0)->comment('购买数量');
+            $table->decimal('amount')->unsigned()->default(0.00)->comment('商品总金额');
             $table->integer('user_id')->unsigned()->default(0)->comment('买家uid');
             $table->softDeletes();
             $table->timestamps();

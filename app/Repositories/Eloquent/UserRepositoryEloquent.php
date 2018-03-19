@@ -4,7 +4,7 @@ namespace App\Repositories\Eloquent;
 
 use App\Exceptions\GeneralException;
 use App\Models\Order;
-use App\Models\OrderDetail;
+use App\Models\OrderItem;
 use App\Models\Reply;
 use App\Models\Topic;
 use App\Models\UserMember;
@@ -229,8 +229,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         // generate order
         DB::transaction(function () use($userId, $data) {
             $orderId = $this->createOrder($userId, $data);
-            $this->createOrderDetail($userId, $orderId, $data);
-            $this->createUserMember($userId, $data);
+            if ($orderId) {
+                $this->createOrderItem($userId, $orderId, $data);
+                $this->createUserMember($userId, $data);
+            }
         });
 
         return $orderId ? true : false;
@@ -251,11 +253,8 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $order->id = $orderId;
         $order->order_amount = $data['order_amount'];
         $order->pay_amount = $data['pay_amount'];
-        $order->quantity = 1;
         $order->pay_method = $data['pay_method'];
-        $order->is_paid = 1;
         $order->paid_at = $data['paid_at'];
-        $order->completed_at = $data['paid_at'];
         $order->status = 'paid';
         $order->user_id = $userId;
         $ret = $order->save();
@@ -267,30 +266,57 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return  $ret ? $orderId : 0;
     }
 
-    private function createOrderDetail($userId, $orderId, $data)
+    private function createOrderItem($userId, $orderId, $data)
     {
-        $detail = new orderDetail();
-        $detail->order_id = $orderId;
-        $detail->plan_id = 1;
-        $detail->plan_name = '月度会员';
-        $detail->plan_price = $data['pay_amount'];
-        $detail->quantity = 1;
-        $detail->user_id = $userId;
-        $detail->save();
+        $item = new OrderItem();
+        $item->order_id = $orderId;
+        $item->item_id = $data['type'];
+        $item->name = $this->getTypeText($data['type']) . '会员';
+        $item->price = $data['pay_amount'];
+        $quantity = 1;
+        $item->quantity = $quantity;
+        $item->amount = $data['pay_amount'] * $quantity;
+        $item->user_id = $userId;
+        $item->save();
     }
 
     private function createUserMember($userId, $data)
     {
-        $userMember = new UserMember();
-        $userMember->type = $data['type'];
-        //
-        $startTime = $data['paid_at'];
-        $userMember->start_time = $startTime;
-        $userMember->end_time = $this->getEndTime($startTime, $data['type']);
-        $userMember->status = 1;
-        $userMember->user_id = $userId;
+        $preMember = UserMember::where('user_id',$userId)->where('status',1)->first();
+        // 新买会员
+        if (!$preMember) {
+            $userMember = new UserMember();
+            $userMember->type = $data['type'];
+            $startTime = $data['paid_at'];
+            $userMember->start_time = $startTime;
+            $userMember->user_id = $userId;
+            $userMember->end_time = $this->getEndTime($startTime, $data['type']);
+            $userMember->status = 1;
 
-        return $userMember->saveOrFail();
+            return $userMember->saveOrFail();
+        } else {
+            // 已经购买过会员
+            // a. 会员还未到期就续费, 则在结束时间上再加对应的时间段即可
+            if (time() <= strtotime($preMember->end_time)) {
+                $preMember->end_time = $this->getEndTime($preMember->end_time, $data['type']);
+                $preMember->type = $data['type'];
+
+                return $preMember->save();
+            } else {
+                // b. 购买的会员已经过期再次购买: 先将之前的记录status置为0, 再新插入一条
+                $preMember->status = 0;
+                $preMember->save();
+
+                $userMember = new UserMember();
+                $userMember->type = $data['type'];
+                $startTime = $data['paid_at'];
+                $userMember->start_time = $startTime;
+                $userMember->user_id = $userId;
+                $userMember->end_time = $this->getEndTime($startTime, $data['type']);
+                $userMember->status = 1;
+                return $userMember->save();
+            }
+        }
     }
 
     /**
@@ -303,23 +329,30 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     private function getEndTime($startTime, $level)
     {
         $startTime = strtotime($startTime);
-        $monthTime = 24*3600*30;
+        $monthTime = 24*3600*30; // 一个月
+        $endTime = 0;
         switch ($level) {
+            // 一个月
             case 1:
                 $endTime = $startTime + $monthTime;
                 break;
+            // 3个月
             case 2:
                 $endTime = $startTime + $monthTime*3;
                 break;
+            // 半年
             case 3:
                 $endTime = $startTime + $monthTime*6;
                 break;
+            // 一年
             case 4:
                 $endTime = $startTime + $monthTime*12;
                 break;
+            // 两年
             case 5:
                 $endTime = $startTime + $monthTime*24;
                 break;
+            // 3年
             case 6:
                 $endTime = $startTime + $monthTime*36;
                 break;
@@ -330,7 +363,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function memberDetail($userId)
     {
-        $record =  UserMember::where('user_id', $userId)->first();
+        $record =  UserMember::where('user_id', $userId)->where('status',1)->first();
 
         if ($record) {
             $record->type = $this->getTypeText($record->type);
@@ -369,7 +402,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function isMember($userId)
     {
-        $detail = UserMember::where('user_id', $userId)->first();
+        $detail = UserMember::where('user_id', $userId)->where('status',1)->first();
         if ($detail) {
             return ((time() > strtotime($detail->start_time)) && (strtotime($detail->end_time) > time()))  ? true:  false;
         }

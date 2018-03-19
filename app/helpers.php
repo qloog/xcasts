@@ -93,13 +93,13 @@ if ( ! function_exists('get_relation_title')) {
     function get_relation_title($type, $relation_id)
     {
         switch($type){
-            case 'news':
-                $obj = DB::table('news')->select('title')->where('id', '=', $relation_id)->first();
-                $title = $obj->title;
+            case 'video':
+                $obj = DB::table('videos')->select('name')->where('id', '=', $relation_id)->first();
+                $title = $obj->name;
                 break;
-            case 'photo':
-                $obj = DB::table('album_photo')->select('photo_name')->where('id', '=', $relation_id)->first();
-                $title = $obj->album_photo;
+            case 'blog':
+                $obj = DB::table('posts')->select('title')->where('id', '=', $relation_id)->first();
+                $title = $obj->title;
                 break;
             default:
                 $title = '没有对应的分类';

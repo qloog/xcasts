@@ -26,8 +26,6 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         return Post::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */

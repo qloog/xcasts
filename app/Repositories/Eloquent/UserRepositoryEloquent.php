@@ -282,12 +282,11 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     private function createUserMember($userId, $data)
     {
-        $userMember = new UserMember();
-        $userMember->type = $data['type'];
-
         $preMember = UserMember::where('user_id',$userId)->where('status',1)->first();
         // 新买会员
         if (!$preMember) {
+            $userMember = new UserMember();
+            $userMember->type = $data['type'];
             $startTime = $data['paid_at'];
             $userMember->start_time = $startTime;
             $userMember->user_id = $userId;
@@ -299,20 +298,23 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
             // 已经购买过会员
             // a. 会员还未到期就续费, 则在结束时间上再加对应的时间段即可
             if (time() <= strtotime($preMember->end_time)) {
-                $userMember->end_time = $this->getEndTime($preMember->end_time, $data['type']);
+                $preMember->end_time = $this->getEndTime($preMember->end_time, $data['type']);
+                $preMember->type = $data['type'];
 
-                return $userMember->save();
+                return $preMember->save();
             } else {
-                // TODO: b. 购买的会员已经过期再次购买: 先将之前的记录status置为0, 再新插入一条
+                // b. 购买的会员已经过期再次购买: 先将之前的记录status置为0, 再新插入一条
                 $preMember->status = 0;
                 $preMember->save();
 
+                $userMember = new UserMember();
+                $userMember->type = $data['type'];
                 $startTime = $data['paid_at'];
                 $userMember->start_time = $startTime;
                 $userMember->user_id = $userId;
                 $userMember->end_time = $this->getEndTime($startTime, $data['type']);
                 $userMember->status = 1;
-                $userMember->save();
+                return $userMember->save();
             }
         }
     }
@@ -361,7 +363,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function memberDetail($userId)
     {
-        $record =  UserMember::where('user_id', $userId)->first();
+        $record =  UserMember::where('user_id', $userId)->where('status',1)->first();
 
         if ($record) {
             $record->type = $this->getTypeText($record->type);
@@ -400,7 +402,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
 
     public function isMember($userId)
     {
-        $detail = UserMember::where('user_id', $userId)->first();
+        $detail = UserMember::where('user_id', $userId)->where('status',1)->first();
         if ($detail) {
             return ((time() > strtotime($detail->start_time)) && (strtotime($detail->end_time) > time()))  ? true:  false;
         }

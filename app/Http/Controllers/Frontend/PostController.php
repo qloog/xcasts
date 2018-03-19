@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\PostRepository;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,7 +24,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = $this->postRepo->orderBy('created_at', 'desc')->paginate(10);
+        // $posts = $this->postRepo->orderBy('created_at', 'desc')->paginate(10);
+        $posts = Post::where('status',1)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('frontend.post.index', compact('posts'));
     }

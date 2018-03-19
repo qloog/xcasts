@@ -48,6 +48,7 @@
                         </div>
                     @endforeach
                 </div>
+                {!! $posts->render('partials.semantic-pagination') !!}
             </div>
         </div>
         <div class="ui hidden divider"></div>

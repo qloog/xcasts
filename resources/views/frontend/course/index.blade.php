@@ -19,8 +19,8 @@
 
     <div class="ui container">
         @include('frontend.layouts.partials.course_list')
-
-        {!! $courses->render() !!}
+        <div class="ui inverted container divider"></div>
+        {!! $courses->render('partials.semantic-pagination') !!}
     </div>
 
     <div class="ui center aligned header basic raised segment"></div>

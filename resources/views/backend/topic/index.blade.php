@@ -1,7 +1,5 @@
 @extends('backend.layouts.master')
 
-@section('title', '用户管理')
-
 @section('styles')
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
@@ -35,9 +33,6 @@
 
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">
-                        <a href="{{ route('admin.auth.role.create') }}" class="btn btn-sm btn-success"><i class="fa fa-plus"></i> 添加角色</a>
-                    </h3>
                     <div class="box-tools">
                         <!--
                         <div class="form-inline  pull-right">
@@ -86,7 +81,7 @@
                         @foreach ($topics as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->title }}</td>
+                                <td><a href="{{ route('topics.show', ['id'=>$item->id]) }}" target="_blank">{{ $item->title }}</a></td>
                                 <td>{{ $item->view_count }}</td>
                                 <td>{{ $item->reply_count }}</td>
                                 <td>{{ $item->vote_count }}</td>
@@ -113,7 +108,6 @@
                 <!-- /.box-body -->
 
                 <div class="box-footer">
-
                     <div class="pull-right">
                         {!! $topics->render() !!}
                     </div>

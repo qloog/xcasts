@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -31,7 +32,7 @@ class TopicController extends BaseController
      */
     public function index()
     {
-        $topics = $this->topics->orderBy('id', 'desc')->paginate(10);
+        $topics =  Topic::query()->orderByDesc('id')->paginate(20);
 
         return view('backend.topic.index', compact('topics'));
     }

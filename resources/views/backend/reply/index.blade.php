@@ -1,11 +1,29 @@
 @extends('backend.layouts.master')
 
+@section('styles')
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins/datatables/dataTables.bootstrap.css') }}">
+@endsection
+
 @section('page_title')
-    评论管理
+    帖子回复管理
 @endsection
 
 @section('page_description')
-    评论列表
+    回复列表
+@endsection
+
+@section('breadcrumb')
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="/admin/dashboard">主页</a>
+    </li>
+    <li>
+        <a>回复管理</a>
+    </li>
+    <li>
+        列表
+    </li>
 @endsection
 
 @section('content')
@@ -48,27 +66,25 @@
                 <div class="box-body">
                     <table id="user-table" class="table table-striped table-hover">
                         <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>类型</th>
-                                <th>关联内容标题</th>
-                                <th>评论内容</th>
-                                <th>评论人</th>
-                                <th>IP</th>
-                                <th>创建时间</th>
-                                <th>更新时间</th>
-                                <th>操作</th>
-                            </tr>
+                        <tr>
+                            <th>ID</th>
+                            <th>关联内容标题</th>
+                            <th>评论内容</th>
+                            <th>评论人</th>
+                            <th>投票数</th>
+                            <th>创建时间</th>
+                            <th>更新时间</th>
+                            <th>操作</th>
+                        </tr>
                         </thead>
                         <tbody>
-                            @foreach ($comments as $item)
+                        @foreach ($replies as $item)
                             <tr>
                                 <th>{{ $item->id }}</th>
-                                <th>{{ $item->type }}</th>
-                                <th>{{ get_relation_title($item->type, $item->relation_id) }}</th>
-                                <th>{!! $item->content !!}</th>
+                                <th>{{ $item->topic->title }}</th>
+                                <th>{!! $item->body !!}</th>
                                 <th>{{ $item->user['name'] }}</th>
-                                <th>{{ $item->ip }}</th>
+                                <th>{{ $item->vote_count }}</th>
                                 <th>{{ $item->created_at }}</th>
                                 <th>{{ $item->updated_at }}</th>
                                 <th>
@@ -85,7 +101,7 @@
                                     </div>
                                 </th>
                             </tr>
-                            @endforeach
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -93,7 +109,7 @@
 
                 <div class="box-footer">
                     <div class="pull-right">
-                        {!! $comments->render() !!}
+                        {!! $replies->render() !!}
                     </div>
                 </div>
             </div>

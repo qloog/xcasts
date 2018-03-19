@@ -7,7 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@yield('title') - 管理后台</title>
+    <title>管理后台</title>
     <meta name="keywords" content="@yield('keywords')">
     <meta name="description" content="@yield('description')">
 

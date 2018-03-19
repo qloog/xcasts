@@ -70,8 +70,11 @@
                     <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li @if(Request::is('admin/forum')) class="active" @endif>
-                        <a href="{{ url('admin/forum') }}"><i class="fa fa-circle-o"></i> 帖子列表</a>
+                    <li @if(Request::is('admin/forum/topics')) class="active" @endif>
+                        <a href="{{ url('admin/forum/topics') }}"><i class="fa fa-circle-o"></i> 帖子列表</a>
+                    </li>
+                    <li @if(Request::is('admin/forum/replies/index')) class="active" @endif>
+                        <a href="{{ url('admin/forum/replies/index') }}"><i class="fa fa-circle-o"></i> 回复列表</a>
                     </li>
                     <li @if(Request::is('admin/forum/category')) class="active" @endif>
                         <a href="{{ url('admin/forum/category') }}"><i class="fa fa-circle-o"></i> 帖子分类</a>
@@ -89,6 +92,13 @@
                         <a href="{{ url('admin/comment') }}"><i class="fa fa-circle-o"></i> 评论列表</a>
                     </li>
                 </ul>
+            </li>
+
+            <li @if(Request::is('admin/feedback*')) class="active" @endif>
+                <a href="{{ url('admin/feedback') }}">
+                    <i class="fa fa-comments-o"></i>
+                    <span>反馈管理</span>
+                </a>
             </li>
 
             <li @if(Request::is('admin/course*')) class="treeview active" @else class="treeview" @endif>

@@ -140,10 +140,13 @@ Route::group(['namespace' => 'Backend'], function ()
         Route::resource('video', 'VideoController');
         Route::post('video/{video}/publish', 'VideoController@publish')->name('video.publish');
         //forum
-        Route::resource('topics', 'TopicController');
+        Route::resource('forum/topics', 'TopicController');
+        Route::get('forum/replies/index', 'ReplyController@index');
 
         //comment
         Route::resource('comment', 'CommentController');
+        // feedback
+        Route::get('feedback', 'FeedbackController@index');
 
         // plan
         Route::resource('plan', 'PlanController');

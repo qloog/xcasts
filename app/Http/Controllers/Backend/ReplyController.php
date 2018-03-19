@@ -3,9 +3,9 @@
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Redirect, Input;
-use App\Models\Comment;
+use App\Models\Reply;
 
-class CommentController extends BaseController
+class ReplyController extends BaseController
 {
 
     public function __construct($repository = '')
@@ -20,8 +20,8 @@ class CommentController extends BaseController
      */
     public function index()
     {
-        $comments = Comment::query()->orderByDesc('id')->paginate(20);
-        return view('backend.comment.index', compact('comments'));
+        $replies = Reply::query()->orderByDesc('id')->paginate(20);
+        return view('backend.reply.index', compact('replies'));
     }
 
     /**

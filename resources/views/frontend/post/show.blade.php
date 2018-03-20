@@ -5,6 +5,7 @@
 @endsection
 
 @section('styles')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
     <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
     <style type="text/css">
         .ui.comments { max-width: 100%!important}
@@ -18,7 +19,7 @@
           <div class="sixteen wide column">
             <div class="ui large middle aligned divided relaxed list padded segment">
               <div class="ui divided items">
-                    <div class="item">
+                  <div class="item">
                       {{--<div class="image">--}}
                       {{--<img src="/images/wireframe/image.png">--}}
                       {{--</div>--}}
@@ -35,6 +36,9 @@
                           </div>
                       </div>
                     </div>
+
+                  <!--social share bar-->
+                  <div class="social-share"></div>
               </div>
             </div>
           </div>
@@ -42,4 +46,8 @@
     <div class="ui hidden divider"></div>
   </div>
 
+@endsection
+
+@section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
 @endsection

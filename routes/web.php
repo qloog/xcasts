@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Frontend'], function ()
     // need to auth controller
     Route::group(['middleware' => 'auth'], function ()
     {
-        Route::get('/home', ['as' => 'home', 'uses' => 'HomeController@index']);
+        Route::get('/home', 'HomeController@index')->name('home');
 
         // user
         Route::get('user/{user}/edit', 'UserController@edit')->name('user.edit');

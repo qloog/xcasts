@@ -38,7 +38,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-        $courses = $this->courseRepo->getCourseListByType(null, 15);
+        $courses = $this->courseRepo->getCourseListByType(null, 6);
 
 		return view('frontend.welcome', compact('courses'));
 	}

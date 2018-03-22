@@ -23,6 +23,13 @@
         .hidden.menu {
             display: none;
         }
+
+        .masthead.segment {
+            @if(Request::is('/'))
+            min-height: 700px;
+            @endif
+            padding: 0em;
+        }
         .masthead .logo.item img {
             margin-right: 1em;
         }
@@ -41,7 +48,7 @@
         }
 
         .ui.vertical.stripe {
-            padding: 8em 0em;
+            padding: 6em 0em;
         }
         .ui.vertical.stripe h3 {
             font-size: 2em;
@@ -118,7 +125,9 @@
                 display: block;
             }
             .masthead.segment {
-                min-height: 350px;
+                @if(Request::is('/'))
+                    min-height: 350px;
+                @endif
             }
             .masthead h1.ui.header {
                 font-size: 2em;
@@ -133,38 +142,82 @@
     @yield('styles')
 </head>
 <body>
-    <div class="ui inverted vertical masthead center aligned segment" style="padding: 0em;">
-        @include('frontend.layouts.partials.menu')
-
-        @yield('get-start')
+    <!-- Following Menu -->
+    <div class="ui large top fixed hidden menu">
+        <div class="ui container">
+            @include('frontend.layouts.partials.menu')
+        </div>
     </div>
 
-    @if (count($errors) > 0)
-        <div class="ui container red message">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+    <!-- Sidebar Menu -->
+    <div class="ui vertical inverted sidebar menu">
+        @include('frontend.layouts.partials.menu')
+    </div>
+
+    <div class="pusher">
+        <!-- Site content !-->
+
+        <div class="ui inverted vertical masthead center aligned segment">
+            <div class="ui container">
+                <div class="ui huge secondary inverted pointing menu">
+                    <a class="toc item">
+                        <i class="sidebar icon"></i>
+                    </a>
+                    @include('frontend.layouts.partials.menu')
+                </div>
+            </div>
+
+            @if(Request::is('/'))
+                @yield('get-start')
+            @endif
         </div>
-    @endif
 
-    @include('flash::message')
+        @if (count($errors) > 0)
+            <div class="ui container red message">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
 
-    @yield('content')
+        @include('flash::message')
 
-    <!-- Footer -->
-    @include('frontend.layouts.partials.footer')
+        @yield('content')
+
+        <!-- Footer -->
+        @include('frontend.layouts.partials.footer')
+    </div>
 
     <script src="{{ elixir('assets/js/app.min.js') }}"></script>
+    <script src="{{ asset('semantic/dist/components/visibility.js') }}"></script>
+    <script src="{{ asset('semantic/dist/components/sidebar.js') }}"></script>
+    <script src="{{ asset('semantic/dist/components/transition.js') }}"></script>
     <script type="text/javascript">
-        $(document).ready(function(){ //scroll to top
+        $(document).ready(function(){
+
+            //scroll to top
             $('.back-to-top').click(function(){
                 $('html, body').animate({scrollTop : 0}, 700);
                 return false;
             });
+
+			// fix menu when passed
+			$('.masthead').visibility({
+				once: false,
+				onBottomPassed: function() {
+					$('.fixed.menu').transition('fade in');
+				},
+				onBottomPassedReverse: function() {
+					$('.fixed.menu').transition('fade out');
+				}
+			});
+			// create sidebar and attach to menu open
+			$('.ui.sidebar').sidebar('attach events', '.toc.item');
         });
     </script>
+    @yield('scripts')
     <!-- baidu tongij -->
     <script>
         var _hmt = _hmt || [];

@@ -6,12 +6,13 @@
 
 @section('content')
 
-    <div class="ui container">
-        <div class="ui hidden divider"></div>
-        <div class="ui hidden divider"></div>
-
-        <div class="ui header center aligned">订阅，观看更多视频</div>
-        <div class="ui cards four">
+    <div class="ui grid">
+        <div class="row"></div>
+        <div class="row"></div>
+    </div>
+    <div class="ui center aligned header">订阅，观看更多视频</div>
+    <div class="ui vertical stripe segment container">
+        <div class="ui four cards">
             <div class="ui card">
                 <div class="content">
                     <div class="header center aligned">按月付</div>
@@ -96,7 +97,9 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="ui vertical stripe segment container">
         <div class="ui icon message">
             <i class="announcement icon"></i>
             <div class="content">
@@ -110,11 +113,6 @@
                 </ul>
             </div>
         </div>
-    </div>
-
-    <div class="ui grid">
-        <div class="row"></div>
-        <div class="row"></div>
     </div>
 
     <div class="ui modal">
@@ -175,7 +173,7 @@
                         //text: "You will not be able to recover this imaginary file!",
                         type: "warning",
                         showCancelButton: true,
-                        cancelButtonText: "取消",
+                        cancelButtonText: "再逛逛",
                         confirmButtonColor: "#DD6B55",
                         confirmButtonText: "去登录",
                         closeOnConfirm: false

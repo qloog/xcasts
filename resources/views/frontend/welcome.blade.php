@@ -11,7 +11,7 @@
 @section('get-start')
 	<div class="ui text container">
 		<h1 class="ui inverted header">
-			成为一名工匠级的现代化<br>Web Develop Engineer
+			Become a modern web development engineer.
 		</h1>
 		<h2>Just Do it.</h2>
 		<!-- todo: check is vip-->

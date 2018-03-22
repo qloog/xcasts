@@ -12,9 +12,9 @@
 @endsection
 
 @section('content')
-    <div class="ui container">
-        <div class="ui hidden divider"></div>
-        <div class="ui grid">
+    <div class="ui stackable grid container">
+        <div class="row"></div>
+        <div class="row">
             <div class="twelve wide column">
                 <!-- detail -->
                 <div class="ui secondary segment">
@@ -97,6 +97,8 @@
                         @endforeach
                     </div>
                 </div>
+
+                <!-- comment form -->
                 <div class="ui large middle aligned divided relaxed list">
                     <form class="ui reply form" method="post" action="{{ route('reply.store') }}">
                         {!! csrf_field() !!}
@@ -111,12 +113,14 @@
                 </div>
             </div>
             <div class="four wide column">
-                <div class="ui card">
+                <div class="ui link card">
                     <div class="ui large circular image">
-                        <img src="{{ cdn($topic->user->avatar) }}">
+                        <a class="image" href="{{ route('user.show', $topic->user_id) }}">
+                            <img src="{{ cdn($topic->user->avatar) }}">
+                        </a>
                     </div>
                     <div class="content">
-                        <div class="header">{{ $topic->user->name }}</div>
+                        <div class="header"><a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a></div>
                         <div class="meta">
                             <a class="group">{{ $topic->user->introduction }}</a>
                         </div>
@@ -146,7 +150,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui hidden divider"></div>
+        <div class="row"></div>
     </div>
 
     <div class="ui standard test modal" id="user_qrcode_modal">

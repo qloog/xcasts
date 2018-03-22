@@ -27,16 +27,14 @@
 @endsection
 
 @section('content')
-    <div class="ui container">
-        <div class="ui hidden divider"></div>
-        <div class="ui grid">
+    <div class="ui stackable grid container">
+        <div class="row"></div>
+        <div class="row">
             <div class="eleven wide column">
-                <div class="ui large middle aligned divided relaxed list padded segment">
+                <div class="ui segment">
+                <div class="ui large divided relaxed list">
                     <div class="ui divided items" id="post-body">
                         <div class="item">
-                            {{--<div class="image">--}}
-                            {{--<img src="/images/wireframe/image.png">--}}
-                            {{--</div>--}}
                             <div class="content">
                                 <a class="header"
                                    href="{{ route('blog.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
@@ -56,6 +54,7 @@
                         <div class="social-share"></div>
                     </div>
                 </div>
+                </div>
             </div>
 
             <div class="five wide column">
@@ -64,16 +63,14 @@
                         <h4 class="ui header">目 录</h4>
                         <div class="ui vertical following fluid accordion text menu">
                             <div class="item">
-                                <div class="content menu active" id="toc">
-
-                                </div>
+                                <div class="content menu active" id="toc"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ui hidden divider"></div>
+        <div class="row"></div>
     </div>
 
 @endsection

@@ -28,7 +28,7 @@
             @if(Request::is('/'))
             min-height: 700px;
             @endif
-            padding: 1em 0em;
+            padding: 0em;
         }
         .masthead .logo.item img {
             margin-right: 1em;
@@ -48,7 +48,7 @@
         }
 
         .ui.vertical.stripe {
-            padding: 8em 0em;
+            padding: 6em 0em;
         }
         .ui.vertical.stripe h3 {
             font-size: 2em;
@@ -159,7 +159,7 @@
 
         <div class="ui inverted vertical masthead center aligned segment">
             <div class="ui container">
-                <div class="ui large secondary inverted pointing menu">
+                <div class="ui huge secondary inverted pointing menu">
                     <a class="toc item">
                         <i class="sidebar icon"></i>
                     </a>

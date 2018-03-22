@@ -5,25 +5,26 @@
 @endsection
 
 @section('content')
-    <div class="ui container">
-
-        <div class="ui hidden divider"></div>
-
-        <div class="ui grid">
+    <div class="ui stackable grid container">
+        <div class="row"></div>
+        <div class="row">
             <div class="four wide column">
-                <h3 class="ui top attached header">阅读排行榜 </h3>
-                <div class="ui large divided relaxed list padded attached segment">
-                    @foreach($posts as $post)
-                        <div class="item">
-                            <div class="content">
-                                <a class="header" href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
+                <div class="ui segment">
+                    <h3 class="ui header">阅读排行榜 </h3>
+                    <div class="ui large divided relaxed list">
+                        @foreach($posts as $post)
+                            <div class="item">
+                                <div class="content">
+                                    <a class="header" href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
             <div class="twelve wide column">
-                <div class="ui large middle aligned divided relaxed list padded segment items">
+                <div class="ui segment">
+                <div class="ui large divided relaxed list">
                     @foreach($posts as $post)
                         <div class="item">
                             <div class="ui small image">
@@ -49,9 +50,9 @@
                     @endforeach
                 </div>
                 {!! $posts->render('partials.semantic-pagination') !!}
+                </div>
             </div>
         </div>
-        <div class="ui hidden divider"></div>
-
+        <div class="row"></div>
     </div>
 @endsection

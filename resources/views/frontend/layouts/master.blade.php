@@ -217,7 +217,6 @@
 			$('.ui.sidebar').sidebar('attach events', '.toc.item');
         });
     </script>
-    @yield('scripts')
     <!-- baidu tongij -->
     <script>
         var _hmt = _hmt || [];
@@ -228,7 +227,6 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-
     @yield('scripts')
 </body>
 </html>

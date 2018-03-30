@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Contracts\Repositories\CommentRepository;
 use App\Contracts\Repositories\PostRepository;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -11,10 +12,12 @@ class PostController extends Controller
 {
 
     protected $postRepo;
+    protected $commentRepo;
 
-    public function __construct(PostRepository $posts)
+    public function __construct(PostRepository $posts, CommentRepository $comments)
     {
         $this->postRepo = $posts;
+        $this->commentRepo = $comments;
     }
 
     /**
@@ -61,7 +64,12 @@ class PostController extends Controller
     {
         $post = $this->postRepo->findByField('slug',$slug)->first();
 
-        return view('frontend.post.show', compact('post'));
+        $comments = $this->commentRepo
+            ->orderBy('created_at','desc')
+            ->findWhere(['type' => 'blog', 'relation_id' => $post->id])
+            ->all();
+
+        return view('frontend.post.show', compact('post','comments'));
     }
 
     /**

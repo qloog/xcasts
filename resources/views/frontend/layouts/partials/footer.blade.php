@@ -17,7 +17,7 @@
                 <h4 class="ui inverted small header">支持</h4>
                 <div class="ui inverted list">
                     <a href="{{ route('topics.index') }}" class="item">问答社区</a>
-                    <a href="{{ route('blog.index') }}" class="item">博客</a>
+                    <a href="{{ route('post.index') }}" class="item">文章</a>
                     <a href="https://weibo.com/phpcasts" target="_blank" class="item">微博</a>
                     <a href="{{ route('feedback.create') }}" class="item">留言反馈</a>
                 </div>

@@ -73,8 +73,8 @@ Route::group(['namespace' => 'Frontend'], function ()
     Route::resource('topics', 'TopicController');
 
     // blog
-    Route::get('posts', 'PostController@index')->name('blog.index');
-    Route::get('posts/{slug}', 'PostController@show')->name('blog.show');
+    Route::get('posts', 'PostController@index')->name('post.index');
+    Route::get('posts/{slug}', 'PostController@show')->name('post.show');
 
     // feedback
     Route::get('feedback', 'FeedbackController@create')->name('feedback.create');

@@ -11,15 +11,19 @@
 @section('get-start')
 	<div class="ui text container">
 		<h1 class="ui inverted header">
-			Become a modern web development engineer.
+			Programming by Doing
 		</h1>
-		<h2>Just Do it.</h2>
+		<h2>“The best way to learn is to do.” - P.R. Halmos</h2>
+	</div>
+	<div class="ui text container">
 		<!-- todo: check is vip-->
+		<h1 class="ui inverted header">
 		@if(Auth::id())
 			<div class="ui huge teal button" href="{{ url('/vip') }}">马上观看所有视频<i class="right arrow icon"></i></div>
 		@else
 			<div class="ui huge teal button" href="{{ url('register') }}">马上加入<i class="right arrow icon"></i></div>
 		@endif
+		</h1>
 	</div>
 @endsection
 

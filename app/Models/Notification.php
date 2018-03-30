@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     // Don't forget to fill this array
-    protected $fillable = ['from_user_id', 'user_id', 'topic_id', 'video_id', 'reply_id', 'body', 'type'];
+    protected $fillable = ['from_user_id', 'user_id', 'topic_id', 'video_id', 'post_id', 'reply_id', 'body', 'type'];
 
     public function user()
     {
@@ -23,6 +23,11 @@ class Notification extends Model
     public function video()
     {
         return $this->belongsTo(Video::class);
+    }
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
     }
 
     public function fromUser()
@@ -87,7 +92,7 @@ class Notification extends Model
      * @param Comment $comment
      * @param null    $content
      */
-    public static function batchNotifyFromComment($type, User $fromUser, $users, Video $video, Comment $comment = null, $content = null)
+    public static function batchNotifyForVideo($type, User $fromUser, $users, Video $video, Comment $comment = null, $content = null)
     {
         $nowTimestamp = Carbon::now()->toDateTimeString();
         $data = [];
@@ -99,6 +104,44 @@ class Notification extends Model
                 'from_user_id' => $fromUser->id,
                 'user_id' => $toUser->id,
                 'video_id' => $video->id,
+                'body' => $content ?: ($comment ? $comment->content : ''),
+                'type' => $type,
+                'created_at' => $nowTimestamp,
+                'updated_at' => $nowTimestamp
+            ];
+            $toUser->increment('notification_count', 1);
+        }
+        if (count($data)) {
+            Notification::insert($data);
+            //foreach ($users as $toUser) {
+            //$job = (new SendNotifyMail($type, $fromUser, $toUser, $topic, $reply, $content))
+            //    ->delay(10);
+            //dispatch($job);
+            //}
+        }
+    }
+
+    /**
+     * Create a notification
+     * @param  string $type     have 'at', 'new_reply', 'attention', 'append'
+     * @param  User   $fromUser come from who
+     * @param  array  $users    to who, array of users
+     * @param Post   $post
+     * @param Comment $comment
+     * @param null    $content
+     */
+    public static function batchNotifyForPost($type, User $fromUser, $users, Post $post, Comment $comment = null, $content = null)
+    {
+        $nowTimestamp = Carbon::now()->toDateTimeString();
+        $data = [];
+        foreach ($users as $toUser) {
+            if ($fromUser->id == $toUser->id) {
+                continue;
+            }
+            $data[] = [
+                'from_user_id' => $fromUser->id,
+                'user_id' => $toUser->id,
+                'post_id' => $post->id,
                 'body' => $content ?: ($comment ? $comment->content : ''),
                 'type' => $type,
                 'created_at' => $nowTimestamp,

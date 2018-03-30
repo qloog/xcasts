@@ -138,3 +138,27 @@ function thumb($path)
 
     return $qiNiuSrv->fileUrlWithToken($thumbnailUrl);
 }
+
+/**
+ * 格式化秒为时分
+ *
+ * @param $second
+ * @return string
+ */
+function formatToMinute($second)
+{
+    $hour = floor($second / 3600);
+    $minute = str_pad(floor(($second - 3600 * $hour) / 60), 2, '0', STR_PAD_LEFT);
+    $second = str_pad(floor((($second - 3600 * $hour) - 60 * $minute) % 60), 2, '0', STR_PAD_LEFT);
+
+    if ($hour && $minute) {
+        return str_pad($hour, 2, '0', STR_PAD_LEFT) . ':' . $minute . ':' . $second;
+    } elseif ($minute) {
+        return $minute . ':' . $second;
+    } else {
+        return '00:' . $second;
+    }
+
+
+}
+

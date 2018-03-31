@@ -73,7 +73,7 @@
                     {!! Form::label('duration', '时长', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::text('length', null, ['class' => 'form-control']) !!}
+                            {!! Form::text('duration', null, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 </div>

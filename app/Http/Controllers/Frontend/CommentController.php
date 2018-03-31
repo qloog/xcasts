@@ -51,15 +51,27 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'relation_id' => 'required',
-            'slug' => 'required',
-            'episode_id' => 'required',
-            'content' => 'required'
-        ]);
-        if ($this->repository->create($request->all())) {
-            return redirect()->route('video.show', ['slug' => $request->get('slug'), 'episode_id' => $request->get('episode_id')]);
+        if ($request->get('type') == 'video') {
+            $this->validate($request, [
+                'relation_id' => 'required',
+                'slug' => 'required',
+                'episode_id' => 'required',
+                'content' => 'required'
+            ]);
+            if ($this->repository->create($request->all())) {
+                return redirect()->route('video.show', ['slug' => $request->get('slug'), 'episode_id' => $request->get('episode_id')]);
+            }
+        } elseif ($request->get('type') == 'blog') {
+            $this->validate($request, [
+                'relation_id' => 'required',
+                'slug' => 'required',
+                'content' => 'required'
+            ]);
+            if ($this->repository->create($request->all())) {
+                return redirect()->route('post.show', ['slug' => $request->get('slug')]);
+            }
         }
+
         return Redirect::back()->withInput()->withErrors('保存失败！');
     }
 

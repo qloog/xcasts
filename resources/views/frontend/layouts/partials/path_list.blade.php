@@ -47,7 +47,7 @@
                         <i class="huge brown setting icon"></i>
                         <p>工具</p>
                     </div>
-                    <div class="description">
+                    <div class="description center aligned">
                         <p>工欲善其事, 必先利其器</p>
                     </div>
                 </div>

@@ -114,6 +114,7 @@
                     <h3 class="ui dividing header">发表评论</h3>
                     <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
                         {!! csrf_field() !!}
+                        <input type="hidden" name="type" value="video">
                         <input type="hidden" name="relation_id" value="{{ $video->id }}" >
                         <input type="hidden" name="slug" value="{{ $course->slug }}" >
                         <input type="hidden" name="episode_id" value="{{ $video->episode_id }}" >

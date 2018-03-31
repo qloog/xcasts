@@ -55,15 +55,29 @@
                                                     • 于 •  {{ $notification->created_at->diffForHumans() }}
                                                 </div>
                                             </div>
-                                        @elseif($notification->type == 'new_video_reply')
+                                        @elseif($notification->type == 'new_comment_for_video')
                                             回复了你在: <a class="teal color" href="{{ route('video.show', ['slug' => $notification->video->course->slug, 'episode_id' => $notification->video->episode_id]) }}" target="_blank">{{ $notification->video->name }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     • 于 •  {{ $notification->created_at->diffForHumans() }}
                                                 </div>
                                             </div>
-                                        @elseif($notification->type == 'video_at')
+                                        @elseif($notification->type == 'at_for_video')
                                             在视频中提及你: <a class="teal color" href="{{ route('video.show', ['slug' => $notification->video->course->slug, 'episode_id' => $notification->video->episode_id]) }}" target="_blank">{{ $notification->video->name }}</a>
+                                            <div class="metadata">
+                                                <div class="date">
+                                                    • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                </div>
+                                            </div>
+                                        @elseif($notification->type == 'new_comment_for_post')
+                                            回复了你在: <a class="teal color" href="{{ route('post.show', ['slug' => $notification->post->slug]) }}" target="_blank">{{ $notification->post->title }}</a>
+                                            <div class="metadata">
+                                                <div class="date">
+                                                    • 于 •  {{ $notification->created_at->diffForHumans() }}
+                                                </div>
+                                            </div>
+                                        @elseif($notification->type == 'at_for_post')
+                                            在文章中提及你: <a class="teal color" href="{{ route('post.show', ['slug' => $notification->post->slug]) }}" target="_blank">{{ $notification->post->title }}</a>
                                             <div class="metadata">
                                                 <div class="date">
                                                     • 于 •  {{ $notification->created_at->diffForHumans() }}

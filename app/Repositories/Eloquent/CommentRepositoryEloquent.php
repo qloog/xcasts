@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Post;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
 use League\HTMLToMarkdown\HtmlConverter;
@@ -45,7 +46,6 @@ class CommentRepositoryEloquent extends BaseRepository implements CommentReposit
         }
 
         $mentionParser = new Mention();
-        $attributes['type'] = 'video';
         $attributes['user_id'] = Auth::id();
         $attributes['origin_content'] = $attributes['content'];
         $attributes['content'] = $mentionParser->parse($attributes['content']);
@@ -58,8 +58,17 @@ class CommentRepositoryEloquent extends BaseRepository implements CommentReposit
 
         Auth::user()->increment('reply_count', 1);
 
-        $video = Video::find($attributes['relation_id']);
-        app('XCasts\Notifications\Notifier')->newCommentNotify(Auth::user(), $mentionParser, $video, $comment);
+        switch ($attributes['type']) {
+            case 'video':
+                $video = Video::find($attributes['relation_id']);
+                app('XCasts\Notifications\Notifier')->newCommentNotifyForVideo(Auth::user(), $mentionParser, $video, $comment);
+                break;
+            case 'blog':
+                $post = Post::find($attributes['relation_id']);
+                app('XCasts\Notifications\Notifier')->newCommentNotifyForPost(Auth::user(), $mentionParser, $post, $comment);
+                break;
+        }
+
 
         return $comment;
     }

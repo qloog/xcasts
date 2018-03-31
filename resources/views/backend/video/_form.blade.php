@@ -69,6 +69,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    {!! Form::label('duration', '时长', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        <div class="clearfix">
+                            {!! Form::text('length', null, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
+                </div>
 @section('styles')
     <link rel="stylesheet" href="{{ asset('plugins/bootstrap-fileinput/css/fileinput.min.css') }}">
 @endsection

@@ -11,7 +11,7 @@
                     <div class="content">
                         <a class="header" href="{{ route('courses.show', $item->slug) }}">{{ $item->name }}</a>
                         <div class="meta">
-                            <a class="time">{{ $item->created_at->diffForHumans() }}</a>
+                            <a class="time">{{ date('Y-m-d', strtotime($item->created_at)) }}</a>
                             <span class="right floated">{{ $item->videos->count() }} 视频</span>
                         </div>
                     </div>

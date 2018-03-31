@@ -56,7 +56,7 @@
                             <th>ID</th>
                             <th>视频名称</th>
                             <th>所属课程</th>
-                            <th>长度</th>
+                            <th>时长</th>
                             <th>是否免费</th>
                             <th>发布状态</th>
                             <th>发布时间</th>
@@ -76,7 +76,7 @@
                                            target="_blank">{{ $item->name }}</a></td>
                                     <td><a href="{{ route('courses.show',['slug'=>$item->course->slug]) }}"
                                            target="_blank">{{ $item->course->name }}</a></td>
-                                    <td>{{ $item->length }}</td>
+                                    <td>{{ formatToMinute($item->duration) }}</td>
                                     <td>{!! $item->is_free == 1 ? '<span class="label label-success">免费视频</span>' : '<span class="label label-danger">收费</span>' !!} </td>
                                     <td>{!! $item->is_publish == 1 ? '<span class="label label-success">已发布</span>' : '<span class="label label-warning">未发布</span>' !!} </td>
                                     <td>{{ $item->published_at }}</td>

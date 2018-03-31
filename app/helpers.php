@@ -158,7 +158,16 @@ function formatToMinute($second)
     } else {
         return '00:' . $second;
     }
+}
 
-
+/**
+ * 格式化秒为小时
+ *
+ * @param $second
+ * @return string
+ */
+function formatToHour($second)
+{
+    return floor($second / 3600);
 }
 

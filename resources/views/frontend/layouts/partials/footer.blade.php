@@ -32,8 +32,8 @@
                 </div>
             </div>
             <div class="two wide column">
-                <h4 class="ui inverted small header">服务提供商</h4>
-                <img class="ui image" src="{{ cdn('/qiniu-white-195x105.png') }}">
+                <h4 class="ui inverted small header">微信订阅号</h4>
+                <img class="ui image" src="{{ cdn('/wechat_qrcode.jpg') }}">
             </div>
         </div>
 

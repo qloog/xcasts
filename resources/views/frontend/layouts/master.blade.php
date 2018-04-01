@@ -48,10 +48,10 @@
         }
 
         .ui.vertical.stripe {
-            padding: 6em 0em;
+            padding: 7em 0em;
         }
         .ui.vertical.stripe h3 {
-            font-size: 2em;
+            font-size: 2.2em;
         }
         .ui.vertical.stripe .button + h3,
         .ui.vertical.stripe p + h3 {
@@ -61,7 +61,8 @@
             clear: both;
         }
         .ui.vertical.stripe p {
-            font-size: 1.33em;
+            font-size: 1.22em;
+            opacity: 0.65;
         }
         .ui.vertical.stripe .horizontal.divider {
             margin: 3em 0em;

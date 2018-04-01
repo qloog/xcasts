@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Contracts\Repositories\CourseRepository;
 use App\Http\Controllers\Controller;
+use App\Models\Course;
+use App\Models\Video;
 
 class HomeController extends Controller {
 
@@ -38,9 +40,21 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        $courses = $this->courseRepo->getCourseListByType(null, 15);
+        $courses = $this->courseRepo->getCourseListByType(null, 9);
 
-        return view('frontend.welcome', compact('courses'));
+        // 课程总数
+        $courseCount = Course::where('is_publish', 1)->count();
+
+        // 视频总数
+        $videoCount = Video::where('is_publish', 1)->count();
+
+        // 视频总时长
+        $videos = Video::where('is_publish', 1)->get()->toArray();
+        $durationArr = array_column($videos, 'duration');
+        $durations = array_sum($durationArr);
+        $totalDuration = formatToHour($durations);
+
+        return view('frontend.welcome', compact('courses','courseCount', 'videoCount', 'totalDuration'));
     }
 
 }

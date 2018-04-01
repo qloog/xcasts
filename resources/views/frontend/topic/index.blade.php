@@ -5,12 +5,11 @@
 @endsection
 
 @section('content')
-    <div class="ui stackable grid container">
-        <div class="row"></div>
-        <div class="row">
-            <div class="twelve wide column">
-                <div class="ui large segment">
-                    <div class="ui relaxed divided selection list">
+    <div class="ui vertical stripe segment" style="padding: 2em 0em;">
+        <div class="ui stackable grid container">
+            <div class="row">
+                <div class="twelve wide column">
+                    <div class="ui relaxed divided bordered selection list segment">
                     @if(count($topics))
                     @foreach($topics as $topic)
                     <div class="item">
@@ -41,17 +40,17 @@
                     @endforeach
                     @endif
                     </div>
+                    {!! $topics->render('partials.semantic-pagination') !!}
                 </div>
-                {!! $topics->render('partials.semantic-pagination') !!}
-            </div>
-            <div class="four wide column">
-                @if(Auth::check())
-                <div class="ui center aligned segment">
-                    <a class="ui teal big basic button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
+                <div class="four wide column">
+                    @if(Auth::check())
+                    <div class="ui center aligned segment">
+                        <a class="ui teal big basic button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
+                    </div>
+                    @endif
                 </div>
-                @endif
             </div>
-            </div>
+        </div>
     </div>
     <div class="row"></div>
 

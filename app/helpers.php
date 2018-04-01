@@ -126,15 +126,18 @@ function cdn($path)
 /**
  * 获取缩略图的url, 带有效期和token验证
  *
- * @param $path
+ * @param     $path
+ * @param int $width
+ * @param int $height
+ * @param int $mode
  * @return string
  */
-function thumb($path)
+function thumb($path, $width=400, $height=300, $mode=1)
 {
     $qiNiuSrv = new QiNiuService();
     $url = env('QINIU_CDN_URL') . $path;
 
-    $thumbnailUrl = $qiNiuSrv->getThumbnail($url);
+    $thumbnailUrl = $qiNiuSrv->getThumbnail($url, $mode, $width, $height);
 
     return $qiNiuSrv->fileUrlWithToken($thumbnailUrl);
 }

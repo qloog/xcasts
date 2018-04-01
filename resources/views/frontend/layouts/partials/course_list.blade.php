@@ -4,7 +4,7 @@
             @foreach($courses as $item)
                 <div class="ui card">
                     <a class="image" href="{{ route('courses.show', $item->slug) }}">
-                        <img src="{{ thumb($item->cover_image) }}" style="width: 357px; height: 210px;"/>
+                        <img src="{{ thumb($item->cover_image, 357, 210) }}" style="width: 357px; height: 210px;"/>
                     </a>
                     <div class="content">
                         <a class="center aligned header" href="{{ route('courses.show', $item->slug) }}">{{ $item->name }}</a>

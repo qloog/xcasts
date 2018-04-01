@@ -33,7 +33,7 @@
 
 @section('get-start')
 	<div class="ui fluid container">
-	<video src="{{ cdn('/bg.mp4') }}}" class="glass" autoplay="" loop="" data-video="0"></video>
+	<video src="{{ cdn('/bg.mp4') }}" class="glass" autoplay="" loop="" data-video="0"></video>
 	</div>
 	<div class="cover-layer">
 		<div class="ui text container">

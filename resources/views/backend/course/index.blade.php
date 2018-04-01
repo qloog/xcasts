@@ -71,7 +71,7 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->type }}</td>
-                                <td><img src="{{ cdn($item->cover_image) }}" width="100px"></td>
+                                <td><img src="{{ thumb($item->cover_image, 100, 67) }}" width="100px"></td>
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{!! $item->is_publish ? '<span class="label label-success">已发布</span>' : '<span class="label label-warning">未发布</span>' !!}</td>

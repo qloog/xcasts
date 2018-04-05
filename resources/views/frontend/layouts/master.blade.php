@@ -160,7 +160,7 @@
 
         <div class="ui inverted vertical masthead center aligned segment">
             <div class="ui container">
-                <div class="ui huge secondary inverted pointing menu">
+                <div class="ui huge secondary inverted menu">
                     <a class="toc item">
                         <i class="sidebar icon"></i>
                     </a>

@@ -46,6 +46,7 @@
             <a class="disabled item">Powered By</a><a class="item" href="https://laravel.com">Laravel</a>
             <div class="item"><a href="{{ url('/terms') }}">服务条款</a></div>
             <div class="disabled item">© PHPCasts 2018. All rights reserved.</div>
+            <div class="disabled item">京ICP备16064137号</div>
         </div>
 
         {{--<a class="back-to-top" href="javascript:;"></a>--}}

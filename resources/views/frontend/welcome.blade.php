@@ -7,12 +7,12 @@
 @section('styles')
 <style>
 	.cover-layer{
-		height: 710px;
+		height: 46.35em;
 		width: 100%;
 		background: #000;
 		position: absolute;
-		top: 55px;
-		opacity: 0.65;
+		top: 50px;
+		opacity: 0.95;
 		z-index: 10;
 		left: 0;
 	}
@@ -33,9 +33,9 @@
 
 @section('get-start')
 	<div class="ui fluid container">
-	<video src="{{ cdn('/bg.mp4') }}" class="glass" autoplay="" loop="" data-video="0"></video>
+{{--	<video src="{{ cdn('/bg.mp4') }}" class="glass" poster="file:///Users/qloog/Downloads/500302822.jpg" autoplay="" loop="" data-video="0"></video>--}}
 	</div>
-	<div class="cover-layer">
+	<div class="cover-layer" style="background-image: url('{{ thumb('/homepage-background.jpg', 1400, 650) }}')">
 		<div class="ui text container">
 			<h1 class="ui inverted header">
 				Programming by Doing
@@ -57,7 +57,7 @@
 
 @section('content')
 
-	<div class="ui vertical stripe segment" style="margin-top: -85px;background-color: #fff;">
+	<div class="ui vertical stripe segment" @if(Request::is('/')) style="background-color: #fff;" @endif>
 		@include('frontend.layouts.partials.path_list')
 	</div>
 

@@ -86,7 +86,7 @@
                         @foreach ($posts as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td><a href="{{ route('blog.show', ['slug' => $item->slug]) }}" target="_blank">{{ $item->title }}</a></td>
+                                <td><a href="{{ route('post.show', ['slug' => $item->slug]) }}" target="_blank">{{ $item->title }}</a></td>
                                 <td>{{ $item->slug }}</td>
                                 <td>{{ $item->summary }}</td>
                                 <td>{{ $item->status ? '已发布' : '草稿' }}</td>

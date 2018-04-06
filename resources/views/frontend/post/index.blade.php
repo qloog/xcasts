@@ -27,9 +27,9 @@
                 <div class="ui large divided relaxed list">
                     @foreach($posts as $post)
                         <div class="item">
-                            <div class="ui small image">
-                                <img src="{{ cdn('/blog-default-post-cover.jpeg') }}">
-                            </div>
+                            {{--<div class="ui small image">--}}
+                                {{--<img src="{{ cdn('/blog-default-post-cover.jpeg') }}">--}}
+                            {{--</div>--}}
                             <div class="content">
                                 <a class="header" href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a>
                                 <div class="meta">

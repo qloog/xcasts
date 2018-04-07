@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Lang;
 use Laracasts\Flash\Flash;
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -123,6 +125,72 @@ class LoginController extends Controller
 
         Flash::warning('无效的激活链接');
         return redirect()->to('login');
+    }
+
+    /**
+     * 跳转到oauth授权服务方
+     *
+     * @param $driver
+     * @return mixed
+     */
+    public function redirectToProvider($driver)
+    {
+        return Socialite::driver($driver)->redirect();
+    }
+
+    /**
+     * 授权成功后执行的回调地址
+     *
+     * @param Request $request
+     * @param         $driver
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function handleProviderCallback(Request $request, $driver)
+    {
+        try {
+            $user = Socialite::driver("{$driver}")->user();
+        } catch (\Exception $e) {
+            return redirect()->to("login/oauth/{$driver}");
+        }
+
+        switch($driver) {
+            case 'github':
+                $userInstance = $this->findOrCreateUser($request, $user);
+                Auth::login($userInstance, true);
+                break;
+            case 'wechat':
+                break;
+        }
+
+        return redirect('/');
+    }
+
+    /**
+     * @param $request
+     * @param $githubUser
+     * @return User
+     */
+    private function findOrCreateUser(Request $request, $githubUser)
+    {
+        $request->setTrustedProxies(['127.0.0.1', '192.168.31.245','10.27.243.59']);
+
+        if ($authUser = User::where('github_id', $githubUser->id)->first()) {
+            $authUser->last_login_time = Carbon::now();
+            $authUser->last_login_ip = $request->getClientIp();
+            $authUser->save();
+
+            return $authUser;
+        }
+
+        return User::create([
+            'name' => $githubUser->name,
+            'email' => $githubUser->email,
+            'github_id' => $githubUser->id,
+            'avatar' => $githubUser->avatar,
+            'last_login_time' => Carbon::now(),
+            'last_login_ip' => $request->getClientIp(),
+            'is_activated' => 1
+        ]);
     }
 
 }

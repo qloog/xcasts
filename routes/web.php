@@ -20,6 +20,11 @@ Route::group(['namespace' => 'Frontend'], function ()
     // about login and logout
     Route::auth();
     Route::get('logout', 'Auth\LoginController@logout');
+
+    // oauth login
+    Route::get('login/oauth/{driver}', 'Auth\LoginController@redirectToProvider');
+    Route::get('login/oauth/{driver}/callback', 'Auth\LoginController@handleProviderCallback');
+
     // vip
     Route::get('vip', 'PlanController@index')->name('vip');
 

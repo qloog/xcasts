@@ -174,3 +174,19 @@ function formatToHour($second)
     return floor($second / 3600);
 }
 
+/**
+ * @param \App\Models\User $user
+ * @return mixed|string
+ */
+function get_avatar_url(\App\Models\User $user)
+{
+    if (!$user->avatar) {
+        return '/avatars/default.png';
+    }
+    if (\Illuminate\Support\Str::startsWith($user->avatar, 'http')) {
+        return $user->avatar ;
+    }
+
+    return cdn($user->avatar);
+}
+

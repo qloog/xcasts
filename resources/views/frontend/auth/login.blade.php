@@ -40,6 +40,9 @@
         <div class="centered row">
             <a class="ui green button" href="{{ url('/register') }}">马上注册</a>
         </div>
+
+        @include('frontend.layouts.partials.oauth_login')
+
         <div class="row"></div>
     </div>
 @endsection

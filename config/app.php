@@ -163,7 +163,8 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
-        Latrell\Alipay\AlipayServiceProvider::class
+        Latrell\Alipay\AlipayServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------
@@ -224,6 +225,7 @@ return [
         'Flash' => Laracasts\Flash\Flash::class,
         'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];

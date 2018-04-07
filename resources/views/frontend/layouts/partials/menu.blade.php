@@ -19,7 +19,7 @@
                 <a class="ui teal button" href="{{ url('register') }}">注册</a>
             @else
                 <div class="ui simple dropdown">
-                <img class="ui avatar image" src="{{ Auth::user()->avatar ? cdn(Auth::user()->avatar) : '/avatars/default.png' }}">{{ Auth::user()->name }}
+                <img class="ui avatar image" src="{{ get_avatar_url(Auth::user()) }}">{{ Auth::user()->name }}
                     <i class="dropdown icon"></i>
                     <div class="menu">
                         <a class="item" href="{{ route('user.show', Auth::user()->id) }}"><i class="user icon"></i> 个人中心</a>

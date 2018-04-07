@@ -39,6 +39,9 @@
         <div class="centered row">
             <a class="ui green button" href="{{ route('login') }}">马上登录</a>
         </div>
+
+        @include('frontend.layouts.partials.oauth_login')
+
         <div class="row"></div>
     </div>
 

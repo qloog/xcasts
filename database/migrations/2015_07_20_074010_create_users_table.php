@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->tinyInteger('status')->default(1);
             $table->timestamp('last_login_time')->default('0000-00-00 00:00:00');
             $table->ipAddress('last_login_ip')->default('');
+            $table->string('github_id')->unique();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

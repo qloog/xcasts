@@ -280,7 +280,7 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         $item->save();
     }
 
-    private function createUserMember($userId, $data)
+    public function createUserMember($userId, $data)
     {
         $preMember = UserMember::where('user_id',$userId)->where('status',1)->first();
         // 新买会员

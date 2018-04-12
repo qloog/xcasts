@@ -28,7 +28,8 @@
         "latrell/alipay": "dev-master",
         "overtrue/laravel-follow": "^1.0",
         "predis/predis": "^1.1",
-        "laravel/horizon": "^1.0"
+        "laravel/horizon": "^1.0",
+        "slince/youzan-pay": "*@beta"
     },
     "require-dev": {
         "filp/whoops": "^2.1",

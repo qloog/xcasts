@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e5b8c5047e95da50dfb1891f6673ff14",
-    "content-hash": "80e0edf1f235533fe8a4218df94aac61",
+    "hash": "d820d685af49f4db3c62cfef01634d0f",
+    "content-hash": "6034c28bb6a7086d7f595cf6f7f25d74",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -2929,6 +2929,62 @@
                 "uuid"
             ],
             "time": "2017-08-04 13:39:04"
+        },
+        {
+            "name": "slince/youzan-pay",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/slince/youzan-pay.git",
+                "reference": "03f75d8d6bc50bad3c88d666d944a3e2c3a48121"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/slince/youzan-pay/zipball/03f75d8d6bc50bad3c88d666d944a3e2c3a48121",
+                "reference": "03f75d8d6bc50bad3c88d666d944a3e2c3a48121",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0|^6.0",
+                "symfony/http-foundation": "^2.0|^3.0|^4.0",
+                "zendframework/zend-diactoros": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Slince\\YouzanPay\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Slince",
+                    "email": "taosikai@yeah.net"
+                }
+            ],
+            "description": "An integrated alipay and wechat payment solution based on YouZan using php",
+            "keywords": [
+                "alipay",
+                "wechat",
+                "youzan",
+                "微信支付",
+                "支付宝",
+                "有赞"
+            ],
+            "time": "2018-02-24 14:19:58"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -6950,7 +7006,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "zizaco/entrust": 20,
-        "latrell/alipay": 20
+        "latrell/alipay": 20,
+        "slince/youzan-pay": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,

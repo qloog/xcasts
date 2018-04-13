@@ -25,8 +25,6 @@ class planRepositoryEloquent extends BaseRepository implements PlanRepository
         return plan::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */

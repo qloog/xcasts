@@ -11,7 +11,7 @@ class Order extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'id','order_amount','pay_amount','quantity','is_paid','paid_at','completed_at','status','user_id',
+        'id','order_amount','pay_amount','quantity','is_paid','paid_at', 'qrcode_id', 'completed_at','status','user_id',
         'created_at','updated_at'
     ];
 

@@ -73,7 +73,9 @@
                         <thead>
                         <tr>
                             <th>ID</th>
+                            <th>别名</th>
                             <th>商品名称</th>
+                            <th>价格</th>
                             <th>商品描述</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
@@ -86,7 +88,9 @@
                         @foreach ($planList as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
+                                <td>{{ $item->alias }}</td>
                                 <td>{{ $item->name }}</td>
+                                <td>{{ $item->price }}</td>
                                 <td>{{ $item->description }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>

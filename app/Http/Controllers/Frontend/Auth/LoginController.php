@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Frontend\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Notifications\NewRegisterUser;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Notification;
 use Lang;
 use Laracasts\Flash\Flash;
 use Socialite;
@@ -69,7 +71,7 @@ class LoginController extends Controller
             $user = Auth::getUser();
             if($user->is_activated == 0) {
                 $this->logout($request);
-                Flash::warning('您的帐号还未激活, 请激活后才试。');
+                Flash::warning('您的帐号还未激活, 请激活后再试。');
                 return back();
             }
 
@@ -182,7 +184,7 @@ class LoginController extends Controller
             return $authUser;
         }
 
-        return User::create([
+        $userObj = User::create([
             'name' => $githubUser->name,
             'email' => $githubUser->email,
             'github_id' => $githubUser->id,
@@ -191,6 +193,11 @@ class LoginController extends Controller
             'last_login_ip' => $request->getClientIp(),
             'is_activated' => 1
         ]);
+
+        // send to slack
+        // Notification::send($userObj, new NewRegisterUser($userObj));
+
+        return $userObj;
     }
 
 }

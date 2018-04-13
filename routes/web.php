@@ -56,7 +56,15 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::post('topics/{id}/downvote', 'TopicController@downVote')->name('topics.downvote');
         Route::resource('reply', 'ReplyController');
         Route::post('reply/{id}/vote', 'ReplyController@vote')->name('reply.vote');
+
+        // buy plan
+        Route::get('plans/{alias}/purchase', 'PlanController@purchase')->name('plan.purchase');
+        Route::get('plans/{alias}/pay', 'PlanController@pay')->name('plan.pay');
+        Route::get('plans/{alias}/success', 'PlanController@success')->name('plan.success');
+        Route::get('plans/{order_id}/check', 'PlanController@checkQRStatus')->name('plan.check');
     });
+
+    Route::get('plans/callback', 'PlanController@callback')->name('plan.callback');
 
     // business route
     Route::get('/', 'WelcomeController@index')->name('welcome');

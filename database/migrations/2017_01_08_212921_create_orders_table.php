@@ -23,6 +23,8 @@ class CreateOrdersTable extends Migration
             $table->timestamp('completed_at')->comment('完成时间');
             $table->enum('status', ['pending','paid','canceled','completed'])->default('pending')->comment('订单状态');
             $table->integer('user_id')->unsigned()->default(0)->comment('买家uid');
+            $table->integer('qrcode_id')->default(1)->comemnt('有赞二维码id');
+            $table->string('trade_id', 32)->default('')->comment('交易id');
             $table->softDeletes();
             $table->timestamps();
 		});

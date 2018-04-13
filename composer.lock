@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d820d685af49f4db3c62cfef01634d0f",
-    "content-hash": "6034c28bb6a7086d7f595cf6f7f25d74",
+    "hash": "ef30e1acf935c9be480a5bf8a60bdc0e",
+    "content-hash": "a208325c88c4a0b3362562a7fada3667",
     "packages": [
         {
             "name": "cakephp/chronos",
@@ -4585,17 +4585,23 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v1.13.2",
+            "version": "v1.13.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "106313aa0d501782260e48ac04a1c671b5d418ea"
+                "reference": "387e4c86c9dc0e1e4c475291fc114ec45b98e624"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/106313aa0d501782260e48ac04a1c671b5d418ea",
-                "reference": "106313aa0d501782260e48ac04a1c671b5d418ea",
-                "shasum": ""
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/387e4c86c9dc0e1e4c475291fc114ec45b98e624",
+                "reference": "387e4c86c9dc0e1e4c475291fc114ec45b98e624",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://dl.laravel-china.org/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-tokenizer": "*",
@@ -4639,7 +4645,7 @@
                 }
             ],
             "description": "A tool to automatically fix PHP code style",
-            "time": "2017-08-19 11:43:55"
+            "time": "2017-09-11 14:11:16"
         },
         {
             "name": "fzaninotto/faker",

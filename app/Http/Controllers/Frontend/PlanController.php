@@ -112,7 +112,7 @@ class PlanController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function callback(Request $request)
+    public function push(Request $request)
     {
 
         /**
@@ -131,11 +131,12 @@ class PlanController extends Controller
         "version":1502101273
         }
          */
+        Log::info('entry push...');
         $data = self::getYouzanPay()->verifyWebhook($request);
-
+        Log::info('push data: ', ['data' => $data]);
         // 交易id
         $trade = self::getYouzanPay()->getTrade($data['id']);
-        Log::info('youzan push callback: ', ['request' => $request, 'data' => $data, 'trade' => $data]);
+        Log::info('youzan push callback: ', ['request' => $request, 'trade' => $data]);
 
         $qrId = $trade->getQrId();
         $orderInfo = $this->ordersRepo->findByField('qrcode_id', $qrId)->first()->toArray();

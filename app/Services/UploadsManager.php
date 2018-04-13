@@ -243,7 +243,7 @@ class UploadsManager
             return '';
         }
 
-        $allowed_extensions = ["png", "jpg", "gif"];
+        $allowed_extensions = ["png", "jpg", 'jpeg', "gif"];
         if ($file->getClientOriginalExtension() && !in_array($file->getClientOriginalExtension(), $allowed_extensions)) {
             return ['error' => 'You may only upload png, jpg or gif.'];
         }

@@ -110,6 +110,7 @@ class PlanController extends Controller
     /**
      * youzan 推送回调地址
      * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
     public function callback(Request $request)
     {
@@ -137,18 +138,23 @@ class PlanController extends Controller
         Log::info('youzan push callback: ', ['request' => $request, 'data' => $data, 'trade' => $data]);
 
         $qrId = $trade->getQrId();
+        $orderInfo = $this->ordersRepo->findByField('qrcode_id', $qrId)->first()->toArray();
 
+        $return = ['code' => 0, 'msg' => 'success'];
+        if ($orderInfo && $orderInfo['status'] == 'paid') {
+            return response()->json($return);
+        }
+
+        // 开通会员
         if ($this->ordersRepo->paidOrder($qrId)) {
-            // 开通会员
-            $orderInfo = $this->ordersRepo->findByField('qrcode_id', $qrId)->first()->toArray();
-
             // 订单详情
             $orderItem = OrderItem::where('order_id', $orderInfo['id'])->first();
             $orderInfo['type'] = $orderItem['item_id'];
 
-            // 开通会员
             $ret = $this->userRepo->createUserMember(Auth::id(), $orderInfo);
             Log::info('youzan push callback open member: ', ['ret' => $ret]);
+
+            return response()->json($return);
         }
     }
 

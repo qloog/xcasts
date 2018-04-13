@@ -64,7 +64,8 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::get('plans/{order_id}/check', 'PlanController@checkQRStatus')->name('plan.check');
     });
 
-    Route::get('plans/push', 'PlanController@push')->name('plan.push');
+    // push 消息是 post 方式
+    Route::post('plans/push', 'PlanController@push')->name('plan.push');
 
     // business route
     Route::get('/', 'WelcomeController@index')->name('welcome');

@@ -127,10 +127,11 @@ class PlanController extends Controller
         // 交易成功
         if ($data['status'] == 'TRADE_SUCCESS') {
             // 交易id
-            $trade = self::getYouzanPay()->getTrade($data['id']);
-            Log::info('youzan push callback: ', ['request' => $request, 'trade' => $data]);
+            $tradeId = $data['id'];
+            $tradeInfo = self::getYouzanPay()->getTrade($tradeId);
+            Log::info('youzan push callback: ', ['request' => (array)$request, 'trade' => $data]);
 
-            $qrId = $trade->getQrId();
+            $qrId = $tradeInfo->getQrId();
             $orderInfo = $this->ordersRepo->findByField('qrcode_id', $qrId)->first()->toArray();
 
             if ($orderInfo && $orderInfo['status'] == 'paid') {
@@ -138,13 +139,13 @@ class PlanController extends Controller
             }
 
             // 开通会员
-            if ($this->ordersRepo->paidOrder($qrId)) {
+            if ($this->ordersRepo->paidOrder($qrId, $tradeId)) {
                 // 订单详情
                 $orderItem = OrderItem::where('order_id', $orderInfo['id'])->first();
                 $orderInfo['type'] = $orderItem['item_id'];
 
                 $ret = $this->userRepo->createUserMember(Auth::id(), $orderInfo);
-                Log::info('youzan push callback open member: ', ['ret' => $ret]);
+                Log::info('youzan push callback open member: ', ['ret' => (array)$ret]);
 
                 return response()->json($successMsg);
             }

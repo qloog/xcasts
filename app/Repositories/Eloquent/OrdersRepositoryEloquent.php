@@ -81,15 +81,17 @@ class OrdersRepositoryEloquent extends BaseRepository implements OrdersRepositor
      *
      *
      * @param $qrId
+     * @param $tradeId
      * @return bool
      */
-    public function paidOrder($qrId)
+    public function paidOrder($qrId, $tradeId)
     {
         if (!$qrId) {
             return false;
         }
 
-        return Order::where('qrcode_id', $qrId)->update(['status' => 'paid', 'paid_at' => Carbon::now()]);
+        return Order::where('qrcode_id', $qrId)
+            ->update(['status' => 'paid', 'paid_at' => Carbon::now() , 'trade_id' => $tradeId]);
     }
 
 }

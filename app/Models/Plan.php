@@ -12,7 +12,7 @@ class Plan extends Model implements Transformable
 
     protected $fillable = [
         'id', 'name', 'alias', 'introduction', 'price', 'promotion_price', 'promotion_start', 'promotion_end',
-        'user_id', 'created_at', 'updated_at'
+        'user_id', 'status', 'created_at', 'updated_at'
     ];
 
     public function user()

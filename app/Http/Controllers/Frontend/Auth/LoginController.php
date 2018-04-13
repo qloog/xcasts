@@ -71,7 +71,7 @@ class LoginController extends Controller
             $user = Auth::getUser();
             if($user->is_activated == 0) {
                 $this->logout($request);
-                Flash::warning('您的帐号还未激活, 请激活后才试。');
+                Flash::warning('您的帐号还未激活, 请激活后再试。');
                 return back();
             }
 

@@ -10,8 +10,8 @@
         <div class="row"></div>
         <div class="row"></div>
     </div>
-    {{--<div class="ui center aligned header">订阅，观看更多视频</div>--}}
-    <div class="ui vertical stripe center aligned piled segment container">
+
+    <div class="ui center aligned piled segment container">
         <div class="ui tablet stackable huge steps">
             <div class="step">
                 <i class="info circle icon"></i>
@@ -81,8 +81,8 @@
             <div class="ui hidden divider"></div>
 
             <div class="ui text container">
-                <a class="ui positive button" href="{{ route('plan.pay', ['alias' => $plan->alias]) }}">立即支付</a>
-                <div class="ui small brown message">
+                <a class="ui positive huge button" href="{{ route('plan.pay', ['alias' => $plan->alias]) }}">立即支付</a>
+                <div class="ui small message">
                     请注意: 虚拟内容商品，购买后不支持退货、转让、退换，请斟酌确认。
                 </div>
                 {{--<p style="font-size:0.9em; margin: 1em 1em 1em; line-height: 1.4285em">请注意: 虚拟内容商品，购买后不支持退货、转让、退换，请斟酌确认。</p>--}}
@@ -131,8 +131,6 @@
 
             if ('{{ $qrCode }}') {
                 var msg = '支付过程中切忌离开页面，以免造成不必要的损失！';
-                alert(msg);
-
                 window.onbeforeunload = function(){
                     return msg;
                 };

@@ -8,6 +8,15 @@
 </div>
 
 <div class="form-group">
+    {!! Form::label('alias', '别名', ['class' => 'col-lg-2 control-label']) !!}
+    <div class="col-lg-6">
+        <div class="clearfix">
+            {!! Form::text('alias', null, ['class' => 'form-control', 'placeholder' => '别名']) !!}
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
     {!! Form::label('description', '描述', ['class' => 'col-lg-2 control-label ']) !!}
     <div class="col-lg-6">
         {!! Form::textarea('description', null, ['size' => '20x5', 'class' => 'form-control', 'placeholder' => '简单描述']) !!}

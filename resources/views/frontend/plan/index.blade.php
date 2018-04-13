@@ -11,6 +11,24 @@
         <div class="row"></div>
     </div>
     <div class="ui center aligned header">订阅，观看更多视频</div>
+
+    <div class="ui divider"></div>
+
+    <div class="ui container">
+        <div class="ui icon message">
+            <i class="announcement icon"></i>
+            <div class="content">
+                <div class="header">
+                    购买提示
+                </div>
+                <ul class="list">
+                    <li>支持微信和支付宝支付</li>
+                    <li>投资自己, 投资未来 </li>
+                    <li>Just do it. ^_^</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="ui vertical stripe segment container">
         <div class="ui four cards">
             @foreach($plans as $plan)
@@ -35,22 +53,6 @@
                 </div>
             </div>
             @endforeach
-        </div>
-    </div>
-
-    <div class="ui vertical stripe segment container">
-        <div class="ui icon message">
-            <i class="announcement icon"></i>
-            <div class="content">
-                <div class="header">
-                    购买提示
-                </div>
-                <ul class="list">
-                    <li>目前只支持微信支付</li>
-                    <li>学习需要投资,未来的你一定会感谢现在的自己^_^</li>
-                    <li>Just do it.</li>
-                </ul>
-            </div>
         </div>
     </div>
 

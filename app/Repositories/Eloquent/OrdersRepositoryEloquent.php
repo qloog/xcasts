@@ -54,7 +54,7 @@ class OrdersRepositoryEloquent extends BaseRepository implements OrdersRepositor
         $order->id = $orderId;
         $order->order_amount = $plan->price;
         $order->pay_amount = $plan->price;
-        $order->pay_method = 'wechat';
+        $order->pay_method = 'youzan';
         $order->paid_at = Carbon::now();
         $order->status = 'pending';
         $order->user_id = $userId;

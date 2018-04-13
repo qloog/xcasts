@@ -9,7 +9,6 @@ use App\Repositories\Eloquent\OrdersRepositoryEloquent;
 use App\Repositories\Eloquent\UserRepositoryEloquent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Slince\YouzanPay\ApiContext;
 use Slince\YouzanPay\YouzanPay;
@@ -144,7 +143,7 @@ class PlanController extends Controller
                 $orderItem = OrderItem::where('order_id', $orderInfo['id'])->first();
                 $orderInfo['type'] = $orderItem['item_id'];
 
-                $ret = $this->userRepo->createUserMember(Auth::id(), $orderInfo);
+                $ret = $this->userRepo->createUserMember($orderInfo['user_id'], $orderInfo);
                 Log::info('youzan push callback open member: ', ['ret' => (array)$ret]);
 
                 return response()->json($successMsg);

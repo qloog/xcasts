@@ -28,7 +28,7 @@ class PlanController extends Controller
 
     public function index()
     {
-        $plans = Plan::all();
+        $plans = Plan::where('status', 1)->get();
 
         return view('frontend.plan.index', compact('plans'));
     }

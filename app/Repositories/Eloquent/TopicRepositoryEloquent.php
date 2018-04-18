@@ -71,7 +71,7 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
         $lastTopic = Topic::where('user_id', Auth::id())
             ->orderBy('id', 'desc')
             ->first();
-        return $lastTopic && strcmp($lastTopic->title, $data['title']) === 0;
+        return $lastTopic instanceof Topic && strcmp($lastTopic->title, $data['title']) === 0;
     }
 
     /**

@@ -56,11 +56,6 @@
 @endsection
 
 @section('content')
-
-	<div class="ui vertical stripe segment" @if(Request::is('/')) style="background-color: #fff;" @endif>
-		@include('frontend.layouts.partials.path_list')
-	</div>
-
 	<div class="ui vertical stripe segment">
 		<div class="ui middle aligned stackable grid container">
 			<div class="row">
@@ -71,6 +66,10 @@
 			</div>
 			@include('frontend.layouts.partials.course_list')
 		</div>
+	</div>
+
+	<div class="ui vertical stripe segment" @if(Request::is('/')) style="background-color: #fff;" @endif>
+		@include('frontend.layouts.partials.path_list')
 	</div>
 
 	<div class="ui vertical stripe secondary segment">

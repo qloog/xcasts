@@ -6,6 +6,7 @@ use App\Contracts\Repositories\ReplyRepository;
 use App\Contracts\Repositories\TopicRepository;
 use App\Contracts\Repositories\VoteRepository;
 use App\Models\Category;
+use App\Models\Topic;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,9 @@ class TopicController extends Controller
      */
     public function index()
     {
-        $topics = $this->topicRepo->orderBy('created_at', 'desc')->paginate(20);
+        //$topics = $this->topicRepo->findByField('is_blocked', 'no')->orderBy('created_at', 'desc')->paginate(20);
+        $topics = Topic::where('is_blocked', 'no')->orderBy('created_at', 'desc')->paginate(20);
+
         return view('frontend.topic.index', compact('topics'));
     }
 

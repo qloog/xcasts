@@ -28,13 +28,18 @@
                         </a> 于 {{ $topic->last_reply_time_at->diffForHumans()}}
                         @endif
                         ⋅ {{ $topic->view_count }} 阅读
+                        @if (Auth::id() && Auth::id() == $topic->user_id)
+                        ⋅ <a href="{{ route('topics.edit', ['id' => $topic->id]) }}">编辑</a>
+                        @endif
                     </p>
+
                 </div>
                 <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
                     <div class="markdown-body">
                         {!! $topic->body !!}
                     </div>
                 </div>
+
 
                 <!-- votes -->
                 <div class="ui large center aligned divided relaxed list padded segment">

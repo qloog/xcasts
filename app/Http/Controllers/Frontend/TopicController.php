@@ -112,7 +112,9 @@ class TopicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $topic = $this->topicRepo->find($id);
+
+        return view('frontend.topic.edit', compact('topic'));
     }
 
     /**
@@ -124,7 +126,13 @@ class TopicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = $this->topicRepo->update(['title' => $request->get('title'), 'body' => $request->get('body')], $id);
+
+        if (!$result) {
+            return redirect()->back()->withInput()->with(['error' => true, 'message' => '保存失败！']);
+        }
+
+        return redirect()->route('topics.show', ['id' => $id]);
     }
 
     public function upVote($id)

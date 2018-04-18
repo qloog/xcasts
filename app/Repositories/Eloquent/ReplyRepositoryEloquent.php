@@ -83,7 +83,7 @@ class ReplyRepositoryEloquent extends BaseRepository implements ReplyRepository
                             ->where('topic_id', $data['topic_id'])
                             ->orderBy('id', 'desc')
                             ->first();
-        return count($lastReply) && strcmp($lastReply->origin_body, $data['body']) === 0;
+        return $lastReply instanceof Reply && strcmp($lastReply->origin_body, $data['body']) === 0;
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Repositories\Eloquent;
 
+use App\Models\Topic;
 use Auth;
 use Parsedown;
 use Prettus\Repository\Eloquent\BaseRepository;
@@ -81,6 +82,6 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
         $lastTopic = Post::where('user_id', Auth::id())
             ->orderBy('id', 'desc')
             ->first();
-        return count($lastTopic) && strcmp($lastTopic->title, $data['title']) === 0;
+        return $lastTopic instanceof Topic && strcmp($lastTopic->title, $data['title']) === 0;
     }
 }

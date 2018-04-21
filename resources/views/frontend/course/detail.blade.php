@@ -31,21 +31,34 @@
                         <tbody>
                         @if (count($course->videos) > 0)
                             @foreach($course->videos as $key => $video)
-                            <tr style="display: table-row">
-                                <td class="ui center aligned">{{ $key + 1 }}</td>
-                                <td>
-                                    <i class="video play outline large icon"></i>
-                                    <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
-                                </td>
-                                <td class="ui right aligned">
-                                    @if($video->is_free == 1)
-                                        <a class="ui green label">Free</a>
-                                    @endif
-                                </td>
-                                <td class="ui right aligned">{{ $video->length }}</td>
-                                <!-- todo: 用发布时间取代 -->
-                                <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>
-                            </tr>
+                                @if ($video->mp4_url)
+                                    <tr style="display: table-row" >
+                                        <td class="ui center aligned">{{ $key + 1 }}</td>
+                                        <td>
+                                            <i class="video play outline large icon"></i>
+                                            <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
+                                        </td>
+                                        <td class="ui right aligned">
+                                            @if($video->is_free == 1)
+                                                <a class="ui green label">Free</a>
+                                            @endif
+                                        </td>
+                                        <td class="ui right aligned">{{ $video->length }}</td>
+                                        <!-- todo: 用发布时间取代 -->
+                                        <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>
+                                    </tr>
+                                @else
+                                    <tr style="display: table-row" class="disabled">
+                                        <td class="ui center aligned">{{ $key + 1 }}</td>
+                                        <td>
+                                            <i class="video play outline large icon"></i>
+                                            <a>{{ $video->name }}</a>
+                                        </td>
+                                        <td class="ui right aligned"></td>
+                                        <td class="ui right aligned"></td>
+                                        <td class="ui center aligned"></td>
+                                    </tr>
+                                @endif
                             @endforeach
                         @endif
                         </tbody>

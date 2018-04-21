@@ -43,7 +43,7 @@
                                                 <a class="ui green label">Free</a>
                                             @endif
                                         </td>
-                                        <td class="ui right aligned">{{ $video->length }}</td>
+                                        <td class="ui right aligned">{{ formatToMinute($video->duration) }}</td>
                                         <!-- todo: 用发布时间取代 -->
                                         <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>
                                     </tr>

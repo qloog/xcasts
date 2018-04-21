@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-	PHP Yaf Laravel 视频教程
+	PHP Yaf Laravel Vue Phalcon 视频教程
 @endsection
 
 @section('styles')

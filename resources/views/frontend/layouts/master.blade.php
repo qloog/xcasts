@@ -1,4 +1,3 @@
-<!--todo: 重构首页，支持mobile-->
 <!DOCTYPE html>
 <html>
 <head>

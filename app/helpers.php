@@ -117,6 +117,10 @@ if ( ! function_exists('get_relation_title')) {
  */
 function cdn($path)
 {
+    if (empty($path)) {
+        return $path;
+    }
+
     $qiNiuSrv = new QiNiuService();
     $url = env('QINIU_CDN_URL') . $path;
 

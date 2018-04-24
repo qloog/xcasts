@@ -4,6 +4,11 @@
     我的提醒
 @endsection
 
+@section('styles')
+    <link href="{{ asset('css/github-markdown.css') }}" rel="stylesheet">
+@endsection
+
+
 @section('content')
     <div class="ui container">
         <div class="ui hidden divider"></div>

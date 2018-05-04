@@ -27,8 +27,6 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
         return Topic::class;
     }
 
-    
-
     /**
      * Boot up the repository, pushing criteria
      */
@@ -60,6 +58,21 @@ class TopicRepositoryEloquent extends BaseRepository implements TopicRepository
         Auth::user()->increment('topic_count', 1);
 
         return $topic;
+    }
+
+    public function update(array $attributes, $id)
+    {
+        if (isset($attributes['body'])) {
+            $attributes['origin_body'] = $attributes['body'];
+            $attributes['body'] = (new Parsedown())->setBreaksEnabled(true)->text($attributes['body']);
+        }
+
+        $result = parent::update($attributes, $id);
+        if (!$result) {
+            throw new \RuntimeException('更新topic失败');
+        }
+
+        return $result;
     }
 
     /**

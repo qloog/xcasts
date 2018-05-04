@@ -129,6 +129,10 @@ class TopicController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $topic = $this->topicRepo->find($id);
+        // use topic policy
+        $this->authorize('update', $topic);
+
         $result = $this->topicRepo->update(['title' => $request->get('title'), 'body' => $request->get('body')], $id);
 
         if (!$result) {

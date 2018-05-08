@@ -25,7 +25,7 @@
                         {{ $totalDuration }}
                     </div>
                     <div class="label">
-                        小时
+                        分钟
                     </div>
                 </div>
             </div>

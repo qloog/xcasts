@@ -52,7 +52,7 @@ class HomeController extends Controller {
         $videos = Video::where('is_publish', 1)->get()->toArray();
         $durationArr = array_column($videos, 'duration');
         $durations = array_sum($durationArr);
-        $totalDuration = formatToHour($durations);
+        $totalDuration = formatToHour($durations) * 60;
 
         return view('frontend.welcome', compact('courses','courseCount', 'videoCount', 'totalDuration'));
     }

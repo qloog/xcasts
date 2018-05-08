@@ -123,6 +123,9 @@
                     <li @if(Request::is('admin/video')) class="active" @endif>
                         <a href="{{ url('admin/video') }}"><i class="fa fa-circle-o"></i>视频列表</a>
                     </li>
+                    <li @if(Request::is('admin/video')) class="active" @endif>
+                        <a href="{{ url('admin/video') }}"><i class="fa fa-circle-o"></i>分组管理</a>
+                    </li>
                 </ul>
             </li>
             <li @if(Request::is('admin/plan*')) class="treeview active" @else class="treeview" @endif>

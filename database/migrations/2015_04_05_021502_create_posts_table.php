@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration {
             $table->string('summary')->default('');
             $table->text('origin_content');
             $table->text('content');
+            $table->integer('view_count')->default(0)->comment('浏览总数');
             $table->tinyInteger('status')->default(0)->comment('0:草稿 1:已发布');
             $table->integer('user_id')->default(0);
 			$table->timestamps();

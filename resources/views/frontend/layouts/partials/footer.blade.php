@@ -34,6 +34,9 @@
             <div class="two wide column">
                 <h4 class="ui inverted small header">微信订阅号</h4>
                 <img class="ui image" src="{{ cdn('/wechat_qrcode.jpg') }}">
+                <div class="ui inverted list">
+                    <a href="javascript:void(0);" class="item">QQ群: 737994259</a>
+                </div>
             </div>
         </div>
 

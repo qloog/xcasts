@@ -84,4 +84,9 @@ class PostRepositoryEloquent extends BaseRepository implements PostRepository
             ->first();
         return $lastTopic instanceof Topic && strcmp($lastTopic->title, $data['title']) === 0;
     }
+
+    public function increment($field, $count=1)
+    {
+        return Post::increment($field, $count);
+    }
 }

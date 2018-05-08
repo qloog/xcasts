@@ -10,5 +10,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface PostRepository extends RepositoryInterface
 {
-    //
+    public function increment($field, $count);
 }

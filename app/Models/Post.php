@@ -28,6 +28,7 @@ class Post extends Model implements Transformable
         'summary',
         'origin_content',
         'content',
+        'view_count',
         'user_id',
         'status',
         'created_at',

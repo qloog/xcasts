@@ -28,9 +28,10 @@ class PostController extends Controller
     public function index()
     {
         // $posts = $this->postRepo->orderBy('created_at', 'desc')->paginate(10);
+        $topPosts = Post::where('status',1)->orderBy('view_count', 'desc')->take(10)->get();
         $posts = Post::where('status',1)->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('frontend.post.index', compact('posts'));
+        return view('frontend.post.index', compact('posts', 'topPosts'));
     }
 
     /**
@@ -68,6 +69,8 @@ class PostController extends Controller
             ->orderBy('created_at','desc')
             ->findWhere(['type' => 'blog', 'relation_id' => $post->id])
             ->all();
+
+        $this->postRepo->increment('view_count', 1);
 
         return view('frontend.post.show', compact('post','comments'));
     }

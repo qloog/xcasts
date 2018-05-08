@@ -40,7 +40,8 @@
                                    href="{{ route('post.show', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                                 <div class="meta">
                                     <p class="cinema">发布时间：{{ $post->created_at }}</p>
-                                    <span class="cinema">更新时间：{{ $post->updated_at }}</span>
+                                    <p class="cinema">更新时间：{{ $post->updated_at }}</p>
+                                    <span class="cinema">阅读数：{{ $post->view_count }}</span>
                                 </div>
                                 <div class="description markdown-body">
                                     <div class="ui hidden divider"></div>

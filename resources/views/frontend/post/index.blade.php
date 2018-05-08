@@ -10,12 +10,14 @@
         <div class="row">
             <div class="four wide column">
                 <div class="ui segment">
-                    <h3 class="ui header">阅读排行榜 </h3>
-                    <div class="ui large divided relaxed list">
-                        @foreach($posts as $post)
+                    <h3 class="ui header"><i class="icon chart bar"></i> 阅读排行榜 </h3>
+                    <div class="ui divided items">
+                        @foreach($topPosts as $post)
                             <div class="item">
-                                <div class="content">
-                                    <a class="header" href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a>
+                                <div class="content" style="font-size: 16px;">
+                                    <a class="header" href="{{ route('post.show', $post->slug) }}" style="font-size: 16px;">
+                                        {{ $post->title }}
+                                    </a>
                                 </div>
                             </div>
                         @endforeach
@@ -24,7 +26,7 @@
             </div>
             <div class="twelve wide column">
                 <div class="ui segment">
-                <div class="ui large divided relaxed list">
+                <div class="ui  divided relaxed items">
                     @foreach($posts as $post)
                         <div class="item">
                             {{--<div class="ui small image">--}}
@@ -34,15 +36,11 @@
                                 <a class="header" href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a>
                                 <div class="meta">
                                     <a>{{ $post->created_at }}</a>
-                                    {{--<a>分类</a>--}}
                                 </div>
                                 <div class="description">
                                     {{ $post->summary }}
                                 </div>
                                 <div class="extra">
-                                    {{--<div class="ui right floated primary button">--}}
-                                    {{--<i class="right chevron icon"></i>--}}
-                                    {{--</div>--}}
                                     {{--<div class="ui label">tag1</div>--}}
                                 </div>
                             </div>

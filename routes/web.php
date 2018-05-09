@@ -148,16 +148,20 @@ Route::group(['namespace' => 'Backend'], function ()
         // qiniu
         Route::get('qiniu/index', 'QiniuController@index')->name('qiniu.index');
 
-        //course
+        // course
         Route::resource('course', 'CourseController');
-        //video
+        // video
         Route::resource('video', 'VideoController');
         Route::post('video/{video}/publish', 'VideoController@publish')->name('video.publish');
-        //forum
+
+        // section
+        Route::resource('section', 'SectionController');
+
+        // forum
         Route::resource('forum/topics', 'TopicController');
         Route::get('forum/replies/index', 'ReplyController@index');
 
-        //comment
+        // comment
         Route::resource('comment', 'CommentController');
         // feedback
         Route::get('feedback', 'FeedbackController@index');

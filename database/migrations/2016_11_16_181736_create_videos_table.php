@@ -17,6 +17,7 @@ class CreateVideosTable extends Migration
             $table->increments('id');
             $table->integer('course_id')->unsigned()->default(0)->comment('所属课程id');
             $table->integer('episode_id')->unsigned()->default(0)->comment('episode_id');
+            $table->integer('section_id')->unsigned()->default(0)->comment('所属section id');
             $table->string('name')->nullable()->comment('名称');
             $table->string('description')->nullable()->comment('描述');
             $table->string('cover_image')->default('')->comment('封面图');

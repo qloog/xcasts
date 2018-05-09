@@ -24,6 +24,14 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    {!! Form::label('name', 'section_id', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        <div class="clearfix">
+                            {!! Form::text('section_id', null, ['class' => 'form-control', 'placeholder' => 'episode_id']) !!}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
                     {!! Form::label('cover_image', '封面图', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
@@ -61,14 +69,6 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    {!! Form::label('length', '视频长度', ['class' => 'col-sm-2 control-label']) !!}
-                    <div class="col-sm-5">
-                        <div class="clearfix">
-                            {!! Form::text('length', null, ['class' => 'form-control']) !!}
-                        </div>
-                    </div>
-                </div>
                 <div class="form-group">
                     {!! Form::label('duration', '时长', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">

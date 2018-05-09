@@ -8,10 +8,16 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('name', '类型', ['class' => 'col-sm-2 control-label']) !!}
+                    {!! Form::label('type', '类型', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::select('type', ['backend','frontend','service','tool','testing'],null,['class'=>'form-control']) !!}
+                            {!! Form::select('type', [
+                                'backend' => '后端',
+                                'frontend' => '前端',
+                                'service' => '服务',
+                                'tool' => '工具',
+                                'testing' => '测试'
+                            ], null, ['class'=>'form-control']) !!}
                         </div>
                     </div>
                 </div>

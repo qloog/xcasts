@@ -16,8 +16,12 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success"><i
-                                    class="fa fa-plus"></i>添加课程</a>
+                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success">
+                            <i class="fa fa-plus"></i> 添加视频
+                        </a>
+                        <a href="{{ route('admin.course.index') }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-arrow-circle-left"></i> 返回课程列表
+                        </a>
                     </h3>
                     <div class="box-tools">
                         <!--

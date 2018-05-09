@@ -30,9 +30,11 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $videos = $this->videoRepo->orderBy('course_id', 'desc')->orderBy('episode_id','desc')->paginate(10);
+        $courseId = $request->get('course_id', 0);
+
+        $videos = $this->videoRepo->getVideoListByCourseId($courseId);
 
         return view('backend.video.index', compact('videos'));
     }
@@ -40,13 +42,15 @@ class VideoController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $courseId = $request->get('course_id', 0);
         $courses = $this->courseRepo->all()->pluck('name','id')->toArray();
-        //var_dump($courses);exit;
-        return view('backend.video.create', compact('courses'));
+
+        return view('backend.video.create', compact('courses', 'courseId'));
     }
 
     /**

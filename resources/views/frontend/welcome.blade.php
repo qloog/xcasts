@@ -38,7 +38,8 @@
 	<div class="cover-layer" style="background-image: url('{{ thumb('/homepage-background.jpg', 1400, 650) }}')">
 		<div class="ui text container">
 			<h1 class="ui inverted header">
-				Programming by Doing
+				{{--Programming by Doing--}}
+				免费观看所有视频
 			</h1>
 			<h2>“学习的最好方法就是做” - P.R. Halmos</h2>
 		</div>
@@ -48,7 +49,7 @@
 			@if(Auth::id())
 				<a class="ui huge teal button" href="{{ url('/vip') }}">马上观看所有视频<i class="right arrow icon"></i></a>
 			@else
-				<a class="ui huge teal button" href="{{ url('register') }}">马上加入<i class="right arrow icon"></i></a>
+				<a class="ui huge teal button" href="{{ url('register') }}">马上观看<i class="right arrow icon"></i></a>
 			@endif
 			</h1>
 		</div>

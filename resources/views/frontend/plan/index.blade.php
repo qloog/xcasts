@@ -11,11 +11,7 @@
         <div class="row"></div>
     </div>
     <div class="ui center aligned large header">
-        跟上革新的步伐
-    </div>
-    <div class="ui center aligned big header">
-        <h3>学习课程，提升技能</h3>
-        <h4>马上订阅，观看更多视频</h4>
+        学习课程，提升技能
     </div>
 
     <div class="ui vertical stripe segment container">

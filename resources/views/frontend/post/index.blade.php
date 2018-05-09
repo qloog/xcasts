@@ -35,13 +35,22 @@
                             <div class="content">
                                 <a class="header" href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a>
                                 <div class="meta">
-                                    <a>{{ $post->created_at }}</a>
+                                    <a><i class="clock outline icon"></i>{{ $post->created_at }}</a>
                                 </div>
                                 <div class="description">
                                     {{ $post->summary }}
                                 </div>
                                 <div class="extra">
-                                    {{--<div class="ui label">tag1</div>--}}
+                                    {{--<div class="ui right floated  button">--}}
+                                        {{--阅读全文--}}
+                                        {{--<i class="right chevron icon"></i>--}}
+                                    {{--</div>--}}
+                                    <div class="ui label">
+                                        <i class="binoculars icon"></i>
+                                        {{ $post->view_count }}
+
+                                    </div>
+                                    <a class="header">阅读全文</a>
                                 </div>
                             </div>
                         </div>

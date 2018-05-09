@@ -70,7 +70,7 @@ class PostController extends Controller
             ->findWhere(['type' => 'blog', 'relation_id' => $post->id])
             ->all();
 
-        $this->postRepo->increment('view_count', 1);
+        $this->postRepo->increment($post->id, 'view_count', 1);
 
         return view('frontend.post.show', compact('post','comments'));
     }

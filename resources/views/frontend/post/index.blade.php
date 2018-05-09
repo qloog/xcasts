@@ -50,7 +50,7 @@
                                         {{ $post->view_count }}
 
                                     </div>
-                                    <a class="header">阅读全文</a>
+                                    <a class="header" href="{{ route('post.show', ['id' => $post->slug]) }}">阅读全文</a>
                                 </div>
                             </div>
                         </div>

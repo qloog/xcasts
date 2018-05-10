@@ -23,10 +23,16 @@
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">编辑section</h3>
+                        <a href="{{ route('admin.section.index', ['course_id' => $section->course_id]) }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-arrow-circle-left"></i> 返回section列表
+                        </a>
+                        <a href="{{ route('admin.course.index') }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-arrow-circle-left"></i> 返回课程列表
+                        </a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::model($plan, ['route' => ['admin.section.update', $plan->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::model($section, ['route' => ['admin.section.update', $section->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
                     {!! Form::hidden('_method', 'PUT') !!}
 
                     <div class="box-body">

@@ -72,9 +72,13 @@ class SectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $courseId = $request->get('course_id');
+        $course = Course::find($courseId);
+        $section = Section::find($id);
+
+        return view('backend.section.edit', compact('section', 'course'));
     }
 
     /**

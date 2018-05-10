@@ -24,10 +24,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    {!! Form::label('name', 'section_id', ['class' => 'col-sm-2 control-label']) !!}
+                    {!! Form::label('name', '所属section', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::text('section_id', null, ['class' => 'form-control', 'placeholder' => 'episode_id']) !!}
+                            {!! Form::select('section_id', $sections, $video->section_id ?? 0, ['class' => 'form-control']) !!}
                         </div>
                     </div>
                 </div>

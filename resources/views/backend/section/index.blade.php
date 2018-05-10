@@ -3,24 +3,11 @@
 @section('title', 'Plan管理')
 
 @section('page_title')
-    商品管理
+    section管理
 @endsection
 
 @section('page_description')
-    商品列表
-@endsection
-
-@section('breadcrumb')
-    <li>
-        <i class="ace-icon fa fa-home home-icon"></i>
-        <a href="/admin/dashboard">主页</a>
-    </li>
-    <li>
-        <a>商品管理</a>
-    </li>
-    <li>
-        列表
-    </li>
+    section列表
 @endsection
 
 @section('content')
@@ -90,7 +77,7 @@
                                 <td>{{ $item->updated_at }}</td>
                                 <td>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="{{ route('admin.plan.edit', [$item->id]) }}">
+                                        <a href="{{ route('admin.section.edit', ['id' => $item->id, 'course_id' => $item->course_id]) }}">
                                             <i class="fa fa-edit text-green fa-lg"></i>
                                         </a>
                                         <a href="javascript:;" data-id="{{ $item->id }}" class="_delete">

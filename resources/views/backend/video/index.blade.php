@@ -16,7 +16,7 @@
             <div class="box box-success">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <a href="{{ route('admin.video.create') }}" class="btn btn-sm btn-success">
+                        <a href="{{ route('admin.video.create', ['course_id' => $courseId]) }}" class="btn btn-sm btn-success">
                             <i class="fa fa-plus"></i> 添加视频
                         </a>
                         <a href="{{ route('admin.course.index') }}" class="btn btn-sm btn-info">
@@ -60,6 +60,7 @@
                             <th>ID</th>
                             <th>视频名称</th>
                             <th>所属课程</th>
+                            <th>所属section</th>
                             <th>时长</th>
                             <th>是否免费</th>
                             <th>发布状态</th>
@@ -80,6 +81,7 @@
                                            target="_blank">{{ $item->name }}</a></td>
                                     <td><a href="{{ route('courses.show',['slug'=>$item->course->slug]) }}"
                                            target="_blank">{{ $item->course->name }}</a></td>
+                                    <td>{{ $item->section ? $item->section->name : '暂未分组' }}</td>
                                     <td>{{ formatToMinute($item->duration) }}</td>
                                     <td>{!! $item->is_free == 1 ? '<span class="label label-success">免费视频</span>' : '<span class="label label-danger">收费</span>' !!} </td>
                                     <td>{!! $item->is_publish == 1 ? '<span class="label label-success">已发布</span>' : '<span class="label label-warning">未发布</span>' !!} </td>
@@ -89,7 +91,7 @@
                                     <td>{{ $item->updated_at }}</td>
                                     <td>
                                         <div class="hidden-sm hidden-xs action-buttons">
-                                            <a class="green" href="{{ route('admin.video.edit', [$item->id]) }}">
+                                            <a class="green" href="{{ route('admin.video.edit', ['id' => $item->id, 'course_id' => $courseId]) }}">
                                                 <i class="fa fa-edit text-green"></i>编辑
                                             </a>
                                             <a class="green video-publish" href="javascript:void(0);"

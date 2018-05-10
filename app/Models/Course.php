@@ -23,6 +23,11 @@ class Course extends Model implements Transformable
         return $this->hasMany(Video::class)->where('is_publish','=',1)->orderBy('episode_id','ASC');
     }
 
+    public function sections()
+    {
+        return $this->hasMany(Section::class)->orderBy('order', 'ASC');
+    }
+
     /**
      * 根据类型查询视频
      *

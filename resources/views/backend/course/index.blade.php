@@ -83,13 +83,13 @@
                                         </a>
                                     </div>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="{{ route('admin.video.index', ['course_id' => $item->id]) }}">
-                                            <i class="fa fa-file-video-o text-orange"></i>管理视频
+                                        <a href="{{ route('admin.section.index', ['course_id' => $item->id]) }}">
+                                            <i class="fa fa-list"></i>管理section
                                         </a>
                                     </div>
                                     <div class="hidden-sm hidden-xs action-buttons">
-                                        <a href="{{ route('admin.section.index', ['course_id' => $item->id]) }}">
-                                            <i class="fa fa-list"></i>管理section
+                                        <a href="{{ route('admin.video.index', ['course_id' => $item->id]) }}">
+                                            <i class="fa fa-file-video-o text-orange"></i>管理视频
                                         </a>
                                     </div>
                                 </td>

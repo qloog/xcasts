@@ -22,6 +22,12 @@
                 <div class="box box-info">
                     <div class="box-header with-border">
                         <h3 class="box-title">编辑视频</h3>
+                        <a href="{{ route('admin.video.index', ['course_id' => $video->course_id]) }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-arrow-circle-left"></i> 返回视频列表
+                        </a>
+                        <a href="{{ route('admin.course.index') }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-arrow-circle-left"></i> 返回课程列表
+                        </a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->

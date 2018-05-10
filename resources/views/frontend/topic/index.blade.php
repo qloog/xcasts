@@ -13,7 +13,7 @@
                     @if(count($topics))
                     @foreach($topics as $topic)
                     <div class="item">
-                        <img class="ui rounded image " src="{{ cdn($topic->user->avatar) }}" width="48px;" height="48px;">
+                        <img class="ui rounded image " src="{{ get_avatar_url($topic->user) }}" width="48px;" height="48px;">
                         <div class="middle aligned content">
                             <a class="header" href="{{ route('topics.show', $topic->id) }}">{{ $topic->title }}</a>
                             <div class="meta" style="margin-bottom: -10px;">

@@ -182,11 +182,13 @@ function formatToHour($second)
  * @param \App\Models\User $user
  * @return mixed|string
  */
-function get_avatar_url(\App\Models\User $user)
+function get_avatar_url(App\Models\User $user)
 {
     if (!$user->avatar) {
         return '/avatars/default.png';
     }
+
+    // github or other
     if (\Illuminate\Support\Str::startsWith($user->avatar, 'http')) {
         return $user->avatar ;
     }

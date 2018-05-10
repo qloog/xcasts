@@ -44,9 +44,12 @@
                 </div>
                 <div class="four wide column">
                     @if(Auth::check())
-                    <div class="ui center aligned segment">
-                        <a class="ui teal big basic button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
-                    </div>
+                    {{--<div class="ui center aligned segment">--}}
+                        <div class="ui item menu">
+                            <a class="item teal huge button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
+                        </div>
+                        {{--<a class="ui teal big basic button" href="{{ route('topics.create') }}"></a>--}}
+                    {{--</div>--}}
                     @endif
                 </div>
             </div>

@@ -9,19 +9,14 @@
         <div class="ui stackable grid container">
             <div class="row">
                 <div class="twelve wide column">
-                    <div class="ui relaxed divided bordered selection list segment">
+                    <div class="ui divided items segment">
                     @if(count($topics))
                     @foreach($topics as $topic)
                     <div class="item">
-                        <div class="right floated content">
-                            <div class="ui circular horizontal label">
-                                {{ $topic->reply_count }}
-                            </div>
-                        </div>
-                        <img class="ui avatar image" src="{{ cdn($topic->user->avatar) }}">
-                        <div class="content">
+                        <img class="ui rounded image " src="{{ cdn($topic->user->avatar) }}" width="48px;" height="48px;">
+                        <div class="middle aligned content">
                             <a class="header" href="{{ route('topics.show', $topic->id) }}">{{ $topic->title }}</a>
-                            <div class="meta" style="margin-top: 5px;">
+                            <div class="meta" style="margin-bottom: -10px;">
                                 <span style="font-size: 12px; color: #ccc">
                                     <a class="item"><div class="ui horizontal label">{{ $topic->category->name }}</div></a>
                                     ⋅  <a href="{{ route('user.show', $topic->user_id) }}">{{ $topic->user->name }}</a>
@@ -34,6 +29,9 @@
                                         于 {{ $topic->last_reply_time_at->diffForHumans() }}
                                     @endif
                                 </span>
+                                <div class="ui right floated content">
+                                    <i class="comment outline icon"></i> {{ $topic->reply_count }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -44,12 +42,9 @@
                 </div>
                 <div class="four wide column">
                     @if(Auth::check())
-                    {{--<div class="ui center aligned segment">--}}
-                        <div class="ui item menu">
-                            <a class="item teal huge button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
-                        </div>
-                        {{--<a class="ui teal big basic button" href="{{ route('topics.create') }}"></a>--}}
-                    {{--</div>--}}
+                    <div class="ui center aligned segment">
+                        <a class="ui teal huge button" href="{{ route('topics.create') }}"><i class="write icon"></i>新建话题</a>
+                    </div>
                     @endif
                 </div>
             </div>

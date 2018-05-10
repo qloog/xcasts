@@ -33,4 +33,13 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    public function getVideoListByCourseId($courseId)
+    {
+        return $this->scopeQuery(function($query) use ($courseId) {
+            return $query->where('course_id', $courseId)
+                ->orderBy('course_id', 'desc')
+                ->orderBy('episode_id', 'desc');
+        })->paginate(10);
+    }
+
 }

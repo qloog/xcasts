@@ -14,6 +14,7 @@ class Video extends Model implements Transformable
         'id',
         'course_id',
         'episode_id',
+        'section_id',
         'name',
         'description',
         'cover_image',
@@ -43,6 +44,11 @@ class Video extends Model implements Transformable
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
 
 }

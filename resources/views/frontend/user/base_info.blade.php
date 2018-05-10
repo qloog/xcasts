@@ -1,14 +1,12 @@
 <div class="ui center aligned segment">
     <h2 class="ui small sequenced images">
-        <img src="{{ get_avatar_url($user) }}" class="ui circular image">
+        <img src="{{ get_avatar_url($user) }}" class="ui medium circular avatar image">
         {{ $user->name }}
     </h2>
-    <div>
-        <div class="ui list">
-            <div class="item">第 {{ $user->id }} 位会员</div>
-            <div class="item">注册于 {{ $user->created_at->diffForHumans() }}</div>
-            <div class="item">活跃于 {{ $user->updated_at->diffForHumans() }}</div>
-        </div>
+    <div class="ui vertical text menu">
+        <div class="item">第 {{ $user->id }} 位会员</div>
+        <div class="item">注册于 {{ $user->created_at->diffForHumans() }}</div>
+        <div class="item">活跃于 {{ $user->updated_at->diffForHumans() }}</div>
     </div>
     <div class="ui divider"></div>
     <div class="ui three small statistics">

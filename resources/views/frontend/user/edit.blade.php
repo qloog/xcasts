@@ -13,7 +13,7 @@
                     </div>
                     <div class="twelve wide column">
                         <!-- detail -->
-                        <div class="ui large middle aligned divided relaxed list padded segment" style="margin-top: -18px;">
+                        <div class="ui large middle aligned divided relaxed list padded segment">
                             <h2 class="ui header">编辑个人资料</h2>
                             <div class="ui divider"></div>
                             <form class="ui form" method="POST" action="{{ route('user.update', Auth()->id()) }}">

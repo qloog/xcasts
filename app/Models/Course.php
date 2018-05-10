@@ -11,7 +11,7 @@ class Course extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'id', 'name', 'slug', 'description', 'cover_image', 'is_publish', 'published_at', 'created_at', 'updated_at'
+        'id', 'type', 'name', 'slug', 'description', 'cover_image', 'is_publish', 'published_at', 'created_at', 'updated_at'
     ];
 
     /**
@@ -21,6 +21,11 @@ class Course extends Model implements Transformable
     public function videos()
     {
         return $this->hasMany(Video::class)->where('is_publish','=',1)->orderBy('episode_id','ASC');
+    }
+
+    public function sections()
+    {
+        return $this->hasMany(Section::class)->orderBy('order', 'ASC');
     }
 
     /**

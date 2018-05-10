@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\Section;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
@@ -30,23 +31,28 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $videos = $this->videoRepo->orderBy('course_id', 'desc')->orderBy('episode_id','desc')->paginate(10);
+        $courseId = $request->get('course_id', 0);
 
-        return view('backend.video.index', compact('videos'));
+        $videos = $this->videoRepo->getVideoListByCourseId($courseId);
+
+        return view('backend.video.index', compact('videos', 'courseId'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $courseId = $request->get('course_id', 0);
         $courses = $this->courseRepo->all()->pluck('name','id')->toArray();
-        //var_dump($courses);exit;
-        return view('backend.video.create', compact('courses'));
+        $sections = Section::where('course_id', $courseId)->orderBy('order', 'ASC')->get()->pluck('name','id')->toArray();
+
+        return view('backend.video.create', compact('courses', 'courseId', 'sections'));
     }
 
     /**
@@ -57,8 +63,9 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        if ($this->videoRepo->create(array_merge($request->all(), ['user_id'=>\Auth::id()]))) {
-            return redirect()->route('admin.video.index');
+        $data = $request->all();
+        if ($this->videoRepo->create(array_merge($data, ['user_id'=>\Auth::id()]))) {
+            return redirect()->route('admin.video.index', ['course_id' => $data['course_id']]);
         }
         return back()->withInput()->withErrors('保存失败！');
     }
@@ -84,7 +91,9 @@ class VideoController extends Controller
     {
         $video = $this->videoRepo->find($id);
         $courses = $this->courseRepo->all()->pluck('name','id')->toArray();
-        return view('backend.video.edit', compact('video','courses'));
+        $sections = Section::where('course_id', $video->course_id)->orderBy('order', 'asc')->get()->pluck('name','id')->toArray();
+
+        return view('backend.video.edit', compact('video','courses','sections'));
     }
 
     /**
@@ -106,7 +115,7 @@ class VideoController extends Controller
         }
 
         if ($this->videoRepo->update($postData, $id)) {
-            return redirect()->route('admin.video.index');
+            return redirect()->route('admin.video.index', ['course_id' => $postData['course_id']]);
         }
 
         return back()->withInput()->withErrors('保存失败！');

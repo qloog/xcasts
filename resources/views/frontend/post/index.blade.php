@@ -9,20 +9,20 @@
         <div class="row"></div>
         <div class="row">
             <div class="four wide column">
-                <div class="ui segment">
-                    <h3 class="ui header"><i class="icon chart bar"></i> 阅读排行榜 </h3>
-                    <div class="ui divided items">
-                        @foreach($topPosts as $post)
-                            <div class="item">
-                                <div class="content" style="font-size: 16px;">
-                                    <a class="header" href="{{ route('post.show', $post->slug) }}" style="font-size: 16px;">
-                                        {{ $post->title }}
-                                    </a>
-                                </div>
+                {{--<div class="ui basic segment">--}}
+                    <div class="ui large fluid vertical menu">
+                        <div class="item">
+                            <h3 class="header"><i class="icon chart bar"></i> 阅读排行榜 </h3>
+                            <div class="menu">
+                            @foreach($topPosts as $post)
+                                <a class="item" href="{{ route('post.show', $post->slug) }}" style="font-size: 16px;">
+                                    {{ $post->title }}
+                                </a>
+                            @endforeach
                             </div>
-                        @endforeach
+                        </div>
                     </div>
-                </div>
+                {{--</div>--}}
             </div>
             <div class="twelve wide column">
                 <div class="ui segment">

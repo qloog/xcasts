@@ -76,7 +76,7 @@
                         @foreach($replies as $key => $reply)
                         <div class="comment">
                             <a class="avatar">
-                                <img src="{{ cdn($reply->user->avatar) }}">
+                                <img src="{{ get_avatar_url($reply->user) }}">
                             </a>
                             <div class="content">
                                 <a class="author" href="{{ route('user.show', $reply->user->id) }}#{{$key+1}}">{{ $reply->user->name }}</a>
@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="actions">
                                     <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $reply->id }})">
-                                        <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>)
+                                        <i class="thumbs up outline icon"></i> 赞(<span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>)
                                     </a>
                                     <a class="reply" href="javascript:void(0)" onclick="reply('{{ $reply->user->name }}')"><i class="reply icon"></i>回复</a>
                                 </div>
@@ -112,7 +112,7 @@
                             <textarea name="body" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
                         </div>
                         <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
-                            <i class="icon edit"></i> 回复
+                            <i class="location arrow icon"></i> 回复
                         </button>
                     </form>
                 </div>

@@ -1,18 +1,15 @@
 @extends('backend.layouts.master')
 
-@section('title', '新建课程')
+@section('title', '添加section')
 
 @section('breadcrumb')
-        <li>
-            <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="/admin/dashboard">主页</a>
-        </li>
-        <li>
-            <a>课程管理</a>
-        </li>
-        <li>
-            添加视频
-        </li>
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="/admin/dashboard">主页</a>
+    </li>
+    <li>
+        <a>section管理</a>
+    </li>
 @endsection
 
 @section('content')
@@ -20,29 +17,25 @@
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">添加视频</h3>
-                    <a href="{{ route('admin.video.index', ['course_id' => $courseId]) }}" class="btn btn-sm btn-info">
-                        <i class="fa fa-arrow-circle-left"></i> 返回视频列表
-                    </a>
-                    <a href="{{ route('admin.course.index') }}" class="btn btn-sm btn-info">
-                        <i class="fa fa-arrow-circle-left"></i> 返回课程列表
-                    </a>
+                    <h3 class="box-title">添加section</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                {!! Form::open(['route' => 'admin.video.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
+                {!! Form::open(['route' => 'admin.section.store', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'files' => true]) !!}
                 <div class="box-body">
-                    @include('backend.video._form')
+                    @include('backend.section._form')
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
+                    {{--<a href="{{route('admin.auth.permission.index')}}" class="btn btn-info pull-left "><i class="fa fa-arrow-left"></i> {{ trans('strings.return_button') }}</a>--}}
+                    {{--<button type="submit" class="btn btn-success pull-right"><i class='fa fa-save'></i>&nbsp;&nbsp;{{ trans('strings.save_button') }}</button>--}}
+
                     <div class="clearfix form-actions">
                         <div class="col-md-offset-3 col-md-10">
-                            <button class="btn btn-info" type="submit">
+                            <button class="btn btn-success" type="submit">
                                 <i class="fa fa-save"></i>
                                 保存
                             </button>
-
                             <button class="btn" type="reset">
                                 <i class="fa fa-undo"></i>
                                 重置

@@ -1,29 +1,30 @@
 @extends('backend.layouts.master')
 
-@section('title', '编辑视频')
+@section('title', '编辑section')
 
 @section('breadcrumb')
-        <li>
-            <i class="ace-icon fa fa-home home-icon"></i>
-            <a href="/admin/dashboard">主页</a>
-        </li>
-        <li>
-            <a>课程管理</a>
-        </li>
-        <li>
-            编辑视频
-        </li>
+    <li>
+        <i class="ace-icon fa fa-home home-icon"></i>
+        <a href="/admin/dashboard">主页</a>
+    </li>
+    <li>
+        <a>section管理</a>
+    </li>
+    <li>
+        编辑section
+    </li>
 @endsection
 
 @section('content')
+
     <div class="row">
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">编辑视频</h3>
-                        <a href="{{ route('admin.video.index', ['course_id' => $video->course_id]) }}" class="btn btn-sm btn-info">
-                            <i class="fa fa-arrow-circle-left"></i> 返回视频列表
+                        <h3 class="box-title">编辑section</h3>
+                        <a href="{{ route('admin.section.index', ['course_id' => $section->course_id]) }}" class="btn btn-sm btn-info">
+                            <i class="fa fa-arrow-circle-left"></i> 返回section列表
                         </a>
                         <a href="{{ route('admin.course.index') }}" class="btn btn-sm btn-info">
                             <i class="fa fa-arrow-circle-left"></i> 返回课程列表
@@ -31,11 +32,11 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    {!! Form::model($video, ['route' => ['admin.video.update', $video->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
+                    {!! Form::model($section, ['route' => ['admin.section.update', $section->id], 'class' => 'form-horizontal', 'role' => 'form','files' => true]) !!}
                     {!! Form::hidden('_method', 'PUT') !!}
 
                     <div class="box-body">
-                        @include('backend.video._form')
+                        @include('backend.section._form')
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
@@ -61,4 +62,3 @@
 
     </div>
 @endsection
-

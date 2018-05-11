@@ -279,7 +279,7 @@
                                         <tr>
                                             <td>{{ $feedback->id }}</td>
                                             <td>{!! $feedback->content !!}</td>
-                                            <td>{{ $feedback->user->name }}</td>
+                                            <td>{{ $feedback->user ? $feedback->user->name : '未登录用户' }}</td>
                                             <td>{{ $feedback->created_at }}</td>
                                         </tr>
                                     @endforeach

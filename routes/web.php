@@ -164,7 +164,7 @@ Route::group(['namespace' => 'Backend'], function ()
         // comment
         Route::resource('comment', 'CommentController');
         // feedback
-        Route::get('feedback', 'FeedbackController@index');
+        Route::get('feedback', 'FeedbackController@index')->name('feedback.index');
 
         // plan
         Route::resource('plan', 'PlanController');

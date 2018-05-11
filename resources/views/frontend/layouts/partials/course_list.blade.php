@@ -3,8 +3,11 @@
             <div class="ui three stackable cards">
                 @if((isset($courses) && $courses))
                     @foreach($courses as $item)
-                        <div class="ui centered card">
-                            <a class="image" href="{{ route('courses.show', $item->slug) }}">
+                        <div class="ui card column grid">
+                            <a class="ui image" href="{{ route('courses.show', $item->slug) }}">
+                                @if ($item->is_publish == 2)
+                                <div class="ui red ribbon label">预告</div>
+                                @endif
                                 <img src="{{ thumb($item->cover_image, 357, 210) }}" style="height: 210px;"/>
                             </a>
                             <div class="content">

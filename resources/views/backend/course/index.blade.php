@@ -72,7 +72,7 @@
                                 <td>{{ $item->type }}</td>
                                 <td><img src="{{ $item->cover_image ? thumb($item->cover_image, 100, 67) : thumb('/blog-default-post-cover.jpeg', 100, 67) }}" width="100px"></td>
                                 {{--<td>{{ $item->slug }}</td>--}}
-                                <td>{!! $item->is_publish ? '<span class="label label-success">已发布</span>' : '<span class="label label-warning">未发布</span>' !!}</td>
+                                <td>{!! $item->is_publish == 1 ? '<span class="label label-success">已发布</span>' : ($item->is_publish == 2 ? '<span class="label label-info">预告</span>' : '<span class="label label-warning">草稿</span>') !!}</td>
                                 {{--<td>{{ $item->user_id }}</td>--}}
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>

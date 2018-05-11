@@ -51,11 +51,12 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('is_publish', '是否发布', ['class' => 'col-sm-2 control-label']) !!}
+                    {!! Form::label('is_publish', '发布状态', ['class' => 'col-sm-2 control-label']) !!}
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            {!! Form::radio('is_publish', 1) !!}是 &nbsp;&nbsp;
-                            {!! Form::radio('is_publish', 0) !!}否
+                            {!! Form::radio('is_publish', 1) !!}发布 &nbsp;&nbsp;
+                            {!! Form::radio('is_publish', 2) !!}预告 &nbsp;&nbsp;
+                            {!! Form::radio('is_publish', 0) !!}草稿
                         </div>
                     </div>
                 </div>

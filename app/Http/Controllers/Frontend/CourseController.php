@@ -63,7 +63,7 @@ class CourseController extends Controller
      */
     public function show($slug)
     {
-        $course = $this->courseRepo->findWhere(['slug' => $slug, 'is_publish' => 1])->first();
+        $course = $this->courseRepo->findWhere(['slug' => $slug])->first();
 
         return view('frontend.course.detail', compact('course'));
     }

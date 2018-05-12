@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <meta name="baidu-site-verification" content="5vRzsjBoK1" />
+    <meta name="360-site-verification" content="9c7af3e34689f20e7e2327e8fddd314d" />
 
     <!-- Site Properties -->
     <title>@yield('title') - PHPCasts</title>
@@ -217,6 +218,7 @@
 			$('.ui.sidebar').sidebar('attach events', '.toc.item');
 
             @if (app()->environment() == 'production')
+                // baidu
                 var bp = document.createElement('script');
                 var curProtocol = window.location.protocol.split(':')[0];
                 if (curProtocol === 'https') {
@@ -227,6 +229,10 @@
                 }
                 var s = document.getElementsByTagName("script")[0];
                 s.parentNode.insertBefore(bp, s);
+
+                // 360
+                var src = (document.location.protocol == "http:") ? "http://js.passport.qihucdn.com/11.0.1.js?b4f640975ce95dec20cf4ccbe2078784":"https://jspassport.ssl.qhimg.com/11.0.1.js?b4f640975ce95dec20cf4ccbe2078784";
+                document.write('<script src="' + src + '" id="sozz"><\/script>');
             @endif
         });
     </script>

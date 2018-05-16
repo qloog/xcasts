@@ -141,10 +141,15 @@ class PlanController extends Controller
             if ($this->ordersRepo->paidOrder($qrId, $tradeId)) {
                 // 订单详情
                 $orderItem = OrderItem::where('order_id', $orderInfo['id'])->first();
-                $orderInfo['type'] = $orderItem['item_id'];
+                $planInfo = Plan::find($orderItem['item_id']);
 
-                $ret = $this->userRepo->createUserMember($orderInfo['user_id'], $orderInfo);
-                Log::info('youzan push callback open member: ', ['ret' => (array)$ret]);
+                // plan 为 support 的不用开通会员,只是赞助
+                if ($planInfo && $planInfo['alias'] != 'support') {
+                    $orderInfo['type'] = $orderItem['item_id'];
+
+                    $ret = $this->userRepo->createUserMember($orderInfo['user_id'], $orderInfo);
+                    Log::info('youzan push callback open member: ', ['ret' => (array)$ret]);
+                }
 
                 return response()->json($successMsg);
             }

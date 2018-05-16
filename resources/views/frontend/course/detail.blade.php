@@ -30,24 +30,31 @@
                     <table class="ui selectable  striped structured teal table">
                         <thead>
                             <tr>
-                                <th colspan="5">课程大纲</th>
+                                <th colspan="4" class="ui medium center aligned black header">课程大纲</th>
                             </tr>
                         </thead>
                         <tbody>
                         @if(count($course->sections) > 0)
                             @foreach($course->sections as $key => $section)
+                                <tr>
+                                    <td colspan="4" class="left aligned"><a href="#{{ $section->id }}" class="ui small black header">{{ $section->name }}</a></td>
+                                </tr>
                                 @foreach($section->videos as $k => $video)
-                                    <tr style="display: table-row">
-                                        @if($loop->first)
-                                            <td rowspan="{{ count($section->videos) }}" class="right aligned">{{ $section->name }}</td>
-                                        @endif
+                                    <tr style="display: table-row;" @if($video->mp4_url == '')  class="disabled" @endif>
                                         <td>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                             <i class="video play outline large icon"></i>
-                                            <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
+                                            @if($video->mp4_url)
+                                                <a href="{{ route('video.show', ['slug' => $course->slug, $video->episode_id]) }}">{{ $video->name }}</a>
+                                            @else
+                                                <a>{{ $video->name }}</a>
+                                            @endif
                                         </td>
                                         <td class="ui right aligned">
-                                            @if($video->is_free == 1)
+                                            @if($video->mp4_url && $video->is_free == 1)
                                                 <a class="ui green label">Free</a>
+                                            @elseif($video->mp4_url == '')
+                                                <a class="ui gray label">录制中</a>
                                             @endif
                                         </td>
                                         <td class="ui right aligned">{{ formatToMinute($video->duration) }}</td>

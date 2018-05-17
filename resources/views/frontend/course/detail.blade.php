@@ -30,7 +30,7 @@
                     <table class="ui selectable  striped structured teal table">
                         <thead>
                             <tr>
-                                <th colspan="4" class="ui medium center aligned black header">课程大纲</th>
+                                <th colspan="5" class="ui medium center aligned black header">课程大纲</th>
                             </tr>
                         </thead>
                         <tbody>

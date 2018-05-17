@@ -87,6 +87,19 @@
             <!-- /.info-box -->
         </div>
         <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                <div class="info-box-content">
+                    <span class="info-box-text">当前在线用户(10分钟内)</span>
+                    <span class="info-box-number">{{ $onlineUserCount }}</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
     </div>
     <!-- /.row -->
 
@@ -99,7 +112,7 @@
                     <!-- TABLE: LATEST ORDERS -->
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">最新帖子列表Top8</h3>
+                            <h3 class="box-title">最新帖子列表Top5</h3>
 
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -251,50 +264,39 @@
                 <!-- /.col -->
 
                 <div class="col-md-5">
-                    <!-- TABLE: LATEST ORDERS -->
-                    <div class="box box-info">
+                    <!-- USERS LIST -->
+                    <div class="box box-danger">
                         <div class="box-header with-border">
-                            <h3 class="box-title">反馈Top5</h3>
+                            <h3 class="box-title">最新注册用户 top 8</h3>
 
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
+                            {{--<div class="box-tools pull-right">--}}
+                            {{--<span class="label label-danger">8 New Members</span>--}}
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
+                            {{--</button>--}}
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>--}}
+                            {{--</button>--}}
+                            {{--</div>--}}
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <table class="table no-margin">
-                                    <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>反馈内容</th>
-                                        <th>反馈者</th>
-                                        <th>时间</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($feedbacks as $feedback)
-                                        <tr>
-                                            <td>{{ $feedback->id }}</td>
-                                            <td>{!! $feedback->content !!}</td>
-                                            <td>{{ $feedback->user ? $feedback->user->name : '未登录用户' }}</td>
-                                            <td>{{ $feedback->created_at }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
+                        <div class="box-body no-padding" style="display: block;">
+                            <ul class="users-list clearfix">
+                                @foreach($onlineUsers as $user)
+                                    <li>
+                                        <img src="{{ get_avatar_url($user) }}" alt="User Image" width="48px;" height="48px;">
+                                        <a class="users-list-name" href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a>
+                                        <span class="users-list-date">{{ $user->created_at }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <!-- /.users-list -->
                         </div>
                         <!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            <a href="{{ route('admin.feedback.index') }}" class="btn btn-sm btn-default btn-flat pull-right">查看所有反馈</a>
+                        <div class="box-footer text-center" style="display: block;">
+                            <a href="{{ route('admin.admin.user') }}" class="uppercase">查看所有用户</a>
                         </div>
                         <!-- /.box-footer -->
                     </div>
-                    <!-- /.box -->
+                    <!--/.box -->
                 </div>
                 <!-- /.col -->
             </div>
@@ -356,7 +358,53 @@
                     <!-- /.box -->
                 </div>
                 <!-- /.col -->
+                <div class="col-md-5">
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">反馈Top5</h3>
 
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>反馈内容</th>
+                                        <th>反馈者</th>
+                                        <th>时间</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($feedbacks as $feedback)
+                                        <tr>
+                                            <td>{{ $feedback->id }}</td>
+                                            <td>{!! $feedback->content !!}</td>
+                                            <td>{{ $feedback->user ? $feedback->user->name : '未登录用户' }}</td>
+                                            <td>{{ $feedback->created_at }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer clearfix">
+                            <a href="{{ route('admin.feedback.index') }}" class="btn btn-sm btn-default btn-flat pull-right">查看所有反馈</a>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
             </div>
             <!-- /.row -->
         </div>

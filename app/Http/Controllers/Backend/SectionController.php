@@ -69,7 +69,8 @@ class SectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Request $request
+     * @param  int    $id
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
@@ -90,7 +91,15 @@ class SectionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->except(['_token', '_method']);
+
+        $result = Section::where('id', $id)->update($data);
+
+        if ($result) {
+            return redirect()->route('admin.section.index', ['course_id' => $data['course_id']]);
+        }
+
+        return  redirect()->route('admin.section.edit', ['id' => $id, 'course_id' => $data['course_id']]);
     }
 
     /**

@@ -14,6 +14,6 @@ class Section extends Model
 
     public function videos()
     {
-        return $this->hasMany(Video::class, 'section_id', 'id');
+        return $this->hasMany(Video::class, 'section_id', 'id')->where('is_publish','=',1)->orderBy('episode_id','ASC');
     }
 }

@@ -33,21 +33,21 @@ class DashboardController extends BaseController
 
 	    // 今日注册用户
         $data['todayRegisteredUserCount'] = User::where([
-            ['created_at', '>=', Carbon::now() . ' 00:00:00'],
-            ['created_at', '<=', Carbon::now() . ' 23:59:59']
+            ['created_at', '>=', Carbon::now()->toDateString() . ' 00:00:00'],
+            ['created_at', '<=', Carbon::now()->toDateString() . ' 23:59:59']
         ])->count();
 
         // 今日注册并激活用户
         $data['todayActivatedUserCount'] = User::where([
-            ['created_at', '>=', Carbon::now() . ' 00:00:00'],
-            ['created_at', '<=', Carbon::now() . ' 23:59:59'],
+            ['created_at', '>=', Carbon::now()->toDateString() . ' 00:00:00'],
+            ['created_at', '<=', Carbon::now()->toDateString() . ' 23:59:59'],
             ['is_activated', '=', 1]
         ])->count();
 
         // 今日登录过的用户
         $data['todayLoginUserCount'] = User::where([
-            ['last_login_time', '>=', Carbon::now() . ' 00:00:00'],
-            ['last_login_time', '<=', Carbon::now() . ' 23:59:59'],
+            ['last_login_time', '>=', Carbon::now()->toDateString() . ' 00:00:00'],
+            ['last_login_time', '<=', Carbon::now()->toDateString() . ' 23:59:59'],
         ])->count();
 
 

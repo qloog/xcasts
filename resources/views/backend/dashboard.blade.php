@@ -267,7 +267,7 @@
                     <!-- USERS LIST -->
                     <div class="box box-danger">
                         <div class="box-header with-border">
-                            <h3 class="box-title">最新注册用户 top 8</h3>
+                            <h3 class="box-title">当前在线用户</h3>
 
                             {{--<div class="box-tools pull-right">--}}
                             {{--<span class="label label-danger">8 New Members</span>--}}

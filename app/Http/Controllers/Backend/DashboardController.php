@@ -59,7 +59,7 @@ class DashboardController extends BaseController
         $data['onlineUserCount'] = $redis->zcount($onlineKey, $startTime, $endTime);
         // 当前在线用户列表 10分钟内
         $onlineUserIds = $redis->zrangebyscore($onlineKey, $startTime, $endTime);
-        $data['onlineUsers'] = User::whereIn('id', [$onlineUserIds])->get();
+        $data['onlineUsers'] = User::whereIn('id', $onlineUserIds)->get();
 
         // 最新注册用户 top 8
         $data['lastRegisteredUsers'] = User::orderBy('created_at', 'desc')->take(8)->get();

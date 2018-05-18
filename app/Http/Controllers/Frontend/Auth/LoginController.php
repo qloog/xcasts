@@ -10,6 +10,7 @@ use DB;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 use Lang;
 use Laracasts\Flash\Flash;
@@ -184,11 +185,20 @@ class LoginController extends Controller
             return $authUser;
         }
 
+        $githubUser = (array)$githubUser;
+
+        Log::info('github login all info:', $githubUser);
+        Log::info('github login user info:', ['location' => $githubUser['user']['location']]);
+
         $userObj = User::create([
-            'name' => $githubUser->name,
-            'email' => $githubUser->email,
-            'github_id' => $githubUser->id,
-            'avatar' => $githubUser->avatar,
+            'name' => $githubUser['name'] ?? ($githubUser['nickname'] ?? $githubUser['user']['login']),
+            'email' => $githubUser['email'],
+            'github_id' => $githubUser['id'],
+            'avatar' => $githubUser['avatar'],
+            'city' => $githubUser['user']['location'] ?? '',
+            'company' => $githubUser['user']['company'] ?? '',
+            'personal_website' => $githubUser['user']['blog'] ?? '',
+            'introduction' => $githubUser['user']['bio'] ?? '',
             'last_login_time' => Carbon::now(),
             'last_login_ip' => $request->getClientIp(),
             'is_activated' => 1

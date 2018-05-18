@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    {{ $course->name }} - 视频
+    {{ $course->name }} - 视频教程
 @endsection
 
 @section('description', $course->description)

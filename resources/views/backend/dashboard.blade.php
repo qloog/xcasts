@@ -108,7 +108,91 @@
         <!-- Left col -->
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-7">
+                <div class="col-md-6">
+                    <!-- USERS LIST -->
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">当前在线用户</h3>
+
+                            {{--<div class="box-tools pull-right">--}}
+                            {{--<span class="label label-danger">8 New Members</span>--}}
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
+                            {{--</button>--}}
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>--}}
+                            {{--</button>--}}
+                            {{--</div>--}}
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding" style="display: block;">
+                            <ul class="users-list clearfix">
+                                @foreach($onlineUsers as $user)
+                                    <li>
+                                        <img src="{{ get_avatar_url($user) }}" alt="User Image" width="48px;" height="48px;">
+                                        <a class="users-list-name" href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a>
+                                        <span class="users-list-date">{{ $user->created_at }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <!-- /.users-list -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer text-center" style="display: block;">
+                            <a href="{{ route('admin.admin.user') }}" class="uppercase">查看所有用户</a>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!--/.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-6">
+                    <!-- USERS LIST -->
+                    <div class="box box-danger">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">最新注册用户 top 8</h3>
+
+                            {{--<div class="box-tools pull-right">--}}
+                            {{--<span class="label label-danger">8 New Members</span>--}}
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
+                            {{--</button>--}}
+                            {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>--}}
+                            {{--</button>--}}
+                            {{--</div>--}}
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding" style="display: block;">
+                            <ul class="users-list clearfix">
+                                @foreach($lastRegisteredUsers as $user)
+                                    <li>
+                                        <img src="{{ get_avatar_url($user) }}" alt="User Image" width="48px;" height="48px;">
+                                        <a class="users-list-name" href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a>
+                                        <span class="users-list-date">{{ $user->created_at }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                            <!-- /.users-list -->
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer text-center" style="display: block;">
+                            <a href="{{ route('admin.admin.user') }}" class="uppercase">查看所有用户</a>
+                        </div>
+                        <!-- /.box-footer -->
+                    </div>
+                    <!--/.box -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    <!-- Main row -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
                     <!-- TABLE: LATEST ORDERS -->
                     <div class="box box-info">
                         <div class="box-header with-border">
@@ -162,41 +246,51 @@
                     <!-- /.box -->
                 </div>
                 <!-- /.col -->
-
-                <div class="col-md-5">
-                    <!-- USERS LIST -->
-                    <div class="box box-danger">
+                <div class="col-md-6">
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">最新注册用户 top 8</h3>
+                            <h3 class="box-title">帖子回复列表Top5</h3>
 
-                            {{--<div class="box-tools pull-right">--}}
-                            {{--<span class="label label-danger">8 New Members</span>--}}
-                            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
-                            {{--</button>--}}
-                            {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>--}}
-                            {{--</button>--}}
-                            {{--</div>--}}
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                            </div>
                         </div>
                         <!-- /.box-header -->
-                        <div class="box-body no-padding" style="display: block;">
-                            <ul class="users-list clearfix">
-                                @foreach($lastRegisteredUsers as $user)
-                                    <li>
-                                        <img src="{{ get_avatar_url($user) }}" alt="User Image" width="48px;" height="48px;">
-                                        <a class="users-list-name" href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a>
-                                        <span class="users-list-date">{{ $user->created_at }}</span>
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <!-- /.users-list -->
+                        <div class="box-body">
+                            <div class="table-responsive">
+                                <table class="table no-margin">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>回复内容</th>
+                                        <th>所属帖子</th>
+                                        <th>回复者</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($lastReplies as $reply)
+                                        <tr>
+                                            <td>{{ $reply->id }}</td>
+                                            <td>{!! $reply->body !!}</td>
+                                            <td><a href="{{ route('topics.show', ['id' => $reply->topic_id]) }}" target="_blank">{{ $reply->topic->title }}</a></td>
+                                            <td>{{ $reply->user->name }}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
                         </div>
                         <!-- /.box-body -->
-                        <div class="box-footer text-center" style="display: block;">
-                            <a href="{{ route('admin.admin.user') }}" class="uppercase">查看所有用户</a>
+                        <div class="box-footer clearfix">
+                            <a href="{{ route('admin.topics.index') }}" class="btn btn-sm btn-default btn-flat pull-right">查看所有帖子</a>
                         </div>
                         <!-- /.box-footer -->
                     </div>
-                    <!--/.box -->
+                    <!-- /.box -->
                 </div>
                 <!-- /.col -->
             </div>
@@ -246,102 +340,6 @@
                                             <td>{!! $comment->content !!}</td>
                                             <td>{{ $comment->user->name }}</td>
                                             <td>{{ $comment->created_at }}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.table-responsive -->
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            <a href="{{ route('admin.topics.index') }}" class="btn btn-sm btn-default btn-flat pull-right">查看所有帖子</a>
-                        </div>
-                        <!-- /.box-footer -->
-                    </div>
-                    <!-- /.box -->
-                </div>
-                <!-- /.col -->
-
-                <div class="col-md-5">
-                    <!-- USERS LIST -->
-                    <div class="box box-danger">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">当前在线用户</h3>
-
-                            {{--<div class="box-tools pull-right">--}}
-                            {{--<span class="label label-danger">8 New Members</span>--}}
-                            {{--<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>--}}
-                            {{--</button>--}}
-                            {{--<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>--}}
-                            {{--</button>--}}
-                            {{--</div>--}}
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding" style="display: block;">
-                            <ul class="users-list clearfix">
-                                @foreach($onlineUsers as $user)
-                                    <li>
-                                        <img src="{{ get_avatar_url($user) }}" alt="User Image" width="48px;" height="48px;">
-                                        <a class="users-list-name" href="{{ route('user.show', ['id' => $user->id]) }}" target="_blank">{{ $user->name }}</a>
-                                        <span class="users-list-date">{{ $user->created_at }}</span>
-                                    </li>
-                                @endforeach
-                            </ul>
-                            <!-- /.users-list -->
-                        </div>
-                        <!-- /.box-body -->
-                        <div class="box-footer text-center" style="display: block;">
-                            <a href="{{ route('admin.admin.user') }}" class="uppercase">查看所有用户</a>
-                        </div>
-                        <!-- /.box-footer -->
-                    </div>
-                    <!--/.box -->
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.col -->
-    </div>
-    <!-- /.row -->
-
-    <!-- Main row -->
-    <div class="row">
-        <!-- Left col -->
-        <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-7">
-                    <!-- TABLE: LATEST ORDERS -->
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">帖子回复列表Top5</h3>
-
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                </button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <table class="table no-margin">
-                                    <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>回复内容</th>
-                                        <th>所属帖子</th>
-                                        <th>回复者</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($lastReplies as $reply)
-                                        <tr>
-                                            <td>{{ $reply->id }}</td>
-                                            <td>{!! $reply->body !!}</td>
-                                            <td><a href="{{ route('topics.show', ['id' => $reply->topic_id]) }}" target="_blank">{{ $reply->topic->title }}</a></td>
-                                            <td>{{ $topic->user->name }}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>

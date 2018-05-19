@@ -53,4 +53,4 @@ clean:
 	php artisan route:clear
 	php artisan view:clear
 
-deploy: down  clean  pull  ch up
+deploy: rollback down clean  pull  ch up

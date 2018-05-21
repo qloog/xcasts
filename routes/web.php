@@ -43,6 +43,7 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
         Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
         Route::get('notifications', 'NotificationsController@index')->name('notifications.index');
+        Route::post('upload/image', 'UploadController@uploadImage')->name('upload.image');
 
         // comment
         Route::post('comment', 'CommentController@store')->name('comment.store');

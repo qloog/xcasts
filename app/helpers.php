@@ -130,20 +130,31 @@ function cdn($path)
 /**
  * 获取缩略图的url, 带有效期和token验证
  *
- * @param     $path
- * @param int $width
- * @param int $height
- * @param int $mode
+ * @param      $path
+ * @param int  $width
+ * @param int  $height
+ * @param int  $mode
+ * @param bool $withToken
  * @return string
  */
-function thumb($path, $width=400, $height=300, $mode=1)
+function thumb($path, $width=400, $height=300, $mode=1, $withToken=true)
 {
-    $qiNiuSrv = new QiNiuService();
+    $isPublicBucket = false;
     $url = env('QINIU_CDN_URL') . $path;
+    if (!$withToken) {
+        $isPublicBucket = true;
+        $url = env('QINIU_CDN_PUBLIC_URL') . $path;
+    }
+
+    $qiNiuSrv = new QiNiuService($isPublicBucket);
 
     $thumbnailUrl = $qiNiuSrv->getThumbnail($url, $mode, $width, $height);
 
-    return $qiNiuSrv->fileUrlWithToken($thumbnailUrl);
+    if ($withToken) {
+        return $qiNiuSrv->fileUrlWithToken($thumbnailUrl);
+    }
+
+    return $thumbnailUrl;
 }
 
 /**

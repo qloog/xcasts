@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Log;
 use Qiniu\Auth;
 use Qiniu\Storage\BucketManager;
 use Qiniu\Storage\UploadManager;
@@ -18,10 +19,19 @@ class QiNiuService
 
     private $uploadMgr;
 
-    public function __construct()
+    /**
+     * QiNiuService constructor.
+     * @param bool $isPublicBucket
+     */
+    public function __construct($isPublicBucket=false)
     {
         $this->auth = new Auth(env('QINIU_AccessKey'), env('QINIU_SecretKey'));
-        $this->bucket = env('QINIU_Bucket');
+        if ($isPublicBucket) {
+            $this->bucket = env('QINIU_Public_Bucket');
+        } else {
+            $this->bucket = env('QINIU_Bucket');
+        }
+
         $this->token = $this->auth->uploadToken($this->bucket);
         $this->uploadMgr = new UploadManager();
         $this->bucketMgr = new BucketManager($this->auth);
@@ -32,7 +42,7 @@ class QiNiuService
         list($ret, $err) = $this->uploadMgr->putFile($this->token, $fileName, $filePath);
 
         if ($err !== null) {
-            var_dump($err);
+            Log::error('upload to qiniu error', (array)$err);
         } else {
             return $ret;
         }

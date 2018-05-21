@@ -93,9 +93,9 @@
                                 </div>
                                 <div class="actions">
                                     <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $reply->id }})">
-                                        <i class="thumbs up outline icon"></i> 赞(<span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>)
+                                        <i class="thumbs up outline icon"></i><span id="vote_count_{{ $reply->id }}">{{ $reply->vote_count }}</span>
                                     </a>
-                                    <a class="reply" href="javascript:void(0)" onclick="reply('{{ $reply->user->name }}')"><i class="reply icon"></i>回复</a>
+                                    <a class="reply" href="javascript:void(0)" onclick="reply('{{ $reply->user->name }}')"><i class="reply icon"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -110,10 +110,15 @@
                         <input type="hidden" name="topic_id" value="{{ $topic->id }}">
                         <div class="@if(!Auth::check()) disabled field @endif">
                             <textarea name="body" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
+                            <div class="ui basic icon buttons">
+                                {{--<a class="ui icon button"><i class="large smile outline icon"></i></a>--}}
+                                <a class="ui icon button" data-tooltip="黏贴或拖拽图片至输入框内即可上传图片" data-inverted=""><i class="image outline icon"></i></a>
+                                <a class="ui button">支持Markdown</a>
+                            </div>
+                            <button class="ui right floated teal submit button @if(!Auth::check()) disabled field @endif" type="submit">
+                                <i class="location arrow icon"></i> 发送
+                            </>
                         </div>
-                        <button class="ui teal submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit">
-                            <i class="location arrow icon"></i> 回复
-                        </button>
                     </form>
                 </div>
             </div>
@@ -187,6 +192,30 @@
 
 @section('scripts')
     <script type="text/javascript">
+        inlineAttachment.editors.input.attachToInput(document.getElementById("reply_content"), {
+            uploadUrl: '{{ route('upload.image') }}',
+            extraParams: {
+                '_token': '{{ csrf_token() }}'
+            },
+            onFileUploadResponse: function(xhr) {
+                var result = JSON.parse(xhr.responseText),
+                        filename = result[this.settings.jsonFieldName];
+
+                if (result && filename) {
+                    var newValue;
+                    if (typeof this.settings.urlText === 'function') {
+                        newValue = this.settings.urlText.call(this, filename, result);
+                    } else {
+                        newValue = this.settings.urlText.replace(this.filenameTag, filename);
+                    }
+                    var text = this.editor.getValue().replace(this.lastValue, newValue);
+                    this.editor.setValue(text);
+                    this.settings.onFileUploaded.call(this, filename);
+                }
+                return false;
+            }
+        });
+
         // 回复用户
         function reply(username) {
             var replyContent = $('#reply_content');

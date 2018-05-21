@@ -61,6 +61,11 @@ elixir(function(mix) {
     mix.copy('resources/assets/bower/sweetalert/dist/sweetalert.css','resources/assets/frontend/css');
     mix.copy('resources/assets/bower/sweetalert/dist/sweetalert.min.js','resources/assets/frontend/js');
 
+    // inline-attachment
+    mix.copy('resources/assets/bower/inline-attachment/src/inline-attachment.js','resources/assets/frontend/js');
+    mix.copy('resources/assets/bower/inline-attachment/src/codemirror.inline-attachment.js','resources/assets/frontend/js');
+    mix.copy('resources/assets/bower/inline-attachment/src/input.inline-attachment.js','resources/assets/frontend/js');
+
     // 合并前端的CSS样式文件
     mix.styles([
             'css/semantic.min.css',
@@ -94,7 +99,10 @@ elixir(function(mix) {
             'js/semantic.min.js',
             'js/simplemde.min.js',
             'js/video.min.js',
-            'js/sweetalert.min.js'
+            'js/sweetalert.min.js',
+            'js/inline-attachment.js',
+            'js/codemirror.inline-attachment.js',
+            'js/input.inline-attachment.js'
         ],
         'public/assets/js/app.min.js',
         'resources/assets/frontend'

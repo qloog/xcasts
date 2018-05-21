@@ -44,7 +44,7 @@
                             <label></label>
                             <textarea name="body" id="body" rows="20" placeholder="请使用Markdown格式书写:), 代码片段黏贴时请注意使用高亮语法。">{{ $topic->origin_body }}</textarea>
                         </div>
-                        <button class="ui button teal" type="submit">保存</button>
+                        <button class="ui button teal" type="submit"  id="topic-submit"><i class="fa fa-paper-plane"></i> 保存</button>
                     </form>
                 </div>
             </div>
@@ -88,17 +88,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('simplemde/simplemde.min.js') }}"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.ui.dropdown').dropdown();
-
-            var simplemde = new SimpleMDE({
-                element: document.getElementById("body"),
-                spellChecker: false,
-                showIcons: ["code", "table"],
-                forceSync: true
-            });
-        });
-    </script>
+    @include('frontend.topic.topic-editor');
 @endsection

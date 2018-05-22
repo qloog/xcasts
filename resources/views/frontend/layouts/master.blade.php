@@ -191,9 +191,9 @@
     </div>
 
     <script src="{{ elixir('assets/js/app.min.js') }}"></script>
-    <script src="{{ asset('semantic/dist/components/visibility.js') }}"></script>
-    <script src="{{ asset('semantic/dist/components/sidebar.js') }}"></script>
-    <script src="{{ asset('semantic/dist/components/transition.js') }}"></script>
+    {{--<script src="{{ asset('semantic/dist/components/visibility.js') }}"></script>--}}
+    {{--<script src="{{ asset('semantic/dist/components/sidebar.js') }}"></script>--}}
+    {{--<script src="{{ asset('semantic/dist/components/transition.js') }}"></script>--}}
     <script type="text/javascript">
         $(document).ready(function(){
             //scroll to top

@@ -14,6 +14,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Qiniu\Auth;
 use Redirect;
+use XCasts\Markdown\Markdown;
 
 class TopicController extends Controller
 {
@@ -28,6 +29,7 @@ class TopicController extends Controller
      * @var VoteRepository
      */
     protected $voteRepo;
+    protected $markdown;
 
     /**
      * TopicController constructor.
@@ -35,11 +37,12 @@ class TopicController extends Controller
      * @param ReplyRepository $replies
      * @param VoteRepository  $votes
      */
-    public function __construct(TopicRepository $topics, ReplyRepository $replies, VoteRepository $votes)
+    public function __construct(TopicRepository $topics, ReplyRepository $replies, VoteRepository $votes, Markdown $markdown)
     {
         $this->topicRepo = $topics;
         $this->replyRepo = $replies;
         $this->voteRepo = $votes;
+        $this->markdown = $markdown;
     }
 
     /**
@@ -98,6 +101,7 @@ class TopicController extends Controller
     public function show($id)
     {
         $topic = $this->topicRepo->find($id);
+        // $topic->body = $this->markdown->toHtml($topic->origin_body);
 
         $replies = $this->replyRepo->orderBy('created_at', 'asc')->findWhere(['topic_id' => $id]);
         $votedUsers = $this->topicRepo->voteBy($id);

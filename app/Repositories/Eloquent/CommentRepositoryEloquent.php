@@ -79,11 +79,11 @@ class CommentRepositoryEloquent extends BaseRepository implements CommentReposit
      */
     public function isDuplicateReply(array $data)
     {
-        $lastReply = Comment::where('user_id', Auth::id())
+        $lastComment = Comment::where('user_id', Auth::id())
             ->where('relation_id', $data['relation_id'])
             ->orderBy('id', 'desc')
             ->first();
-        return count($lastReply) && strcmp($lastReply->origin_content, $data['content']) === 0;
+        return $lastComment instanceof Comment && strcmp($lastComment->origin_content, $data['content']) === 0;
     }
 
     public function all($columns = ['*'])

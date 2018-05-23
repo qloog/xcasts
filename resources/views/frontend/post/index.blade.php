@@ -28,12 +28,14 @@
                 <div class="ui segment">
                 <div class="ui  divided relaxed items">
                     @foreach($posts as $post)
-                        <div class="item">
+                        <div class="item"  style="padding: 0.5em 0em;">
                             {{--<div class="ui small image">--}}
                                 {{--<img src="{{ cdn('/blog-default-post-cover.jpeg') }}">--}}
                             {{--</div>--}}
                             <div class="content">
-                                <a class="header" href="{{ route('post.show', $post->slug) }}">{{ $post->title }}</a>
+                                <a class="header" href="{{ route('post.show', $post->slug) }}" style="font-size: 15px;font-weight: 100">
+                                    {{ $post->title }}
+                                </a>
                                 <div class="meta">
                                     <a><i class="clock outline icon"></i>{{ $post->created_at }}</a>
                                 </div>

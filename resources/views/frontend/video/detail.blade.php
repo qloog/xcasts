@@ -158,6 +158,14 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
     <script type="text/javascript">
+        var $config = {
+            // sites               : ['wechat','qq','weibo','google','facebook'], // 启用的站点
+            disabled            : ['diandian', 'douban', 'tencent', 'qzone', 'linkedin'], // 禁用的站点
+            wechatQrcodeTitle   : "微信扫一扫：分享", // 微信二维码提示文字
+            wechatQrcodeHelper  : '<p>微信里点“发现”，扫一下</p><p>二维码便可将本文分享至朋友圈。</p>',
+        };
+        socialShare('.social-share', $config);
+
         var video = videojs("phpcasts-video", {
             "fluid":!0,
             "playbackRates":[0.5,.75,1,1.25,1.5,1.75,2],

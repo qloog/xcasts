@@ -143,11 +143,11 @@
 </head>
 <body>
     <!-- Following Menu -->
-    <div class="ui large top fixed hidden menu">
-        <div class="ui container">
-            @include('frontend.layouts.partials.menu')
-        </div>
-    </div>
+    {{--<div class="ui large top fixed hidden menu">--}}
+        {{--<div class="ui container">--}}
+            {{--@include('frontend.layouts.partials.menu')--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <!-- Sidebar Menu -->
     <div class="ui vertical inverted sidebar menu">

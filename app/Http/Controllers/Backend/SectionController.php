@@ -17,7 +17,7 @@ class SectionController extends Controller
     public function index(Request $request)
     {
         $courseId = $request->get('course_id', 0);
-        $sections = Section::where('course_id', $courseId)->get();
+        $sections = Section::where('course_id', $courseId)->orderBy('order','asc')->get();
 
         return view('backend.section.index', compact('sections', 'courseId'));
     }

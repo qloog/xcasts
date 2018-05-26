@@ -35,7 +35,7 @@
 	<div class="ui fluid container">
 {{--	<video src="{{ cdn('/bg.mp4') }}" class="glass" poster="file:///Users/qloog/Downloads/500302822.jpg" autoplay="" loop="" data-video="0"></video>--}}
 	</div>
-	<div class="cover-layer" style="background-image: url('{{ thumb('/homepage-background.jpg', 1400, 650) }}')">
+	<div class="cover-layer" style="background: url('{{ thumb('/homepage-background.jpg', 1400, 650) }}') no-repeat center">
 		<div class="ui text container">
 			<h1 class="ui inverted header">
 				{{--Programming by Doing--}}

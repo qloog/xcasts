@@ -22,6 +22,7 @@ class CreateCoursesTable extends Migration
             $table->string('cover_image')->default('')->comment('课程封面图');
             $table->integer('user_id')->unsigned()->default(0)->index()->comment('创建者id');
             $table->tinyInteger('is_publish')->unsigned()->default(0)->comment('是否发布 0:否, 1:是');
+            $table->tinyInteger('update_status')->unsigned()->default(0)->comment('课程的更新状态 0:初始化, 1:预告, 2:更新中, 3:已完结');
             $table->timestamp('published_at')->comment('发布时间');
             $table->timestamps();
             $table->softDeletes();

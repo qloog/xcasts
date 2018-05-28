@@ -11,7 +11,7 @@ class Course extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'id', 'type', 'name', 'slug', 'description', 'cover_image', 'is_publish', 'published_at', 'created_at', 'updated_at'
+        'id', 'type', 'name', 'slug', 'description', 'cover_image', 'is_publish', 'update_status', 'published_at', 'created_at', 'updated_at'
     ];
 
     /**

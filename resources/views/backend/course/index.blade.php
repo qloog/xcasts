@@ -58,7 +58,7 @@
                             <th>封面</th>
                             {{--<th>slug</th>--}}
                             <th>是否发布</th>
-                            {{--<th>创建者</th>--}}
+                            <th>发布状态</th>
                             <th>创建时间</th>
                             <th>更新时间</th>
                             <th>操作</th>
@@ -73,7 +73,7 @@
                                 <td><img src="{{ $item->cover_image ? thumb($item->cover_image, 100, 67) : thumb('/blog-default-post-cover.jpeg', 100, 67) }}" width="100px"></td>
                                 {{--<td>{{ $item->slug }}</td>--}}
                                 <td>{!! $item->is_publish == 1 ? '<span class="label label-success">已发布</span>' : ($item->is_publish == 2 ? '<span class="label label-info">预告</span>' : '<span class="label label-warning">草稿</span>') !!}</td>
-                                {{--<td>{{ $item->user_id }}</td>--}}
+                                <td>{!! $item->update_status == 3 ? '<span class="label label-success">已完结</span>' : ($item->update_status == 2 ? '<span class="label label-info">更新中</span>' : '<span class="label label-warning">预告</span>') !!}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>{{ $item->updated_at }}</td>
                                 <td>

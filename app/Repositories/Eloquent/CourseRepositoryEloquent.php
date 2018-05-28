@@ -35,7 +35,7 @@ class CourseRepositoryEloquent extends BaseRepository implements CourseRepositor
 
     public function getCourseListByType($type = null, $limit = 10)
     {
-        $publishStatus = [1, 2];
+        $publishStatus = [1];
         if ($type) {
             return $this->model
                 ->whereIn('is_publish', $publishStatus)

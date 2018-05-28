@@ -55,8 +55,17 @@
                     <div class="col-sm-5">
                         <div class="clearfix">
                             {!! Form::radio('is_publish', 1) !!}发布 &nbsp;&nbsp;
-                            {!! Form::radio('is_publish', 2) !!}预告 &nbsp;&nbsp;
                             {!! Form::radio('is_publish', 0) !!}草稿
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    {!! Form::label('update_status', '更新状态', ['class' => 'col-sm-2 control-label']) !!}
+                    <div class="col-sm-5">
+                        <div class="clearfix">
+                            {!! Form::radio('update_status', 1) !!}预告 &nbsp;&nbsp;
+                            {!! Form::radio('update_status', 2) !!}更新中 &nbsp;&nbsp;
+                            {!! Form::radio('update_status', 3) !!}已完结
                         </div>
                     </div>
                 </div>

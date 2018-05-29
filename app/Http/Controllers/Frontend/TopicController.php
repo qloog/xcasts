@@ -6,6 +6,7 @@ use App\Contracts\Repositories\ReplyRepository;
 use App\Contracts\Repositories\TopicRepository;
 use App\Contracts\Repositories\VoteRepository;
 use App\Models\Category;
+use App\Models\Course;
 use App\Models\Topic;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
@@ -54,8 +55,9 @@ class TopicController extends Controller
     {
         //$topics = $this->topicRepo->findByField('is_blocked', 'no')->orderBy('created_at', 'desc')->paginate(20);
         $topics = Topic::where('is_blocked', 'no')->orderBy('created_at', 'desc')->paginate(20);
+        $recentCourses = Course::where('is_publish', 1)->orderBy('created_at', 'desc')->take(15)->get();
 
-        return view('frontend.topic.index', compact('topics'));
+        return view('frontend.topic.index', compact('topics', 'recentCourses'));
     }
 
     /**

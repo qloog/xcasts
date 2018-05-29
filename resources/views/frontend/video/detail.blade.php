@@ -21,11 +21,11 @@
 @endsection
 
 @section('content')
-    <div class="ui grid" style="background-color: #393E46">
+    <div class="ui grid" style="background-color: #E9EAED">
         <div class="row"></div>
-        <div class="row">
+        <div class="row" style="margin-bottom: 10px;">
             <div class="one wide column"></div>
-            <div class="fourteen wide column">
+            <div class="ten wide column">
                 @if(Auth()->guest())
                     <div class="ui centered text">
                         <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
@@ -70,88 +70,102 @@
                         @endif
                     @endif
                 @endif
-                    <div class="ui fluid card" style="margin-top: 0px;">
-                        <div class="content">
-                            <div class="ui header">
-                                <div class="ui big breadcrumb">
-                                    <a class="section" href="{{ route('courses.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
-                                    <i class="right arrow icon divider"></i>
-                                    <div class="active section">{{ $video->name }}</div>
-                                    @if ($preLink)
-                                    <a class="ui left teal button" href="{{ $preLink }}"><i class="arrow left icon"></i>上一节</a>
-                                    @endif
-                                    @if ($nextLink)
-                                    <a class="ui right teal button" href="{{ $nextLink }}">下一节<i class="arrow right icon"></i></a>
-                                    @endif
-                                </div>
+                <div class="ui fluid card" style="margin-top: 0px;">
+                    <div class="content">
+                        <div class="ui header">
+                            <div class="ui big breadcrumb">
+                                <a class="section" href="{{ route('courses.show', ['slug' => $course->slug]) }}">{{ $video->course->name }}</a>
+                                <i class="right arrow icon divider"></i>
+                                <div class="active section">{{ $video->name }}</div>
                             </div>
-                            <div class="meta">发布于: {{ $video->created_at }}</div>
-                            <div class="ui large feed">
-                                <div class="event">
-                                    <div class="content">
-                                        <div class="summary">
-                                            {{ $video->description }}
-                                        </div>
+                            @if ($nextLink)
+                                <a class="ui right floated green basic button" href="{{ $nextLink }}">下一节<i class="arrow right icon"></i></a>
+                            @endif
+                            @if ($preLink)
+                                <a class="ui right floated green basic button" href="{{ $preLink }}"><i class="arrow left icon"></i>上一节</a>
+                            @endif
+                        </div>
+                        <div class="meta">发布于: {{ $video->created_at }}</div>
+                        <div class="description">
+                            {{ $video->description }}
+                        </div>
+                        <div class="extra content" style="margin-top: 10px;">
+
+                        </div>
+                    </div>
+
+                    <!--social share bar-->
+                    <div class="social-share"></div>
+                </div>
+
+                <!-- comment -->
+                <div class="ui segment">
+                    <div class="ui comments">
+                        <h3 class="ui dividing header">发表评论</h3>
+                        <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="type" value="video">
+                            <input type="hidden" name="relation_id" value="{{ $video->id }}" >
+                            <input type="hidden" name="slug" value="{{ $course->slug }}" >
+                            <input type="hidden" name="episode_id" value="{{ $video->episode_id }}" >
+                            <div class="@if(!Auth::check()) disabled field @else field @endif">
+                                <textarea name="content" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
+                            </div>
+                            <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
+                        </form>
+
+                        <h3 class="ui dividing header">评论列表({{ count($comments) }} 条)</h3>
+                        @foreach($comments as $comment)
+                            <div class="comment">
+                                <a class="avatar">
+                                    <img src="{{ get_avatar_url($comment->user) }}">
+                                </a>
+                                <div class="content">
+                                    <a class="author">{{ $comment->user->name }}</a>
+                                    <div class="metadata">
+                                        <div class="date">{{ $comment->created_at->diffForHumans() }}</div>
+                                    </div>
+                                    <div class="text markdown-body">
+                                        <p>{!! $comment->content !!}</p>
+                                    </div>
+                                    <div class="actions">
+                                        <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $comment->id }})">
+                                            <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $comment->id }}">{{ $comment->vote_count }}</span>)
+                                        </a>
+                                        <a class="reply" href="javascript:void(0)" onclick="reply('{{ $comment->user->name }}')">
+                                            <i class="reply icon"></i>回复
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="description"></div>
-                            <div class="extra content"></div>
-                            <!--social share bar-->
-                            <div class="social-share"></div>
-                        </div>
+                        @endforeach
                     </div>
-            </div>
-            <div class="one wide column"></div>
-        </div>
-    </div>
+                </div>
 
-    <div class="ui grid"  style="background-color: #E9EAED">
-        <div class="row">
-            <div class="one wide column"></div>
-            <div class="fourteen wide column">
-                <div class="ui comments segment">
-                    <h3 class="ui dividing header">发表评论</h3>
-                    <form class="ui reply form" method="post" action="{{ route('comment.store') }}">
-                        {!! csrf_field() !!}
-                        <input type="hidden" name="type" value="video">
-                        <input type="hidden" name="relation_id" value="{{ $video->id }}" >
-                        <input type="hidden" name="slug" value="{{ $course->slug }}" >
-                        <input type="hidden" name="episode_id" value="{{ $video->episode_id }}" >
-                        <div class="@if(!Auth::check()) disabled field @endif">
-                            <textarea name="content" id="reply_content" placeholder="@if(Auth::check()) 请使用Markdown语法编写 :) @else 需要登录后才能发表评论. @endif" required></textarea>
-                        </div>
-                        <button class="ui primary submit labeled icon button @if(!Auth::check()) disabled field @endif" type="submit"><i class="icon edit"></i>回复</button>
-                    </form>
-                    @foreach($comments as $comment)
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="{{ get_avatar_url($comment->user) }}">
-                        </a>
-                        <div class="content">
-                            <a class="author">{{ $comment->user->name }}</a>
-                            <div class="metadata">
-                                <div class="date">{{ $comment->created_at->diffForHumans() }}</div>
-                            </div>
-                            <div class="text markdown-body">
-                                <p>{!! $comment->content !!}</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply" href="javascript:void(0)" onclick="reply_vote({{ $comment->id }})">
-                                    <i class="thumbs outline up icon"></i>赞(<span id="vote_count_{{ $comment->id }}">{{ $comment->vote_count }}</span>)
-                                </a>
-                                <a class="reply" href="javascript:void(0)" onclick="reply('{{ $comment->user->name }}')">
-                                    <i class="reply icon"></i>回复
-                                </a>
-                            </div>
-                        </div>
+            </div>
+
+            <div class="four wide column">
+                <div class="ui segment">
+                    <h3 class="header"><i class="list ul icon"></i>播放列表</h3>
+                    <div class="ui relaxed link list">
+                        @foreach($videos as $item)
+                        <a class="@if(route('video.show', ['slug'=> $course->slug, 'episode_id' => $item->episode_id]) == Request::url()) active @endif item" href="{{ route('video.show', ['slug'=> $course->slug, 'episode_id' => $item->episode_id]) }}"><i class="right triangle icon"></i>{{ $item->name }}</a>
+                        @endforeach
                     </div>
-                    @endforeach
+                </div>
+
+                <div class="ui segment">
+                    <h3 class="header"><i class="list ul icon"></i>最新课程</h3>
+                    <div class="ui relaxed link list">
+                        @foreach($recentCourses as $val)
+                            <a class="item" href="{{ route('courses.show', ['slug'=> $val->slug]) }}"><i class="right triangle icon"></i>{{ $val->name }}</a>
+                        @endforeach
+                    </div>
                 </div>
             </div>
+
             <div class="one wide column"></div>
         </div>
-        <div class="row"></div>
     </div>
 @endsection
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Contracts\Repositories\CommentRepository;
@@ -67,11 +68,9 @@ class VideoController extends Controller
      */
     public function show($slug, $episodeId)
     {
-        $courses = $this->courseRepo->findByField('slug', $slug);
-        $course = $courses[0];
+        $course = $this->courseRepo->findByField('slug', $slug)->first();
 
-        $videos = $this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId]);
-        $video = $videos[0];
+        $video = $this->videoRepo->findWhere(['course_id' => $course->id, 'episode_id' => $episodeId])->first();
         $comments = $this->commentRepo
             ->orderBy('created_at','desc')
             ->findWhere(['type' => 'video', 'relation_id' => $video->id])
@@ -86,7 +85,11 @@ class VideoController extends Controller
             $nextLink = route('video.show', ['slug' => $course->slug, 'episode_id' => $video->episode_id + 1]);
         }
 
-        return view('frontend.video.detail', compact('course', 'video', 'comments','preLink', 'nextLink'));
+        $videos = $this->videoRepo->findWhere(['course_id' => $course->id]);
+
+        $recentCourses = Course::where('is_publish', 1)->orderBy('created_at', 'desc')->take(15)->get();
+
+        return view('frontend.video.detail', compact('course', 'video', 'videos', 'comments','preLink', 'nextLink', 'recentCourses'));
     }
 
     /**

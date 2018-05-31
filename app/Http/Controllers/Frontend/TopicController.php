@@ -55,7 +55,7 @@ class TopicController extends Controller
     {
         //$topics = $this->topicRepo->findByField('is_blocked', 'no')->orderBy('created_at', 'desc')->paginate(20);
         $topics = Topic::where('is_blocked', 'no')->orderBy('created_at', 'desc')->paginate(20);
-        $recentCourses = Course::where('is_publish', 1)->orderBy('created_at', 'desc')->take(15)->get();
+        $recentCourses = Course::where('is_publish', 1)->orderBy('created_at', 'desc')->take(10)->get();
 
         return view('frontend.topic.index', compact('topics', 'recentCourses'));
     }

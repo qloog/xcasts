@@ -58,6 +58,11 @@
                             @endforeach
                         </div>
                     </div>
+
+                        <div class="ui center aligned segment">
+                            <h4 class="header">可以按小时付费的VPS</h4>
+                            <a href="https://www.vultr.com/?ref=7307204"><img src="https://www.vultr.com/media/banner_3.png" width="240"></a>
+                        </div>
                 </div>
             </div>
         </div>

@@ -183,6 +183,12 @@ class UserController extends Controller
         return view('frontend.user.votes', compact('user','topics'));
     }
 
+    /**
+     * 我关注的用户
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function following($id)
     {
         $user = $this->userRepo->find($id);
@@ -191,10 +197,16 @@ class UserController extends Controller
         return view('frontend.user.following', compact('user','followings'));
     }
 
+    /**
+     * 关注我的用户，即粉丝
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function followers($id)
     {
         $user = $this->userRepo->find($id);
-        $followers = $this->userRepo->getFollowingsByUserId($id, 15);
+        $followers = $this->userRepo->getFollowersByUserId($id, 15);
 
         return view('frontend.user.followers', compact('user','followers'));
     }

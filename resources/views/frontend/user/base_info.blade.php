@@ -11,7 +11,7 @@
     <div class="ui divider"></div>
     <div class="ui three small statistics">
         <div class="teal statistic">
-            <a class="value" href="#">
+            <a class="value" href="{{ route('user.followers', ['id' => $user->id]) }}">
                 {{ $user->follower_count }}
             </a>
             <div class="label">
@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="teal statistic">
-            <a class="value" href="#">
+            <a class="value" href="{{ route('user.replies', $user->id) }}">
                 {{ $user->reply_count }}
             </a>
             <div class="label">
@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="teal statistic">
-            <a class="value" href="#">
+            <a class="value" href="{{ route('user.topics', $user->id) }}">
                 {{ $user->topic_count }}
             </a>
             <div class="label">
@@ -39,7 +39,7 @@
     @if(Auth::id() == request('id'))
         <a class="ui fluid teal button" href="{{ route('user.edit', Auth()->id()) }}"><i class="edit icon"></i> 编辑个人资料 </a>
     @elseif (Auth::check())
-        @if(Auth()->user()->isFollowedBy(Auth::id()))
+        @if($user->isFollowedBy(Auth::id()))
             <div class="ui bottom attached button" id="follow_user">
                 <i class="minus icon"></i>
                 取消关注
@@ -74,7 +74,7 @@
             $('#follow_user').click(function () {
                 $.ajax({
                     type: 'POST',
-                    url: '{{ route('user.follow', Auth::id()) }}',
+                    url: '{{ route('user.follow', $user->id) }}',
                     data: {'_token': '{{ csrf_token() }}','_method':'post'},
                     dataType:'json',
                     success: function (ret) {

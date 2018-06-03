@@ -71,7 +71,7 @@
                     @foreach($comments as $comment)
                         <div class="comment">
                             <a class="avatar">
-                                <img src="{{ cdn($comment->user->avatar) }}">
+                                <img src="{{ get_avatar_url($comment->user) }}">
                             </a>
                             <div class="content">
                                 <a class="author">{{ $comment->user->name }}</a>

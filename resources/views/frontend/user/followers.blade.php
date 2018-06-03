@@ -1,7 +1,7 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-    Ta 关注的用户
+    Ta 的关注者
 @endsection
 
 @section('content')
@@ -19,19 +19,19 @@
                             <div class="ui breadcrumb">
                                 <a class="section" href="{{ route('user.show', $user->id) }}">个人中心</a>
                                 <div class="divider"> / </div>
-                                <div class="active section">Ta 关注的用户</div>
+                                <div class="active section">Ta 的关注者</div>
                             </div>
                         </div>
 
                         <!-- detail -->
                         <div class="ui segment">
                             <div class="ui middle aligned animated divided list">
-                                @foreach($followings as $following)
+                                @foreach($followers as $follower)
                                 <div class="item">
-                                    <img class="ui avatar image" src="{{ get_avatar_url($following) }}">
+                                    <img class="ui avatar image" src="{{ get_avatar_url($follower) }}">
                                     <div class="content">
                                         <div class="header">
-                                            <a class="teal color" href="{{ route('user.show', $following->id) }}" target="_blank">{{ $following->name }}</a>
+                                            <a class="teal color" href="{{ route('user.show', $follower->id) }}" target="_blank">{{ $follower->name }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -45,7 +45,7 @@
                                         {{--</div>--}}
                                     {{--</div>--}}
                             {{--</div>--}}
-                            {!! $followings->render('partials.semantic-pagination') !!}
+                            {!! $followers->render('partials.semantic-pagination') !!}
                         </div>
                     </div>
                 </div>

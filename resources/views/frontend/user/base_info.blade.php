@@ -36,7 +36,54 @@
         </div>
     </div>
     <div class="ui divider"></div>
-    @if(Auth()->id())
-    <a class="ui fluid teal button" href="{{ route('user.edit', Auth()->id()) }}"><i class="edit icon"></i> 编辑个人资料 </a>
+    @if(Auth::id() == request('id'))
+        <a class="ui fluid teal button" href="{{ route('user.edit', Auth()->id()) }}"><i class="edit icon"></i> 编辑个人资料 </a>
+    @elseif (Auth::check())
+        @if(Auth()->user()->isFollowedBy(Auth::id()))
+            <div class="ui bottom attached button" id="follow_user">
+                <i class="minus icon"></i>
+                取消关注
+            </div>
+        @else
+            <div class="ui bottom attached orange button" id="follow_user">
+                <i class="add icon"></i>
+                关注
+            </div>
+        @endif
     @endif
 </div>
+
+@section('scripts')
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.ui.dropdown').dropdown();
+
+            $('.button').popup();
+
+            // display user qrcode
+            $('#reward').click(function () {
+                $('#user_qrcode_modal')
+                    .modal({
+                        blurring: true
+                    })
+                    .modal('show');
+            });
+
+            // 关注用户
+            $('#follow_user').click(function () {
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route('user.follow', Auth::id()) }}',
+                    data: {'_token': '{{ csrf_token() }}','_method':'post'},
+                    dataType:'json',
+                    success: function (ret) {
+                        if (ret.code == 200 ) {
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+@endsection

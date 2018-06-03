@@ -34,14 +34,14 @@ Route::group(['namespace' => 'Frontend'], function ()
         Route::get('/home', 'HomeController@index')->name('home');
 
         // user
-        Route::get('user/{user}/edit', 'UserController@edit')->name('user.edit');
-        Route::put('user/{user}', 'UserController@update')->name('user.update');
-        Route::get('user/{id}/edit_avatar', 'UserController@editAvatar')->name('user.edit_avatar');
-        Route::put('user/{id}/update_avatar', 'UserController@updateAvatar')->name('user.update_avatar');
-        Route::get('user/{id}/edit_password', 'UserController@editPassword')->name('user.edit_password');
-        Route::put('user/{id}/update_password', 'UserController@updatePassword')->name('user.update_password');
-        Route::get('user/{id}/bind', 'UserController@editAvatar')->name('user.bind');
-        Route::post('user/follow/{id}', 'UserController@follow')->name('user.follow');
+        Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
+        Route::put('users/{user}', 'UserController@update')->name('user.update');
+        Route::get('users/{id}/edit_avatar', 'UserController@editAvatar')->name('user.edit_avatar');
+        Route::put('users/{id}/update_avatar', 'UserController@updateAvatar')->name('user.update_avatar');
+        Route::get('users/{id}/edit_password', 'UserController@editPassword')->name('user.edit_password');
+        Route::put('users/{id}/update_password', 'UserController@updatePassword')->name('user.update_password');
+        Route::get('users/{id}/bind', 'UserController@editAvatar')->name('user.bind');
+        Route::post('users/follow/{id}', 'UserController@follow')->name('user.follow');
         Route::get('notifications', 'NotificationsController@index')->name('notifications.index');
         Route::post('upload/image', 'UploadController@uploadImage')->name('upload.image');
 
@@ -71,13 +71,13 @@ Route::group(['namespace' => 'Frontend'], function ()
     // business route
     Route::get('/', 'WelcomeController@index')->name('welcome');
 
-    // user's
-    Route::get('user/activation/{token}', 'Auth\LoginController@userActivation')->name('user.activation');
-    Route::get('user/{user}', 'UserController@show')->name('user.show');
-    Route::get('user/{id}/topics', 'UserController@topics')->name('user.topics');
-    Route::get('user/{id}/replies', 'UserController@replies')->name('user.replies');
-    Route::get('user/{id}/votes', 'UserController@votes')->name('user.votes');
-    Route::get('user/{id}/following', 'UserController@following')->name('user.following');
+    // user
+    Route::get('users/activation/{token}', 'Auth\LoginController@userActivation')->name('user.activation');
+    Route::get('users/{id}', 'UserController@show')->name('user.show');
+    Route::get('users/{id}/topics', 'UserController@topics')->name('user.topics');
+    Route::get('users/{id}/replies', 'UserController@replies')->name('user.replies');
+    Route::get('users/{id}/votes', 'UserController@votes')->name('user.votes');
+    Route::get('users/{id}/following', 'UserController@following')->name('user.following');
 
     // course & video
     Route::resource('courses', 'CourseController');

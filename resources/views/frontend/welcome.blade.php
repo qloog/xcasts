@@ -39,7 +39,7 @@
 		<div class="ui text container">
 			<h1 class="ui inverted header">
 				{{--Programming by Doing--}}
-				免费观看所有视频
+				向终生Coding者致敬
 			</h1>
 			<h2>“学习的最好方法就是做” - P.R. Halmos</h2>
 		</div>

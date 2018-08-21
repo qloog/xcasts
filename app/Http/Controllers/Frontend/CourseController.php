@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Course;
+use App\Models\CourseDependencies;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Contracts\Repositories\CourseRepository;
@@ -65,7 +67,15 @@ class CourseController extends Controller
     {
         $course = $this->courseRepo->findWhere(['slug' => $slug])->first();
 
-        return view('frontend.course.detail', compact('course'));
+        // $dependCourseIds = CourseDependencies::where(['course_id' => $course->id, 'status' => 1])
+        //     ->orderBy('order', 'asc')
+        //     ->pluck('dependency_course_id')
+        //     ->toArray();
+        //
+        // $dependCourses = Course::whereIn('id', $dependCourseIds)->get();
+        $dependCourses = [];
+
+        return view('frontend.course.detail', compact('course', 'dependCourses'));
     }
 
     /**

@@ -18,7 +18,7 @@
                                 <a class="center aligned header" href="{{ route('courses.show', $item->slug) }}">{{ $item->name }}</a>
                             </div>
                             <div class="extra content">
-                                <a class="time">{{ date('Y-m-d', strtotime($item->created_at)) }}</a>
+                                {{--<a class="time">{{ date('Y-m-d', strtotime($item->created_at)) }}</a>--}}
                                 <span class="right floated">
                                     @if ($item->update_status == 1)
                                         <div class="ui orange  label">预告</div>

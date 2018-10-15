@@ -79,7 +79,7 @@
                                         </td>
                                         <td class="ui right aligned">{{ formatToMinute($video->duration) }}</td>
                                         <!-- todo: 用发布时间取代 -->
-                                        <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>
+                                        {{--<td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>--}}
                                     </tr>
                                 @endforeach
                             @endforeach
@@ -99,7 +99,7 @@
                                         </td>
                                         <td class="ui right aligned">{{ formatToMinute($video->duration) }}</td>
                                         <!-- todo: 用发布时间取代 -->
-                                        <td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>
+                                        {{--<td class="ui center aligned">{{ date('Y-m-d' ,strtotime($video->published_at)) }}</td>--}}
                                     </tr>
                                 @else
                                     <tr style="display: table-row" class="disabled">

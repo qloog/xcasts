@@ -29,7 +29,7 @@
 </style>
 @endsection
 
-@section('keywords', 'PHPCasts, 视频教程, Yaf视频,Laravel视频, Yaf教程, Laravel教程')
+@section('keywords', '1024课堂, PHPCasts, 视频教程, Yaf视频,Laravel视频, Yaf教程, Laravel教程')
 
 @section('get-start')
 	<div class="ui fluid container">

@@ -2,7 +2,7 @@
     <div class="ui container">
         <div class="ui computer only stackable inverted grid">
             <div class="five wide column">
-                <h4 class="ui inverted header">PHPCasts</h4>
+                <h4 class="ui inverted header">1024课堂</h4>
                 <p></p>
             </div>
             <div class="three wide column">
@@ -48,7 +48,7 @@
         <div class="ui inverted horizontal list">
             <a class="disabled item">Powered By</a><a class="item" href="https://laravel.com">Laravel</a>
             <div class="item"><a href="{{ url('/terms') }}">服务条款</a></div>
-            <div class="disabled item">© PHPCasts 2018. All rights reserved.</div>
+            <div class="disabled item">© 1024课堂 2019. All rights reserved.</div>
             <div class="disabled item">京ICP备16064137号</div>
         </div>
 

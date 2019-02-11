@@ -12,7 +12,7 @@
     <div class="ui container">
         <div class="ui hidden divider"></div>
         <div class="ui yellow message">
-            我们希望 PHPCasts 能够成为拥有浓厚技术氛围的开发者社区，
+            我们希望 1024课堂 能够成为拥有浓厚技术氛围的开发者社区，
             而实现这个目标，需要我们所有人的共同努力：友善，公平，尊重知识和事实。
             请严格遵守 - <a class="ui teal">社区发帖和管理规范</a>
         </div>

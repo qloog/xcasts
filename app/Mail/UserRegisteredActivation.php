@@ -29,7 +29,7 @@ class UserRegisteredActivation extends Mailable
      */
     public function build()
     {
-        $subject = 'PHPCasts - 帐号激活链接';
+        $subject = '1024课堂 - 帐号激活链接';
 
         return $this->view('emails.activation')
             ->with('name', $this->user['name'])

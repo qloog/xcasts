@@ -8,8 +8,8 @@
     <meta name="baidu-site-verification" content="5vRzsjBoK1" />
 
     <!-- Site Properties -->
-    <title>@yield('title') - PHPCasts</title>
-    <meta name="author" content="PHPCasts" />
+    <title>@yield('title') - 1024课堂</title>
+    <meta name="author" content="1024课堂" />
     <meta name="keywords" content="@yield('keywords')" />
     <meta name="description" content="@yield('description')" />
     {{--<link rel="stylesheet" type="text/css" href="{{ asset('semantic/dist/semantic.min.css') }}">--}}

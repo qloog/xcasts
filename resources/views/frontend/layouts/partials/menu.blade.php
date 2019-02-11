@@ -1,6 +1,6 @@
 {{--<div class="ui container">--}}
     {{--<div class="ui huge secondary inverted menu">--}}
-        <div class="header item">PHPCasts</div>
+        <div class="header item">1024课堂</div>
         @include('frontend.layouts.partials.menu_items')
         <div class="right item">
             @if(!Auth::guest())

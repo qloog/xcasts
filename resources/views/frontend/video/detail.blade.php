@@ -31,7 +31,7 @@
                         <div style="text-align: center; background: url(/images/hello-world.png) 50% 70% no-repeat #080808;padding: 22% 0;">
                             <h3 style="color: #fff;">&nbsp;&nbsp;&nbsp;&nbsp;观看视频需要登录</h3>
                             <ul class="ui list">
-                                <li><a href="{{ url('/register') }}" class="ui teal button">马上加入 PHPCasts</a></li>
+                                <li><a href="{{ url('/register') }}" class="ui teal button">马上加入 1024课堂</a></li>
                                 <li style="margin-top:20px"><a href="{{ url('/login') }}">有账号?马上登录</a></li>
                             </ul>
                         </div>
